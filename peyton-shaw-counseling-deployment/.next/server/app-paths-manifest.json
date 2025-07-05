@@ -1,0 +1,15 @@
+{
+  "/api/contact/route": "app/api/contact/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(marketing)/crisis-resources/page": "app/(marketing)/crisis-resources/page.js",
+  "/page": "app/page.js",
+  "/(marketing)/faq/page": "app/(marketing)/faq/page.js",
+  "/(marketing)/forms/page": "app/(marketing)/forms/page.js",
+  "/api/forms/[formId]/route": "app/api/forms/[formId]/route.js",
+  "/(marketing)/services/page": "app/(marketing)/services/page.js",
+  "/(marketing)/contact/page": "app/(marketing)/contact/page.js",
+  "/(marketing)/about/page": "app/(marketing)/about/page.js",
+  "/(marketing)/blog/page": "app/(marketing)/blog/page.js",
+  "/(marketing)/services/[service]/page": "app/(marketing)/services/[service]/page.js"
+}

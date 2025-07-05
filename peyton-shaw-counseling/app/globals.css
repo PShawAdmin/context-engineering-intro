@@ -1,0 +1,173 @@
+/* Fonts are loaded via link tags in layout.tsx to avoid @import conflicts */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Cream background */
+    --background: 30 33% 97%;
+    --foreground: 217 33% 17%;
+    
+    /* Primary - Slate blue */
+    --primary: 215 20% 51%;
+    --primary-foreground: 30 33% 97%;
+    
+    /* Secondary - Misty blue */
+    --secondary: 213 18% 84%;
+    --secondary-foreground: 217 33% 17%;
+    
+    /* Accent - Clay (warm nude) */
+    --accent: 26 41% 65%;
+    --accent-foreground: 217 33% 17%;
+    
+    /* Muted backgrounds */
+    --muted: 210 20% 92%;
+    --muted-foreground: 215 16% 47%;
+    
+    /* Cards and surfaces */
+    --card: 30 33% 97%;
+    --card-foreground: 217 33% 17%;
+    
+    /* Popover */
+    --popover: 30 33% 97%;
+    --popover-foreground: 217 33% 17%;
+    
+    /* Destructive actions */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders and inputs */
+    --border: 213 18% 90%;
+    --input: 213 18% 90%;
+    --ring: 26 41% 65%;
+    
+    /* Border radius for consistent rounding */
+    --radius: 0.5rem;
+  }
+  
+  .dark {
+    /* Dark mode - charcoal base */
+    --background: 217 33% 12%;
+    --foreground: 30 33% 97%;
+    
+    --primary: 215 20% 51%;
+    --primary-foreground: 30 33% 97%;
+    
+    --secondary: 213 18% 84%;
+    --secondary-foreground: 217 33% 17%;
+    
+    --accent: 26 41% 65%;
+    --accent-foreground: 217 33% 17%;
+    
+    --muted: 217 28% 20%;
+    --muted-foreground: 215 16% 65%;
+    
+    --card: 217 30% 15%;
+    --card-foreground: 30 33% 97%;
+    
+    --popover: 217 30% 15%;
+    --popover-foreground: 30 33% 97%;
+    
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 217 20% 25%;
+    --input: 217 20% 25%;
+    --ring: 26 41% 65%;
+  }
+  
+  /* Global styles */
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Typography hierarchy */
+  h1, h2 {
+    @apply font-serif;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-text-charcoal;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-text-charcoal;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl font-medium text-text-storm;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl font-medium text-text-storm;
+  }
+  
+  h5 {
+    @apply text-lg md:text-xl font-medium text-text-storm;
+  }
+  
+  h6 {
+    @apply text-base md:text-lg font-medium text-text-storm;
+  }
+  
+  /* Improved focus states for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent-300 ring-offset-2 ring-offset-background;
+  }
+  
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Selection color */
+  ::selection {
+    @apply bg-accent-200/30 text-text-charcoal;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-background-dove;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+}
+
+@layer components {
+  /* Container with responsive padding */
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  }
+  
+  /* Section padding utility */
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+}
+
+@layer utilities {
+  /* Text balance for better readability */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Pattern backgrounds */
+  .pattern-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+  }
+}

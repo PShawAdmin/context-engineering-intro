@@ -1,0 +1,12 @@
+# https://www.robotstxt.org/robotstxt.html
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://peytonshawcounseling.com/sitemap.xml
+
+# Crawl delay (in seconds) - optional, remove if not needed
+Crawl-delay: 1
