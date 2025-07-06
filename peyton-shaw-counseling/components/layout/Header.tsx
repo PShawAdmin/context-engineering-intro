@@ -74,15 +74,58 @@ export default function Header() {
           animation: breathe 4s ease-in-out infinite;
         }
 
-        .cta-refined {
+        @keyframes gradientFlow {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        
+        .cta-gradient {
           background: #D4A574;
+          position: relative;
+          overflow: hidden;
           transition: all 0.3s ease;
         }
-
-        .cta-refined:hover {
-          background: #C4946A;
-          box-shadow: 0 4px 15px 0 rgba(212, 165, 116, 0.2);
+        
+        .cta-gradient::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 200%;
+          height: 100%;
+          background: linear-gradient(90deg, 
+            #D4A574 0%, 
+            #E5C4A1 20%, 
+            #F5E6D3 35%,
+            #C4946A 50%, 
+            #D4A574 65%,
+            #E5C4A1 80%, 
+            #D4A574 100%);
+          transform: translateX(-100%);
+          transition: opacity 0.3s ease;
+          opacity: 0;
         }
+        
+        .cta-gradient:hover::before {
+          animation: gradientFlow 3s linear infinite;
+          opacity: 1;
+        }
+        
+        .cta-gradient span,
+        .cta-gradient svg {
+          position: relative;
+          z-index: 1;
+        }
+        
+        .cta-gradient:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 6px 20px 0 rgba(212, 165, 116, 0.3);
+        }
+        
       `}</style>
 
       <Navbar 
@@ -91,7 +134,7 @@ export default function Header() {
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
         className={`
-          transition-all duration-300 overflow-x-hidden
+          transition-all duration-300 overflow-x-hidden relative
           ${isScrolled 
             ? 'bg-nude-cream/95 backdrop-blur-lg shadow-soft py-2' 
             : 'bg-nude-cream/80 backdrop-blur-sm py-4'
@@ -99,16 +142,31 @@ export default function Header() {
         `}
         maxWidth="xl"
       >
-        <NavbarContent className="gap-2 pr-3">
+        <NavbarContent className="sm:hidden basis-1/3 justify-start">
           <NavbarMenuToggle
             aria-label="Toggle navigation menu"
-            className="sm:hidden text-slate-600 hover:text-slate-700 transition-colors flex-shrink-0"
+            className="text-slate-600 hover:text-slate-700 transition-colors"
           />
-          <NavbarBrand className="flex-grow overflow-hidden">
-            <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-              {/* Professional photo as logo */}
-              <div className="relative flex-shrink-0">
-                <div className="relative w-10 sm:w-12 h-10 sm:h-12 rounded-full overflow-hidden transition-transform duration-300 group-hover:scale-110 shadow-soft">
+        </NavbarContent>
+        
+        <NavbarContent className="sm:hidden absolute left-1/2 transform -translate-x-1/2">
+          <NavbarBrand>
+            <Link href="/" className="group flex flex-col items-center">
+              <span className="font-script text-3xl text-nude-clay hover:text-nude-warm transition-colors duration-300 leading-none">
+                PSC
+              </span>
+              <span className="font-script text-sm text-nude-clay hover:text-nude-warm transition-colors duration-300 mt-0.5 whitespace-nowrap">
+                Peyton Shaw Counseling
+              </span>
+            </Link>
+          </NavbarBrand>
+        </NavbarContent>
+        
+        <NavbarContent className="hidden sm:flex justify-start">
+          <NavbarBrand>
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden transition-transform duration-300 group-hover:scale-110 shadow-soft">
                   <Image
                     src="/images/peyton-shaw-professional.jpg"
                     alt="Peyton Shaw"
@@ -118,13 +176,10 @@ export default function Header() {
                     priority
                   />
                 </div>
-                <div className="absolute inset-0 w-10 sm:w-12 h-10 sm:h-12 bg-nude-sand rounded-full filter blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 w-12 h-12 bg-nude-sand rounded-full filter blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
               </div>
-              
-              {/* Brand name */}
-              <span className="text-lg sm:text-xl md:text-2xl font-normal text-text-charcoal leading-tight font-serif truncate">
-                <span className="hidden sm:inline">Peyton Shaw Counseling</span>
-                <span className="sm:hidden">PSC</span>
+              <span className="font-script text-4xl text-nude-clay hover:text-nude-warm transition-colors duration-300">
+                PSC
               </span>
             </Link>
           </NavbarBrand>
@@ -143,13 +198,13 @@ export default function Header() {
           ))}
         </NavbarContent>
 
-        <NavbarContent justify="end" className="gap-2">
+        <NavbarContent justify="end" className="basis-1/3 sm:basis-auto">
           {/* Enhanced CTA button */}
           <NavbarItem className="flex">
             <Button 
               as={Link} 
               href="/contact" 
-              className="cta-refined text-text-charcoal font-medium px-3 sm:px-4 md:px-6 py-2 text-sm md:text-base rounded-lg min-w-0"
+              className="cta-gradient bg-nude-clay text-white font-medium px-3 sm:px-4 md:px-6 py-2 text-sm md:text-base rounded-lg min-w-0 relative"
               size="sm"
               startContent={
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -167,16 +222,10 @@ export default function Header() {
         <NavbarMenu className="bg-nude-cream backdrop-blur-md pt-6">
           {/* Mobile brand info */}
           <div className="text-center mb-6 pb-6 border-b border-slate-200">
-            <div className="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden shadow-soft">
-              <Image
-                src="/images/peyton-shaw-professional.jpg"
-                alt="Peyton Shaw"
-                width={80}
-                height={80}
-                className="object-cover"
-              />
-            </div>
-            <p className="text-sm font-medium text-text-storm">Peyton Shaw, LPC</p>
+            <span className="font-script text-5xl text-nude-clay">
+              PSC
+            </span>
+            <p className="text-sm font-medium text-text-storm mt-2">Peyton Shaw Counseling</p>
           </div>
 
           {menuItems.map((item, index) => (
@@ -199,7 +248,7 @@ export default function Header() {
             <Button 
               as={Link} 
               href="/contact" 
-              className="w-full cta-refined text-text-charcoal font-medium py-3 rounded-lg"
+              className="w-full bg-nude-clay text-white font-medium py-3 rounded-lg hover:bg-nude-warm transition-colors"
               onPress={() => setIsMenuOpen(false)}
               startContent={
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -1,4 +1,4 @@
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Inter, Playfair_Display, Vujahday_Script } from 'next/font/google'
 
 export const inter = Inter({
   subsets: ['latin'],
@@ -18,5 +18,14 @@ export const playfair = Playfair_Display({
   fallback: ['Georgia', 'serif']
 })
 
+export const vujahday = Vujahday_Script({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-vujahday',
+  display: 'swap',
+  preload: true,
+  fallback: ['cursive']
+})
+
 // Export font class names for Tailwind
-export const fontVariables = `${inter.variable} ${playfair.variable}`
+export const fontVariables = `${inter.variable} ${playfair.variable} ${vujahday.variable}`

@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link';
 import { SITE_CONFIG } from '@/lib/constants';
 
@@ -33,9 +35,7 @@ export default function Footer() {
           <div className="col-span-1 lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <div className="relative">
-                <span 
-                  className="text-2xl text-nude-sand font-serif" 
-                >
+                <span className="font-script text-2xl text-nude-sand">
                   PSC
                 </span>
               </div>
@@ -193,6 +193,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+      </footer>
   );
 }
