@@ -32,13 +32,15 @@ export interface FAQItem {
 }
 
 export interface BlogPost {
-  id: string;
-  title: string;
   slug: string;
+  title: string;
   excerpt: string;
   content: string;
-  publishedAt: string;
   author: string;
-  tags?: string[];
-  readingTime?: string;
+  publishedAt: string;
+  updatedAt?: string;
+  keywords: string[];
+  category: string;
+  readingTime: number;
+  image?: string;
 }

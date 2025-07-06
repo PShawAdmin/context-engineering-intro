@@ -7,6 +7,14 @@ import Testimonials from '@/components/features/Testimonials';
 import {Card, CardHeader, CardBody} from '@heroui/card';
 import {Button} from '@heroui/button';
 import { SERVICES, SITE_CONFIG } from '@/lib/constants';
+import { generateMetaTags } from '@/lib/seo/utils';
+
+export const metadata = generateMetaTags({
+  title: 'Therapist in Southlake TX | Peyton Shaw Counseling - Anxiety & Depression Help',
+  description: 'Licensed therapist in Southlake, TX specializing in anxiety, depression & life transitions. In-person & online therapy. Accepting new patients. Book today.',
+  keywords: ['therapist southlake tx', 'counseling services southlake', 'anxiety therapist near me', 'depression treatment southlake texas', 'individual therapy southlake', 'mental health counseling southlake', 'psychotherapy southlake texas'],
+  image: '/images/peyton-shaw-professional.jpg',
+});
 
 export default function HomePage() {
   return (

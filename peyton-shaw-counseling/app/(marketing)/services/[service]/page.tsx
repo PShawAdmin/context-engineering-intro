@@ -7,6 +7,8 @@ import Hero from '@/components/layout/Hero';
 import {Button} from '@heroui/button';
 import {Card, CardHeader, CardBody} from '@heroui/card';
 import { SERVICES } from '@/lib/constants';
+import JsonLd from '@/components/seo/JsonLd';
+import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/seo/schemas';
 
 interface ServicePageProps {
   params: {
@@ -45,9 +47,18 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
   // Get other services for recommendations
   const otherServices = SERVICES.filter((s) => s.id !== service.id).slice(0, 3);
 
+  // Generate breadcrumb items
+  const breadcrumbItems = [
+    { name: 'Home', url: process.env.NEXT_PUBLIC_SITE_URL || 'https://peytonshawcounseling.com' },
+    { name: 'Services', url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://peytonshawcounseling.com'}/services` },
+    { name: service.title, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://peytonshawcounseling.com'}/services/${service.slug}` }
+  ];
+
   return (
     <>
       <Header />
+      <JsonLd data={generateServiceSchema(service)} />
+      <JsonLd data={generateBreadcrumbSchema(breadcrumbItems)} />
       <main>
         <Hero
           title={service.title}

@@ -3,6 +3,9 @@ import './globals.css'
 import { Providers } from './providers'
 import AnnouncementBanner from '@/components/layout/AnnouncementBanner'
 import { inter, fontVariables } from '@/lib/fonts'
+import JsonLd from '@/components/seo/JsonLd'
+import { generateMedicalBusinessSchema } from '@/lib/seo/schemas'
+import AnalyticsProvider from '@/components/analytics/AnalyticsProvider'
 
 export const metadata: Metadata = {
   title: {
@@ -57,10 +60,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${fontVariables} overflow-x-hidden`}>
+        <JsonLd data={generateMedicalBusinessSchema()} />
         <Providers>
           <AnnouncementBanner />
           {children}
         </Providers>
+        <AnalyticsProvider />
       </body>
     </html>
   )

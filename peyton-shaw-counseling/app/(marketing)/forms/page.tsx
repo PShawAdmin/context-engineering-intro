@@ -4,10 +4,10 @@ import { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
-import { Card, CardBody, CardHeader } from '@heroui/card';
-import { Button } from '@heroui/button';
-import { Tabs, Tab } from '@heroui/tabs';
-import { Chip } from '@heroui/chip';
+import { Card, CardBody, CardHeader } from '@heroui/react';
+import { Button } from '@heroui/react';
+import { Tabs, Tab } from '@heroui/react';
+import { Chip } from '@heroui/react';
 import Link from 'next/link';
 import { PRACTICE_FORMS, NEW_CLIENT_PACKET, FORM_CATEGORIES } from '@/lib/forms-data';
 
@@ -129,9 +129,16 @@ export default function FormsPage() {
               <Tabs
                 aria-label="Form Categories"
                 selectedKey={selectedCategory}
-                onSelectionChange={(key) => setSelectedCategory(key as string)}
+                onSelectionChange={(key) => setSelectedCategory(key.toString())}
+                variant="underlined"
+                classNames={{
+                  base: "w-full",
+                  tabList: "gap-6 w-full relative rounded-none p-0 border-b border-nude-sand/30",
+                  cursor: "w-full bg-nude-clay h-0.5 bottom-0",
+                  tab: "max-w-fit px-0 h-12 data-[hover-unselected=true]:opacity-70",
+                  tabContent: "text-text-storm font-medium transition-all group-data-[selected=true]:text-nude-clay group-data-[selected=true]:font-semibold"
+                }}
                 className="mb-8"
-                size="lg"
               >
                 <Tab key="all" title="All Forms" />
                 {FORM_CATEGORIES.map((category) => (

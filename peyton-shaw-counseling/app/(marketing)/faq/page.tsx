@@ -6,13 +6,14 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import ContactForm from '@/components/features/ContactForm';
-import {Accordion, AccordionItem} from '@heroui/accordion';
-import {Tabs, Tab} from '@heroui/tabs';
-import {Card, CardBody} from '@heroui/card';
-import {Button} from '@heroui/button';
+import {Accordion, AccordionItem} from '@heroui/react';
+import {Tabs, Tab} from '@heroui/react';
+import {Card, CardBody} from '@heroui/react';
+import {Button} from '@heroui/react';
 import Link from 'next/link';
 import { FAQ_ITEMS } from '@/lib/constants';
-import type { Selection } from '@heroui/react';
+import JsonLd from '@/components/seo/JsonLd';
+import { generateFAQSchema } from '@/lib/seo/schemas';
 
 // Group FAQ items by category
 const groupedFAQs = FAQ_ITEMS.reduce((acc, item) => {
@@ -26,7 +27,7 @@ const groupedFAQs = FAQ_ITEMS.reduce((acc, item) => {
 
 export default function FAQPage() {
   const [selectedKey, setSelectedKey] = useState<string>('all');
-  const [expandedKeys, setExpandedKeys] = useState<Selection>(new Set());
+  const [expandedKeys, setExpandedKeys] = useState(new Set<string>());
 
   const filteredFAQs = useMemo(() => 
     selectedKey === 'all' 
@@ -35,36 +36,34 @@ export default function FAQPage() {
     [selectedKey]
   );
 
-  // Handle tab selection with proper typing
-  const handleTabChange = (key: string | number) => {
+  // Reset expanded keys when filter changes
+  useEffect(() => {
+    setExpandedKeys(new Set<string>());
+  }, [selectedKey]);
+
+  const handleTabChange = (key: React.Key) => {
     setSelectedKey(key.toString());
   };
 
-  // Handle accordion selection change
-  const handleSelectionChange = useCallback((keys: Selection) => {
-    setExpandedKeys(keys);
-  }, []);
+  const handleAccordionChange = (keys: any) => {
+    if (typeof keys === 'string' && keys === 'all') {
+      setExpandedKeys(new Set(filteredFAQs.map(item => item.id)));
+    } else if (keys instanceof Set) {
+      setExpandedKeys(new Set(Array.from(keys)));
+    } else if (Array.isArray(keys)) {
+      setExpandedKeys(new Set(keys));
+    } else {
+      setExpandedKeys(new Set());
+    }
+  };
 
-  // Filter expanded keys to only include items in current filter
-  const filteredExpandedKeys = useMemo(() => {
-    if (expandedKeys === 'all') return 'all';
-    
-    const filteredIds = new Set(filteredFAQs.map(item => item.id));
-    const currentExpanded = expandedKeys as Set<string>;
-    const filtered = new Set<string>();
-    
-    currentExpanded.forEach(key => {
-      if (filteredIds.has(key)) {
-        filtered.add(key);
-      }
-    });
-    
-    return filtered;
-  }, [expandedKeys, filteredFAQs]);
+
+
 
   return (
     <>
       <Header />
+      <JsonLd data={generateFAQSchema(FAQ_ITEMS)} />
       <main>
         <Hero
           title="Frequently Asked Questions"
@@ -101,8 +100,8 @@ export default function FAQPage() {
               <Accordion 
                 variant="bordered"
                 selectionMode="multiple"
-                selectedKeys={filteredExpandedKeys}
-                onSelectionChange={handleSelectionChange}
+                selectedKeys={Array.from(expandedKeys)}
+                onSelectionChange={handleAccordionChange}
                 className="mb-12"
               >
                 {filteredFAQs.map((item) => (
