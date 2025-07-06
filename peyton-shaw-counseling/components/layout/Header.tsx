@@ -91,7 +91,7 @@ export default function Header() {
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
         className={`
-          transition-all duration-300 
+          transition-all duration-300 overflow-x-hidden
           ${isScrolled 
             ? 'bg-nude-cream/95 backdrop-blur-lg shadow-soft py-2' 
             : 'bg-nude-cream/80 backdrop-blur-sm py-4'
@@ -99,16 +99,16 @@ export default function Header() {
         `}
         maxWidth="xl"
       >
-        <NavbarContent>
+        <NavbarContent className="gap-2 pr-3">
           <NavbarMenuToggle
             aria-label="Toggle navigation menu"
-            className="sm:hidden text-slate-600 hover:text-slate-700 transition-colors"
+            className="sm:hidden text-slate-600 hover:text-slate-700 transition-colors flex-shrink-0"
           />
-          <NavbarBrand>
-            <Link href="/" className="flex items-center gap-3 group">
+          <NavbarBrand className="flex-grow overflow-hidden">
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
               {/* Professional photo as logo */}
-              <div className="relative">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden transition-transform duration-300 group-hover:scale-110 shadow-soft">
+              <div className="relative flex-shrink-0">
+                <div className="relative w-10 sm:w-12 h-10 sm:h-12 rounded-full overflow-hidden transition-transform duration-300 group-hover:scale-110 shadow-soft">
                   <Image
                     src="/images/peyton-shaw-professional.jpg"
                     alt="Peyton Shaw"
@@ -118,12 +118,13 @@ export default function Header() {
                     priority
                   />
                 </div>
-                <div className="absolute inset-0 w-12 h-12 bg-nude-sand rounded-full filter blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 w-10 sm:w-12 h-10 sm:h-12 bg-nude-sand rounded-full filter blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
               </div>
               
               {/* Brand name */}
-              <span className="text-xl md:text-2xl font-normal text-text-charcoal leading-tight font-serif">
-                Peyton Shaw Counseling
+              <span className="text-lg sm:text-xl md:text-2xl font-normal text-text-charcoal leading-tight font-serif truncate">
+                <span className="hidden sm:inline">Peyton Shaw Counseling</span>
+                <span className="sm:hidden">PSC</span>
               </span>
             </Link>
           </NavbarBrand>
@@ -142,21 +143,22 @@ export default function Header() {
           ))}
         </NavbarContent>
 
-        <NavbarContent justify="end" className="gap-2 lg:gap-4">
+        <NavbarContent justify="end" className="gap-2">
           {/* Enhanced CTA button */}
-          <NavbarItem>
+          <NavbarItem className="flex">
             <Button 
               as={Link} 
               href="/contact" 
-              className="cta-refined text-text-charcoal font-medium px-4 md:px-6 py-2 text-sm md:text-base rounded-lg"
+              className="cta-refined text-text-charcoal font-medium px-3 sm:px-4 md:px-6 py-2 text-sm md:text-base rounded-lg min-w-0"
+              size="sm"
               startContent={
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               }
             >
               <span className="hidden sm:inline">Book Your Session</span>
-              <span className="sm:hidden">Book</span>
+              <span className="sm:hidden">Book Now</span>
             </Button>
           </NavbarItem>
         </NavbarContent>
