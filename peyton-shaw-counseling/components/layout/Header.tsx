@@ -9,10 +9,10 @@ import {
   NavbarItem, 
   NavbarMenuToggle,
   NavbarMenu,
-  NavbarMenuItem
-} from "@heroui/navbar";
-import {Link} from "@heroui/link";
-import {Button} from "@heroui/button";
+  NavbarMenuItem,
+  Link,
+  Button
+} from "@heroui/react";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
