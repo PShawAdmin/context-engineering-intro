@@ -2,11 +2,5 @@
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "regions": ["iad1"],
-  "env": {
-    "SENDGRID_API_KEY": "@sendgrid-api-key",
-    "SENDGRID_FROM_EMAIL": "@sendgrid-from-email",
-    "SENDGRID_TO_EMAIL": "@sendgrid-to-email",
-    "NEXT_PUBLIC_CALENDLY_URL": "@calendly-url"
-  }
+  "regions": ["iad1"]
 }
