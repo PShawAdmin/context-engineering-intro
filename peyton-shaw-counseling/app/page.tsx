@@ -117,6 +117,8 @@ export default function HomePage() {
         <section className="section-padding bg-nude-linen relative overflow-hidden">
           <div className="absolute inset-0 bg-pattern-blob opacity-10"></div>
           <div className="absolute inset-0 pattern-grain opacity-5"></div>
+          {/* Elegant chrysanthemum flower pattern watermark */}
+          <div className="absolute inset-0 pattern-chrysanthemum opacity-10"></div>
           <div className="container relative z-10">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
