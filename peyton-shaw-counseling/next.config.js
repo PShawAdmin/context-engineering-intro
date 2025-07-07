@@ -30,10 +30,25 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
           },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN'
+          },
         ],
       },
+      // Force no-cache for HTML pages to prevent stale content
       {
-        source: '/static/:path*',
+        source: '/:path*((?!.well-known|_next/static|_next/image|favicon.ico).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+        ],
+      },
+      // Static assets can be cached
+      {
+        source: '/_next/static/:path*',
         headers: [
           {
             key: 'Cache-Control',
@@ -41,8 +56,9 @@ const nextConfig = {
           },
         ],
       },
+      // Images can be cached
       {
-        source: '/_next/static/:path*',
+        source: '/_next/image/:path*',
         headers: [
           {
             key: 'Cache-Control',
