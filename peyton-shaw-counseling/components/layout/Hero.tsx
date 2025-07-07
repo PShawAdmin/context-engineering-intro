@@ -32,6 +32,8 @@ export default function Hero({
         <>
           <div className="absolute inset-0 z-0 bg-pattern-blob opacity-20"></div>
           <div className="absolute inset-0 z-0 pattern-grain opacity-5"></div>
+          {/* Gradient overlay - darker nude tone on top, fading to transparent */}
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-nude-warm/40 via-nude-sand/20 to-transparent"></div>
           <HeroBlobs />
         </>
       )}
@@ -39,7 +41,18 @@ export default function Hero({
       <div className="relative z-10 container mx-auto px-4 py-24 md:py-32 lg:py-40">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-text-charcoal mb-6 text-balance">
-            {title}
+            {title.split(' ').map((word, index) => (
+              <span key={index}>
+                {word === 'Peace' ? (
+                  <span className="gradient-text-base gradient-text-peace">{word}</span>
+                ) : word === 'Purpose' ? (
+                  <span className="gradient-text-base gradient-text-purpose">{word}</span>
+                ) : (
+                  word
+                )}
+                {index < title.split(' ').length - 1 && ' '}
+              </span>
+            ))}
           </h1>
           <p className="text-xl md:text-2xl text-text-storm mb-4 font-medium">
             {subtitle}
