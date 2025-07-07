@@ -8,14 +8,41 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
+  reactStrictMode: true,
+  swcMinify: true,
   experimental: {
     optimizePackageImports: ['@heroui/react'],
   },
-  // Add Brotli compression and caching headers
+  // Webpack configuration to handle chunk loading
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.output.publicPath = '/_next/';
+    }
+    return config;
+  },
+  // Add proper caching headers
   async headers() {
     return [
       {
-        source: '/:all*(svg|jpg|jpeg|png|webp|avif|gif|ico|woff|woff2|ttf|otf|css|js)',
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on'
+          },
+        ],
+      },
+      {
+        source: '/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/:path*',
         headers: [
           {
             key: 'Cache-Control',
