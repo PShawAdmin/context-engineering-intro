@@ -123,7 +123,7 @@ export default function HomePage() {
                 <div className="animate-slide-up">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-text-charcoal mb-6">
                     Meet <span 
-                      className="text-nude-clay text-4xl md:text-5xl lg:text-6xl inline-block font-serif"
+                      className="text-nude-clay text-4xl md:text-5xl lg:text-6xl inline-block font-script"
                     >
                       Peyton Shaw
                     </span>
