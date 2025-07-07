@@ -13,6 +13,13 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@heroui/react'],
   },
+  // Generate unique build ID for cache busting
+  generateBuildId: async () => {
+    // Use timestamp + random string for uniqueness
+    return `${Date.now()}-${Math.random().toString(36).substring(7)}`;
+  },
+  // Asset prefix for Cloudflare compatibility
+  assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX || '',
   // Webpack configuration to handle chunk loading
   webpack: (config, { isServer }) => {
     if (!isServer) {
@@ -38,11 +45,20 @@ const nextConfig = {
       },
       // Force no-cache for HTML pages to prevent stale content
       {
-        source: '/:path*((?!.well-known|_next/static|_next/image|favicon.ico).*)',
+        source: '/',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-cache, no-store, must-revalidate',
+            value: 's-maxage=1, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        source: '/:path((?!_next/static|_next/image|favicon.ico|.*\\..*$).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 's-maxage=1, stale-while-revalidate=86400',
           },
         ],
       },
