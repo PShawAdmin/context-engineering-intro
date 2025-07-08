@@ -121,8 +121,8 @@ const InformedConsentPDF = () => (
       <View style={styles.header}>
         <Text style={styles.practiceName}>Peyton Shaw Counseling, PLLC</Text>
         <Text style={styles.practiceInfo}>123 Main Street, Suite 200, Southlake, TX 76092</Text>
-        <Text style={styles.practiceInfo}>Phone: (555) 123-4567 | Email: contact@peytonshawcounseling.com</Text>
-        <Text style={styles.practiceInfo}>Peyton Shaw, LPC | License #XXXXX</Text>
+        <Text style={styles.practiceInfo}>Phone: (817) 383-8115 | Email: peyton@peytonshawcounseling.com</Text>
+        <Text style={styles.practiceInfo}>Peyton Shaw, LPC | License #86177</Text>
       </View>
 
       <Text style={styles.title}>INFORMED CONSENT FOR PSYCHOTHERAPY</Text>

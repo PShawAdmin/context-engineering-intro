@@ -160,16 +160,16 @@ export default function AboutPage() {
                     </CardHeader>
                     <CardBody className="space-y-3">
                       <div>
-                        <p className="font-medium text-gray-900">Master of Arts in Counseling</p>
-                        <p className="text-sm text-gray-600">Southern Methodist University</p>
+                        <p className="font-medium text-gray-900">Master of Arts</p>
+                        <p className="text-sm text-gray-600">University of North Texas</p>
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">Bachelor of Science in Psychology</p>
-                        <p className="text-sm text-gray-600">University of Texas at Austin</p>
+                        <p className="font-medium text-gray-900">Bachelor of Science</p>
+                        <p className="text-sm text-gray-600">University of North Texas</p>
                       </div>
                       <div className="pt-2 border-t">
                         <p className="font-medium text-gray-900">Licensed Professional Counselor</p>
-                        <p className="text-sm text-gray-600">State of Texas • License #XXXXX</p>
+                        <p className="text-sm text-gray-600">State of Texas • License #86177</p>
                       </div>
                     </CardBody>
                   </Card>

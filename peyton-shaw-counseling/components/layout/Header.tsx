@@ -13,6 +13,7 @@ import {
   Link,
   Button
 } from "@heroui/react";
+import { SITE_CONFIG } from '@/lib/constants';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -263,8 +264,8 @@ export default function Header() {
           {/* Contact info in mobile menu */}
           <div className="mt-8 pt-6 border-t border-slate-200 text-center text-sm text-text-light">
             <p className="mb-2">Questions? Call us:</p>
-            <a href="tel:555-123-4567" className="text-nude-clay font-medium">
-              (555) 123-4567
+            <a href={`tel:${SITE_CONFIG.phone}`} className="text-nude-clay font-medium">
+              {SITE_CONFIG.phone}
             </a>
           </div>
         </NavbarMenu>

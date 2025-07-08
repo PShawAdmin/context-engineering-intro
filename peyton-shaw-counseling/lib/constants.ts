@@ -3,7 +3,7 @@ import { Service, Testimonial, FAQItem } from './types';
 export const SITE_CONFIG = {
   name: 'Peyton Shaw Counseling',
   tagline: 'Professional Therapy Services in Southlake',
-  phone: '(XXX) XXX-XXXX',
+  phone: '(817) 383-8115',
   email: 'peyton@peytonshawcounseling.com',
   address: 'Southlake, TX',
   calendlyUrl: process.env.CALENDLY_SCHEDULING_URL || '',
