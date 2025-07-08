@@ -9,12 +9,12 @@ interface HeadingProps {
 }
 
 const headingStyles = {
-  1: 'text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-text-charcoal',
-  2: 'text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-text-charcoal',
-  3: 'text-2xl md:text-3xl lg:text-4xl font-medium text-text-storm',
-  4: 'text-xl md:text-2xl lg:text-3xl font-medium text-text-storm',
-  5: 'text-lg md:text-xl lg:text-2xl font-medium text-text-storm',
-  6: 'text-base md:text-lg lg:text-xl font-medium text-text-storm',
+  1: 'text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-text-charcoal',
+  2: 'text-3xl md:text-4xl lg:text-5xl font-normal leading-tight text-text-charcoal',
+  3: 'text-2xl md:text-2xl lg:text-3xl font-medium leading-snug text-text-storm',
+  4: 'text-xl md:text-xl lg:text-2xl font-medium leading-normal text-text-storm',
+  5: 'text-lg md:text-lg lg:text-xl font-medium leading-normal text-text-storm',
+  6: 'text-base md:text-base lg:text-lg font-medium leading-relaxed text-text-storm',
 }
 
 export const Heading: React.FC<HeadingProps> = ({ 

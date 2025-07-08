@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import {Button} from '@heroui/button';
 import HeroBlobs from './HeroBlobs';
+import { Heading } from '@/components/ui/typography/Heading';
+import { Text } from '@/components/ui/typography/Text';
 
 interface HeroProps {
   title: string;
@@ -40,7 +42,7 @@ export default function Hero({
 
       <div className="relative z-10 container mx-auto px-4 py-24 md:py-32 lg:py-40">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-text-charcoal mb-6 text-balance">
+          <Heading level={1} className="mb-6 text-balance">
             {title.split(' ').map((word, index) => (
               <span key={index}>
                 {word === 'Peace' ? (
@@ -53,14 +55,14 @@ export default function Hero({
                 {index < title.split(' ').length - 1 && ' '}
               </span>
             ))}
-          </h1>
-          <p className="text-xl md:text-2xl text-text-storm mb-4 font-medium">
+          </Heading>
+          <Text size="xl" weight="medium" className="md:text-2xl mb-4">
             {subtitle}
-          </p>
+          </Text>
           {description && (
-            <p className="text-lg text-grey-storm mb-8 max-w-2xl mx-auto leading-relaxed">
+            <Text size="lg" className="mb-8 max-w-2xl mx-auto">
               {description}
-            </p>
+            </Text>
           )}
           
           {(primaryAction || secondaryAction) && (

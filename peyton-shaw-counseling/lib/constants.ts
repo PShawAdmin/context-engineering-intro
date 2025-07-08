@@ -19,7 +19,7 @@ export const SERVICES: Service[] = [
     id: '1',
     title: 'Individual Therapy',
     slug: 'individual-therapy',
-    description: 'One-on-one sessions tailored to your unique needs and goals',
+    description: 'One-on-one sessions tailored to your unique needs and goals. Experience personalized support in a safe, confidential environment where you can explore your thoughts and feelings without judgment.',
     duration: '50 minutes',
     price: '$150',
     detailedDescription: 'Individual therapy provides a safe, confidential space to explore your thoughts, feelings, and behaviors. Together, we\'ll work to identify patterns, develop coping strategies, and achieve your personal goals.',
@@ -32,9 +32,9 @@ export const SERVICES: Service[] = [
   },
   {
     id: '2',
-    title: 'Anxiety & Stress Management',
+    title: 'Anxiety & Stress',
     slug: 'anxiety-stress-management',
-    description: 'Learn effective strategies to manage anxiety and reduce stress',
+    description: 'Learn effective strategies to manage anxiety and reduce stress in your daily life. Discover practical coping techniques, mindfulness practices, and proven methods to regain control and find peace amid life\'s challenges.',
     duration: '50 minutes',
     price: '$150',
     detailedDescription: 'Anxiety and stress can significantly impact your daily life. Our therapy sessions focus on understanding your triggers, developing coping mechanisms, and building resilience to handle life\'s challenges.',
@@ -49,7 +49,7 @@ export const SERVICES: Service[] = [
     id: '3',
     title: 'Depression Treatment',
     slug: 'depression-treatment',
-    description: 'Evidence-based approaches to overcome depression and improve mood',
+    description: 'Evidence-based approaches to overcome depression and improve mood. Together we\'ll work through difficult emotions, rebuild hope, and develop sustainable strategies for emotional well-being and renewed purpose.',
     duration: '50 minutes',
     price: '$150',
     detailedDescription: 'Depression can feel overwhelming, but you don\'t have to face it alone. Using proven therapeutic approaches, we\'ll work together to address symptoms, rebuild hope, and create positive changes in your life.',
@@ -62,9 +62,9 @@ export const SERVICES: Service[] = [
   },
   {
     id: '4',
-    title: 'Life Transitions & Adjustment',
+    title: 'Life Transitions',
     slug: 'life-transitions',
-    description: 'Navigate major life changes with support and guidance',
+    description: 'Navigate major life changes with support and guidance. Whether you\'re facing career transitions, relationship changes, or unexpected challenges, find the tools and support to adapt and thrive.',
     duration: '50 minutes',
     price: '$150',
     detailedDescription: 'Life transitions—whether positive or challenging—can be difficult to navigate. Therapy provides support as you adjust to changes like career shifts, relationship changes, loss, or new life stages.',
@@ -79,7 +79,7 @@ export const SERVICES: Service[] = [
     id: '5',
     title: 'Relationship Issues',
     slug: 'relationship-issues',
-    description: 'Improve communication and resolve relationship challenges',
+    description: 'Improve communication and resolve relationship challenges. Build stronger connections through better understanding, healthy boundaries, and effective conflict resolution skills that enhance all your relationships.',
     duration: '50 minutes',
     price: '$150',
     detailedDescription: 'Healthy relationships are essential to our well-being. In therapy, we\'ll explore relationship patterns, improve communication skills, and work through conflicts to build stronger, more fulfilling connections.',
@@ -88,6 +88,21 @@ export const SERVICES: Service[] = [
       'Understand relationship patterns',
       'Set healthy boundaries',
       'Resolve conflicts constructively'
+    ]
+  },
+  {
+    id: '6',
+    title: 'Personal Growth',
+    slug: 'self-esteem-personal-growth',
+    description: 'Build confidence and discover your authentic self. Through supportive exploration, develop self-compassion, recognize your strengths, and create a more fulfilling life aligned with your values and aspirations.',
+    duration: '50 minutes',
+    price: '$150',
+    detailedDescription: 'Low self-esteem can impact every area of your life. In our sessions, we\'ll work to identify negative thought patterns, challenge self-limiting beliefs, and build a stronger, more compassionate relationship with yourself.',
+    benefits: [
+      'Identify and challenge negative self-talk',
+      'Develop self-compassion practices',
+      'Build confidence in decision-making',
+      'Create a positive self-image'
     ]
   }
 ];
