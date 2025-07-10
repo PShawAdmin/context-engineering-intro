@@ -71,16 +71,28 @@ export default function FormsPage() {
     <>
       <Header />
       <main>
-        <Hero
-          title="Forms & Documents"
-          subtitle="Download and complete therapy forms at your convenience"
-          description="Please complete all required forms before your first appointment. This helps us make the most of our time together."
-          primaryAction={{
-            label: "Download New Client Packet",
-            href: "#download-packet"
-          }}
-          backgroundImage={false}
-        />
+        <div className="relative">
+          <Hero
+            title="Forms & Documents"
+            subtitle="Download and complete therapy forms at your convenience"
+            description="Please complete all required forms before your first appointment. This helps us make the most of our time together."
+            primaryAction={{
+              label: "Download New Client Packet",
+              href: "#download-packet"
+            }}
+            backgroundImage={false}
+          />
+          {/* Docs.png overlay */}
+          <div 
+            className="absolute inset-0 pointer-events-none opacity-50"
+            style={{
+              backgroundImage: 'url(/docs.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+        </div>
 
         {/* Quick Info Section */}
         <section className="py-8 bg-nude-linen -mt-[1px]">
