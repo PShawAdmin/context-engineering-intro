@@ -12,7 +12,7 @@ import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 
 export const metadata = generateMetaTags({
-  title: 'Therapist in Southlake TX | Peyton Shaw Counseling - Anxiety & Depression Help',
+  title: 'Therapist Southlake TX | Peyton Shaw Counseling',
   description: 'Licensed therapist in Southlake, TX specializing in anxiety, depression & life transitions. In-person & online therapy. Accepting new patients. Book today.',
   keywords: ['therapist southlake tx', 'counseling services southlake', 'anxiety therapist near me', 'depression treatment southlake texas', 'individual therapy southlake', 'mental health counseling southlake', 'psychotherapy southlake texas'],
   image: '/images/peyton-shaw-professional.jpg',
@@ -33,7 +33,7 @@ export default function HomePage() {
             href: "/contact"
           }}
           secondaryAction={{
-            label: "Learn More",
+            label: "Learn About Therapy",
             href: "/about"
           }}
         />
@@ -61,7 +61,7 @@ export default function HomePage() {
                 >
                   <CardHeader className="pb-4 pt-6 px-6">
                     <div className="flex items-start justify-between w-full gap-3">
-                      <Heading level={5} className="group-hover:text-nude-clay transition-colors duration-500 ease-in-out flex-1">
+                      <Heading level={3} className="group-hover:text-nude-clay transition-colors duration-500 ease-in-out flex-1">
                         {service.title}
                       </Heading>
                       <div className="w-10 h-10 min-w-[2.5rem] rounded-full bg-nude-linen flex items-center justify-center group-hover:bg-nude-sand transition-all duration-500 ease-in-out flex-shrink-0">
@@ -114,7 +114,7 @@ export default function HomePage() {
                         className="inline-flex items-center gap-1 text-sm font-medium text-nude-clay hover:text-grey-charcoal transition-colors duration-300 relative group/link"
                       >
                         <span className="relative">
-                          Learn More
+                          View Details
                           <span className="link-underline-animation absolute -bottom-0.5 left-0 h-[1px] w-full origin-left scale-x-0 bg-nude-clay group-hover/link:scale-x-100 transition-transform duration-300 ease-out"></span>
                         </span>
                         <svg className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -229,7 +229,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-nude-cream text-nude-clay hover:bg-nude-linen font-medium px-10 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
               >
-                Book Your First Session
+                Schedule Your Appointment
               </Button>
               <Button
                 as={Link}
