@@ -84,7 +84,7 @@ export default function FormsPage() {
           />
           {/* Docs.png overlay */}
           <div 
-            className="absolute inset-0 pointer-events-none opacity-50"
+            className="absolute inset-0 pointer-events-none opacity-5"
             style={{
               backgroundImage: 'url(/docs.png)',
               backgroundSize: 'cover',
