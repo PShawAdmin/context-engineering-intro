@@ -23,7 +23,11 @@
       "Bash(npm ls:*)",
       "Bash(cp:*)",
       "Bash(rg:*)",
-      "WebFetch(domain:www.linkedin.com)"
+      "WebFetch(domain:www.linkedin.com)",
+      "Bash(for:*)",
+      "Bash(do sed -i 's/^\\/\\/@version=6/\\/\\/@version=5/' \"$file\")",
+      "Bash(done)",
+      "Bash(do sed -i 's/^\\/\\/@version=5/\\/\\/@version=6/' \"$file\")"
     ],
     "deny": []
   }

@@ -82,6 +82,26 @@ const nextConfig = {
           },
         ],
       },
+      // Static images in public folder
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Other static assets (favicon, etc)
+      {
+        source: '/:path*.{ico,png,jpg,jpeg,gif,webp,svg}',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
     ];
   },
 }
