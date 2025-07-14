@@ -54,9 +54,9 @@ export const businessInfo = {
   ],
   areaServed: ['Southlake', 'Grapevine', 'Colleyville', 'Keller', 'Westlake', 'Trophy Club'],
   sameAs: [
-    'https://www.psychologytoday.com/profile/peyton-shaw', // TODO: Update with actual profile URL
-    'https://www.facebook.com/peytonshawcounseling', // TODO: Update with actual social URLs
-    'https://www.linkedin.com/in/peytonshaw'
+    'https://www.psychologytoday.com/us/therapists/peyton-shaw-grapevine-tx/1184171',
+    'https://www.facebook.com/peytonshawcounseling', // TODO: Update with actual Facebook URL if available
+    'https://www.linkedin.com/in/peytonwoods'
   ],
   // Additional business details for schema
   currenciesAccepted: 'USD',
