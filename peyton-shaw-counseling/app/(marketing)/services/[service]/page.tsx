@@ -6,9 +6,13 @@ import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import {Button} from '@heroui/button';
 import {Card, CardHeader, CardBody} from '@heroui/card';
-import { SERVICES } from '@/lib/constants';
+import { SERVICES, businessInfo } from '@/lib/constants';
 import JsonLd from '@/components/seo/JsonLd';
-import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/seo/schemas';
+import { generateServiceSchema, generateBreadcrumbSchema, generateWebPageSchema } from '@/lib/seo/schemas';
+import { generateMetaTags } from '@/lib/seo/utils';
+import { getServiceKeywords } from '@/lib/seo/keywords';
+import { Heading } from '@/components/ui/typography/Heading';
+import { Text } from '@/components/ui/typography/Text';
 
 interface ServicePageProps {
   params: {
@@ -31,10 +35,14 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     };
   }
 
-  return {
-    title: service.title,
-    description: service.detailedDescription || service.description,
-  };
+  const keywords = getServiceKeywords(service.slug);
+  
+  return generateMetaTags({
+    title: `${service.title} - Professional Therapy`,
+    description: `${service.detailedDescription || service.description} Available in ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX. Book your ${service.title.toLowerCase()} session today.`,
+    keywords,
+    path: `/services/${service.slug}`,
+  });
 }
 
 export default function ServiceDetailPage({ params }: ServicePageProps) {
@@ -49,20 +57,28 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
 
   // Generate breadcrumb items
   const breadcrumbItems = [
-    { name: 'Home', url: process.env.NEXT_PUBLIC_SITE_URL || 'https://peytonshawcounseling.com' },
-    { name: 'Services', url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://peytonshawcounseling.com'}/services` },
-    { name: service.title, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://peytonshawcounseling.com'}/services/${service.slug}` }
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/services' },
+    { name: service.title, url: `/services/${service.slug}` }
   ];
+
+  // Generate page schema
+  const webPageSchema = generateWebPageSchema({
+    name: `${service.title} in ${businessInfo.address.addressLocality}, TX - ${businessInfo.name}`,
+    description: service.detailedDescription || service.description,
+    breadcrumb: breadcrumbItems,
+    url: `/services/${service.slug}`
+  });
 
   return (
     <>
-      <Header />
+      <JsonLd data={webPageSchema} />
       <JsonLd data={generateServiceSchema(service)} />
-      <JsonLd data={generateBreadcrumbSchema(breadcrumbItems)} />
+      <Header />
       <main>
         <Hero
           title={service.title}
-          subtitle={service.description}
+          subtitle={`${service.description} Serving ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX.`}
           primaryAction={{
             label: "Book This Service",
             href: "/contact"
@@ -70,33 +86,33 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
           backgroundImage={false}
         />
 
-        <section className="py-16">
-          <div className="container mx-auto px-4">
+        <section className="section-padding">
+          <div className="container">
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Main Content */}
                 <div className="md:col-span-2 space-y-8">
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                      About This Service
-                    </h2>
-                    <p className="text-gray-700 leading-relaxed">
-                      {service.detailedDescription || service.description}
-                    </p>
+                    <Heading level={2} className="mb-4">
+                      About {service.title} in {businessInfo.address.addressLocality}
+                    </Heading>
+                    <Text className="leading-relaxed">
+                      {service.detailedDescription || service.description} As a licensed therapist serving {businessInfo.areaServed.slice(0, 3).join(', ')}, I provide compassionate, evidence-based treatment tailored to your unique needs.
+                    </Text>
                   </div>
 
                   {service.benefits && (
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                      <Heading level={3} className="mb-4">
                         What You Can Expect
-                      </h3>
+                      </Heading>
                       <ul className="space-y-3">
                         {service.benefits.map((benefit, index) => (
                           <li key={index} className="flex items-start">
-                            <svg className="w-6 h-6 mr-3 text-secondary-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-6 h-6 mr-3 text-nude-clay mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <span className="text-gray-700">{benefit}</span>
+                            <Text>{benefit}</Text>
                           </li>
                         ))}
                       </ul>
@@ -104,9 +120,9 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                   )}
 
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                      How It Works
-                    </h3>
+                    <Heading level={3} className="mb-4">
+                      How {service.title} Works
+                    </Heading>
                     <div className="space-y-4">
                       <div className="flex items-start">
                         <div className="flex-shrink-0 w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center font-semibold">
@@ -147,34 +163,37 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
 
                 {/* Sidebar */}
                 <div className="space-y-6">
-                  <Card className="shadow-lg">
+                  <Card className="bg-nude-linen border border-nude-sand">
                     <CardHeader>
-                      <h3 className="text-lg font-semibold">Session Details</h3>
+                      <Heading level={3} className="text-lg">Session Details</Heading>
                     </CardHeader>
                     <CardBody>
                       <div className="space-y-4">
                         <div>
-                          <p className="text-sm text-gray-500">Duration</p>
-                          <p className="font-medium">{service.duration}</p>
+                          <Text size="sm" className="text-text-storm">Duration</Text>
+                          <Text weight="medium">{service.duration}</Text>
                         </div>
                         {service.price && (
                           <div>
-                            <p className="text-sm text-gray-500">Fee</p>
-                            <p className="font-medium">{service.price} per session</p>
+                            <Text size="sm" className="text-text-storm">Fee</Text>
+                            <Text weight="medium">{service.price} per session</Text>
                           </div>
                         )}
                         <div>
-                          <p className="text-sm text-gray-500">Format</p>
-                          <p className="font-medium">In-person or Virtual</p>
+                          <Text size="sm" className="text-text-storm">Format</Text>
+                          <Text weight="medium">In-person ({businessInfo.address.addressLocality}) or Virtual</Text>
+                        </div>
+                        <div>
+                          <Text size="sm" className="text-text-storm">Service Area</Text>
+                          <Text weight="medium">{businessInfo.areaServed.slice(0, 3).join(', ')}</Text>
                         </div>
                       </div>
                       <Button
                         as={Link}
                         href="/contact"
-                        color="primary"
-                        className="w-full mt-6"
+                        className="w-full mt-6 bg-nude-clay hover:bg-nude-clay/90 text-white"
                       >
-                        Book This Service
+                        Book {service.title}
                       </Button>
                     </CardBody>
                   </Card>
@@ -204,26 +223,26 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
         </section>
 
         {/* Other Services */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-              Explore Other Services
-            </h2>
+        <section className="section-padding bg-background-dove">
+          <div className="container">
+            <Heading level={2} className="mb-8 text-center">
+              Other Therapy Services in {businessInfo.address.addressLocality}
+            </Heading>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {otherServices.map((otherService) => (
-                <Card key={otherService.id} className="hover:shadow-lg transition-shadow">
+                <Card key={otherService.id} className="hover:shadow-lg transition-shadow bg-nude-cream border border-nude-sand">
                   <CardHeader>
-                    <h3 className="text-lg font-semibold">{otherService.title}</h3>
+                    <Heading level={3} className="text-lg">{otherService.title}</Heading>
                   </CardHeader>
                   <CardBody>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <Text size="sm" className="mb-4">
                       {otherService.description}
-                    </p>
+                    </Text>
                     <Button
                       as={Link}
                       href={`/services/${otherService.slug}`}
                       variant="light"
-                      color="primary"
+                      className="text-nude-clay hover:text-nude-clay/80"
                       size="sm"
                     >
                       Learn More →

@@ -1,42 +1,67 @@
-import { SITE_CONFIG, SERVICES, FAQ_ITEMS } from '@/lib/constants';
+import { SITE_CONFIG, SERVICES, FAQ_ITEMS, businessInfo, TESTIMONIALS } from '@/lib/constants';
 import { Service, FAQItem } from '@/lib/types';
 
 // MedicalBusiness Schema Generator
 export function generateMedicalBusinessSchema() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com';
+  
   return {
     "@context": "https://schema.org",
     "@type": ["MedicalBusiness", "LocalBusiness"],
-    "name": SITE_CONFIG.name,
+    "@id": `${siteUrl}/#organization`,
+    "name": businessInfo.name,
+    "legalName": businessInfo.name,
     "alternateName": "Peyton Shaw Therapy",
-    "description": "Licensed therapist in Southlake, TX specializing in anxiety, depression & life transitions. In-person & online therapy.",
-    "logo": `${process.env.NEXT_PUBLIC_SITE_URL}/images/logo.png`,
-    "image": `${process.env.NEXT_PUBLIC_SITE_URL}/images/peyton-shaw-professional.jpg`,
-    "url": process.env.NEXT_PUBLIC_SITE_URL,
-    "telephone": SITE_CONFIG.phone,
-    "email": SITE_CONFIG.email,
-    "priceRange": "$$",
+    "description": `Licensed therapist serving ${businessInfo.areaServed.slice(0, 3).join(', ')}, TX. Specializing in anxiety, depression, life transitions, and relationship issues for teens and adults.`,
+    "logo": `${siteUrl}${businessInfo.logo}`,
+    "image": `${siteUrl}${businessInfo.logo}`,
+    "url": businessInfo.url,
+    "telephone": businessInfo.phone,
+    "email": businessInfo.email,
+    "priceRange": businessInfo.priceRange,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "[UPDATE_WITH_ACTUAL_ADDRESS]",
-      "addressLocality": "Southlake",
-      "addressRegion": "TX",
-      "postalCode": "[UPDATE_WITH_ZIP]",
-      "addressCountry": "US"
+      ...businessInfo.address
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "[UPDATE_WITH_LAT]",
-      "longitude": "[UPDATE_WITH_LONG]"
+      ...businessInfo.geo
     },
-    "openingHours": [
-      "Mo-Fr 09:00-18:00",
-      "Sa 10:00-14:00"
-    ],
-    "sameAs": [
-      SITE_CONFIG.socialLinks.linkedin,
-      SITE_CONFIG.socialLinks.facebook,
-      SITE_CONFIG.socialLinks.instagram
-    ].filter(Boolean),
+    "openingHours": businessInfo.openingHours,
+    "openingHoursSpecification": businessInfo.openingHoursSpecification,
+    "areaServed": businessInfo.areaServed.map(area => ({
+      "@type": "City",
+      "name": area,
+      "containedInPlace": {
+        "@type": "State",
+        "name": "Texas"
+      }
+    })),
+    "sameAs": businessInfo.sameAs.filter(url => url && url !== ''),
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": TESTIMONIALS.length.toString(),
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": TESTIMONIALS.map(testimonial => ({
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": testimonial.rating.toString(),
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "author": {
+        "@type": "Person",
+        "name": testimonial.name
+      },
+      "reviewBody": testimonial.content,
+      "datePublished": testimonial.date
+    })),
+    "paymentAccepted": businessInfo.paymentAccepted,
+    "currenciesAccepted": businessInfo.currenciesAccepted,
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Therapy Services",
@@ -82,40 +107,6 @@ export function generateFAQSchema(faqItems: FAQItem[]) {
   };
 }
 
-// Service Schema Generator
-export function generateServiceSchema(service: Service) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Mental Health Therapy",
-    "name": service.title,
-    "description": service.detailedDescription || service.description,
-    "provider": {
-      "@type": "MedicalBusiness",
-      "name": SITE_CONFIG.name,
-      "telephone": SITE_CONFIG.phone
-    },
-    "areaServed": {
-      "@type": "City",
-      "name": "Southlake",
-      "containedIn": {
-        "@type": "State",
-        "name": "Texas"
-      }
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": service.title,
-      "itemListElement": [{
-        "@type": "Offer",
-        "price": service.price,
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock"
-      }]
-    }
-  };
-}
-
 // Breadcrumb Schema Generator
 export function generateBreadcrumbSchema(items: Array<{name: string, url: string}>) {
   return {
@@ -132,25 +123,44 @@ export function generateBreadcrumbSchema(items: Array<{name: string, url: string
 
 // Person Schema Generator for Therapist
 export function generatePersonSchema() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com';
+  
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${siteUrl}/#therapist`,
     "name": "Peyton Shaw",
+    "givenName": "Peyton",
+    "familyName": "Shaw",
     "jobTitle": "Licensed Professional Counselor",
     "worksFor": {
       "@type": "MedicalBusiness",
-      "name": SITE_CONFIG.name
+      "@id": `${siteUrl}/#organization`,
+      "name": businessInfo.name
     },
-    "description": "Licensed therapist specializing in anxiety, depression, and life transitions",
-    "image": `${process.env.NEXT_PUBLIC_SITE_URL}/images/peyton-shaw-professional.jpg`,
-    "telephone": SITE_CONFIG.phone,
-    "email": SITE_CONFIG.email,
+    "description": `Licensed therapist serving ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX. Specializing in anxiety, depression, life transitions, and relationship issues for teens and adults.`,
+    "image": `${siteUrl}${businessInfo.logo}`,
+    "telephone": businessInfo.phone,
+    "email": businessInfo.email,
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Southlake",
-      "addressRegion": "TX",
-      "addressCountry": "US"
-    }
+      ...businessInfo.address
+    },
+    "sameAs": businessInfo.sameAs.filter(url => url && url !== ''),
+    "knowsAbout": [
+      "Cognitive Behavioral Therapy (CBT)",
+      "Mindfulness-Based Therapy",
+      "Person-Centered Therapy",
+      "Anxiety Disorders",
+      "Depression Treatment",
+      "Life Transitions Counseling",
+      "Teen Therapy",
+      "Adult Therapy"
+    ],
+    "areaServed": businessInfo.areaServed.map(area => ({
+      "@type": "City",
+      "name": area
+    }))
   };
 }
 
@@ -196,5 +206,109 @@ export function generateArticleSchema({
       "@id": url
     },
     "image": image ? `${process.env.NEXT_PUBLIC_SITE_URL}${image}` : undefined
+  };
+}
+
+// WebPage Schema Generator
+export function generateWebPageSchema({
+  name,
+  description,
+  breadcrumb,
+  url
+}: {
+  name: string;
+  description: string;
+  breadcrumb?: Array<{name: string, url: string}>;
+  url?: string;
+}) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com';
+  const pageUrl = url ? `${siteUrl}${url}` : siteUrl;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": pageUrl,
+    "url": pageUrl,
+    "name": name,
+    "description": description,
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": SITE_CONFIG.name,
+      "description": "Professional therapy services in Southlake and Grapevine, TX",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${siteUrl}/search?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    "breadcrumb": breadcrumb ? generateBreadcrumbSchema(breadcrumb) : undefined,
+    "primaryImageOfPage": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/images/peyton-shaw-professional.jpg`
+    },
+    "datePublished": new Date().toISOString(),
+    "dateModified": new Date().toISOString()
+  };
+}
+
+// Service Schema Generator for individual therapy services
+export function generateServiceSchema(service: Service) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com';
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${siteUrl}/services/${service.slug}#service`,
+    "serviceType": service.title,
+    "name": `${service.title} in ${businessInfo.address.addressLocality}, TX`,
+    "description": service.detailedDescription || service.description,
+    "provider": {
+      "@type": "Person",
+      "@id": `${siteUrl}/#therapist`,
+      "name": "Peyton Shaw"
+    },
+    "areaServed": businessInfo.areaServed.map(area => ({
+      "@type": "City",
+      "name": area
+    })),
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceUrl": `${siteUrl}/services/${service.slug}`,
+      "servicePhone": businessInfo.phone,
+      "serviceSmsNumber": businessInfo.phone
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": service.price?.replace('$', '') || '150',
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": service.price?.replace('$', '') || '150',
+        "priceCurrency": "USD",
+        "unitText": "per session",
+        "billingDuration": service.duration || '50 minutes'
+      }
+    },
+    "aggregateRating": businessInfo.aggregateRating,
+    "potentialAction": {
+      "@type": "BookAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${siteUrl}/contact`,
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      },
+      "result": {
+        "@type": "Reservation",
+        "name": `${service.title} Session`
+      }
+    }
   };
 }

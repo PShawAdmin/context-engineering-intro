@@ -1,26 +1,30 @@
-import { SERVICES } from '@/lib/constants';
+import { SERVICES, businessInfo } from '@/lib/constants';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://peytonshawcounseling.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || businessInfo.url;
   
   // Static pages
   const staticPages = [
-    { url: baseUrl, priority: '1.0' },
-    { url: `${baseUrl}/about`, priority: '0.8' },
-    { url: `${baseUrl}/services`, priority: '0.9' },
-    { url: `${baseUrl}/contact`, priority: '0.9' },
-    { url: `${baseUrl}/faq`, priority: '0.7' },
-    { url: `${baseUrl}/blog`, priority: '0.6' },
+    { url: baseUrl, priority: '1.0', changefreq: 'weekly' },
+    { url: `${baseUrl}/about`, priority: '0.8', changefreq: 'monthly' },
+    { url: `${baseUrl}/services`, priority: '0.9', changefreq: 'monthly' },
+    { url: `${baseUrl}/contact`, priority: '0.9', changefreq: 'monthly' },
+    { url: `${baseUrl}/areas-served`, priority: '0.8', changefreq: 'monthly' },
+    { url: `${baseUrl}/faq`, priority: '0.7', changefreq: 'monthly' },
+    { url: `${baseUrl}/blog`, priority: '0.6', changefreq: 'weekly' },
+    { url: `${baseUrl}/crisis-resources`, priority: '0.5', changefreq: 'yearly' },
+    { url: `${baseUrl}/forms`, priority: '0.5', changefreq: 'yearly' },
   ];
   
   // Dynamic service pages
   const servicePages = SERVICES.map((service) => ({
     url: `${baseUrl}/services/${service.slug}`,
     priority: '0.8',
+    changefreq: 'monthly',
   }));
   
   const allPages = [...staticPages, ...servicePages];
-  const currentDate = new Date().toISOString().split('T')[0];
+  const currentDate = new Date().toISOString();
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -29,7 +33,7 @@ ${allPages
     (page) => `  <url>
     <loc>${page.url}</loc>
     <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>`
   )

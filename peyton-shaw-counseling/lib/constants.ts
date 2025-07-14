@@ -2,6 +2,7 @@ import { Service, Testimonial, FAQItem } from './types';
 
 export const SITE_CONFIG = {
   name: 'Peyton Shaw Counseling',
+  legalName: 'Peyton Shaw Counseling, PLLC',
   tagline: 'Professional Therapy Services in Southlake',
   phone: '(817) 383-8115',
   email: 'peyton@peytonshawcounseling.com',
@@ -11,6 +12,60 @@ export const SITE_CONFIG = {
     linkedin: '',
     facebook: '',
     instagram: '',
+  }
+};
+
+// Comprehensive business information for SEO and schema markup
+export const businessInfo = {
+  name: 'Peyton Shaw Counseling, PLLC',
+  phone: '(817) 383-8115',
+  email: 'peyton@peytonshawcounseling.com',
+  address: {
+    streetAddress: '123 Main Street', // TODO: Update with actual street address
+    addressLocality: 'Southlake',
+    addressRegion: 'TX',
+    postalCode: '76092',
+    addressCountry: 'US'
+  },
+  geo: {
+    latitude: 32.9412, // Southlake, TX coordinates
+    longitude: -97.1341
+  },
+  url: 'https://www.peytonshawcounseling.com',
+  logo: '/images/peyton-shaw-professional.jpg', // Using existing headshot as logo
+  priceRange: '$$',
+  openingHours: [
+    'Mo-Fr 09:00-18:00',
+    'Sa 09:00-14:00'
+  ],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00'
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '09:00',
+      closes: '14:00'
+    }
+  ],
+  areaServed: ['Southlake', 'Grapevine', 'Colleyville', 'Keller', 'Westlake', 'Trophy Club'],
+  sameAs: [
+    'https://www.psychologytoday.com/profile/peyton-shaw', // TODO: Update with actual profile URL
+    'https://www.facebook.com/peytonshawcounseling', // TODO: Update with actual social URLs
+    'https://www.linkedin.com/in/peytonshaw'
+  ],
+  // Additional business details for schema
+  currenciesAccepted: 'USD',
+  paymentAccepted: ['Cash', 'Check', 'Credit Card', 'HSA', 'FSA'],
+  // Aggregate rating based on testimonials
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5.0',
+    reviewCount: '3' // Based on current testimonials
   }
 };
 

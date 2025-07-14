@@ -6,28 +6,47 @@ import Hero from '@/components/layout/Hero';
 import Testimonials from '@/components/features/Testimonials';
 import {Card, CardHeader, CardBody} from '@heroui/card';
 import {Button} from '@heroui/button';
-import { SERVICES, SITE_CONFIG } from '@/lib/constants';
+import { SERVICES, SITE_CONFIG, businessInfo } from '@/lib/constants';
 import { generateMetaTags } from '@/lib/seo/utils';
+import { targetKeywords } from '@/lib/seo/keywords';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
+import JsonLd from '@/components/seo/JsonLd';
+import { generateWebPageSchema } from '@/lib/seo/schemas';
 
 export const metadata = generateMetaTags({
-  title: 'Therapist Southlake TX | Peyton Shaw Counseling',
-  description: 'Licensed therapist in Southlake, TX specializing in anxiety, depression & life transitions. In-person & online therapy. Accepting new patients. Book today.',
-  keywords: ['therapist southlake tx', 'counseling services southlake', 'anxiety therapist near me', 'depression treatment southlake texas', 'individual therapy southlake', 'mental health counseling southlake', 'psychotherapy southlake texas'],
+  title: 'Licensed Therapist & Counseling Services',
+  description: `Professional therapy for anxiety, depression, and life transitions. Serving teens and adults in ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX. In-person and online sessions available. Book today.`,
+  keywords: [
+    ...targetKeywords.primary.combined,
+    ...targetKeywords.secondary.specialties.slice(0, 3),
+    'mental health counseling',
+    'licensed therapist near me'
+  ],
+  path: '/',
   image: '/images/peyton-shaw-professional.jpg',
 });
 
 export default function HomePage() {
+  // Generate homepage-specific schema
+  const webPageSchema = generateWebPageSchema({
+    name: 'Peyton Shaw Counseling - Licensed Therapist in Southlake & Grapevine',
+    description: metadata.description as string,
+    breadcrumb: [
+      { name: 'Home', url: '/' }
+    ]
+  });
+
   return (
     <>
+      <JsonLd data={webPageSchema} />
       <Header />
       <main>
         {/* Hero Section */}
         <Hero
           title="Find Peace and Purpose Through Professional Therapy"
-          subtitle={SITE_CONFIG.tagline}
-          description="Take the first step towards emotional well-being. Book your appointment today and begin your journey to a healthier, happier you."
+          subtitle={`${SITE_CONFIG.tagline} & Grapevine`}
+          description={`Take the first step towards emotional well-being. As a licensed therapist serving ${businessInfo.areaServed.slice(0, 3).join(', ')}, I'm here to help you begin your journey to a healthier, happier you.`}
           primaryAction={{
             label: "Book Your First Session",
             href: "/contact"
@@ -49,7 +68,8 @@ export default function HomePage() {
               </Heading>
               <Text size="xl" className="max-w-3xl mx-auto">
                 I offer specialized therapy services tailored to your unique needs, 
-                providing compassionate support for various life challenges.
+                providing compassionate support for various life challenges to clients 
+                throughout {businessInfo.address.addressLocality} and {businessInfo.areaServed[1]}.
               </Text>
             </div>
 
@@ -163,10 +183,10 @@ export default function HomePage() {
                       A
                     </span>
                     <Text>
-                      s a licensed therapist with years of experience, I&apos;m dedicated to providing a safe, non-judgmental space where you can explore your thoughts, feelings, and experiences. My approach combines evidence-based techniques with genuine compassion, helping you develop the tools and insights needed to navigate life&apos;s challenges and achieve lasting positive change.
+                      s a licensed therapist serving {businessInfo.address.addressLocality} and {businessInfo.areaServed[1]} with years of experience, I&apos;m dedicated to providing a safe, non-judgmental space where you can explore your thoughts, feelings, and experiences. My approach combines evidence-based techniques with genuine compassion, helping clients throughout North Texas develop the tools and insights needed to navigate life&apos;s challenges and achieve lasting positive change.
                     </Text>
                     <Text className="indent-8">
-                      I specialize in working with individuals facing anxiety, depression, life transitions, and relationship challenges. My therapeutic style integrates Cognitive Behavioral Therapy (CBT), mindfulness practices, and person-centered approaches tailored to your unique needs. Whether you&apos;re seeking support during a difficult time or looking to enhance your personal growth, I&apos;m here to walk alongside you on your journey toward healing and self-discovery.
+                      I specialize in working with teens and adults facing anxiety, depression, life transitions, and relationship challenges. My therapeutic style integrates Cognitive Behavioral Therapy (CBT), mindfulness practices, and person-centered approaches tailored to your unique needs. Whether you&apos;re seeking support during a difficult time or looking to enhance your personal growth, I&apos;m here to walk alongside you on your journey toward healing and self-discovery. Conveniently located for clients in {businessInfo.areaServed.slice(0, 4).join(', ')}.
                     </Text>
                   </div>
                   <div className="flex flex-wrap gap-4">
@@ -191,7 +211,7 @@ export default function HomePage() {
                   <div className="aspect-square relative rounded-2xl overflow-hidden shadow-warm">
                     <Image
                       src="/images/peyton-shaw-professional.jpg"
-                      alt="Peyton Shaw - Licensed Therapist"
+                      alt={`Peyton Shaw - Licensed Professional Counselor in ${businessInfo.address.addressLocality}, TX`}
                       width={340}
                       height={340}
                       className="object-cover w-full h-full"
