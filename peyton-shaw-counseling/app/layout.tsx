@@ -8,6 +8,7 @@ import { generateMedicalBusinessSchema } from '@/lib/seo/schemas'
 import AnalyticsProvider from '@/components/analytics/AnalyticsProvider'
 import { businessInfo } from '@/lib/constants'
 import { targetKeywords } from '@/lib/seo/keywords'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com'
 
@@ -115,6 +116,7 @@ export default function RootLayout({
           {children}
         </Providers>
         <AnalyticsProvider />
+        <SpeedInsights />
       </body>
     </html>
   )
