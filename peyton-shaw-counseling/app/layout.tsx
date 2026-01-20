@@ -11,17 +11,17 @@ import { targetKeywords } from '@/lib/seo/keywords'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com'
-const geoMeta = businessInfo.isTelehealthOnly
-  ? {
-      'geo.region': 'US-TX',
-      'geo.placename': businessInfo.primaryServiceArea,
-    }
-  : {
-      'geo.region': 'US-TX',
-      'geo.placename': businessInfo.address.addressLocality,
-      'geo.position': `${businessInfo.geo.latitude};${businessInfo.geo.longitude}`,
-      'ICBM': `${businessInfo.geo.latitude}, ${businessInfo.geo.longitude}`,
-    }
+const geoMeta: Record<string, string> = {
+  'geo.region': 'US-TX',
+};
+
+if (businessInfo.isTelehealthOnly) {
+  geoMeta['geo.placename'] = businessInfo.primaryServiceArea;
+} else {
+  geoMeta['geo.placename'] = businessInfo.address.addressLocality;
+  geoMeta['geo.position'] = `${businessInfo.geo.latitude};${businessInfo.geo.longitude}`;
+  geoMeta['ICBM'] = `${businessInfo.geo.latitude}, ${businessInfo.geo.longitude}`;
+}
 
 export const metadata: Metadata = {
   title: {
