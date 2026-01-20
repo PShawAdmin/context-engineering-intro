@@ -12,7 +12,7 @@ export function generateMedicalBusinessSchema() {
     "name": businessInfo.name,
     "legalName": businessInfo.name,
     "alternateName": "Peyton Shaw Therapy",
-    "description": `Licensed therapist serving ${businessInfo.areaServed.slice(0, 3).join(', ')}, TX. Specializing in anxiety, depression, life transitions, and relationship issues for teens and adults.`,
+    "description": `Evidence-based therapy for teens and adults in ${businessInfo.areaServed.slice(0, 3).join(', ')}, TX. Focus areas include anxiety, depression, life transitions, and relationship stress.`,
     "logo": `${siteUrl}${businessInfo.logo}`,
     "image": `${siteUrl}${businessInfo.logo}`,
     "url": businessInfo.url,
@@ -138,7 +138,7 @@ export function generatePersonSchema() {
       "@id": `${siteUrl}/#organization`,
       "name": businessInfo.name
     },
-    "description": `Licensed therapist serving ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX. Specializing in anxiety, depression, life transitions, and relationship issues for teens and adults.`,
+    "description": `Licensed therapist serving ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX. Evidence-based care for anxiety, depression, life transitions, and relationship stress.`,
     "image": `${siteUrl}${businessInfo.logo}`,
     "telephone": businessInfo.phone,
     "email": businessInfo.email,
@@ -236,7 +236,7 @@ export function generateWebPageSchema({
       "@id": `${siteUrl}/#website`,
       "url": siteUrl,
       "name": SITE_CONFIG.name,
-      "description": "Professional therapy services in Southlake and Grapevine, TX",
+      "description": "Evidence-based therapy in Southlake and the greater North Texas area",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {

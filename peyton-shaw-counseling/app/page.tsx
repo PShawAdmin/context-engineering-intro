@@ -7,6 +7,7 @@ import Testimonials from '@/components/features/Testimonials';
 import {Card, CardHeader, CardBody} from '@heroui/card';
 import {Button} from '@heroui/button';
 import { SERVICES, SITE_CONFIG, businessInfo } from '@/lib/constants';
+import { LOCATIONS } from '@/lib/locations';
 import { generateMetaTags } from '@/lib/seo/utils';
 import { targetKeywords } from '@/lib/seo/keywords';
 import { Heading } from '@/components/ui/typography/Heading';
@@ -16,7 +17,7 @@ import { generateWebPageSchema } from '@/lib/seo/schemas';
 
 export const metadata = generateMetaTags({
   title: 'Licensed Therapist & Counseling Services',
-  description: `Professional therapy for anxiety, depression, and life transitions. Serving teens and adults in ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX. In-person and online sessions available. Book today.`,
+  description: `Evidence-based therapy for anxiety, depression, and life transitions. Serving teens and adults in ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX with in-person and secure video sessions.`,
   keywords: [
     ...targetKeywords.primary.combined,
     ...targetKeywords.secondary.specialties.slice(0, 3),
@@ -44,15 +45,15 @@ export default function HomePage() {
       <main>
         {/* Hero Section */}
         <Hero
-          title="Find Peace and Purpose Through Professional Therapy"
-          subtitle={`${SITE_CONFIG.tagline} & Grapevine`}
-          description={`Take the first step towards emotional well-being. As a licensed therapist serving ${businessInfo.areaServed.slice(0, 3).join(', ')}, I'm here to help you begin your journey to a healthier, happier you.`}
+          title="Therapy That Fits Your Life"
+          subtitle={`Evidence-based care in ${businessInfo.areaServed[0]} and ${businessInfo.areaServed[1]}`}
+          description={`Personalized support for anxiety, depression, stress, and life transitions. In-person sessions in Southlake and secure telehealth across Texas.`}
           primaryAction={{
-            label: "Book Your First Session",
+            label: "Book a Consultation",
             href: "/contact"
           }}
           secondaryAction={{
-            label: "Learn About Therapy",
+            label: "Meet Peyton",
             href: "/about"
           }}
         />
@@ -67,8 +68,8 @@ export default function HomePage() {
                 How I Can Help
               </Heading>
               <Text size="xl" className="max-w-3xl mx-auto">
-                I offer specialized therapy services tailored to your unique needs, 
-                providing compassionate support for various life challenges to clients 
+                Focused, evidence-based therapy for anxiety, depression, relationship stress, and
+                life transitions. Care is tailored to your goals with in-person and telehealth options
                 throughout {businessInfo.address.addressLocality} and {businessInfo.areaServed[1]}.
               </Text>
             </div>
@@ -183,10 +184,10 @@ export default function HomePage() {
                       A
                     </span>
                     <Text>
-                      s a licensed therapist serving {businessInfo.address.addressLocality} and {businessInfo.areaServed[1]} with years of experience, I&apos;m dedicated to providing a safe, non-judgmental space where you can explore your thoughts, feelings, and experiences. My approach combines evidence-based techniques with genuine compassion, helping clients throughout North Texas develop the tools and insights needed to navigate life&apos;s challenges and achieve lasting positive change.
+                      s a licensed professional counselor serving {businessInfo.address.addressLocality} and {businessInfo.areaServed[1]}, I provide a calm, collaborative space where you can be heard and supported. My approach blends evidence-based therapy with practical tools so you can move forward with clarity and confidence.
                     </Text>
                     <Text className="indent-8">
-                      I specialize in working with teens and adults facing anxiety, depression, life transitions, and relationship challenges. My therapeutic style integrates Cognitive Behavioral Therapy (CBT), mindfulness practices, and person-centered approaches tailored to your unique needs. Whether you&apos;re seeking support during a difficult time or looking to enhance your personal growth, I&apos;m here to walk alongside you on your journey toward healing and self-discovery. Conveniently located for clients in {businessInfo.areaServed.slice(0, 4).join(', ')}.
+                      I work with teens and adults navigating anxiety, depression, life transitions, and relationship challenges. Sessions are tailored to your goals and grounded in CBT, mindfulness, and person-centered care. Conveniently located for clients in {businessInfo.areaServed.slice(0, 4).join(', ')}.
                     </Text>
                   </div>
                   <div className="flex flex-wrap gap-4">
@@ -203,7 +204,7 @@ export default function HomePage() {
                       variant="bordered"
                       className="border-2 border-grey-charcoal text-grey-charcoal hover:bg-background-dove font-medium px-8 transition-all"
                     >
-                      Schedule a Consultation
+                      Book a Consultation
                     </Button>
                   </div>
                 </div>
@@ -230,17 +231,52 @@ export default function HomePage() {
         {/* Testimonials */}
         <Testimonials />
 
+        {/* Areas Served */}
+        <section className="section-padding bg-background-dove">
+          <div className="container">
+            <div className="text-center mb-10">
+              <Heading level={2} className="mb-4">
+                Serving Southlake and Nearby Communities
+              </Heading>
+              <Text size="lg" className="max-w-3xl mx-auto">
+                We provide in-person therapy in Southlake and secure telehealth for clients across
+                nearby North Texas communities.
+              </Text>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              {LOCATIONS.map((location) => (
+                <Link
+                  key={location.slug}
+                  href={`/areas-served/${location.slug}`}
+                  className="px-4 py-2 bg-nude-cream text-text-storm rounded-full text-sm hover:bg-nude-sand transition-colors"
+                >
+                  {location.name}, TX
+                </Link>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Button
+                as={Link}
+                href="/areas-served"
+                variant="bordered"
+                className="border-2 border-nude-clay text-nude-clay hover:bg-nude-linen font-medium px-8"
+              >
+                View All Areas
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="section-padding bg-nude-clay relative overflow-hidden">
           <div className="absolute inset-0 bg-pattern-watercolor opacity-20"></div>
           <div className="absolute inset-0 pattern-grain opacity-10"></div>
           <div className="container relative z-10 text-center">
             <Heading level={2} className="text-white mb-6 animate-fade-in">
-              Ready to Begin Your Journey?
+              Ready to Get Started?
             </Heading>
             <Text size="xl" color="white" className="md:text-2xl opacity-90 mb-10 max-w-3xl mx-auto animate-slide-up">
-              Take the first step towards positive change. Schedule your appointment today 
-              and let&apos;s work together towards your goals.
+              Take the next step with supportive, evidence-based care tailored to your goals.
             </Text>
             <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up [animation-delay:200ms]">
               <Button
@@ -249,7 +285,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-nude-cream text-nude-clay hover:bg-nude-linen font-medium px-10 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
               >
-                Schedule Your Appointment
+                Book a Consultation
               </Button>
               <Button
                 as={Link}
@@ -258,7 +294,7 @@ export default function HomePage() {
                 size="lg"
                 className="border-2 border-nude-cream text-nude-cream hover:bg-nude-cream/10 font-medium px-10 py-4 text-lg backdrop-blur-sm transition-all"
               >
-                Have Questions? Read FAQ
+                Explore FAQs
               </Button>
             </div>
           </div>

@@ -14,7 +14,7 @@ export const PRACTICE_FORMS: FormDocument[] = [
   {
     id: 'client-intake',
     title: 'Client Information & Intake Form',
-    description: 'Basic information about you, your health history, and reasons for seeking therapy',
+    description: 'Background details, health history, and what brings you to therapy',
     category: 'new-client',
     fileName: 'PSC-Client-Intake-Form.pdf',
     required: true,
@@ -24,7 +24,7 @@ export const PRACTICE_FORMS: FormDocument[] = [
   {
     id: 'informed-consent',
     title: 'Informed Consent for Psychotherapy',
-    description: 'Important information about therapy services, confidentiality, and your rights',
+    description: 'Therapy services overview, confidentiality, and your rights as a client',
     category: 'new-client',
     fileName: 'PSC-Informed-Consent.pdf',
     required: true,
@@ -34,7 +34,7 @@ export const PRACTICE_FORMS: FormDocument[] = [
   {
     id: 'hipaa-notice',
     title: 'Notice of Privacy Practices (HIPAA)',
-    description: 'How your health information is protected and may be used',
+    description: 'How your health information is protected and used',
     category: 'new-client',
     fileName: 'PSC-HIPAA-Privacy-Notice.pdf',
     required: true,
@@ -44,7 +44,7 @@ export const PRACTICE_FORMS: FormDocument[] = [
   {
     id: 'financial-agreement',
     title: 'Financial Agreement & Fee Schedule',
-    description: 'Payment policies, fees, and insurance information',
+    description: 'Payment policies, fees, and insurance details',
     category: 'financial',
     fileName: 'PSC-Financial-Agreement.pdf',
     required: true,
@@ -54,7 +54,7 @@ export const PRACTICE_FORMS: FormDocument[] = [
   {
     id: 'practice-policies',
     title: 'Practice Policies & Procedures',
-    description: 'Office policies including appointments, cancellations, and communications',
+    description: 'Appointment, cancellation, and communication policies',
     category: 'new-client',
     fileName: 'PSC-Practice-Policies.pdf',
     required: true,
@@ -64,7 +64,7 @@ export const PRACTICE_FORMS: FormDocument[] = [
   {
     id: 'client-rights',
     title: 'Client Rights & Responsibilities',
-    description: 'Your rights as a client and what we expect from our therapeutic relationship',
+    description: 'Your rights as a client and what to expect in therapy',
     category: 'new-client',
     fileName: 'PSC-Client-Rights.pdf',
     required: false,
@@ -75,7 +75,7 @@ export const PRACTICE_FORMS: FormDocument[] = [
   {
     id: 'telehealth-consent',
     title: 'Telehealth Informed Consent',
-    description: 'Agreement for receiving therapy services via video sessions',
+    description: 'Consent for therapy delivered through secure video sessions',
     category: 'consent',
     fileName: 'PSC-Telehealth-Consent.pdf',
     required: false,
@@ -85,7 +85,7 @@ export const PRACTICE_FORMS: FormDocument[] = [
   {
     id: 'release-information',
     title: 'Authorization to Release Information',
-    description: 'Permission to share information with other healthcare providers or designated parties',
+    description: 'Permission to share information with other providers or designated parties',
     category: 'consent',
     fileName: 'PSC-Release-Information.pdf',
     required: false,
@@ -96,7 +96,7 @@ export const PRACTICE_FORMS: FormDocument[] = [
   {
     id: 'credit-card-auth',
     title: 'Credit Card Authorization',
-    description: 'Secure authorization for credit card payments',
+    description: 'Authorization for credit card payments',
     category: 'administrative',
     fileName: 'PSC-Credit-Card-Authorization.pdf',
     required: false,
@@ -106,7 +106,7 @@ export const PRACTICE_FORMS: FormDocument[] = [
   {
     id: 'good-faith-estimate',
     title: 'Good Faith Estimate',
-    description: 'Estimate of therapy costs for uninsured or self-pay clients (No Surprises Act)',
+    description: 'Estimate of therapy costs for self-pay clients (No Surprises Act)',
     category: 'financial',
     fileName: 'PSC-Good-Faith-Estimate.pdf',
     required: false,
@@ -123,13 +123,13 @@ export const FORM_CATEGORIES = [
   {
     id: 'new-client',
     title: 'New Client Forms',
-    description: 'Essential forms for new clients to complete before the first session',
+    description: 'Core forms to complete before your first session',
     icon: 'clipboard-list'
   },
   {
     id: 'consent',
     title: 'Consent Forms',
-    description: 'Additional consent forms for specific services or situations',
+    description: 'Consent forms for specific services or circumstances',
     icon: 'check-circle'
   },
   {
@@ -141,7 +141,7 @@ export const FORM_CATEGORIES = [
   {
     id: 'administrative',
     title: 'Administrative Forms',
-    description: 'Other administrative and procedural forms',
+    description: 'Additional administrative documents',
     icon: 'folder-open'
   }
 ];

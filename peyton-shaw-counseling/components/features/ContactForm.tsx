@@ -81,7 +81,7 @@ export default function ContactForm() {
       
       if (response.ok) {
         setSubmitStatus('success');
-        setStatusMessage('Thank you for your message! We\'ll get back to you within 24 hours.');
+        setStatusMessage('Thank you for your message. We will respond within one business day.');
         // Reset form
         setFormData({
           name: '',
@@ -160,7 +160,7 @@ export default function ContactForm() {
 
           <Textarea
             label="Message"
-            placeholder="Tell me how I can help you..."
+            placeholder="Tell me what you would like support with..."
             value={formData.message}
             onValueChange={handleChange('message')}
             isRequired
@@ -196,8 +196,8 @@ export default function ContactForm() {
           </div>
 
           <p className="text-sm text-gray-500 text-center mt-4">
-            By submitting this form, you agree to our privacy policy. 
-            We&apos;ll only use your information to respond to your inquiry.
+            By submitting this form, you agree to our privacy policy.
+            We will only use your information to respond to your inquiry.
           </p>
         </Form>
       </CardBody>

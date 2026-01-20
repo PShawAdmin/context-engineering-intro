@@ -7,7 +7,7 @@ import { SERVICES } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Therapy Services',
-  description: 'Explore our comprehensive therapy services including individual therapy, anxiety management, depression treatment, and more.',
+  description: 'Explore therapy services for anxiety, depression, relationship stress, and life transitions.',
 };
 
 export default function ServicesPage() {
@@ -17,8 +17,8 @@ export default function ServicesPage() {
       <main>
         <Hero
           title="Therapy Services"
-          subtitle="Compassionate, Professional Support for Your Mental Health Journey"
-          description="Explore our range of therapy services designed to help you overcome challenges, develop coping strategies, and achieve emotional well-being."
+          subtitle="Evidence-based support tailored to your goals"
+          description="Explore therapy services designed to help you manage anxiety, improve mood, strengthen relationships, and navigate change."
           primaryAction={{
             label: "Book a Consultation",
             href: "/contact"
@@ -30,11 +30,11 @@ export default function ServicesPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Personalized Therapy for Every Need
+                Care tailored to your goals
               </h2>
               <p className="text-lg text-gray-600">
-                Each person&apos;s journey is unique. I offer a variety of therapeutic approaches 
-                tailored to address your specific concerns and help you achieve your personal goals.
+                Each person&apos;s needs are different. Therapy is personalized to your goals, with
+                evidence-based tools you can use outside of sessions.
               </p>
             </div>
 
@@ -60,13 +60,12 @@ export default function ServicesPage() {
                     Insurance
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    I am currently an out-of-network provider. I can provide you with a 
-                    superbill that you can submit to your insurance company for potential 
-                    reimbursement.
+                    I am an out-of-network provider. I can provide a superbill that you may
+                    submit to your insurance company for possible reimbursement.
                   </p>
                   <p className="text-gray-600">
-                    Please check with your insurance provider about your out-of-network 
-                    mental health benefits before scheduling.
+                    Please check your plan for out-of-network mental health benefits before
+                    scheduling.
                   </p>
                 </div>
 
@@ -110,14 +109,14 @@ export default function ServicesPage() {
               Ready to Get Started?
             </h2>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Take the first step towards better mental health. Schedule your initial 
-              consultation today and let&apos;s discuss how I can support you.
+              Take the first step with a consultation focused on your goals and the support
+              you need.
             </p>
             <a
               href="/contact"
               className="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
             >
-              Book Your First Session
+              Book a Consultation
             </a>
           </div>
         </section>

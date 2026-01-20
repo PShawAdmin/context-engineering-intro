@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import {
   Navbar, 
   NavbarBrand, 
@@ -31,6 +30,7 @@ export default function Header() {
   const menuItems = [
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "Areas Served", href: "/areas-served" },
     { name: "Forms", href: "/forms" },
     { name: "FAQ", href: "/faq" },
     { name: "Blog", href: "/blog" },
@@ -134,23 +134,27 @@ export default function Header() {
         isBlurred
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
+        position="sticky"
         className={`
-          transition-all duration-300 overflow-x-hidden relative
+          z-50 transition-all duration-300 overflow-x-hidden
           ${isScrolled 
-            ? 'bg-nude-cream/95 backdrop-blur-lg shadow-soft py-2' 
-            : 'bg-nude-cream/80 backdrop-blur-sm py-4'
+            ? 'bg-nude-cream/95 backdrop-blur-lg shadow-soft py-1' 
+            : 'bg-nude-cream/80 backdrop-blur-sm py-3'
           }
         `}
-        maxWidth="xl"
+        classNames={{
+          wrapper: "px-2 sm:px-4",
+        }}
+        maxWidth="full"
       >
-        <NavbarContent className="sm:hidden basis-1/3 justify-start">
+        <NavbarContent as="div" className="sm:hidden basis-1/3 justify-start">
           <NavbarMenuToggle
             aria-label="Toggle navigation menu"
             className="text-slate-600 hover:text-slate-700 transition-colors"
           />
         </NavbarContent>
         
-        <NavbarContent className="sm:hidden absolute left-1/2 transform -translate-x-1/2">
+        <NavbarContent as="div" className="sm:hidden absolute left-1/2 transform -translate-x-1/2">
           <NavbarBrand>
             <Link href="/" className="group flex flex-col items-center">
               <span className="font-script text-3xl text-nude-clay hover:text-nude-warm transition-colors duration-300 leading-none">
@@ -163,23 +167,10 @@ export default function Header() {
           </NavbarBrand>
         </NavbarContent>
         
-        <NavbarContent className="hidden sm:flex justify-start">
+        <NavbarContent as="div" className="hidden sm:flex justify-start">
           <NavbarBrand>
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden transition-transform duration-300 group-hover:scale-110 shadow-soft">
-                  <Image
-                    src="/images/peyton-shaw-professional.jpg"
-                    alt="Peyton Shaw"
-                    width={48}
-                    height={48}
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-                <div className="absolute inset-0 w-12 h-12 bg-nude-sand rounded-full filter blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
-              </div>
-              <span className="font-script text-4xl text-nude-clay hover:text-nude-warm transition-colors duration-300">
+            <Link href="/" className="group flex items-center">
+              <span className="font-script text-2xl text-nude-clay hover:text-nude-warm transition-colors duration-300">
                 PSC
               </span>
             </Link>
@@ -213,30 +204,23 @@ export default function Header() {
                 </svg>
               }
             >
-              <span className="hidden sm:inline">Book Your Session</span>
-              <span className="sm:hidden">Book Now</span>
+              <span className="hidden sm:inline">Book a Consultation</span>
+              <span className="sm:hidden">Book</span>
             </Button>
           </NavbarItem>
         </NavbarContent>
 
         {/* Mobile menu with enhanced design */}
-        <NavbarMenu className="bg-nude-cream backdrop-blur-md pt-6">
-          {/* Mobile brand info */}
-          <div className="text-center mb-6 pb-6 border-b border-slate-200">
-            <span className="font-script text-5xl text-nude-clay">
-              PSC
-            </span>
-            <p className="text-sm font-medium text-text-storm mt-2">Peyton Shaw Counseling</p>
-          </div>
+        <NavbarMenu className="bg-nude-cream/95 backdrop-blur-md px-6 pt-4 pb-10 gap-3 min-h-[calc(100dvh-var(--navbar-height))]">
 
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item.name}-${index}`}>
               <Link
-                className={`w-full text-lg py-2 ${
-                  index === menuItems.length - 1 
-                    ? "text-nude-clay font-medium" 
+                className={`w-full text-lg py-3 ${
+                  index === menuItems.length - 1
+                    ? "text-nude-clay font-medium"
                     : "text-text-storm"
-                } hover:text-nude-clay transition-colors duration-200`}
+                } hover:text-nude-clay hover:bg-nude-linen/60 rounded-lg transition-colors duration-200`}
                 href={item.href}
                 size="lg"
                 onPress={() => setIsMenuOpen(false)}
@@ -245,29 +229,30 @@ export default function Header() {
               </Link>
             </NavbarMenuItem>
           ))}
-          <NavbarMenuItem className="mt-6">
-            <Button 
-              as={Link} 
-              href="/contact" 
-              className="w-full bg-nude-clay text-white font-medium py-3 rounded-lg hover:bg-nude-warm transition-colors"
-              onPress={() => setIsMenuOpen(false)}
-              startContent={
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              }
-            >
-              Book Your Session
-            </Button>
-          </NavbarMenuItem>
 
-          {/* Contact info in mobile menu */}
-          <div className="mt-8 pt-6 border-t border-slate-200 text-center text-sm text-text-light">
-            <p className="mb-2">Questions? Call us:</p>
-            <a href={`tel:${SITE_CONFIG.phone}`} className="text-nude-clay font-medium">
-              {SITE_CONFIG.phone}
-            </a>
-          </div>
+          <NavbarMenuItem className="mt-auto pt-6 border-t border-slate-200">
+            <div className="space-y-5">
+              <Button
+                as={Link}
+                href="/contact"
+                className="w-full bg-nude-clay text-white font-medium py-3 rounded-lg hover:bg-nude-warm transition-colors"
+                onPress={() => setIsMenuOpen(false)}
+                startContent={
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                }
+              >
+                Book a Consultation
+              </Button>
+              <div className="text-center text-sm text-text-light">
+                <p className="mb-2">Questions? Call:</p>
+                <a href={`tel:${SITE_CONFIG.phone}`} className="text-nude-clay font-medium">
+                  {SITE_CONFIG.phone}
+                </a>
+              </div>
+            </div>
+          </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
     </>

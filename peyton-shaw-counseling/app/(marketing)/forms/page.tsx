@@ -74,8 +74,8 @@ export default function FormsPage() {
         <div className="relative">
           <Hero
             title="Forms & Documents"
-            subtitle="Download and complete therapy forms at your convenience"
-            description="Please complete all required forms before your first appointment. This helps us make the most of our time together."
+            subtitle="Complete forms before your first session"
+            description="Completing required forms ahead of time helps us focus on your goals in session."
             primaryAction={{
               label: "Download New Client Packet",
               href: "#download-packet"
@@ -111,7 +111,7 @@ export default function FormsPage() {
                     <div className="flex-1 text-center md:text-left">
                       <h2 className="text-xl font-medium text-text-charcoal mb-2">New Client? Start Here</h2>
                       <p className="text-text-storm mb-4">
-                        Download our complete new client packet to save time at your first appointment. 
+                        Download the new client packet to save time at your first appointment.
                         Forms can be completed digitally or printed and filled out by hand.
                       </p>
                       <Button
@@ -123,7 +123,7 @@ export default function FormsPage() {
                         <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                        Download Complete New Client Packet
+                        Download New Client Packet
                       </Button>
                     </div>
                   </div>
@@ -234,7 +234,7 @@ export default function FormsPage() {
                     </div>
                     <h3 className="text-lg font-medium text-text-charcoal mb-2">1. Download Forms</h3>
                     <p className="text-sm text-text-storm">
-                      Download the forms you need. New clients should download the complete packet.
+                      Download the forms you need. New clients should start with the full packet.
                     </p>
                   </CardBody>
                 </Card>
@@ -248,7 +248,7 @@ export default function FormsPage() {
                     </div>
                     <h3 className="text-lg font-medium text-text-charcoal mb-2">2. Complete Forms</h3>
                     <p className="text-sm text-text-storm">
-                      Fill out forms digitally or print and complete by hand. Take your time.
+                      Fill out forms digitally or print and complete by hand.
                     </p>
                   </CardBody>
                 </Card>
@@ -328,8 +328,8 @@ export default function FormsPage() {
               </div>
               <h3 className="text-xl font-serif text-text-charcoal mb-4">Your Privacy is Protected</h3>
               <p className="text-text-storm mb-6 max-w-2xl mx-auto">
-                All information you provide is kept strictly confidential and protected under HIPAA regulations. 
-                We use secure, encrypted methods for handling your personal health information.
+                All information you provide is protected under HIPAA regulations. We use secure,
+                encrypted methods for handling your personal health information.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button

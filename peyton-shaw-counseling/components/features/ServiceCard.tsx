@@ -41,7 +41,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
 
         {service.benefits && service.benefits.length > 0 && (
           <div className="space-y-1">
-            <Text size="sm" weight="medium" color="charcoal" className="mb-2">Key Benefits:</Text>
+            <Text size="sm" weight="medium" color="charcoal" className="mb-2">Highlights:</Text>
             <ul className="space-y-1">
               {service.benefits.slice(0, 3).map((benefit, index) => (
                 <li key={index} className="flex items-start">

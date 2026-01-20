@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 import { businessInfo } from '@/lib/constants';
+import { LOCATIONS } from '@/lib/locations';
 import { generateMetaTags } from '@/lib/seo/utils';
 import { targetKeywords } from '@/lib/seo/keywords';
 import JsonLd from '@/components/seo/JsonLd';
@@ -13,7 +14,7 @@ import { Button } from '@heroui/button';
 
 export const metadata = generateMetaTags({
   title: 'Areas We Serve - Therapy Services',
-  description: `Professional therapy services available to clients in ${businessInfo.areaServed.join(', ')}, TX. Convenient locations and online sessions for North Texas residents.`,
+  description: `Professional therapy services available to clients in ${businessInfo.areaServed.join(', ')}, TX. Convenient locations and telehealth sessions for North Texas residents.`,
   keywords: [
     ...targetKeywords.locationVariations.primary.map(loc => `therapist ${loc}`),
     ...targetKeywords.locationVariations.secondary.slice(0, 2).map(loc => `counseling ${loc}`),
@@ -22,46 +23,6 @@ export const metadata = generateMetaTags({
   ],
   path: '/areas-served'
 });
-
-// Area information with specific details
-const areaDetails = [
-  {
-    name: 'Southlake',
-    description: 'Our primary location serves the Southlake community with convenient access from Highway 114 and FM 1709. Known for its family-friendly atmosphere and excellent schools, Southlake residents value quality mental health services.',
-    neighborhoods: ['Town Square', 'Timarron', 'Carillon', 'Westwyck Hills'],
-    zipCodes: ['76092', '76126']
-  },
-  {
-    name: 'Grapevine',
-    description: 'Serving Grapevine\'s diverse community, from historic downtown to newer developments. Easy access for residents near Grapevine Mills and DFW Airport area.',
-    neighborhoods: ['Downtown Historic District', 'Silver Lake', 'Grapevine Mills area', 'Dove Loop'],
-    zipCodes: ['76051', '76099']
-  },
-  {
-    name: 'Colleyville',
-    description: 'Providing therapy services to Colleyville\'s close-knit community. Convenient for residents along Colleyville Boulevard and near the Colleyville Heritage High School area.',
-    neighborhoods: ['Montclair Parc', 'The Estates of Colleyville', 'Wellington', 'Bransford'],
-    zipCodes: ['76034']
-  },
-  {
-    name: 'Keller',
-    description: 'Supporting Keller families with accessible mental health services. Serving areas from Old Town Keller to newer developments along Highway 377.',
-    neighborhoods: ['Hidden Lakes', 'The Highlands', 'Keller Town Center', 'Bear Creek'],
-    zipCodes: ['76244', '76248']
-  },
-  {
-    name: 'Westlake',
-    description: 'Offering premium therapy services to Westlake residents. Convenient access for those near Westlake Academy and the Vaquero community.',
-    neighborhoods: ['Vaquero', 'Glenwyck Farms', 'Stagecoach Hills'],
-    zipCodes: ['76262', '76092']
-  },
-  {
-    name: 'Trophy Club',
-    description: 'Extending our services to Trophy Club\'s growing community. Easily accessible for residents near Byron Nelson High School and the Trophy Club Country Club area.',
-    neighborhoods: ['The Highlands', 'Hogan\'s Glen', 'Trophy Club Country Club'],
-    zipCodes: ['76262']
-  }
-];
 
 export default function AreasServedPage() {
   const webPageSchema = generateWebPageSchema({
@@ -87,10 +48,9 @@ export default function AreasServedPage() {
                 Therapy Services Across North Texas
               </Heading>
               <Text size="xl" className="mb-8">
-                Conveniently serving clients throughout {businessInfo.areaServed.slice(0, -1).join(', ')}, 
-                and {businessInfo.areaServed.slice(-1)[0]}. Whether you prefer in-person sessions at our 
-                {' '}{businessInfo.address.addressLocality} location or online therapy from the comfort 
-                of your home, we&apos;re here to support your mental health journey.
+                Serving clients across {businessInfo.areaServed.slice(0, -1).join(', ')}, and {businessInfo.areaServed.slice(-1)[0]}.
+                Choose in-person sessions in {businessInfo.address.addressLocality} or secure telehealth
+                from the comfort of your home.
               </Text>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button
@@ -98,7 +58,7 @@ export default function AreasServedPage() {
                   href="/contact"
                   className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8"
                 >
-                  Schedule Your Appointment
+                  Book a Consultation
                 </Button>
                 <Button
                   as={Link}
@@ -121,14 +81,13 @@ export default function AreasServedPage() {
                 Communities We Serve
               </Heading>
               <Text size="lg" className="max-w-3xl mx-auto">
-                Our practice is proud to serve these North Texas communities, 
-                providing accessible mental health care to teens and adults seeking 
-                support for anxiety, depression, life transitions, and more.
+                We support teens and adults in North Texas with evidence-based care for anxiety,
+                depression, relationship stress, and life transitions.
               </Text>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {areaDetails.map((area) => (
+              {LOCATIONS.map((area) => (
                 <Card key={area.name} className="h-full hover:shadow-lg transition-shadow">
                   <CardBody className="p-6">
                     <Heading level={3} className="mb-3 text-nude-clay">
@@ -154,6 +113,16 @@ export default function AreasServedPage() {
                           {area.zipCodes.join(', ')}
                         </Text>
                       </div>
+                      <div className="pt-2">
+                        <Button
+                          as={Link}
+                          href={`/areas-served/${area.slug}`}
+                          variant="light"
+                          className="text-nude-clay hover:text-nude-clay/80 p-0 h-auto"
+                        >
+                          Learn about therapy in {area.name} →
+                        </Button>
+                      </div>
                     </div>
                   </CardBody>
                 </Card>
@@ -176,8 +145,8 @@ export default function AreasServedPage() {
                     Convenient Location
                   </Heading>
                   <Text>
-                    Our {businessInfo.address.addressLocality} office is centrally located with easy 
-                    access from major highways, making it convenient for clients throughout the area.
+                    Our {businessInfo.address.addressLocality} office is centrally located with easy
+                    access from major highways.
                   </Text>
                 </div>
                 
@@ -186,8 +155,8 @@ export default function AreasServedPage() {
                     Flexible Scheduling
                   </Heading>
                   <Text>
-                    We offer both in-person and online therapy sessions to accommodate your schedule 
-                    and preferences, including evening and weekend appointments.
+                    We offer in-person and telehealth sessions to fit your schedule, with evening
+                    appointments by request.
                   </Text>
                 </div>
                 
@@ -196,8 +165,8 @@ export default function AreasServedPage() {
                     Specialized Care
                   </Heading>
                   <Text>
-                    With expertise in anxiety, depression, life transitions, and relationship issues, 
-                    we provide targeted support for the challenges you&apos;re facing.
+                    Evidence-based care for anxiety, depression, life transitions, and relationship
+                    stress.
                   </Text>
                 </div>
                 
@@ -206,16 +175,15 @@ export default function AreasServedPage() {
                     Teen & Adult Focus
                   </Heading>
                   <Text>
-                    We understand the unique needs of both teenagers and adults, offering 
-                    age-appropriate therapeutic approaches for each client.
+                    Age-appropriate care for both teens and adults.
                   </Text>
                 </div>
               </div>
 
               <div className="text-center">
                 <Text size="lg" className="mb-6">
-                  No matter which community you call home in North Texas, quality mental health 
-                  care is within reach. Contact us today to begin your journey toward healing.
+                  No matter which community you call home, support is within reach. Contact us to
+                  get started.
                 </Text>
                 <Button
                   as={Link}

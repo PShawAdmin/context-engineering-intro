@@ -212,8 +212,8 @@ export default function CrisisResourcesPage() {
 
         <Hero
           title="Crisis Resources"
-          subtitle="You don't have to face this alone"
-          description="If you're experiencing a mental health crisis or emergency, help is available 24/7. These resources provide immediate support and professional assistance."
+          subtitle="Support is available 24/7"
+          description="If you are experiencing a mental health crisis or emergency, these resources provide immediate support and professional assistance."
           primaryAction={{
             label: "Call 988 Crisis Line",
             href: "tel:988"
@@ -505,7 +505,7 @@ export default function CrisisResourcesPage() {
                   size="lg"
                   className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-10"
                 >
-                  Schedule a Non-Emergency Appointment
+                  Book a Consultation
                 </Button>
               </div>
             </div>

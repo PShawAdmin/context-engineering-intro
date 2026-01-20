@@ -1,4 +1,5 @@
 import { SERVICES, businessInfo } from '@/lib/constants';
+import { LOCATIONS } from '@/lib/locations';
 
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || businessInfo.url;
@@ -22,8 +23,15 @@ export async function GET() {
     priority: '0.8',
     changefreq: 'monthly',
   }));
+
+  // Location pages
+  const locationPages = LOCATIONS.map((location) => ({
+    url: `${baseUrl}/areas-served/${location.slug}`,
+    priority: '0.7',
+    changefreq: 'monthly',
+  }));
   
-  const allPages = [...staticPages, ...servicePages];
+  const allPages = [...staticPages, ...servicePages, ...locationPages];
   const currentDate = new Date().toISOString();
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

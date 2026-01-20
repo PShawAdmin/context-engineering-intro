@@ -3,7 +3,7 @@ import { Service, Testimonial, FAQItem } from './types';
 export const SITE_CONFIG = {
   name: 'Peyton Shaw Counseling',
   legalName: 'Peyton Shaw Counseling, PLLC',
-  tagline: 'Professional Therapy Services in Southlake',
+  tagline: 'Evidence-based therapy for teens and adults in Southlake and Grapevine',
   phone: '(817) 383-8115',
   email: 'peyton@peytonshawcounseling.com',
   address: 'Southlake, TX',
@@ -74,90 +74,90 @@ export const SERVICES: Service[] = [
     id: '1',
     title: 'Individual Therapy',
     slug: 'individual-therapy',
-    description: 'One-on-one sessions tailored to your unique needs and goals. Experience personalized support in a safe, confidential environment where you can explore your thoughts and feelings without judgment.',
+    description: 'Personalized one-on-one therapy to help you navigate anxiety, depression, stress, and life transitions.',
     duration: '50 minutes',
     price: '$150',
-    detailedDescription: 'Individual therapy provides a safe, confidential space to explore your thoughts, feelings, and behaviors. Together, we\'ll work to identify patterns, develop coping strategies, and achieve your personal goals.',
+    detailedDescription: 'Individual therapy offers a confidential, collaborative space to clarify what you want, understand patterns that keep you stuck, and build practical tools you can use between sessions.',
     benefits: [
-      'Personalized treatment approach',
-      'Confidential and judgment-free environment',
-      'Evidence-based therapeutic techniques',
-      'Flexible scheduling options'
+      'Personalized treatment plan',
+      'Practical, evidence-based tools',
+      'Collaborative goal setting',
+      'Flexible in-person or telehealth options'
     ]
   },
   {
     id: '2',
     title: 'Anxiety & Stress',
     slug: 'anxiety-stress-management',
-    description: 'Learn effective strategies to manage anxiety and reduce stress in your daily life. Discover practical coping techniques, mindfulness practices, and proven methods to regain control and find peace amid life\'s challenges.',
+    description: 'Evidence-based strategies to reduce anxiety, calm your nervous system, and build steadier coping skills.',
     duration: '50 minutes',
     price: '$150',
-    detailedDescription: 'Anxiety and stress can significantly impact your daily life. Our therapy sessions focus on understanding your triggers, developing coping mechanisms, and building resilience to handle life\'s challenges.',
+    detailedDescription: 'We identify triggers, practice grounding and cognitive tools, and create a plan that helps you feel more in control when anxiety shows up.',
     benefits: [
-      'Identify and understand anxiety triggers',
-      'Learn practical coping techniques',
-      'Develop mindfulness and relaxation skills',
-      'Build long-term stress resilience'
+      'Target the root of anxiety cycles',
+      'Build a personalized coping plan',
+      'Learn grounding and relaxation skills',
+      'Strengthen long-term resilience'
     ]
   },
   {
     id: '3',
     title: 'Depression Treatment',
     slug: 'depression-treatment',
-    description: 'Evidence-based approaches to overcome depression and improve mood. Together we\'ll work through difficult emotions, rebuild hope, and develop sustainable strategies for emotional well-being and renewed purpose.',
+    description: 'Compassionate, structured support to improve mood, restore energy, and rebuild daily routines.',
     duration: '50 minutes',
     price: '$150',
-    detailedDescription: 'Depression can feel overwhelming, but you don\'t have to face it alone. Using proven therapeutic approaches, we\'ll work together to address symptoms, rebuild hope, and create positive changes in your life.',
+    detailedDescription: 'We work together to reduce the weight of depression with practical steps, healthy routines, and tools that support lasting progress.',
     benefits: [
-      'Cognitive-behavioral therapy techniques',
-      'Mood tracking and management',
-      'Building healthy habits and routines',
-      'Developing a support system'
+      'Structured, evidence-based approach',
+      'Mood and energy support strategies',
+      'Sustainable routines and habits',
+      'Tools for long-term resilience'
     ]
   },
   {
     id: '4',
     title: 'Life Transitions',
     slug: 'life-transitions',
-    description: 'Navigate major life changes with support and guidance. Whether you\'re facing career transitions, relationship changes, or unexpected challenges, find the tools and support to adapt and thrive.',
+    description: 'Navigate change with clarity and support, whether it\'s career, relationships, relocation, or new roles.',
     duration: '50 minutes',
     price: '$150',
-    detailedDescription: 'Life transitions—whether positive or challenging—can be difficult to navigate. Therapy provides support as you adjust to changes like career shifts, relationship changes, loss, or new life stages.',
+    detailedDescription: 'Therapy helps you make sense of change, reduce overwhelm, and move forward with confidence and intention.',
     benefits: [
-      'Process emotions related to change',
-      'Develop adaptation strategies',
-      'Find meaning in transitions',
-      'Build confidence for the future'
+      'Support for uncertainty and stress',
+      'Practical strategies for adjustment',
+      'Values-based decision making',
+      'Confidence in next steps'
     ]
   },
   {
     id: '5',
     title: 'Relationship Issues',
     slug: 'relationship-issues',
-    description: 'Improve communication and resolve relationship challenges. Build stronger connections through better understanding, healthy boundaries, and effective conflict resolution skills that enhance all your relationships.',
+    description: 'Strengthen communication, repair trust, and build healthier boundaries in the relationships that matter most.',
     duration: '50 minutes',
     price: '$150',
-    detailedDescription: 'Healthy relationships are essential to our well-being. In therapy, we\'ll explore relationship patterns, improve communication skills, and work through conflicts to build stronger, more fulfilling connections.',
+    detailedDescription: 'We focus on patterns, communication, and boundaries so you can build relationships that feel safer and more connected.',
     benefits: [
-      'Improve communication skills',
-      'Understand relationship patterns',
-      'Set healthy boundaries',
-      'Resolve conflicts constructively'
+      'Clearer, calmer communication',
+      'Healthy boundaries and expectations',
+      'Tools for conflict resolution',
+      'Stronger emotional connection'
     ]
   },
   {
     id: '6',
     title: 'Personal Growth',
     slug: 'self-esteem-personal-growth',
-    description: 'Build confidence and discover your authentic self. Through supportive exploration, develop self-compassion, recognize your strengths, and create a more fulfilling life aligned with your values and aspirations.',
+    description: 'Build confidence, self-compassion, and clarity so you can live with purpose and direction.',
     duration: '50 minutes',
     price: '$150',
-    detailedDescription: 'Low self-esteem can impact every area of your life. In our sessions, we\'ll work to identify negative thought patterns, challenge self-limiting beliefs, and build a stronger, more compassionate relationship with yourself.',
+    detailedDescription: 'We help you identify unhelpful beliefs, strengthen self-worth, and build habits that support lasting growth.',
     benefits: [
-      'Identify and challenge negative self-talk',
-      'Develop self-compassion practices',
-      'Build confidence in decision-making',
-      'Create a positive self-image'
+      'Healthier self-talk and boundaries',
+      'Confidence in decision-making',
+      'Values-aligned growth plan',
+      'Stronger self-acceptance'
     ]
   }
 ];
@@ -190,19 +190,19 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     id: '1',
     question: 'How long are therapy sessions?',
-    answer: 'Standard therapy sessions are 50 minutes long. This allows enough time to explore issues deeply while maintaining focus and energy throughout the session.',
+    answer: 'Standard sessions are 50 minutes. This provides time to go deeper while keeping sessions focused and productive.',
     category: 'Sessions'
   },
   {
     id: '2',
     question: 'How often should I attend therapy?',
-    answer: 'Most clients start with weekly sessions to establish momentum and build a therapeutic relationship. As you progress, we can adjust frequency based on your needs and goals.',
+    answer: 'Most clients start weekly to build momentum. We can adjust the cadence as you make progress and your needs shift.',
     category: 'Sessions'
   },
   {
     id: '3',
     question: 'Do you accept insurance?',
-    answer: 'I am currently an out-of-network provider. I can provide you with a superbill that you can submit to your insurance for potential reimbursement. Please check with your insurance about out-of-network mental health benefits.',
+    answer: 'I am an out-of-network provider. I can provide a superbill for possible reimbursement. Please check your plan for out-of-network mental health benefits.',
     category: 'Payment'
   },
   {
@@ -213,26 +213,26 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     id: '5',
-    question: 'Do you offer virtual sessions?',
-    answer: 'Yes, I offer both in-person and secure video sessions to accommodate your preferences and needs. Virtual sessions are conducted through a HIPAA-compliant platform.',
+    question: 'Do you offer telehealth sessions?',
+    answer: 'Yes. I offer in-person sessions in Southlake and secure video sessions across Texas.',
     category: 'Sessions'
   },
   {
     id: '6',
     question: 'Is everything I share confidential?',
-    answer: 'Yes, confidentiality is fundamental to therapy. What you share stays between us, with very limited exceptions required by law (such as immediate danger to yourself or others). I\'ll explain these limits during our first session.',
+    answer: 'Yes. Confidentiality is central to therapy, with limited legal exceptions (such as immediate danger to yourself or others). I\'ll review those limits in the first session.',
     category: 'Privacy'
   },
   {
     id: '7',
     question: 'How do I know if therapy is right for me?',
-    answer: 'If you\'re experiencing emotional distress, relationship difficulties, life transitions, or simply want to understand yourself better, therapy can be beneficial. The first session is a great opportunity to discuss your concerns and see if we\'re a good fit.',
+    answer: 'If you feel stuck, overwhelmed, or want support navigating relationships or life changes, therapy can help. The first session is a good way to see if we are a fit.',
     category: 'Getting Started'
   },
   {
     id: '8',
     question: 'What should I expect in the first session?',
-    answer: 'The first session is about getting to know each other. We\'ll discuss what brings you to therapy, your goals, and any questions you have. It\'s a collaborative process to ensure therapy meets your needs.',
+    answer: 'We will talk about what brings you in, what you want to change, and how therapy can help. You will have space to ask questions and set goals together.',
     category: 'Getting Started'
   }
 ];

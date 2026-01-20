@@ -78,9 +78,9 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       <main>
         <Hero
           title={service.title}
-          subtitle={`${service.description} Serving ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX.`}
+          subtitle={`Serving ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX with in-person and telehealth options.`}
           primaryAction={{
-            label: "Book This Service",
+            label: "Book a Consultation",
             href: "/contact"
           }}
           backgroundImage={false}
@@ -97,7 +97,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                       About {service.title} in {businessInfo.address.addressLocality}
                     </Heading>
                     <Text className="leading-relaxed">
-                      {service.detailedDescription || service.description} As a licensed therapist serving {businessInfo.areaServed.slice(0, 3).join(', ')}, I provide compassionate, evidence-based treatment tailored to your unique needs.
+                      {service.detailedDescription || service.description} Sessions are tailored to your goals, with practical tools you can use between appointments.
                     </Text>
                   </div>
 
@@ -129,9 +129,9 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                           1
                         </div>
                         <div className="ml-4">
-                          <h4 className="font-medium text-gray-900">Initial Consultation</h4>
+                          <h4 className="font-medium text-gray-900">Consultation and goals</h4>
                           <p className="text-gray-600 mt-1">
-                            We&apos;ll discuss your concerns and goals to ensure this service is the right fit for you.
+                            We clarify what you want to change and how therapy can help.
                           </p>
                         </div>
                       </div>
@@ -140,9 +140,9 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                           2
                         </div>
                         <div className="ml-4">
-                          <h4 className="font-medium text-gray-900">Personalized Treatment Plan</h4>
+                          <h4 className="font-medium text-gray-900">Personalized plan</h4>
                           <p className="text-gray-600 mt-1">
-                            Together, we&apos;ll create a customized approach that addresses your specific needs.
+                            We choose evidence-based strategies that fit your goals and preferences.
                           </p>
                         </div>
                       </div>
@@ -151,9 +151,9 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                           3
                         </div>
                         <div className="ml-4">
-                          <h4 className="font-medium text-gray-900">Ongoing Support</h4>
+                          <h4 className="font-medium text-gray-900">Practice and progress</h4>
                           <p className="text-gray-600 mt-1">
-                            Regular sessions to track progress and adjust our approach as needed.
+                            Regular sessions to build skills, review progress, and adjust as needed.
                           </p>
                         </div>
                       </div>
@@ -181,7 +181,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                         )}
                         <div>
                           <Text size="sm" className="text-text-storm">Format</Text>
-                          <Text weight="medium">In-person ({businessInfo.address.addressLocality}) or Virtual</Text>
+                          <Text weight="medium">In-person ({businessInfo.address.addressLocality}) or secure telehealth</Text>
                         </div>
                         <div>
                           <Text size="sm" className="text-text-storm">Service Area</Text>
@@ -204,7 +204,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                     </CardHeader>
                     <CardBody>
                       <p className="text-gray-600 mb-4">
-                        Not sure if this service is right for you? I&apos;m happy to discuss your needs.
+                        Not sure if this service is right for you? I&apos;m happy to answer questions.
                       </p>
                       <Button
                         as={Link}

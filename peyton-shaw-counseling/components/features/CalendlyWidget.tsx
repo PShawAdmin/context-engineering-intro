@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { InlineWidget, PopupButton, PopupWidget } from 'react-calendly';
 import {Card} from '@heroui/card';
+import { SITE_CONFIG } from '@/lib/constants';
 
 interface CalendlyWidgetProps {
   url: string;
@@ -14,7 +15,7 @@ interface CalendlyWidgetProps {
 export default function CalendlyWidget({ 
   url, 
   type = 'inline',
-  buttonText = 'Schedule a Consultation',
+  buttonText = 'Book a Consultation',
   buttonClassName = ''
 }: CalendlyWidgetProps) {
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function CalendlyWidget({
     return (
       <Card className="p-8 text-center">
         <p className="text-gray-600">
-          Scheduling is temporarily unavailable. Please call us at (XXX) XXX-XXXX to book an appointment.
+          Scheduling is temporarily unavailable. Please call us at {SITE_CONFIG.phone} to book an appointment.
         </p>
       </Card>
     );

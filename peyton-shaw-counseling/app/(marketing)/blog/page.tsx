@@ -9,7 +9,7 @@ import {Chip} from '@heroui/chip';
 
 export const metadata: Metadata = {
   title: 'Blog & Resources',
-  description: 'Mental health insights, tips, and resources from Peyton Shaw Counseling.',
+  description: 'Practical mental health insights and resources from Peyton Shaw Counseling.',
 };
 
 // Mock blog posts - in a real app, these would come from a CMS or database
@@ -18,7 +18,7 @@ const blogPosts = [
     id: '1',
     title: 'Understanding Anxiety: Signs, Symptoms, and Coping Strategies',
     slug: 'understanding-anxiety',
-    excerpt: 'Anxiety is more than just worry. Learn to recognize the signs and discover effective strategies to manage anxiety in daily life.',
+    excerpt: 'Anxiety is more than worry. Learn common signs and practical strategies to feel calmer and more in control.',
     date: '2024-01-15',
     readTime: '5 min read',
     category: 'Anxiety',
@@ -28,7 +28,7 @@ const blogPosts = [
     id: '2',
     title: 'The Power of Mindfulness in Therapy',
     slug: 'power-of-mindfulness',
-    excerpt: 'Explore how mindfulness techniques can enhance your therapy journey and improve overall mental well-being.',
+    excerpt: 'Explore simple mindfulness practices that can support therapy and improve day-to-day well-being.',
     date: '2024-01-08',
     readTime: '4 min read',
     category: 'Mindfulness',
@@ -38,7 +38,7 @@ const blogPosts = [
     id: '3',
     title: 'Navigating Life Transitions with Grace',
     slug: 'navigating-life-transitions',
-    excerpt: 'Major life changes can be overwhelming. Here are strategies to help you adapt and thrive during times of transition.',
+    excerpt: 'Major life changes can feel overwhelming. Here are strategies to help you adapt with clarity and resilience.',
     date: '2024-01-01',
     readTime: '6 min read',
     category: 'Life Transitions',
@@ -53,8 +53,8 @@ export default function BlogPage() {
       <main>
         <Hero
           title="Blog & Resources"
-          subtitle="Insights and Tools for Your Mental Health Journey"
-          description="Explore articles, tips, and resources to support your path to wellness"
+          subtitle="Practical insights for your mental health journey"
+          description="Explore articles, tips, and resources designed to support clarity, calm, and growth."
           backgroundImage={false}
         />
 
@@ -66,8 +66,8 @@ export default function BlogPage() {
                 <CardBody>
                   <div className="text-center py-4">
                     <p className="text-primary-800">
-                      🚀 <strong>Coming Soon!</strong> I&apos;m working on creating valuable content to support your mental health journey. 
-                      Check back soon for articles, tips, and resources.
+                      🚀 <strong>Coming Soon!</strong> I am building a library of practical resources and articles.
+                      Check back soon for new posts.
                     </p>
                   </div>
                 </CardBody>
@@ -137,8 +137,8 @@ export default function BlogPage() {
                         Stay Updated
                       </h2>
                       <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-                        Want to be notified when new articles are published? Join our mailing list 
-                        for mental health insights, tips, and resources delivered to your inbox.
+                        Want to be notified when new articles are published? Reach out and we will
+                        keep you in the loop.
                       </p>
                       <Button
                         as={Link}
@@ -146,7 +146,7 @@ export default function BlogPage() {
                         color="secondary"
                         size="lg"
                       >
-                        Get In Touch
+                        Get Updates
                       </Button>
                     </div>
                   </CardBody>

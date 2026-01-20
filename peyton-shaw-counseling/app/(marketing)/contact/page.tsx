@@ -10,7 +10,7 @@ import {Card, CardHeader, CardBody} from '@heroui/card';
 
 export const metadata: Metadata = {
   title: 'Contact & Book Appointment',
-  description: 'Schedule your therapy appointment online or get in touch with Peyton Shaw Counseling.',
+  description: 'Schedule a therapy consultation in Southlake or by secure video and get in touch with Peyton Shaw Counseling.',
 };
 
 async function CalendlySection() {
@@ -62,9 +62,9 @@ export default function ContactPage() {
       <Header />
       <main>
         <Hero
-          title="Book Your Appointment"
-          subtitle="Take the first step towards better mental health"
-          description="Choose a convenient time for your consultation. I offer both in-person and virtual sessions."
+          title="Book a Consultation"
+          subtitle="Take the next step toward feeling better"
+          description="Choose a convenient time for your consultation. In-person sessions in Southlake and secure telehealth across Texas."
           backgroundImage={false}
         />
 
@@ -75,7 +75,7 @@ export default function ContactPage() {
                 {/* Main Content - Calendly Widget */}
                 <div className="lg:col-span-2">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                    Schedule Your Session
+                    Book a Consultation
                   </h2>
                   
                   <Suspense fallback={<CalendlyWidgetSkeleton />}>
@@ -84,8 +84,8 @@ export default function ContactPage() {
 
                   <div className="mt-8 p-4 bg-blue-50 rounded-lg">
                     <p className="text-sm text-blue-800">
-                      <strong>Note:</strong> All appointments require 24-hour notice for cancellation or rescheduling. 
-                      First-time clients will receive intake forms via email after booking.
+                      <strong>Note:</strong> Appointments require 24-hour notice for cancellation or rescheduling.
+                      New clients receive intake forms by email after booking.
                     </p>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ export default function ContactPage() {
                           <svg className="w-5 h-5 text-secondary-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span>Confidential and safe environment</span>
+                          <span>Confidential and supportive environment</span>
                         </li>
                         <li className="flex items-start">
                           <svg className="w-5 h-5 text-secondary-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -170,7 +170,7 @@ export default function ContactPage() {
                           <svg className="w-5 h-5 text-secondary-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span>Personalized treatment plans</span>
+                          <span>Personalized treatment plan</span>
                         </li>
                       </ul>
                     </CardBody>

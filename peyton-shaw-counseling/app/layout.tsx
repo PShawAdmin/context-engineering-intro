@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     default: `${businessInfo.name} - Licensed Therapist in ${businessInfo.address.addressLocality}, TX`,
     template: `%s | ${businessInfo.name} - ${businessInfo.address.addressLocality}, TX`
   },
-  description: `Professional therapy services for anxiety, depression, and life transitions. Serving teens and adults in ${businessInfo.areaServed.slice(0, 3).join(', ')}, TX. In-person and online sessions available. Book today.`,
+  description: `Evidence-based therapy for anxiety, depression, and life transitions. Serving teens and adults in ${businessInfo.areaServed.slice(0, 3).join(', ')}, TX with in-person and secure video sessions.`,
   keywords: [
     ...targetKeywords.primary.combined,
     ...targetKeywords.secondary.specialties.slice(0, 5),
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `${businessInfo.name} - Licensed Therapist in ${businessInfo.address.addressLocality}, TX`,
-    description: `Professional therapy for anxiety, depression & life transitions. Serving ${businessInfo.areaServed[0]} & ${businessInfo.areaServed[1]}, TX. Book your session today.`,
+    description: `Evidence-based therapy for anxiety, depression, and life transitions. Serving ${businessInfo.areaServed[0]} and ${businessInfo.areaServed[1]}, TX with in-person and telehealth options.`,
     url: siteUrl,
     siteName: businessInfo.name,
     images: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: `${businessInfo.name} - Therapy in ${businessInfo.address.addressLocality}, TX`,
-    description: `Licensed therapist serving ${businessInfo.areaServed[0]} & ${businessInfo.areaServed[1]}. Specializing in anxiety, depression & life transitions.`,
+    description: `Licensed therapist serving ${businessInfo.areaServed[0]} and ${businessInfo.areaServed[1]}. Evidence-based care for anxiety, depression, and life transitions.`,
     images: ['/twitter-image.png'],
     creator: '@peytonshaw', // TODO: Update with actual Twitter handle
   },

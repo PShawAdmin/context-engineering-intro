@@ -11,10 +11,11 @@ export default function Footer() {
       { name: 'Individual Therapy', href: '/services/individual-therapy' },
       { name: 'Anxiety Management', href: '/services/anxiety-stress-management' },
       { name: 'Depression Treatment', href: '/services/depression-treatment' },
-      { name: 'Relationship Counseling', href: '/services/relationship-counseling' },
+      { name: 'Relationship Counseling', href: '/services/relationship-issues' },
     ],
     resources: [
       { name: 'About Me', href: '/about' },
+      { name: 'Areas Served', href: '/areas-served' },
       { name: 'FAQ', href: '/faq' },
       { name: 'Blog', href: '/blog' },
       { name: 'Contact', href: '/contact' },
@@ -44,9 +45,8 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-grey-blue-light mb-6 max-w-md leading-relaxed">
-              {SITE_CONFIG.tagline}. Providing compassionate therapy services to help you navigate life&apos;s 
-              challenges and achieve lasting positive change. Your journey to wellness 
-              starts here.
+              {SITE_CONFIG.tagline}. Compassionate, practical care for anxiety, depression, life transitions,
+              and relationship stress, with in-person and secure video sessions.
             </p>
             <div className="flex items-center gap-2 text-nude-sand mb-4">
               <svg 

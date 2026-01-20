@@ -36,9 +36,9 @@ export default function AnnouncementBanner() {
                 </div>
               </div>
               <p className="text-sm sm:text-base font-medium text-center">
-                <span className="font-semibold">Great news!</span> We&apos;re currently accepting new clients. 
+                <span className="font-semibold">Now accepting new clients.</span>
                 <Link href="/contact" className="underline ml-1 sm:ml-2 hover:no-underline inline-block font-semibold">
-                  Schedule your free consultation today
+                  Book a consultation
                 </Link>
               </p>
             </div>

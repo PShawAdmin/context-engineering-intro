@@ -9,7 +9,7 @@ import {Button} from '@heroui/button';
 
 export const metadata: Metadata = {
   title: 'About Peyton Shaw',
-  description: 'Learn about Peyton Shaw, licensed therapist specializing in anxiety, depression, and life transitions in Southlake, TX.',
+  description: 'Meet Peyton Shaw, licensed therapist providing evidence-based care for anxiety, depression, and life transitions in Southlake, TX.',
 };
 
 export default function AboutPage() {
@@ -20,7 +20,7 @@ export default function AboutPage() {
         <Hero
           title="About Peyton Shaw"
           subtitle="Licensed Professional Counselor"
-          description="Compassionate therapy grounded in evidence-based practices and genuine human connection"
+          description="Evidence-based therapy grounded in compassion, clarity, and collaboration"
           backgroundImage={false}
         />
 
@@ -36,23 +36,19 @@ export default function AboutPage() {
                     </h2>
                     <div className="prose prose-lg text-gray-700 space-y-4">
                       <p>
-                        Welcome! I&apos;m Peyton Shaw, a licensed professional counselor dedicated to 
-                        helping individuals navigate life&apos;s challenges and discover their inner strength. 
-                        My journey into therapy began with a simple belief: everyone deserves a safe 
-                        space to be heard, understood, and supported.
+                        Welcome. I&apos;m Peyton Shaw, a licensed professional counselor who helps teens and
+                        adults navigate anxiety, depression, life transitions, and relationship stress.
+                        My goal is to offer a calm, respectful space where you can feel understood and
+                        supported.
                       </p>
                       <p>
-                        With over a decade of experience in mental health counseling, I&apos;ve had the 
-                        privilege of working with diverse clients facing various challenges—from anxiety 
-                        and depression to major life transitions and relationship difficulties. Each 
-                        person&apos;s story has reinforced my commitment to providing personalized, 
-                        compassionate care.
+                        With years of experience in mental health counseling, I&apos;ve worked with clients
+                        facing a wide range of challenges. That experience continues to shape a
+                        personalized, practical approach to care.
                       </p>
                       <p>
-                        I believe that therapy is a collaborative journey. My role is not to have all 
-                        the answers, but to walk alongside you as you discover your own path to healing 
-                        and growth. Together, we&apos;ll explore your thoughts, feelings, and experiences 
-                        in a judgment-free environment where you can be authentically yourself.
+                        Therapy is a collaborative process. We will define goals together, explore what
+                        gets in the way, and build tools you can use in daily life.
                       </p>
                     </div>
                   </div>
@@ -62,26 +58,26 @@ export default function AboutPage() {
                       My Therapeutic Approach
                     </h3>
                     <p className="text-gray-700 mb-6">
-                      I integrate evidence-based practices with a warm, person-centered approach. 
-                      My therapeutic style draws from:
+                      I blend evidence-based practices with a warm, person-centered style. Common
+                      approaches include:
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {[
                         {
                           title: 'Cognitive Behavioral Therapy (CBT)',
-                          description: 'Identifying and changing unhelpful thought patterns',
+                          description: 'Identify and shift unhelpful thought patterns',
                         },
                         {
                           title: 'Mindfulness-Based Techniques',
-                          description: 'Developing present-moment awareness and acceptance',
+                          description: 'Build present-moment awareness and steadier coping',
                         },
                         {
                           title: 'Solution-Focused Therapy',
-                          description: 'Building on your strengths to create positive change',
+                          description: 'Use strengths to create practical change',
                         },
                         {
                           title: 'Trauma-Informed Care',
-                          description: 'Creating safety and healing for past experiences',
+                          description: 'Prioritize safety, choice, and stabilization',
                         },
                       ].map((approach, index) => (
                         <Card key={index} className="border-l-4 border-primary-500">
@@ -107,31 +103,31 @@ export default function AboutPage() {
                           <svg className="w-6 h-6 text-secondary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span>A warm, welcoming environment where you feel safe to explore difficult topics</span>
+                          <span>A calm, welcoming space to explore what matters most</span>
                         </li>
                         <li className="flex items-start">
                           <svg className="w-6 h-6 text-secondary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span>Active collaboration in setting goals and tracking progress</span>
+                          <span>Collaborative goal setting and progress check-ins</span>
                         </li>
                         <li className="flex items-start">
                           <svg className="w-6 h-6 text-secondary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span>Practical tools and strategies you can use in daily life</span>
+                          <span>Practical tools you can use between sessions</span>
                         </li>
                         <li className="flex items-start">
                           <svg className="w-6 h-6 text-secondary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span>Complete confidentiality and respect for your privacy</span>
+                          <span>Respect for your privacy and confidentiality</span>
                         </li>
                         <li className="flex items-start">
                           <svg className="w-6 h-6 text-secondary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span>Genuine care and investment in your well-being</span>
+                          <span>Care that is practical, warm, and collaborative</span>
                         </li>
                       </ul>
                     </div>
@@ -210,7 +206,7 @@ export default function AboutPage() {
                         Ready to Get Started?
                       </h3>
                       <p className="text-sm text-gray-600 mb-4">
-                        Take the first step towards positive change.
+                        Take the first step with supportive, evidence-based care.
                       </p>
                       <Button
                         as={Link}
@@ -237,15 +233,13 @@ export default function AboutPage() {
               </h2>
               <div className="text-lg text-gray-700 space-y-4">
                 <p>
-                  I understand that reaching out for therapy can feel daunting. It takes courage 
-                  to seek support, and I want to honor that courage by providing the best possible 
-                  care. Whether you&apos;re dealing with a specific challenge or simply feeling stuck, 
-                  I&apos;m here to help.
+                  Reaching out for therapy can feel like a big step. I aim to make the process
+                  clear and supportive, whether you are facing a specific challenge or simply
+                  feeling stuck.
                 </p>
                 <p>
-                  My practice is built on the belief that everyone has the capacity for growth 
-                  and healing. Sometimes we just need someone to sit with us in our struggles 
-                  and help us see the path forward. I would be honored to be that person for you.
+                  You deserve care that feels personal, respectful, and practical. I would be
+                  honored to support you as you move toward the changes you want to make.
                 </p>
                 <p className="font-medium text-primary-600">
                   — Peyton Shaw, LPC
