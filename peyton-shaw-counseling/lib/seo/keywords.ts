@@ -6,21 +6,23 @@
 export const targetKeywords = {
   // Primary keywords - highest priority
   primary: {
-    location: ['Southlake', 'Grapevine', 'Southlake TX', 'Grapevine TX'],
-    service: ['therapist', 'counseling', 'therapy', 'counselor', 'mental health'],
+    location: ['Texas', 'Southlake', 'Grapevine', 'Southlake TX', 'Grapevine TX'],
+    service: ['therapist', 'counseling', 'therapy', 'counselor', 'mental health', 'telehealth therapy', 'online counseling', 'virtual therapy'],
     combined: [
       'therapist in Southlake',
       'Southlake therapist',
       'Grapevine counseling',
       'therapy Southlake TX',
       'counselor Grapevine TX',
-      'mental health therapist Southlake'
+      'mental health therapist Southlake',
+      'telehealth therapist Texas',
+      'online therapy Texas'
     ]
   },
   
   // Secondary keywords - demographics and specialties
   secondary: {
-    demographics: ['teen', 'teenager', 'adolescent', 'adult', 'young adult'],
+    demographics: ['teen', 'teenager', 'adolescent', 'young adult', 'parent'],
     specialties: [
       'anxiety',
       'depression',
@@ -31,7 +33,7 @@ export const targetKeywords = {
       'self-esteem',
       'personal growth'
     ],
-    modifiers: ['licensed', 'professional', 'experienced', 'certified', 'local']
+    modifiers: ['licensed', 'professional', 'experienced', 'certified', 'telehealth']
   },
   
   // Long-tail keywords - specific search queries
@@ -47,12 +49,14 @@ export const targetKeywords = {
     'relationship counseling Southlake TX',
     'life transition therapist near me',
     'adolescent therapy services Southlake',
-    'adult counseling Grapevine Texas'
+    'adolescent counseling Texas',
+    'telehealth therapy for teens Texas',
+    'online counseling for adolescents Texas'
   ],
   
   // Location-specific variations
   locationVariations: {
-    primary: ['Southlake', 'Grapevine'],
+    primary: ['Texas', 'Southlake', 'Grapevine'],
     secondary: ['Colleyville', 'Keller', 'Westlake', 'Trophy Club'],
     regions: ['DFW', 'Dallas Fort Worth', 'North Texas', 'Tarrant County'],
     nearbyPhrases: [

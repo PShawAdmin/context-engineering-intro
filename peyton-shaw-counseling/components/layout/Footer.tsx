@@ -46,7 +46,7 @@ export default function Footer() {
             </div>
             <p className="text-grey-blue-light mb-6 max-w-md leading-relaxed">
               {SITE_CONFIG.tagline}. Compassionate, practical care for anxiety, depression, life transitions,
-              and relationship stress, with in-person and secure video sessions.
+              and relationship stress, delivered through secure telehealth sessions.
             </p>
             <div className="flex items-center gap-2 text-nude-sand mb-4">
               <svg 
@@ -67,7 +67,7 @@ export default function Footer() {
                   d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" 
                 />
               </svg>
-              <span className="text-grey-blue-lighter">{SITE_CONFIG.address}</span>
+              <span className="text-grey-blue-lighter">{SITE_CONFIG.serviceArea}</span>
             </div>
             <div className="flex gap-4">
               {/* Social Media Placeholder Links */}
@@ -175,7 +175,7 @@ export default function Footer() {
                 </svg>
               </div>
               <div>
-                <p className="text-grey-blue-light">Office hours</p>
+                <p className="text-grey-blue-light">Session hours</p>
                 <p className="text-nude-cream font-medium">Mon-Fri: 9AM-6PM</p>
               </div>
             </div>

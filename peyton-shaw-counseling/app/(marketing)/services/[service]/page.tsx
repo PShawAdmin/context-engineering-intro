@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   
   return generateMetaTags({
     title: `${service.title} - Professional Therapy`,
-    description: `${service.detailedDescription || service.description} Available in ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX. Book your ${service.title.toLowerCase()} session today.`,
+    description: `${service.detailedDescription || service.description} Telehealth-only across Texas. Book your ${service.title.toLowerCase()} session today.`,
     keywords,
     path: `/services/${service.slug}`,
   });
@@ -64,7 +64,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
 
   // Generate page schema
   const webPageSchema = generateWebPageSchema({
-    name: `${service.title} in ${businessInfo.address.addressLocality}, TX - ${businessInfo.name}`,
+    name: `${service.title} Telehealth in Texas - ${businessInfo.name}`,
     description: service.detailedDescription || service.description,
     breadcrumb: breadcrumbItems,
     url: `/services/${service.slug}`
@@ -78,7 +78,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       <main>
         <Hero
           title={service.title}
-          subtitle={`Serving ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX with in-person and telehealth options.`}
+          subtitle="Telehealth-only care for teens and adolescents across Texas"
           primaryAction={{
             label: "Book a Consultation",
             href: "/contact"
@@ -94,7 +94,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                 <div className="md:col-span-2 space-y-8">
                   <div>
                     <Heading level={2} className="mb-4">
-                      About {service.title} in {businessInfo.address.addressLocality}
+                      About {service.title}
                     </Heading>
                     <Text className="leading-relaxed">
                       {service.detailedDescription || service.description} Sessions are tailored to your goals, with practical tools you can use between appointments.
@@ -181,11 +181,11 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                         )}
                         <div>
                           <Text size="sm" className="text-text-storm">Format</Text>
-                          <Text weight="medium">In-person ({businessInfo.address.addressLocality}) or secure telehealth</Text>
+                          <Text weight="medium">Telehealth-only (secure video)</Text>
                         </div>
                         <div>
                           <Text size="sm" className="text-text-storm">Service Area</Text>
-                          <Text weight="medium">{businessInfo.areaServed.slice(0, 3).join(', ')}</Text>
+                          <Text weight="medium">{businessInfo.primaryServiceArea}</Text>
                         </div>
                       </div>
                       <Button
@@ -226,7 +226,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
         <section className="section-padding bg-background-dove">
           <div className="container">
             <Heading level={2} className="mb-8 text-center">
-              Other Therapy Services in {businessInfo.address.addressLocality}
+              Other Telehealth Services
             </Heading>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {otherServices.map((otherService) => (

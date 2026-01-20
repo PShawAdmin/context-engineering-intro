@@ -127,7 +127,7 @@ const HIPAANoticePDF = () => (
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.practiceName}>Peyton Shaw Counseling, PLLC</Text>
-        <Text style={styles.practiceInfo}>123 Main Street, Suite 200, Southlake, TX 76092</Text>
+        <Text style={styles.practiceInfo}>Telehealth-only practice serving Texas</Text>
         <Text style={styles.practiceInfo}>Phone: (555) 123-4567 | Email: privacy@peytonshawcounseling.com</Text>
         <Text style={styles.practiceInfo}>Peyton Shaw, LPC | License #XXXXX</Text>
       </View>
@@ -310,7 +310,7 @@ const HIPAANoticePDF = () => (
         <Text style={styles.paragraph}>
           I reserve the right to change this Notice. I reserve the right to make the revised Notice effective for health 
           information I already have about you as well as any information I receive in the future. I will post a copy of 
-          the current Notice in my office with its effective date.
+          the current Notice on my practice website with its effective date.
         </Text>
       </View>
 

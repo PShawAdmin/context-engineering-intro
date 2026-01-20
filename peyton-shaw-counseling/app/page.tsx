@@ -17,7 +17,7 @@ import { generateWebPageSchema } from '@/lib/seo/schemas';
 
 export const metadata = generateMetaTags({
   title: 'Licensed Therapist & Counseling Services',
-  description: `Evidence-based therapy for anxiety, depression, and life transitions. Serving teens and adults in ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX with in-person and secure video sessions.`,
+  description: 'Telehealth therapy focused on teens and adolescents across Texas. Evidence-based support for anxiety, depression, and life transitions.',
   keywords: [
     ...targetKeywords.primary.combined,
     ...targetKeywords.secondary.specialties.slice(0, 3),
@@ -31,7 +31,7 @@ export const metadata = generateMetaTags({
 export default function HomePage() {
   // Generate homepage-specific schema
   const webPageSchema = generateWebPageSchema({
-    name: 'Peyton Shaw Counseling - Licensed Therapist in Southlake & Grapevine',
+    name: 'Peyton Shaw Counseling - Telehealth Therapy for Teens in Texas',
     description: metadata.description as string,
     breadcrumb: [
       { name: 'Home', url: '/' }
@@ -46,8 +46,8 @@ export default function HomePage() {
         {/* Hero Section */}
         <Hero
           title="Therapy That Fits Your Life"
-          subtitle={`Evidence-based care in ${businessInfo.areaServed[0]} and ${businessInfo.areaServed[1]}`}
-          description={`Personalized support for anxiety, depression, stress, and life transitions. In-person sessions in Southlake and secure telehealth across Texas.`}
+          subtitle="Telehealth for teens and adolescents across Texas"
+          description="Personalized support for teen anxiety, depression, stress, and life transitions. All sessions are online through secure video."
           primaryAction={{
             label: "Book a Consultation",
             href: "/contact"
@@ -68,9 +68,9 @@ export default function HomePage() {
                 How I Can Help
               </Heading>
               <Text size="xl" className="max-w-3xl mx-auto">
-                Focused, evidence-based therapy for anxiety, depression, relationship stress, and
-                life transitions. Care is tailored to your goals with in-person and telehealth options
-                throughout {businessInfo.address.addressLocality} and {businessInfo.areaServed[1]}.
+                Focused, evidence-based therapy for teen anxiety, depression, relationship stress, and
+                life transitions. Care is tailored to your goals with telehealth-only sessions available
+                across Texas.
               </Text>
             </div>
 
@@ -184,10 +184,15 @@ export default function HomePage() {
                       A
                     </span>
                     <Text>
-                      s a licensed professional counselor serving {businessInfo.address.addressLocality} and {businessInfo.areaServed[1]}, I provide a calm, collaborative space where you can be heard and supported. My approach blends evidence-based therapy with practical tools so you can move forward with clarity and confidence.
+                      s a licensed professional counselor, I provide telehealth-only care for teens and
+                      adolescents across Texas. I offer a calm, collaborative space where you and your
+                      teen can feel heard and supported. My approach blends evidence-based therapy with
+                      practical tools to move forward with clarity and confidence.
                     </Text>
                     <Text className="indent-8">
-                      I work with teens and adults navigating anxiety, depression, life transitions, and relationship challenges. Sessions are tailored to your goals and grounded in CBT, mindfulness, and person-centered care. Conveniently located for clients in {businessInfo.areaServed.slice(0, 4).join(', ')}.
+                      I specialize in teen anxiety, depression, life transitions, and relationship
+                      challenges, with sessions tailored to your goals and grounded in CBT, mindfulness,
+                      and person-centered care. All appointments are online through secure video.
                     </Text>
                   </div>
                   <div className="flex flex-wrap gap-4">
@@ -212,7 +217,7 @@ export default function HomePage() {
                   <div className="aspect-square relative rounded-2xl overflow-hidden shadow-warm">
                     <Image
                       src="/images/peyton-shaw-professional.jpg"
-                      alt={`Peyton Shaw - Licensed Professional Counselor in ${businessInfo.address.addressLocality}, TX`}
+                      alt="Peyton Shaw - Licensed Professional Counselor (Telehealth in Texas)"
                       width={340}
                       height={340}
                       className="object-cover w-full h-full"
@@ -236,11 +241,11 @@ export default function HomePage() {
           <div className="container">
             <div className="text-center mb-10">
               <Heading level={2} className="mb-4">
-                Serving Southlake and Nearby Communities
+                Telehealth Across Texas
               </Heading>
               <Text size="lg" className="max-w-3xl mx-auto">
-                We provide in-person therapy in Southlake and secure telehealth for clients across
-                nearby North Texas communities.
+                We provide telehealth-only therapy for teens and adolescents across Texas, including
+                Southlake, Grapevine, and surrounding communities.
               </Text>
             </div>
             <div className="flex flex-wrap justify-center gap-3">

@@ -36,6 +36,7 @@ Different therapists specialize in different areas. Consider whether you want su
 - Life transitions
 - Relationship concerns
 - Self-esteem or personal growth
+- Teen or adolescent support
 
 If you are unsure, ask the therapist directly about their experience with your concerns.
 
@@ -54,10 +55,10 @@ Ask about the therapist's style and how they tailor care to each client.
 
 Logistics matter, too. Consider:
 
-- In-person vs. telehealth options
+- Telehealth availability and fit
 - Scheduling availability
 - Fees and out-of-network reimbursement
-- Location and commute
+- Technology setup and privacy
 
 The best therapist for you is one who can offer both clinical fit and practical access.
 
@@ -69,7 +70,7 @@ Here are a few helpful questions:
 2. How do you typically structure sessions?
 3. What would a treatment plan look like?
 4. How do we measure progress?
-5. Do you offer in-person and telehealth sessions?
+5. Do you offer telehealth-only sessions, and how do they work?
 6. What are your fees and cancellation policies?
 
 ## What to Expect in the First Session
@@ -82,4 +83,4 @@ Southlake has strong local and regional mental health resources, including crisi
 
 ## Ready to Take the Next Step?
 
-If you are looking for therapy in Southlake, I would be glad to help you explore whether we are a good fit. Reach out to schedule a consultation or ask any questions.
+If you are looking for telehealth therapy in Southlake, I would be glad to help you explore whether we are a good fit. Reach out to schedule a consultation or ask any questions.

@@ -41,8 +41,10 @@ export function generateMetaTags({
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com';
   
   // Add location suffix for local SEO
-  const locationSuffix = includeLocation 
-    ? ` | ${businessInfo.address.addressLocality}, TX`
+  const locationSuffix = includeLocation
+    ? businessInfo.isTelehealthOnly
+      ? ` | ${businessInfo.primaryServiceArea}`
+      : ` | ${businessInfo.address.addressLocality}, TX`
     : '';
   
   // Apply character limits
@@ -62,6 +64,18 @@ export function generateMetaTags({
   const ogImage = image || defaultOgImage;
   const twitterImage = image || defaultTwitterImage;
   
+  const other: Record<string, string> = {
+    'geo.region': 'US-TX',
+  };
+
+  if (!businessInfo.isTelehealthOnly) {
+    other['geo.placename'] = businessInfo.address.addressLocality;
+    other['geo.position'] = `${businessInfo.geo.latitude};${businessInfo.geo.longitude}`;
+    other['ICBM'] = `${businessInfo.geo.latitude}, ${businessInfo.geo.longitude}`;
+  } else if (businessInfo.primaryServiceArea) {
+    other['geo.placename'] = businessInfo.primaryServiceArea;
+  }
+
   return {
     title: finalTitle,
     description: finalDescription,
@@ -100,12 +114,7 @@ export function generateMetaTags({
     alternates: {
       canonical,
     },
-    other: {
-      'geo.region': 'US-TX',
-      'geo.placename': businessInfo.address.addressLocality,
-      'geo.position': `${businessInfo.geo.latitude};${businessInfo.geo.longitude}`,
-      'ICBM': `${businessInfo.geo.latitude}, ${businessInfo.geo.longitude}`,
-    },
+    other,
   };
 }
 
@@ -136,7 +145,11 @@ export function getCanonicalUrl(path: string): string {
 
 // Helper to generate page title with template
 export function generatePageTitle(pageTitle: string, includeLocation = false): string {
-  const location = includeLocation ? ` ${businessInfo.address.addressLocality}, TX |` : '';
+  const location = includeLocation
+    ? businessInfo.isTelehealthOnly
+      ? ` ${businessInfo.primaryServiceArea} |`
+      : ` ${businessInfo.address.addressLocality}, TX |`
+    : '';
   return `${pageTitle} |${location} ${businessInfo.name}`;
 }
 
@@ -150,11 +163,18 @@ export function createLocationDescription(
   baseDescription: string,
   includeAreaServed = false
 ): string {
+  if (businessInfo.isTelehealthOnly) {
+    const areaServed = includeAreaServed
+      ? ` Serving clients across ${businessInfo.primaryServiceArea}.`
+      : '';
+    return `${baseDescription} Telehealth-only across ${businessInfo.primaryServiceArea}.${areaServed}`;
+  }
+
   const location = `${businessInfo.address.addressLocality} and ${businessInfo.areaServed[1]}`;
-  const areaServed = includeAreaServed 
+  const areaServed = includeAreaServed
     ? ` Serving ${businessInfo.areaServed.slice(0, 4).join(', ')}.`
     : '';
-    
+
   return `${baseDescription} Located in ${location}, TX.${areaServed}`;
 }
 

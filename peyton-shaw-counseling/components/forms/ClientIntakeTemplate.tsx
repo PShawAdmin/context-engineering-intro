@@ -4,9 +4,9 @@
 export const ClientIntakeFormTemplate = {
   header: {
     practiceName: 'Peyton Shaw Counseling, PLLC',
-    address: '123 Main Street, Suite 200, Southlake, TX 76092',
-    phone: '(555) 123-4567',
-    email: 'intake@peytonshawcounseling.com',
+    address: 'Telehealth-only practice serving Texas',
+    phone: '(817) 383-8115',
+    email: 'peyton@peytonshawcounseling.com',
     licenseInfo: 'Peyton Shaw, LPC | License #XXXXX'
   },
   
@@ -60,7 +60,7 @@ export const ClientIntakeFormTemplate = {
         { label: 'Group Number', type: 'text' },
         { label: 'Policy Holder Name', type: 'text' },
         { label: 'Policy Holder DOB', type: 'date' },
-        { label: 'Will you be using insurance?', type: 'radio', options: ['Yes', 'No', 'Self-Pay'] },
+        { label: 'Will you be seeking out-of-network reimbursement?', type: 'radio', options: ['Yes', 'No', 'Self-Pay'] },
       ]
     },
     

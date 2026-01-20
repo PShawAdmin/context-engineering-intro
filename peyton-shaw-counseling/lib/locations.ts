@@ -16,12 +16,12 @@ export const LOCATIONS: LocationDetail[] = [
   {
     slug: 'southlake',
     name: 'Southlake',
-    description: 'Our Southlake office serves the community with convenient access from Highway 114 and FM 1709.',
-    intro: 'Choose in-person sessions in Southlake or secure telehealth across Texas. Care is tailored for anxiety, depression, life transitions, and relationship stress.',
+    description: 'Telehealth therapy for Southlake residents, available across Texas.',
+    intro: 'Telehealth-only care for teens and adolescents in Southlake and across Texas, with support for anxiety, depression, life transitions, and relationship stress.',
     highlights: [
-      'Southlake office with flexible scheduling',
-      'Easy access from Highway 114 and FM 1709',
-      'Secure telehealth across Texas'
+      'Telehealth-only sessions across Texas',
+      'Flexible scheduling for school and family routines',
+      'Teen and adolescent-focused care'
     ],
     neighborhoods: ['Town Square', 'Timarron', 'Carillon', 'Westwyck Hills'],
     zipCodes: ['76092', '76126'],
@@ -30,7 +30,7 @@ export const LOCATIONS: LocationDetail[] = [
       {
         id: 'southlake-1',
         question: 'Do you offer in-person therapy in Southlake?',
-        answer: 'Yes. We offer in-person sessions at our Southlake office by appointment.'
+        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
       },
       {
         id: 'southlake-2',
@@ -40,19 +40,19 @@ export const LOCATIONS: LocationDetail[] = [
       {
         id: 'southlake-3',
         question: 'Which parts of Southlake do you serve?',
-        answer: 'We work with clients across Southlake, including Town Square, Timarron, Carillon, Westwyck Hills, and nearby neighborhoods.'
+        answer: 'We work with clients across Southlake via telehealth, including Town Square, Timarron, Carillon, Westwyck Hills, and nearby neighborhoods.'
       }
     ]
   },
   {
     slug: 'grapevine',
     name: 'Grapevine',
-    description: 'Serving Grapevine residents from historic downtown to Lake Grapevine and the DFW Airport area.',
-    intro: 'Grapevine clients can meet in person in Southlake or via secure telehealth. We support teens and adults with anxiety, depression, and major life transitions.',
+    description: 'Telehealth therapy for Grapevine residents, from historic downtown to Lake Grapevine and the DFW Airport area.',
+    intro: 'Grapevine clients meet via secure telehealth. We support teens and adolescents with anxiety, depression, and major life transitions.',
     highlights: [
-      'Convenient for SH-121 and DFW Airport',
-      'Quiet, private office setting',
-      'Telehealth available'
+      'Telehealth-only sessions across Texas',
+      'Flexible scheduling to fit school and family life',
+      'Teen and adolescent support'
     ],
     neighborhoods: ['Downtown Historic District', 'Silver Lake', 'Grapevine Mills area', 'Dove Loop'],
     zipCodes: ['76051', '76099'],
@@ -61,7 +61,7 @@ export const LOCATIONS: LocationDetail[] = [
       {
         id: 'grapevine-1',
         question: 'Do you see clients from Grapevine in person?',
-        answer: 'Yes. Many Grapevine clients meet in person at our Southlake office, just a short drive away.'
+        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
       },
       {
         id: 'grapevine-2',
@@ -71,19 +71,19 @@ export const LOCATIONS: LocationDetail[] = [
       {
         id: 'grapevine-3',
         question: 'What neighborhoods in Grapevine do you serve?',
-        answer: 'We serve clients across Grapevine, including Downtown, Silver Lake, the Grapevine Mills area, and Dove Loop.'
+        answer: 'We serve clients across Grapevine via telehealth, including Downtown, Silver Lake, the Grapevine Mills area, and Dove Loop.'
       }
     ]
   },
   {
     slug: 'colleyville',
     name: 'Colleyville',
-    description: 'Providing therapy for Colleyville families with convenient access from Colleyville Boulevard.',
-    intro: 'Colleyville clients often seek support for anxiety, relationship stress, and personal growth. We offer in-person sessions in Southlake and telehealth across Texas.',
+    description: 'Telehealth therapy for Colleyville families, delivered securely across Texas.',
+    intro: 'Colleyville clients often seek support for anxiety, relationship stress, and personal growth. We provide telehealth-only sessions for teens and adolescents across Texas.',
     highlights: [
-      'Close to Colleyville Boulevard',
+      'Telehealth-only sessions across Texas',
       'Flexible scheduling options',
-      'Secure telehealth across Texas'
+      'Teen and adolescent-focused care'
     ],
     neighborhoods: ['Montclair Parc', 'The Estates of Colleyville', 'Wellington', 'Bransford'],
     zipCodes: ['76034'],
@@ -91,8 +91,8 @@ export const LOCATIONS: LocationDetail[] = [
     faqs: [
       {
         id: 'colleyville-1',
-        question: 'How far is your office from Colleyville?',
-        answer: 'Our Southlake office is a short drive from central Colleyville, making in-person sessions convenient.'
+        question: 'Do you offer in-person sessions for Colleyville?',
+        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
       },
       {
         id: 'colleyville-2',
@@ -101,7 +101,7 @@ export const LOCATIONS: LocationDetail[] = [
       },
       {
         id: 'colleyville-3',
-        question: 'Can I meet by telehealth instead of in person?',
+        question: 'Is telehealth available for Colleyville?',
         answer: 'Yes. Telehealth sessions are available throughout Texas.'
       }
     ]
@@ -109,12 +109,12 @@ export const LOCATIONS: LocationDetail[] = [
   {
     slug: 'keller',
     name: 'Keller',
-    description: 'Supporting Keller families with accessible therapy services near Highway 377.',
-    intro: 'Keller clients can choose in-person sessions in Southlake or telehealth across Texas. We focus on anxiety, depression, and life transitions.',
+    description: 'Telehealth therapy for Keller families, delivered securely across Texas.',
+    intro: 'Keller clients meet via telehealth-only sessions across Texas. We focus on teen anxiety, depression, and life transitions.',
     highlights: [
-      'Accessible from Highway 377',
+      'Telehealth-only sessions across Texas',
       'Evening availability by request',
-      'Telehealth across Texas'
+      'Teen and adolescent support'
     ],
     neighborhoods: ['Hidden Lakes', 'The Highlands', 'Keller Town Center', 'Bear Creek'],
     zipCodes: ['76244', '76248'],
@@ -123,7 +123,7 @@ export const LOCATIONS: LocationDetail[] = [
       {
         id: 'keller-1',
         question: 'Do you serve Keller residents in person?',
-        answer: 'Yes. Keller clients can meet in person at our Southlake office or choose telehealth.'
+        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
       },
       {
         id: 'keller-2',
@@ -133,19 +133,19 @@ export const LOCATIONS: LocationDetail[] = [
       {
         id: 'keller-3',
         question: 'Do you offer teen therapy for Keller families?',
-        answer: 'Yes. We work with teens and adults and tailor sessions to each client.'
+        answer: 'Yes. We specialize in teen and adolescent therapy and tailor sessions to each client.'
       }
     ]
   },
   {
     slug: 'westlake',
     name: 'Westlake',
-    description: 'Offering therapy services for Westlake residents near Westlake Academy and the Vaquero area.',
-    intro: 'Westlake clients can meet in person in Southlake or through secure telehealth. We provide evidence-based care for anxiety, life transitions, and self-esteem.',
+    description: 'Telehealth therapy for Westlake residents near Westlake Academy and the Vaquero area.',
+    intro: 'Westlake clients meet through secure telehealth. We provide evidence-based care for teen anxiety, life transitions, and self-esteem.',
     highlights: [
-      'Convenient for Westlake Academy',
-      'Private and discreet office setting',
-      'Secure telehealth available'
+      'Telehealth-only sessions across Texas',
+      'Flexible scheduling for school and family routines',
+      'Teen and adolescent-focused care'
     ],
     neighborhoods: ['Vaquero', 'Glenwyck Farms', 'Stagecoach Hills'],
     zipCodes: ['76262', '76092'],
@@ -154,7 +154,7 @@ export const LOCATIONS: LocationDetail[] = [
       {
         id: 'westlake-1',
         question: 'Is in-person therapy available for Westlake residents?',
-        answer: 'Yes. Our Southlake office is nearby and offers in-person sessions by appointment.'
+        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
       },
       {
         id: 'westlake-2',
@@ -171,12 +171,12 @@ export const LOCATIONS: LocationDetail[] = [
   {
     slug: 'trophy-club',
     name: 'Trophy Club',
-    description: 'Extending therapy services to Trophy Club residents near the golf and lake communities.',
-    intro: 'Trophy Club clients can meet in person at our Southlake office or via secure telehealth. We support teens and adults with anxiety, relationship concerns, and personal growth goals.',
+    description: 'Telehealth therapy for Trophy Club residents near the golf and lake communities.',
+    intro: 'Trophy Club clients meet via secure telehealth. We support teens and adolescents with anxiety, relationship concerns, and personal growth goals.',
     highlights: [
-      'Convenient access from Trophy Club Parkway',
-      'In-person or telehealth options',
-      'Support for teens and adults'
+      'Telehealth-only sessions across Texas',
+      'Flexible scheduling options',
+      'Support for teens and adolescents'
     ],
     neighborhoods: ['The Highlands', "Hogan's Glen", 'Trophy Club Country Club'],
     zipCodes: ['76262'],
@@ -185,7 +185,7 @@ export const LOCATIONS: LocationDetail[] = [
       {
         id: 'trophy-club-1',
         question: 'Do you see Trophy Club clients in person?',
-        answer: 'Yes. We offer in-person sessions in Southlake, which is a short drive from Trophy Club.'
+        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
       },
       {
         id: 'trophy-club-2',

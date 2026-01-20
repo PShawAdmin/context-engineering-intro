@@ -118,7 +118,7 @@ const ClientIntakeFormPDF = () => (
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.practiceName}>Peyton Shaw Counseling, PLLC</Text>
-        <Text style={styles.practiceInfo}>123 Main Street, Suite 200, Southlake, TX 76092</Text>
+        <Text style={styles.practiceInfo}>Telehealth-only practice serving Texas</Text>
         <Text style={styles.practiceInfo}>Phone: (555) 123-4567 | Email: intake@peytonshawcounseling.com</Text>
         <Text style={styles.practiceInfo}>Peyton Shaw, LPC | License #XXXXX</Text>
       </View>
@@ -327,7 +327,7 @@ const ClientIntakeFormPDF = () => (
             <View style={styles.input}></View>
           </View>
           <View style={[styles.field, { flex: 2 }]}>
-            <Text style={styles.label}>Will you be using insurance?</Text>
+            <Text style={styles.label}>Will you be seeking out-of-network reimbursement?</Text>
             <View style={styles.checkboxGroup}>
               {['Yes', 'No', 'Self-Pay'].map((option) => (
                 <View key={option} style={styles.checkboxItem}>

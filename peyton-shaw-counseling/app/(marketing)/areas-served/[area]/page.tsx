@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     return { title: 'Location Not Found' };
   }
 
-  const description = `Therapy for ${location.name}, TX residents. ${location.description} In-person sessions in ${businessInfo.address.addressLocality} and telehealth across Texas.`;
+  const description = `Telehealth therapy for ${location.name}, TX residents. ${location.description} Secure video sessions across Texas.`;
   const keywords = [
     `${location.name} therapist`,
     `therapy in ${location.name}`,
@@ -43,7 +43,8 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     `anxiety therapy ${location.name}`,
     `depression therapy ${location.name}`,
     `teen therapy ${location.name}`,
-    `adult counseling ${location.name}`,
+    `adolescent counseling ${location.name}`,
+    `online therapy ${location.name}`,
     'Southlake therapist',
     'online therapy Texas'
   ];
@@ -67,7 +68,7 @@ export default function LocationPage({ params }: LocationPageProps) {
     .map((slug) => SERVICES.find((service) => service.slug === slug))
     .filter((service): service is (typeof SERVICES)[number] => Boolean(service));
 
-  const pageDescription = `Therapy for ${location.name}, TX residents. ${location.intro} In-person sessions in ${businessInfo.address.addressLocality} and telehealth across Texas.`;
+  const pageDescription = `Telehealth therapy for ${location.name}, TX residents. ${location.intro} Secure video sessions across Texas.`;
 
   const webPageSchema = generateWebPageSchema({
     name: `Therapy in ${location.name}, TX`,
@@ -88,7 +89,7 @@ export default function LocationPage({ params }: LocationPageProps) {
       <main>
         <Hero
           title={`Therapy in ${location.name}, TX`}
-          subtitle={`Personalized therapy for ${location.name} and nearby communities`}
+          subtitle={`Telehealth for teens and adolescents in ${location.name}`}
           description={location.intro}
           primaryAction={{ label: 'Book a Consultation', href: '/contact' }}
           secondaryAction={{ label: 'View Services', href: '/services' }}
@@ -100,11 +101,11 @@ export default function LocationPage({ params }: LocationPageProps) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
               <div>
                 <Heading level={2} className="mb-4">
-                  Local, convenient care for {location.name}
+                  Telehealth care for {location.name}
                 </Heading>
                 <Text className="mb-6">
-                  {location.description} Our Southlake office offers a quiet, private setting,
-                  and telehealth is available if you prefer to meet from home.
+                  {location.description} All sessions are telehealth-only, so you can meet from home
+                  anywhere in Texas.
                 </Text>
                 <ul className="space-y-3">
                   {location.highlights.map((highlight) => (
@@ -125,8 +126,8 @@ export default function LocationPage({ params }: LocationPageProps) {
                 <CardBody>
                   <div className="space-y-4">
                     <div>
-                      <Text size="sm" className="text-text-storm">In-person location</Text>
-                      <Text weight="medium">{businessInfo.address.addressLocality}, TX</Text>
+                      <Text size="sm" className="text-text-storm">Format</Text>
+                      <Text weight="medium">Telehealth-only (secure video)</Text>
                     </div>
                     <div>
                       <Text size="sm" className="text-text-storm">Phone</Text>

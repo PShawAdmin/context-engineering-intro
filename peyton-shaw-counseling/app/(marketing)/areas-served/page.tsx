@@ -14,7 +14,7 @@ import { Button } from '@heroui/button';
 
 export const metadata = generateMetaTags({
   title: 'Areas We Serve - Therapy Services',
-  description: `Professional therapy services available to clients in ${businessInfo.areaServed.join(', ')}, TX. Convenient locations and telehealth sessions for North Texas residents.`,
+  description: `Telehealth-only therapy for teens and adolescents across Texas, including ${businessInfo.areaServed.join(', ')}.`,
   keywords: [
     ...targetKeywords.locationVariations.primary.map(loc => `therapist ${loc}`),
     ...targetKeywords.locationVariations.secondary.slice(0, 2).map(loc => `counseling ${loc}`),
@@ -45,12 +45,11 @@ export default function AreasServedPage() {
           <div className="container">
             <div className="max-w-4xl mx-auto text-center">
               <Heading level={1} className="mb-6">
-                Therapy Services Across North Texas
+                Telehealth Therapy Across Texas
               </Heading>
               <Text size="xl" className="mb-8">
                 Serving clients across {businessInfo.areaServed.slice(0, -1).join(', ')}, and {businessInfo.areaServed.slice(-1)[0]}.
-                Choose in-person sessions in {businessInfo.address.addressLocality} or secure telehealth
-                from the comfort of your home.
+                All sessions are telehealth-only, delivered securely from the comfort of your home.
               </Text>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button
@@ -81,7 +80,7 @@ export default function AreasServedPage() {
                 Communities We Serve
               </Heading>
               <Text size="lg" className="max-w-3xl mx-auto">
-                We support teens and adults in North Texas with evidence-based care for anxiety,
+                We support teens and adolescents across Texas with evidence-based care for anxiety,
                 depression, relationship stress, and life transitions.
               </Text>
             </div>
@@ -136,17 +135,16 @@ export default function AreasServedPage() {
           <div className="container">
             <div className="max-w-4xl mx-auto">
               <Heading level={2} className="text-center mb-8">
-                Why Clients Choose Us Across North Texas
+                Why Clients Choose Us Across Texas
               </Heading>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div>
                   <Heading level={3} className="text-xl mb-3">
-                    Convenient Location
+                    Telehealth Convenience
                   </Heading>
                   <Text>
-                    Our {businessInfo.address.addressLocality} office is centrally located with easy
-                    access from major highways.
+                    Meet from home with secure video sessions available across Texas.
                   </Text>
                 </div>
                 
@@ -155,27 +153,25 @@ export default function AreasServedPage() {
                     Flexible Scheduling
                   </Heading>
                   <Text>
-                    We offer in-person and telehealth sessions to fit your schedule, with evening
-                    appointments by request.
+                    Telehealth appointments that fit busy school, work, and family schedules.
                   </Text>
                 </div>
                 
                 <div>
                   <Heading level={3} className="text-xl mb-3">
-                    Specialized Care
+                    Teen & Adolescent Focus
                   </Heading>
                   <Text>
-                    Evidence-based care for anxiety, depression, life transitions, and relationship
-                    stress.
+                    Developmentally informed care for teen anxiety, mood, and life transitions.
                   </Text>
                 </div>
                 
                 <div>
                   <Heading level={3} className="text-xl mb-3">
-                    Teen & Adult Focus
+                    Out-of-Network Support
                   </Heading>
                   <Text>
-                    Age-appropriate care for both teens and adults.
+                    Out-of-network only, with superbills available for possible reimbursement.
                   </Text>
                 </div>
               </div>
@@ -198,23 +194,23 @@ export default function AreasServedPage() {
           </div>
         </section>
 
-        {/* Map Section Placeholder */}
+        {/* Telehealth Availability */}
         <section className="section-padding bg-background-dove">
           <div className="container">
             <div className="text-center">
               <Heading level={2} className="mb-4">
-                Find Us in {businessInfo.address.addressLocality}
+                Telehealth-Only Practice
               </Heading>
               <Text className="mb-8 max-w-2xl mx-auto">
-                Our office is conveniently located in {businessInfo.address.addressLocality}, TX, 
-                with ample parking and a comfortable, private setting for your therapy sessions.
+                We are currently telehealth-only and do not offer in-person sessions. If you are in
+                Texas, you can meet from home using secure video.
               </Text>
               <div className="bg-nude-cream rounded-lg p-8 max-w-md mx-auto">
                 <Text weight="medium" className="mb-2">
                   {businessInfo.name}
                 </Text>
                 <Text className="text-text-storm mb-4">
-                  {businessInfo.address.addressLocality}, {businessInfo.address.addressRegion} {businessInfo.address.postalCode}
+                  Serving clients across Texas via telehealth.
                 </Text>
                 <Text className="text-nude-clay font-medium">
                   Call: {businessInfo.phone}

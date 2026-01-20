@@ -10,7 +10,7 @@ import {Card, CardHeader, CardBody} from '@heroui/card';
 
 export const metadata: Metadata = {
   title: 'Contact & Book Appointment',
-  description: 'Schedule a therapy consultation in Southlake or by secure video and get in touch with Peyton Shaw Counseling.',
+  description: 'Schedule a telehealth consultation and get in touch with Peyton Shaw Counseling. Serving teens and adolescents across Texas.',
 };
 
 async function CalendlySection() {
@@ -64,7 +64,7 @@ export default function ContactPage() {
         <Hero
           title="Book a Consultation"
           subtitle="Take the next step toward feeling better"
-          description="Choose a convenient time for your consultation. In-person sessions in Southlake and secure telehealth across Texas."
+          description="Choose a convenient time for your consultation. Telehealth-only sessions are available across Texas."
           backgroundImage={false}
         />
 
@@ -85,7 +85,8 @@ export default function ContactPage() {
                   <div className="mt-8 p-4 bg-blue-50 rounded-lg">
                     <p className="text-sm text-blue-800">
                       <strong>Note:</strong> Appointments require 24-hour notice for cancellation or rescheduling.
-                      New clients receive intake forms by email after booking.
+                      New clients receive intake forms by email after booking. Out-of-network only; superbills
+                      are available for possible reimbursement.
                     </p>
                   </div>
                 </div>
@@ -111,15 +112,15 @@ export default function ContactPage() {
                         </a>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500 mb-1">Location</p>
-                        <p className="font-medium">{SITE_CONFIG.address}</p>
+                        <p className="text-sm text-gray-500 mb-1">Service area</p>
+                        <p className="font-medium">{SITE_CONFIG.serviceArea}</p>
                       </div>
                     </CardBody>
                   </Card>
 
                   <Card>
                     <CardHeader>
-                      <h3 className="text-lg font-semibold">Office Hours</h3>
+                      <h3 className="text-lg font-semibold">Session Hours</h3>
                     </CardHeader>
                     <CardBody>
                       <ul className="space-y-2 text-sm">

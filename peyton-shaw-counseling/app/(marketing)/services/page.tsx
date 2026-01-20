@@ -17,8 +17,8 @@ export default function ServicesPage() {
       <main>
         <Hero
           title="Therapy Services"
-          subtitle="Evidence-based support tailored to your goals"
-          description="Explore therapy services designed to help you manage anxiety, improve mood, strengthen relationships, and navigate change."
+          subtitle="Telehealth support focused on teens and adolescents"
+          description="Explore therapy services designed to help teens manage anxiety, improve mood, strengthen relationships, and navigate change."
           primaryAction={{
             label: "Book a Consultation",
             href: "/contact"
@@ -33,8 +33,9 @@ export default function ServicesPage() {
                 Care tailored to your goals
               </h2>
               <p className="text-lg text-gray-600">
-                Each person&apos;s needs are different. Therapy is personalized to your goals, with
-                evidence-based tools you can use outside of sessions.
+                Each teen&apos;s needs are different. Therapy is personalized to your goals, with
+                evidence-based tools you can use between telehealth sessions. All services are
+                telehealth-only across Texas.
               </p>
             </div>
 

@@ -4,6 +4,7 @@ import { Service, FAQItem } from '@/lib/types';
 // MedicalBusiness Schema Generator
 export function generateMedicalBusinessSchema() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com';
+  const telehealthOnly = businessInfo.isTelehealthOnly;
   
   return {
     "@context": "https://schema.org",
@@ -12,31 +13,50 @@ export function generateMedicalBusinessSchema() {
     "name": businessInfo.name,
     "legalName": businessInfo.name,
     "alternateName": "Peyton Shaw Therapy",
-    "description": `Evidence-based therapy for teens and adults in ${businessInfo.areaServed.slice(0, 3).join(', ')}, TX. Focus areas include anxiety, depression, life transitions, and relationship stress.`,
+    "description": "Telehealth-focused therapy for teens and adolescents across Texas. Evidence-based care for anxiety, depression, life transitions, and relationship stress.",
     "logo": `${siteUrl}${businessInfo.logo}`,
     "image": `${siteUrl}${businessInfo.logo}`,
     "url": businessInfo.url,
     "telephone": businessInfo.phone,
     "email": businessInfo.email,
     "priceRange": businessInfo.priceRange,
-    "address": {
-      "@type": "PostalAddress",
-      ...businessInfo.address
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      ...businessInfo.geo
-    },
+    ...(telehealthOnly
+      ? {}
+      : {
+          "address": {
+            "@type": "PostalAddress",
+            ...businessInfo.address
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            ...businessInfo.geo
+          }
+        }),
     "openingHours": businessInfo.openingHours,
     "openingHoursSpecification": businessInfo.openingHoursSpecification,
-    "areaServed": businessInfo.areaServed.map(area => ({
-      "@type": "City",
-      "name": area,
-      "containedInPlace": {
-        "@type": "State",
-        "name": "Texas"
-      }
-    })),
+    "areaServed": telehealthOnly
+      ? [
+          {
+            "@type": "State",
+            "name": businessInfo.primaryServiceArea
+          },
+          ...businessInfo.areaServed.map(area => ({
+            "@type": "City",
+            "name": area,
+            "containedInPlace": {
+              "@type": "State",
+              "name": "Texas"
+            }
+          }))
+        ]
+      : businessInfo.areaServed.map(area => ({
+          "@type": "City",
+          "name": area,
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Texas"
+          }
+        })),
     "sameAs": businessInfo.sameAs.filter(url => url && url !== ''),
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -124,6 +144,7 @@ export function generateBreadcrumbSchema(items: Array<{name: string, url: string
 // Person Schema Generator for Therapist
 export function generatePersonSchema() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com';
+  const telehealthOnly = businessInfo.isTelehealthOnly;
   
   return {
     "@context": "https://schema.org",
@@ -138,14 +159,18 @@ export function generatePersonSchema() {
       "@id": `${siteUrl}/#organization`,
       "name": businessInfo.name
     },
-    "description": `Licensed therapist serving ${businessInfo.areaServed.slice(0, 2).join(' and ')}, TX. Evidence-based care for anxiety, depression, life transitions, and relationship stress.`,
+    "description": "Licensed professional counselor providing telehealth-only care for teens and adolescents across Texas, with evidence-based support for anxiety, depression, life transitions, and relationship stress.",
     "image": `${siteUrl}${businessInfo.logo}`,
     "telephone": businessInfo.phone,
     "email": businessInfo.email,
-    "address": {
-      "@type": "PostalAddress",
-      ...businessInfo.address
-    },
+    ...(telehealthOnly
+      ? {}
+      : {
+          "address": {
+            "@type": "PostalAddress",
+            ...businessInfo.address
+          }
+        }),
     "sameAs": businessInfo.sameAs.filter(url => url && url !== ''),
     "knowsAbout": [
       "Cognitive Behavioral Therapy (CBT)",
@@ -157,10 +182,21 @@ export function generatePersonSchema() {
       "Teen Therapy",
       "Adult Therapy"
     ],
-    "areaServed": businessInfo.areaServed.map(area => ({
-      "@type": "City",
-      "name": area
-    }))
+    "areaServed": telehealthOnly
+      ? [
+          {
+            "@type": "State",
+            "name": businessInfo.primaryServiceArea
+          },
+          ...businessInfo.areaServed.map(area => ({
+            "@type": "City",
+            "name": area
+          }))
+        ]
+      : businessInfo.areaServed.map(area => ({
+          "@type": "City",
+          "name": area
+        }))
   };
 }
 
@@ -236,7 +272,7 @@ export function generateWebPageSchema({
       "@id": `${siteUrl}/#website`,
       "url": siteUrl,
       "name": SITE_CONFIG.name,
-      "description": "Evidence-based therapy in Southlake and the greater North Texas area",
+      "description": "Telehealth-only therapy for teens and adolescents across Texas",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
@@ -265,17 +301,28 @@ export function generateServiceSchema(service: Service) {
     "@type": "Service",
     "@id": `${siteUrl}/services/${service.slug}#service`,
     "serviceType": service.title,
-    "name": `${service.title} in ${businessInfo.address.addressLocality}, TX`,
+    "name": `${service.title} (Telehealth in ${businessInfo.primaryServiceArea})`,
     "description": service.detailedDescription || service.description,
     "provider": {
       "@type": "Person",
       "@id": `${siteUrl}/#therapist`,
       "name": "Peyton Shaw"
     },
-    "areaServed": businessInfo.areaServed.map(area => ({
-      "@type": "City",
-      "name": area
-    })),
+    "areaServed": businessInfo.isTelehealthOnly
+      ? [
+          {
+            "@type": "State",
+            "name": businessInfo.primaryServiceArea
+          },
+          ...businessInfo.areaServed.map(area => ({
+            "@type": "City",
+            "name": area
+          }))
+        ]
+      : businessInfo.areaServed.map(area => ({
+          "@type": "City",
+          "name": area
+        })),
     "availableChannel": {
       "@type": "ServiceChannel",
       "serviceUrl": `${siteUrl}/services/${service.slug}`,

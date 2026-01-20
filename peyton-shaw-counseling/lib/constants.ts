@@ -3,10 +3,11 @@ import { Service, Testimonial, FAQItem } from './types';
 export const SITE_CONFIG = {
   name: 'Peyton Shaw Counseling',
   legalName: 'Peyton Shaw Counseling, PLLC',
-  tagline: 'Evidence-based therapy for teens and adults in Southlake and Grapevine',
+  tagline: 'Telehealth therapy focused on teens and adolescents across Texas',
   phone: '(817) 383-8115',
   email: 'peyton@peytonshawcounseling.com',
-  address: 'Southlake, TX',
+  address: 'Texas (Telehealth only)',
+  serviceArea: 'Texas (Telehealth only)',
   calendlyUrl: process.env.CALENDLY_SCHEDULING_URL || '',
   socialLinks: {
     linkedin: '',
@@ -20,16 +21,19 @@ export const businessInfo = {
   name: 'Peyton Shaw Counseling, PLLC',
   phone: '(817) 383-8115',
   email: 'peyton@peytonshawcounseling.com',
+  isTelehealthOnly: true,
+  serviceAreaLabel: 'Texas (Telehealth only)',
+  primaryServiceArea: 'Texas',
   address: {
-    streetAddress: '123 Main Street', // TODO: Update with actual street address
-    addressLocality: 'Southlake',
+    streetAddress: '',
+    addressLocality: 'Texas',
     addressRegion: 'TX',
-    postalCode: '76092',
+    postalCode: '',
     addressCountry: 'US'
   },
   geo: {
-    latitude: 32.9412, // Southlake, TX coordinates
-    longitude: -97.1341
+    latitude: 31.0, // Texas centroid (approx.)
+    longitude: -99.0
   },
   url: 'https://www.peytonshawcounseling.com',
   logo: '/images/peyton-shaw-professional.jpg', // Using existing headshot as logo
@@ -82,7 +86,7 @@ export const SERVICES: Service[] = [
       'Personalized treatment plan',
       'Practical, evidence-based tools',
       'Collaborative goal setting',
-      'Flexible in-person or telehealth options'
+      'Secure telehealth sessions across Texas'
     ]
   },
   {
@@ -214,7 +218,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     id: '5',
     question: 'Do you offer telehealth sessions?',
-    answer: 'Yes. I offer in-person sessions in Southlake and secure video sessions across Texas.',
+    answer: 'Yes. I am telehealth-only at this time and meet with clients through secure video sessions across Texas.',
     category: 'Sessions'
   },
   {
@@ -226,7 +230,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     id: '7',
     question: 'How do I know if therapy is right for me?',
-    answer: 'If you feel stuck, overwhelmed, or want support navigating relationships or life changes, therapy can help. The first session is a good way to see if we are a fit.',
+    answer: 'If you or your teen feels stuck, overwhelmed, or wants support navigating emotions, relationships, or life changes, therapy can help. The first session is a good way to see if we are a fit.',
     category: 'Getting Started'
   },
   {

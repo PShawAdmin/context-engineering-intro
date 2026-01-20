@@ -11,13 +11,24 @@ import { targetKeywords } from '@/lib/seo/keywords'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com'
+const geoMeta = businessInfo.isTelehealthOnly
+  ? {
+      'geo.region': 'US-TX',
+      'geo.placename': businessInfo.primaryServiceArea,
+    }
+  : {
+      'geo.region': 'US-TX',
+      'geo.placename': businessInfo.address.addressLocality,
+      'geo.position': `${businessInfo.geo.latitude};${businessInfo.geo.longitude}`,
+      'ICBM': `${businessInfo.geo.latitude}, ${businessInfo.geo.longitude}`,
+    }
 
 export const metadata: Metadata = {
   title: {
-    default: `${businessInfo.name} - Licensed Therapist in ${businessInfo.address.addressLocality}, TX`,
-    template: `%s | ${businessInfo.name} - ${businessInfo.address.addressLocality}, TX`
+    default: `${businessInfo.name} - Telehealth Therapy for Teens in Texas`,
+    template: `%s | ${businessInfo.name} - Telehealth Therapy for Teens in Texas`
   },
-  description: `Evidence-based therapy for anxiety, depression, and life transitions. Serving teens and adults in ${businessInfo.areaServed.slice(0, 3).join(', ')}, TX with in-person and secure video sessions.`,
+  description: 'Telehealth therapy focused on teens and adolescents across Texas. Evidence-based support for anxiety, depression, and life transitions.',
   keywords: [
     ...targetKeywords.primary.combined,
     ...targetKeywords.secondary.specialties.slice(0, 5),
@@ -37,8 +48,8 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   openGraph: {
-    title: `${businessInfo.name} - Licensed Therapist in ${businessInfo.address.addressLocality}, TX`,
-    description: `Evidence-based therapy for anxiety, depression, and life transitions. Serving ${businessInfo.areaServed[0]} and ${businessInfo.areaServed[1]}, TX with in-person and telehealth options.`,
+    title: `${businessInfo.name} - Telehealth Therapy for Teens in Texas`,
+    description: 'Telehealth-only care for teens and adolescents across Texas with evidence-based support for anxiety, depression, and life transitions.',
     url: siteUrl,
     siteName: businessInfo.name,
     images: [
@@ -54,8 +65,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${businessInfo.name} - Therapy in ${businessInfo.address.addressLocality}, TX`,
-    description: `Licensed therapist serving ${businessInfo.areaServed[0]} and ${businessInfo.areaServed[1]}. Evidence-based care for anxiety, depression, and life transitions.`,
+    title: `${businessInfo.name} - Telehealth Therapy for Teens in Texas`,
+    description: 'Telehealth-only therapy for teens and adolescents across Texas. Evidence-based care for anxiety, depression, and life transitions.',
     images: ['/twitter-image.png'],
     creator: '@peytonshaw', // TODO: Update with actual Twitter handle
   },
@@ -95,10 +106,7 @@ export const metadata: Metadata = {
     ],
   },
   other: {
-    'geo.region': 'US-TX',
-    'geo.placename': businessInfo.address.addressLocality,
-    'geo.position': `${businessInfo.geo.latitude};${businessInfo.geo.longitude}`,
-    'ICBM': `${businessInfo.geo.latitude}, ${businessInfo.geo.longitude}`,
+    ...geoMeta,
   },
 }
 

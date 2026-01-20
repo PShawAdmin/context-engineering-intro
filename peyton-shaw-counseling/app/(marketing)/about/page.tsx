@@ -9,7 +9,7 @@ import {Button} from '@heroui/button';
 
 export const metadata: Metadata = {
   title: 'About Peyton Shaw',
-  description: 'Meet Peyton Shaw, licensed therapist providing evidence-based care for anxiety, depression, and life transitions in Southlake, TX.',
+  description: 'Meet Peyton Shaw, licensed professional counselor providing telehealth-only care for teens and adolescents across Texas.',
 };
 
 export default function AboutPage() {
@@ -36,19 +36,20 @@ export default function AboutPage() {
                     </h2>
                     <div className="prose prose-lg text-gray-700 space-y-4">
                       <p>
-                        Welcome. I&apos;m Peyton Shaw, a licensed professional counselor who helps teens and
-                        adults navigate anxiety, depression, life transitions, and relationship stress.
-                        My goal is to offer a calm, respectful space where you can feel understood and
-                        supported.
+                        Welcome. I&apos;m Peyton Shaw, a licensed professional counselor who specializes in
+                        helping teens and adolescents navigate anxiety, depression, life transitions,
+                        and relationship stress. My goal is to offer a calm, respectful space where you
+                        can feel understood and supported.
                       </p>
                       <p>
-                        With years of experience in mental health counseling, I&apos;ve worked with clients
-                        facing a wide range of challenges. That experience continues to shape a
-                        personalized, practical approach to care.
+                        With years of experience in mental health counseling, I&apos;ve worked with teens,
+                        young adults, and families facing a wide range of challenges. That experience
+                        continues to shape a personalized, practical approach to care.
                       </p>
                       <p>
                         Therapy is a collaborative process. We will define goals together, explore what
-                        gets in the way, and build tools you can use in daily life.
+                        gets in the way, and build tools you can use in daily life. Sessions are
+                        telehealth-only and delivered through secure video across Texas.
                       </p>
                     </div>
                   </div>
@@ -103,7 +104,7 @@ export default function AboutPage() {
                           <svg className="w-6 h-6 text-secondary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span>A calm, welcoming space to explore what matters most</span>
+                          <span>A calm, welcoming telehealth space to explore what matters most</span>
                         </li>
                         <li className="flex items-start">
                           <svg className="w-6 h-6 text-secondary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -115,7 +116,7 @@ export default function AboutPage() {
                           <svg className="w-6 h-6 text-secondary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span>Practical tools you can use between sessions</span>
+                          <span>Practical tools you can use between telehealth sessions</span>
                         </li>
                         <li className="flex items-start">
                           <svg className="w-6 h-6 text-secondary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
