@@ -230,7 +230,7 @@ export default function Header() {
             </NavbarMenuItem>
           ))}
 
-          <NavbarMenuItem className="mt-auto pt-6 border-t border-slate-200">
+          <NavbarMenuItem className="mt-4 pt-6 border-t border-slate-200">
             <div className="space-y-5">
               <Button
                 as={Link}
