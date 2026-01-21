@@ -14,7 +14,6 @@ export async function GET() {
     { url: `${baseUrl}/faq`, priority: '0.7', changefreq: 'monthly' },
     { url: `${baseUrl}/blog`, priority: '0.6', changefreq: 'weekly' },
     { url: `${baseUrl}/crisis-resources`, priority: '0.5', changefreq: 'yearly' },
-    { url: `${baseUrl}/forms`, priority: '0.5', changefreq: 'yearly' },
   ];
   
   // Dynamic service pages

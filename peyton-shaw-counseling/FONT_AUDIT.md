@@ -154,7 +154,6 @@ Track typography updates across components:
 - [ ] ServiceCard - Titles and descriptions
 - [ ] Testimonials - Quotes and attribution
 - [ ] FAQ - Questions and answers
-- [ ] Forms - Labels and helper text
 
 ---
 

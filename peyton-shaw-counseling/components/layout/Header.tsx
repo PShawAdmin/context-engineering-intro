@@ -31,7 +31,6 @@ export default function Header() {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Areas Served", href: "/areas-served" },
-    { name: "Forms", href: "/forms" },
     { name: "FAQ", href: "/faq" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },

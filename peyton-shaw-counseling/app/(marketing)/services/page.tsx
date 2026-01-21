@@ -30,9 +30,11 @@ export default function ServicesPage() {
           backgroundImage={false}
         />
 
-        <section className="py-16 bg-background-cream">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-12">
+        <section className="section-padding bg-background-cream relative overflow-hidden">
+          <div className="absolute inset-0 bg-pattern-watercolor opacity-25"></div>
+          <div className="absolute inset-0 pattern-grain opacity-5"></div>
+          <div className="container relative z-10">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10">
               <div className="space-y-6">
                 <Heading level={2} className="text-text-charcoal">
                   Care tailored to teens and adults
@@ -42,218 +44,262 @@ export default function ServicesPage() {
                   between sessions. Every appointment is a secure telehealth session available
                   across Texas.
                 </Text>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
-                  <div className="border-l-2 border-nude-clay pl-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-grey-blue font-semibold">
-                      Primary focus
-                    </p>
-                    <Text size="sm" className="mt-2">
-                      Teens and adults navigating anxiety, mood, relationships, and change.
-                    </Text>
-                  </div>
-                  <div className="border-l-2 border-nude-clay pl-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-grey-blue font-semibold">
-                      Format
-                    </p>
-                    <Text size="sm" className="mt-2">
-                      Telehealth-only sessions delivered through secure video.
-                    </Text>
-                  </div>
-                  <div className="border-l-2 border-nude-clay pl-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-grey-blue font-semibold">
-                      Service area
-                    </p>
-                    <Text size="sm" className="mt-2">
-                      Available statewide in Texas with flexible scheduling.
-                    </Text>
-                  </div>
-                  <div className="border-l-2 border-nude-clay pl-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-grey-blue font-semibold">
-                      Payment
-                    </p>
-                    <Text size="sm" className="mt-2">
-                      Out-of-network only with superbills for reimbursement.
-                    </Text>
+                <div>
+                  <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
+                    At a glance
+                  </Text>
+                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="bg-nude-cream border border-nude-linen shadow-soft rounded-xl p-5 space-y-2">
+                        <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
+                          Primary focus
+                        </Text>
+                        <Text size="sm">
+                          Teens and adults navigating anxiety, mood, relationships, and change.
+                        </Text>
+                    </div>
+                    <div className="bg-nude-cream border border-nude-linen shadow-soft rounded-xl p-5 space-y-2">
+                        <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
+                          Format
+                        </Text>
+                        <Text size="sm">
+                          Telehealth-only sessions delivered through secure video.
+                        </Text>
+                    </div>
+                    <div className="bg-nude-cream border border-nude-linen shadow-soft rounded-xl p-5 space-y-2">
+                        <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
+                          Service area
+                        </Text>
+                        <Text size="sm">
+                          Available statewide in Texas with flexible scheduling.
+                        </Text>
+                    </div>
+                    <div className="bg-nude-cream border border-nude-linen shadow-soft rounded-xl p-5 space-y-2">
+                        <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
+                          Payment
+                        </Text>
+                        <Text size="sm">
+                          Out-of-network only with superbills for reimbursement.
+                        </Text>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="space-y-6">
-                <Heading level={3} className="text-text-charcoal">
-                  How sessions work
-                </Heading>
-                <ol className="space-y-4">
-                  <li className="flex items-start gap-4">
-                    <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-nude-sand text-text-charcoal font-semibold">
-                      1
+              <div className="bg-nude-cream border border-nude-linen shadow-soft rounded-2xl overflow-hidden">
+                <div className="flex flex-col items-start gap-2 border-b border-nude-linen/70 px-6 py-5">
+                  <Heading level={3} className="text-text-charcoal">
+                    How sessions work
+                  </Heading>
+                  <Text size="sm" className="text-text-storm">
+                    A steady, three-step flow focused on clarity, progress, and support.
+                  </Text>
+                </div>
+                <div className="px-6 pb-6 pt-5 space-y-5">
+                  <ol className="space-y-4">
+                    <li className="flex items-start gap-4">
+                      <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-nude-sand text-text-charcoal font-semibold">
+                        1
+                      </span>
+                      <div>
+                        <Text weight="medium" color="charcoal">
+                          Consultation and goals
+                        </Text>
+                        <Text size="sm" className="mt-1">
+                          We get clarity on what you want to change and what support will help.
+                        </Text>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-nude-sand text-text-charcoal font-semibold">
+                        2
+                      </span>
+                      <div>
+                        <Text weight="medium" color="charcoal">
+                          Personalized plan
+                        </Text>
+                        <Text size="sm" className="mt-1">
+                          A focused plan based on evidence-based tools and your strengths.
+                        </Text>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-nude-sand text-text-charcoal font-semibold">
+                        3
+                      </span>
+                      <div>
+                        <Text weight="medium" color="charcoal">
+                          Practice and progress
+                        </Text>
+                        <Text size="sm" className="mt-1">
+                          Consistent sessions to build skills, track progress, and adjust as needed.
+                        </Text>
+                      </div>
+                    </li>
+                  </ol>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
+                      50-minute sessions
                     </span>
-                    <div>
-                      <Text weight="medium" color="charcoal">
-                        Consultation and goals
-                      </Text>
-                      <Text size="sm" className="mt-1">
-                        We get clarity on what you want to change and what support will help.
-                      </Text>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-nude-sand text-text-charcoal font-semibold">
-                      2
+                    <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
+                      Secure video
                     </span>
-                    <div>
-                      <Text weight="medium" color="charcoal">
-                        Personalized plan
-                      </Text>
-                      <Text size="sm" className="mt-1">
-                        A focused plan based on evidence-based tools and your strengths.
-                      </Text>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-nude-sand text-text-charcoal font-semibold">
-                      3
+                    <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
+                      Teen + adult care
                     </span>
-                    <div>
-                      <Text weight="medium" color="charcoal">
-                        Practice and progress
-                      </Text>
-                      <Text size="sm" className="mt-1">
-                        Consistent sessions to build skills, track progress, and adjust as needed.
-                      </Text>
-                    </div>
-                  </li>
-                </ol>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
-                    50-minute sessions
-                  </span>
-                  <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
-                    Secure video
-                  </span>
-                  <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
-                    Teen + adult care
-                  </span>
-                  <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
-                    Out-of-network
-                  </span>
+                    <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
+                      Out-of-network
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-16 bg-background-dove">
-          <div className="container mx-auto px-4">
+        <section className="section-padding bg-background-dove relative overflow-hidden">
+          <div className="absolute inset-0 bg-pattern-blob opacity-10"></div>
+          <div className="absolute inset-0 pattern-grain opacity-5"></div>
+          <div className="container relative z-10">
             <div className="max-w-6xl mx-auto">
-              <div className="flex flex-col lg:flex-row gap-12">
-                <aside className="lg:w-64 lg:sticky lg:top-24 space-y-6">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.3em] text-grey-blue font-semibold">
-                      Service map
-                    </p>
-                    <Heading level={3} className="mt-3 text-text-charcoal">
-                      Find the right starting point
-                    </Heading>
-                    <Text size="sm" className="mt-3">
-                      Start with what feels most urgent and explore details as you go.
-                    </Text>
-                  </div>
-                  <nav className="space-y-2 text-sm">
-                    {SERVICES.map((service) => (
-                      <a
-                        key={service.id}
-                        href={`#service-${service.slug}`}
-                        className="block text-text-storm hover:text-nude-clay transition-colors"
-                      >
-                        {service.title}
-                      </a>
-                    ))}
-                  </nav>
-                  <div className="border-t border-nude-sand pt-4">
-                    <Text size="sm" weight="medium" color="charcoal">
-                      Telehealth-only across Texas
-                    </Text>
-                    <Text size="sm" className="mt-2">
-                      Teens and adults welcome. Out-of-network only with superbills for possible reimbursement.
-                    </Text>
-                  </div>
-                  <Button as={Link} href="/contact" color="primary" className="w-full">
-                    Book a Consultation
-                  </Button>
-                </aside>
-
-                <div className="flex-1">
-                  <div className="relative pl-6">
-                    <div className="absolute left-2 top-0 h-full w-px bg-nude-sand" />
-                    <div className="space-y-12">
-                      {SERVICES.map((service) => (
-                        <article key={service.id} id={`service-${service.slug}`} className="relative">
-                          <span className="absolute -left-[3px] top-2 h-3 w-3 rounded-full bg-nude-clay shadow-sm" />
-                          <div className="pl-6 space-y-4">
-                            <div className="space-y-2">
-                              <Heading level={3} className="text-text-charcoal">
-                                {service.title}
-                              </Heading>
-                              <Text className="text-text-storm">{service.description}</Text>
-                              {service.detailedDescription && (
-                                <Text size="sm" className="text-grey-storm">
-                                  {service.detailedDescription}
-                                </Text>
-                              )}
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] gap-6">
-                              <div>
-                                <p className="text-xs uppercase tracking-[0.2em] text-grey-blue font-semibold">
-                                  Outcome focus
-                                </p>
-                                <ul className="mt-3 space-y-2">
-                                  {service.benefits?.slice(0, 4).map((benefit, index) => (
-                                    <li key={index} className="flex items-start gap-2 text-sm text-text-storm">
-                                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-nude-clay" />
-                                      <span>{benefit}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                              <div>
-                                <p className="text-xs uppercase tracking-[0.2em] text-grey-blue font-semibold">
-                                  Session details
-                                </p>
-                                <div className="mt-3 flex flex-wrap gap-2">
-                                  <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
-                                    {service.duration}
-                                  </span>
-                                  {service.price && (
-                                    <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
-                                      {service.price} per session
-                                    </span>
-                                  )}
-                                  <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 text-xs font-medium text-text-storm">
-                                    Telehealth only
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="flex flex-wrap items-center gap-4 text-sm">
-                              <Link
-                                href={`/services/${service.slug}`}
-                                className="font-medium text-text-charcoal hover:text-nude-clay transition-colors"
-                              >
-                                View details
-                              </Link>
-                              <span className="text-grey-blue">•</span>
-                              <Link
-                                href="/contact"
-                                className="font-medium text-text-charcoal hover:text-nude-clay transition-colors"
-                              >
-                                Book a consultation
-                              </Link>
-                            </div>
+              <div className="text-center max-w-3xl mx-auto">
+                <Heading level={2} className="text-text-charcoal">
+                  Focus areas and services
+                </Heading>
+                <Text size="lg" className="mt-4">
+                  Find a starting point that feels right. Each service is tailored to your goals with
+                  practical, evidence-based support.
+                </Text>
+              </div>
+              <div className="mt-8 flex flex-wrap justify-center gap-2 text-xs">
+                {SERVICES.map((service) => (
+                  <a
+                    key={service.id}
+                    href={`#service-${service.slug}`}
+                    className="rounded-full border border-nude-sand bg-background-pearl px-3 py-1 font-medium text-text-storm hover:text-text-charcoal transition-colors"
+                  >
+                    {service.title}
+                  </a>
+                ))}
+              </div>
+              <div className="mt-10 grid gap-6 md:grid-cols-2">
+                {SERVICES.map((service) => (
+                  <article key={service.id} id={`service-${service.slug}`} className="scroll-mt-24">
+                    <div className="bg-nude-cream border border-nude-linen shadow-soft h-full rounded-2xl overflow-hidden">
+                      <div className="flex flex-col items-start gap-3 border-b border-nude-linen/70 px-6 py-5">
+                        <Heading level={3} className="text-text-charcoal">
+                          {service.title}
+                        </Heading>
+                        <div className="flex flex-wrap gap-2 text-xs">
+                          <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 font-medium text-text-storm">
+                            {service.duration}
+                          </span>
+                          {service.price && (
+                            <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 font-medium text-text-storm">
+                              {service.price} per session
+                            </span>
+                          )}
+                          <span className="inline-flex items-center rounded-full border border-nude-sand bg-background-pearl px-3 py-1 font-medium text-text-storm">
+                            Telehealth only
+                          </span>
+                        </div>
+                      </div>
+                      <div className="px-6 pb-6 pt-5 space-y-4">
+                        <Text className="text-text-storm">{service.description}</Text>
+                        {service.detailedDescription && (
+                          <Text size="sm" className="text-text-storm">
+                            {service.detailedDescription}
+                          </Text>
+                        )}
+                        {service.benefits && service.benefits.length > 0 && (
+                          <div>
+                            <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
+                              Outcome focus
+                            </Text>
+                            <ul className="mt-3 space-y-2">
+                              {service.benefits.slice(0, 3).map((benefit, index) => (
+                                <li key={index} className="flex items-start gap-2 text-sm text-text-storm">
+                                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-nude-clay" />
+                                  <span>{benefit}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
-                        </article>
-                      ))}
+                        )}
+                        <div className="flex flex-wrap items-center gap-3 text-sm">
+                          <Link
+                            href={`/services/${service.slug}`}
+                            className="font-medium text-text-charcoal hover:text-nude-clay transition-colors"
+                          >
+                            View details
+                          </Link>
+                          <span className="text-grey-blue">•</span>
+                          <Link
+                            href="/contact"
+                            className="font-medium text-text-charcoal hover:text-nude-clay transition-colors"
+                          >
+                            Book a consultation
+                          </Link>
+                        </div>
+                      </div>
                     </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-padding bg-background-cream relative overflow-hidden">
+          <div className="absolute inset-0 bg-pattern-watercolor opacity-20"></div>
+          <div className="absolute inset-0 pattern-grain opacity-5"></div>
+          <div className="container relative z-10">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center">
+                <Heading level={2} className="text-text-charcoal">
+                  Insurance and payment
+                </Heading>
+                <Text size="lg" className="mt-4">
+                  Out-of-network only, with clear guidance on reimbursement and simple payment options.
+                </Text>
+              </div>
+              <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="bg-nude-cream border border-nude-linen shadow-soft rounded-2xl overflow-hidden">
+                  <div className="border-b border-nude-linen/70 px-6 py-5">
+                    <Heading level={3} className="text-text-charcoal text-lg">
+                      Insurance
+                    </Heading>
+                  </div>
+                  <div className="px-6 pb-6 space-y-3">
+                    <Text>
+                      I am an out-of-network provider. A superbill can be provided so you can submit for
+                      possible reimbursement.
+                    </Text>
+                    <Text size="sm">
+                      Before scheduling, check your plan for out-of-network mental health benefits.
+                    </Text>
+                  </div>
+                </div>
+                <div className="bg-nude-cream border border-nude-linen shadow-soft rounded-2xl overflow-hidden">
+                  <div className="border-b border-nude-linen/70 px-6 py-5">
+                    <Heading level={3} className="text-text-charcoal text-lg">
+                      Payment options
+                    </Heading>
+                  </div>
+                  <div className="px-6 pb-6 space-y-3">
+                    <Text>Payment is due at the time of service. I accept:</Text>
+                    <ul className="space-y-2 text-sm text-text-storm">
+                      <li className="flex items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-nude-clay" />
+                        Credit/Debit Cards
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-nude-clay" />
+                        HSA/FSA Cards
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-nude-clay" />
+                        Cash or Check
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -261,64 +307,22 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="py-16 bg-background-cream">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <Heading level={2} className="text-text-charcoal text-center">
-                Insurance and payment
-              </Heading>
-              <Text size="lg" className="mt-4 text-center">
-                Out-of-network only, with clear guidance on reimbursement and simple payment options.
-              </Text>
-
-              <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div className="border-t border-nude-sand pt-6 space-y-4">
-                  <Heading level={3} className="text-lg text-text-charcoal">
-                    Insurance
-                  </Heading>
-                  <Text>
-                    I am an out-of-network provider. A superbill can be provided so you can submit for
-                    possible reimbursement.
-                  </Text>
-                  <Text size="sm">
-                    Before scheduling, check your plan for out-of-network mental health benefits.
-                  </Text>
-                </div>
-
-                <div className="border-t border-nude-sand pt-6 space-y-4 lg:border-t-0 lg:border-l lg:pl-10">
-                  <Heading level={3} className="text-lg text-text-charcoal">
-                    Payment options
-                  </Heading>
-                  <Text>Payment is due at the time of service. I accept:</Text>
-                  <ul className="space-y-2 text-sm text-text-storm">
-                    <li className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-nude-clay" />
-                      Credit/Debit Cards
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-nude-clay" />
-                      HSA/FSA Cards
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-nude-clay" />
-                      Cash or Check
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-primary-50">
-          <div className="container mx-auto px-4 text-center">
+        <section className="section-padding bg-nude-linen relative overflow-hidden">
+          <div className="absolute inset-0 bg-pattern-watercolor opacity-25"></div>
+          <div className="absolute inset-0 pattern-grain opacity-5"></div>
+          <div className="container relative z-10 text-center">
             <Heading level={2} className="text-text-charcoal">
               Ready to get started?
             </Heading>
             <Text size="lg" className="mt-4">
               Start with a consultation focused on your goals and the support you need.
             </Text>
-            <Button as={Link} href="/contact" color="primary" className="mt-8">
+            <Button
+              as={Link}
+              href="/contact"
+              size="lg"
+              className="mt-8 bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8 shadow-clay hover:shadow-lg transition-all"
+            >
               Book a Consultation
             </Button>
           </div>

@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import {Form, Input, Textarea, Button} from '@heroui/react';
-import {Card, CardHeader, CardBody} from '@heroui/card';
 
 interface FormData {
   name: string;
@@ -111,16 +110,11 @@ export default function ContactForm() {
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <h2 className="text-2xl font-bold text-gray-900">Send a Message</h2>
-      </CardHeader>
-      <CardBody>
-        <Form 
-          onSubmit={handleSubmit}
-          validationBehavior="aria"
-          className="space-y-4"
-        >
+    <Form 
+      onSubmit={handleSubmit}
+      validationBehavior="aria"
+      className="space-y-4 w-full"
+    >
           <Input
             label="Name"
             placeholder="Your full name"
@@ -195,12 +189,10 @@ export default function ContactForm() {
             </Button>
           </div>
 
-          <p className="text-sm text-gray-500 text-center mt-4">
+          <p className="text-xs text-text-storm text-center mt-4">
             By submitting this form, you agree to our privacy policy.
             We will only use your information to respond to your inquiry.
           </p>
-        </Form>
-      </CardBody>
-    </Card>
+    </Form>
   );
 }

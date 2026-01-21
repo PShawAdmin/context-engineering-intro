@@ -23,9 +23,6 @@
 /faq
   Cache-Control: public, s-maxage=60, stale-while-revalidate=86400
 
-/forms
-  Cache-Control: public, s-maxage=60, stale-while-revalidate=86400
-
 /blog
   Cache-Control: public, s-maxage=60, stale-while-revalidate=86400
 
