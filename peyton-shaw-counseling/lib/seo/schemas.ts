@@ -5,6 +5,10 @@ import { Service, FAQItem } from '@/lib/types';
 export function generateMedicalBusinessSchema() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com';
   const telehealthOnly = businessInfo.isTelehealthOnly;
+  const hasTestimonials = TESTIMONIALS.length > 0;
+  const averageRating = hasTestimonials
+    ? TESTIMONIALS.reduce((sum, review) => sum + review.rating, 0) / TESTIMONIALS.length
+    : null;
   
   return {
     "@context": "https://schema.org",
@@ -13,7 +17,7 @@ export function generateMedicalBusinessSchema() {
     "name": businessInfo.name,
     "legalName": businessInfo.name,
     "alternateName": "Peyton Shaw Therapy",
-    "description": "Telehealth-focused therapy for teens and adolescents across Texas. Evidence-based care for anxiety, depression, life transitions, and relationship stress.",
+    "description": "Telehealth-focused therapy for teens and adults across Texas. Evidence-based care for anxiety, depression, life transitions, and relationship stress.",
     "logo": `${siteUrl}${businessInfo.logo}`,
     "image": `${siteUrl}${businessInfo.logo}`,
     "url": businessInfo.url,
@@ -58,28 +62,32 @@ export function generateMedicalBusinessSchema() {
           }
         })),
     "sameAs": businessInfo.sameAs.filter(url => url && url !== ''),
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": TESTIMONIALS.length.toString(),
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "review": TESTIMONIALS.map(testimonial => ({
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": testimonial.rating.toString(),
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "author": {
-        "@type": "Person",
-        "name": testimonial.name
-      },
-      "reviewBody": testimonial.content,
-      "datePublished": testimonial.date
-    })),
+    ...(hasTestimonials
+      ? {
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": averageRating ? averageRating.toFixed(1) : "5.0",
+            "reviewCount": TESTIMONIALS.length.toString(),
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "review": TESTIMONIALS.map(testimonial => ({
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": testimonial.rating.toString(),
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "author": {
+              "@type": "Person",
+              "name": testimonial.name
+            },
+            "reviewBody": testimonial.content,
+            "datePublished": testimonial.date
+          }))
+        }
+      : {}),
     "paymentAccepted": businessInfo.paymentAccepted,
     "currenciesAccepted": businessInfo.currenciesAccepted,
     "hasOfferCatalog": {
@@ -159,7 +167,7 @@ export function generatePersonSchema() {
       "@id": `${siteUrl}/#organization`,
       "name": businessInfo.name
     },
-    "description": "Licensed professional counselor providing telehealth-only care for teens and adolescents across Texas, with evidence-based support for anxiety, depression, life transitions, and relationship stress.",
+    "description": "Licensed professional counselor providing telehealth-only care for teens and adults across Texas, with evidence-based support for anxiety, depression, life transitions, and relationship stress.",
     "image": `${siteUrl}${businessInfo.logo}`,
     "telephone": businessInfo.phone,
     "email": businessInfo.email,
@@ -272,7 +280,7 @@ export function generateWebPageSchema({
       "@id": `${siteUrl}/#website`,
       "url": siteUrl,
       "name": SITE_CONFIG.name,
-      "description": "Telehealth-only therapy for teens and adolescents across Texas",
+      "description": "Telehealth-only therapy for teens and adults across Texas",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
@@ -295,6 +303,10 @@ export function generateWebPageSchema({
 // Service Schema Generator for individual therapy services
 export function generateServiceSchema(service: Service) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peytonshawcounseling.com';
+  const hasTestimonials = TESTIMONIALS.length > 0;
+  const averageRating = hasTestimonials
+    ? TESTIMONIALS.reduce((sum, review) => sum + review.rating, 0) / TESTIMONIALS.length
+    : null;
   
   return {
     "@context": "https://schema.org",
@@ -341,7 +353,17 @@ export function generateServiceSchema(service: Service) {
         "billingDuration": service.duration || '50 minutes'
       }
     },
-    "aggregateRating": businessInfo.aggregateRating,
+    ...(hasTestimonials && averageRating
+      ? {
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": averageRating.toFixed(1),
+            "reviewCount": TESTIMONIALS.length.toString(),
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        }
+      : {}),
     "potentialAction": {
       "@type": "BookAction",
       "target": {

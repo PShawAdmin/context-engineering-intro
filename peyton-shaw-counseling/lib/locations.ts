@@ -16,12 +16,12 @@ export const LOCATIONS: LocationDetail[] = [
   {
     slug: 'southlake',
     name: 'Southlake',
-    description: 'Telehealth therapy for Southlake residents, available across Texas.',
-    intro: 'Telehealth-only care for teens and adolescents in Southlake and across Texas, with support for anxiety, depression, life transitions, and relationship stress.',
+    description: 'Telehealth therapy for teens and adults in Southlake, available across Texas.',
+    intro: 'Telehealth-only care for teens and adults in Southlake and across Texas, with support for anxiety, depression, life transitions, and relationship stress.',
     highlights: [
       'Telehealth-only sessions across Texas',
-      'Flexible scheduling for school and family routines',
-      'Teen and adolescent-focused care'
+      'Flexible scheduling for school, work, and family routines',
+      'Teen and adult-focused care'
     ],
     neighborhoods: ['Town Square', 'Timarron', 'Carillon', 'Westwyck Hills'],
     zipCodes: ['76092', '76126'],
@@ -47,12 +47,12 @@ export const LOCATIONS: LocationDetail[] = [
   {
     slug: 'grapevine',
     name: 'Grapevine',
-    description: 'Telehealth therapy for Grapevine residents, from historic downtown to Lake Grapevine and the DFW Airport area.',
-    intro: 'Grapevine clients meet via secure telehealth. We support teens and adolescents with anxiety, depression, and major life transitions.',
+    description: 'Telehealth therapy for teens and adults in Grapevine, from historic downtown to Lake Grapevine and the DFW Airport area.',
+    intro: 'Grapevine clients meet via secure telehealth. We support teens and adults with anxiety, depression, and major life transitions.',
     highlights: [
       'Telehealth-only sessions across Texas',
-      'Flexible scheduling to fit school and family life',
-      'Teen and adolescent support'
+      'Flexible scheduling to fit school, work, and family life',
+      'Teen and adult support'
     ],
     neighborhoods: ['Downtown Historic District', 'Silver Lake', 'Grapevine Mills area', 'Dove Loop'],
     zipCodes: ['76051', '76099'],
@@ -78,12 +78,12 @@ export const LOCATIONS: LocationDetail[] = [
   {
     slug: 'colleyville',
     name: 'Colleyville',
-    description: 'Telehealth therapy for Colleyville families, delivered securely across Texas.',
-    intro: 'Colleyville clients often seek support for anxiety, relationship stress, and personal growth. We provide telehealth-only sessions for teens and adolescents across Texas.',
+    description: 'Telehealth therapy for teens and adults in Colleyville, delivered securely across Texas.',
+    intro: 'Colleyville clients often seek support for anxiety, relationship stress, and personal growth. We provide telehealth-only sessions for teens and adults across Texas.',
     highlights: [
       'Telehealth-only sessions across Texas',
       'Flexible scheduling options',
-      'Teen and adolescent-focused care'
+      'Teen and adult-focused care'
     ],
     neighborhoods: ['Montclair Parc', 'The Estates of Colleyville', 'Wellington', 'Bransford'],
     zipCodes: ['76034'],
@@ -109,12 +109,12 @@ export const LOCATIONS: LocationDetail[] = [
   {
     slug: 'keller',
     name: 'Keller',
-    description: 'Telehealth therapy for Keller families, delivered securely across Texas.',
-    intro: 'Keller clients meet via telehealth-only sessions across Texas. We focus on teen anxiety, depression, and life transitions.',
+    description: 'Telehealth therapy for teens and adults in Keller, delivered securely across Texas.',
+    intro: 'Keller clients meet via telehealth-only sessions across Texas. We focus on anxiety, depression, and life transitions for teens and adults.',
     highlights: [
       'Telehealth-only sessions across Texas',
       'Evening availability by request',
-      'Teen and adolescent support'
+      'Teen and adult support'
     ],
     neighborhoods: ['Hidden Lakes', 'The Highlands', 'Keller Town Center', 'Bear Creek'],
     zipCodes: ['76244', '76248'],
@@ -132,20 +132,20 @@ export const LOCATIONS: LocationDetail[] = [
       },
       {
         id: 'keller-3',
-        question: 'Do you offer teen therapy for Keller families?',
-        answer: 'Yes. We specialize in teen and adolescent therapy and tailor sessions to each client.'
+        question: 'Do you offer therapy for teens and adults in Keller?',
+        answer: 'Yes. We work with teens and adults and tailor sessions to each client.'
       }
     ]
   },
   {
     slug: 'westlake',
     name: 'Westlake',
-    description: 'Telehealth therapy for Westlake residents near Westlake Academy and the Vaquero area.',
-    intro: 'Westlake clients meet through secure telehealth. We provide evidence-based care for teen anxiety, life transitions, and self-esteem.',
+    description: 'Telehealth therapy for teens and adults in Westlake near Westlake Academy and the Vaquero area.',
+    intro: 'Westlake clients meet through secure telehealth. We provide evidence-based care for anxiety, life transitions, and self-esteem for teens and adults.',
     highlights: [
       'Telehealth-only sessions across Texas',
-      'Flexible scheduling for school and family routines',
-      'Teen and adolescent-focused care'
+      'Flexible scheduling for school, work, and family routines',
+      'Teen and adult-focused care'
     ],
     neighborhoods: ['Vaquero', 'Glenwyck Farms', 'Stagecoach Hills'],
     zipCodes: ['76262', '76092'],
@@ -171,12 +171,12 @@ export const LOCATIONS: LocationDetail[] = [
   {
     slug: 'trophy-club',
     name: 'Trophy Club',
-    description: 'Telehealth therapy for Trophy Club residents near the golf and lake communities.',
-    intro: 'Trophy Club clients meet via secure telehealth. We support teens and adolescents with anxiety, relationship concerns, and personal growth goals.',
+    description: 'Telehealth therapy for teens and adults in Trophy Club near the golf and lake communities.',
+    intro: 'Trophy Club clients meet via secure telehealth. We support teens and adults with anxiety, relationship concerns, and personal growth goals.',
     highlights: [
       'Telehealth-only sessions across Texas',
       'Flexible scheduling options',
-      'Support for teens and adolescents'
+      'Support for teens and adults'
     ],
     neighborhoods: ['The Highlands', "Hogan's Glen", 'Trophy Club Country Club'],
     zipCodes: ['76262'],

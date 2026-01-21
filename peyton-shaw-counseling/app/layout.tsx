@@ -25,10 +25,10 @@ if (businessInfo.isTelehealthOnly) {
 
 export const metadata: Metadata = {
   title: {
-    default: `${businessInfo.name} - Telehealth Therapy for Teens in Texas`,
-    template: `%s | ${businessInfo.name} - Telehealth Therapy for Teens in Texas`
+    default: `${businessInfo.name} - Telehealth Therapy for Teens and Adults in Texas`,
+    template: `%s | ${businessInfo.name} - Telehealth Therapy for Teens and Adults in Texas`
   },
-  description: 'Telehealth therapy focused on teens and adolescents across Texas. Evidence-based support for anxiety, depression, and life transitions.',
+  description: 'Telehealth therapy focused on teens and adults across Texas. Evidence-based support for anxiety, depression, and life transitions.',
   keywords: [
     ...targetKeywords.primary.combined,
     ...targetKeywords.secondary.specialties.slice(0, 5),
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   openGraph: {
-    title: `${businessInfo.name} - Telehealth Therapy for Teens in Texas`,
-    description: 'Telehealth-only care for teens and adolescents across Texas with evidence-based support for anxiety, depression, and life transitions.',
+    title: `${businessInfo.name} - Telehealth Therapy for Teens and Adults in Texas`,
+    description: 'Telehealth-only care for teens and adults across Texas with evidence-based support for anxiety, depression, and life transitions.',
     url: siteUrl,
     siteName: businessInfo.name,
     images: [
@@ -65,8 +65,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${businessInfo.name} - Telehealth Therapy for Teens in Texas`,
-    description: 'Telehealth-only therapy for teens and adolescents across Texas. Evidence-based care for anxiety, depression, and life transitions.',
+    title: `${businessInfo.name} - Telehealth Therapy for Teens and Adults in Texas`,
+    description: 'Telehealth-only therapy for teens and adults across Texas. Evidence-based care for anxiety, depression, and life transitions.',
     images: ['/twitter-image.png'],
     creator: '@peytonshaw', // TODO: Update with actual Twitter handle
   },

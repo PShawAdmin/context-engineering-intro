@@ -10,7 +10,7 @@ import {Card, CardHeader, CardBody} from '@heroui/card';
 
 export const metadata: Metadata = {
   title: 'Contact & Book Appointment',
-  description: 'Schedule a telehealth consultation and get in touch with Peyton Shaw Counseling. Serving teens and adolescents across Texas.',
+  description: 'Schedule a telehealth consultation and get in touch with Peyton Shaw Counseling. Serving teens and adults across Texas.',
 };
 
 async function CalendlySection() {

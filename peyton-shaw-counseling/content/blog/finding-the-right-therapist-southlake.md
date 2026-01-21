@@ -36,7 +36,7 @@ Different therapists specialize in different areas. Consider whether you want su
 - Life transitions
 - Relationship concerns
 - Self-esteem or personal growth
-- Teen or adolescent support
+- Teen or adult support
 
 If you are unsure, ask the therapist directly about their experience with your concerns.
 

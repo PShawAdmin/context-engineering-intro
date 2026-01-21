@@ -14,7 +14,7 @@ import { Button } from '@heroui/button';
 
 export const metadata = generateMetaTags({
   title: 'Areas We Serve - Therapy Services',
-  description: `Telehealth-only therapy for teens and adolescents across Texas, including ${businessInfo.areaServed.join(', ')}.`,
+  description: `Telehealth-only therapy for teens and adults across Texas, including ${businessInfo.areaServed.join(', ')}.`,
   keywords: [
     ...targetKeywords.locationVariations.primary.map(loc => `therapist ${loc}`),
     ...targetKeywords.locationVariations.secondary.slice(0, 2).map(loc => `counseling ${loc}`),
@@ -80,7 +80,7 @@ export default function AreasServedPage() {
                 Communities We Serve
               </Heading>
               <Text size="lg" className="max-w-3xl mx-auto">
-                We support teens and adolescents across Texas with evidence-based care for anxiety,
+                We support teens and adults across Texas with evidence-based care for anxiety,
                 depression, relationship stress, and life transitions.
               </Text>
             </div>
@@ -159,10 +159,10 @@ export default function AreasServedPage() {
                 
                 <div>
                   <Heading level={3} className="text-xl mb-3">
-                    Teen & Adolescent Focus
+                    Teen & Adult Care
                   </Heading>
                   <Text>
-                    Developmentally informed care for teen anxiety, mood, and life transitions.
+                    Developmentally informed care for teens and adults managing anxiety, mood, and life transitions.
                   </Text>
                 </div>
                 

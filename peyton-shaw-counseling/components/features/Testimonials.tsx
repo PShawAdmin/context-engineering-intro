@@ -1,11 +1,73 @@
 'use client'
 
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import {Card, CardHeader, CardBody} from '@heroui/card';
-import { TESTIMONIALS } from '@/lib/constants';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 
+type GoogleReview = {
+  author_name: string;
+  rating: number;
+  relative_time_description: string;
+  text: string;
+  time: number;
+  profile_photo_url: string;
+  author_url: string;
+};
+
+type GoogleReviewsResponse = {
+  name: string | null;
+  rating: number | null;
+  user_ratings_total: number | null;
+  url: string | null;
+  reviews: GoogleReview[];
+};
+
 export default function Testimonials() {
+  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [summary, setSummary] = useState<GoogleReviewsResponse>({
+    name: null,
+    rating: null,
+    user_ratings_total: null,
+    url: null,
+    reviews: [],
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadReviews = async () => {
+      try {
+        const response = await fetch('/api/google-reviews');
+        if (!response.ok) {
+          throw new Error('Failed to load Google reviews.');
+        }
+        const data = (await response.json()) as GoogleReviewsResponse;
+        if (!isMounted) return;
+        setSummary({
+          name: data.name,
+          rating: data.rating,
+          user_ratings_total: data.user_ratings_total,
+          url: data.url,
+          reviews: (data.reviews || []).slice(0, 3),
+        });
+        setStatus('ready');
+      } catch (error) {
+        if (!isMounted) return;
+        setStatus('error');
+      }
+    };
+
+    loadReviews();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const hasReviews = status === 'ready' && summary.reviews.length > 0;
+
   return (
     <section className="section-padding bg-background-dove relative overflow-hidden">
       {/* Elegant pattern overlay */}
@@ -17,14 +79,35 @@ export default function Testimonials() {
             What Clients Say
           </Heading>
           <Text size="lg" className="md:text-xl max-w-3xl mx-auto">
-            Real feedback from clients who found support, clarity, and practical tools in therapy
+            Verified feedback from Google reviews
           </Text>
+          {summary.rating && summary.user_ratings_total && (
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-text-storm">
+              <span className="font-medium">{summary.rating.toFixed(1)} on Google</span>
+              <span>•</span>
+              <span>{summary.user_ratings_total} reviews</span>
+              {summary.url && (
+                <>
+                  <span>•</span>
+                  <Link
+                    href={summary.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-nude-clay hover:text-grey-charcoal transition-colors"
+                  >
+                    Read on Google
+                  </Link>
+                </>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {TESTIMONIALS.map((testimonial, index) => (
+          {hasReviews ? (
+            summary.reviews.map((review, index) => (
             <Card 
-              key={testimonial.id} 
+              key={`${review.author_name}-${review.time || index}`} 
               className="bg-nude-cream border border-nude-linen hover:border-nude-sand shadow-soft hover:shadow-clay hover:transform hover:-translate-y-1 transition-all duration-300 animate-slide-up"
               style={{ animationDelay: `${index * 150}ms` }}
             >
@@ -32,7 +115,7 @@ export default function Testimonials() {
                 <div className="flex items-center gap-3">
                   {/* Star Rating */}
                   <div className="flex">
-                    {[...Array(testimonial.rating)].map((_, i) => (
+                    {[...Array(Math.max(1, Math.round(review.rating || 0)))].map((_, i) => (
                       <svg
                         key={i}
                         className="w-5 h-5 text-nude-clay"
@@ -43,13 +126,13 @@ export default function Testimonials() {
                       </svg>
                     ))}
                   </div>
-                  <Text size="sm" weight="medium" as="span">{testimonial.rating}.0</Text>
+                  <Text size="sm" weight="medium" as="span">{review.rating.toFixed(1)}</Text>
                 </div>
               </CardHeader>
               <CardBody className="px-6 pb-6">
                 <blockquote className="mb-6">
                   <Text className="italic">
-                    &quot;{testimonial.content}&quot;
+                    &quot;{review.text}&quot;
                   </Text>
                 </blockquote>
                 <div className="border-t border-nude-linen pt-4">
@@ -57,25 +140,47 @@ export default function Testimonials() {
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-nude-sand to-grey-blue-light flex items-center justify-center">
                         <Text size="sm" weight="semibold" color="charcoal" as="span">
-                          {testimonial.name.charAt(0).toUpperCase()}
+                          {review.author_name.charAt(0).toUpperCase()}
                         </Text>
                       </div>
                       <div>
                         <Text weight="medium" color="charcoal">
-                          {testimonial.name}
+                          {review.author_name}
                         </Text>
-                        {testimonial.date && (
-                          <Text size="sm">
-                            {testimonial.date}
-                          </Text>
-                        )}
+                        <Text size="sm">
+                          {review.relative_time_description || 'Google review'}
+                        </Text>
                       </div>
                     </div>
                   </div>
                 </div>
               </CardBody>
             </Card>
-          ))}
+            ))
+          ) : (
+            <Card className="bg-nude-cream border border-nude-linen shadow-soft md:col-span-3">
+              <CardBody className="px-8 py-10 text-center">
+                <Text size="lg" weight="medium" color="charcoal">
+                  {status === 'error' ? 'Reviews are temporarily unavailable.' : 'Loading Google reviews...'}
+                </Text>
+                <Text size="sm" className="mt-2">
+                  {summary.url
+                    ? 'You can still read recent feedback on Google.'
+                    : 'Check back soon or visit Google for the latest reviews.'}
+                </Text>
+                {summary.url && (
+                  <Link
+                    href={summary.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center mt-4 text-sm font-medium text-nude-clay hover:text-grey-charcoal transition-colors"
+                  >
+                    Read on Google
+                  </Link>
+                )}
+              </CardBody>
+            </Card>
+          )}
         </div>
 
         {/* Trust indicators */}

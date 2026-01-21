@@ -22,7 +22,7 @@ export const targetKeywords = {
   
   // Secondary keywords - demographics and specialties
   secondary: {
-    demographics: ['teen', 'teenager', 'adolescent', 'young adult', 'parent'],
+    demographics: ['teen', 'teenager', 'adolescent', 'young adult', 'adult', 'adult therapy', 'parent'],
     specialties: [
       'anxiety',
       'depression',
@@ -43,6 +43,9 @@ export const targetKeywords = {
     'licensed therapist near me',
     'anxiety treatment Southlake Texas',
     'teen counseling services Grapevine',
+    'adult anxiety therapist Southlake',
+    'adult counseling Grapevine',
+    'adult therapy Southlake TX',
     'professional therapy Southlake Grapevine',
     'mental health counselor near Southlake',
     'stress management therapy Grapevine',
@@ -51,7 +54,9 @@ export const targetKeywords = {
     'adolescent therapy services Southlake',
     'adolescent counseling Texas',
     'telehealth therapy for teens Texas',
-    'online counseling for adolescents Texas'
+    'online counseling for adolescents Texas',
+    'telehealth therapy for adults Texas',
+    'online counseling for adults Texas'
   ],
   
   // Location-specific variations

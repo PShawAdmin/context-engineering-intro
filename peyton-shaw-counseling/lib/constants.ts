@@ -3,7 +3,7 @@ import { Service, Testimonial, FAQItem } from './types';
 export const SITE_CONFIG = {
   name: 'Peyton Shaw Counseling',
   legalName: 'Peyton Shaw Counseling, PLLC',
-  tagline: 'Telehealth therapy focused on teens and adolescents across Texas',
+  tagline: 'Telehealth therapy focused on teens and adults across Texas',
   phone: '(817) 383-8115',
   email: 'peyton@peytonshawcounseling.com',
   address: 'Texas (Telehealth only)',
@@ -64,13 +64,7 @@ export const businessInfo = {
   ],
   // Additional business details for schema
   currenciesAccepted: 'USD',
-  paymentAccepted: ['Cash', 'Check', 'Credit Card', 'HSA', 'FSA'],
-  // Aggregate rating based on testimonials
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5.0',
-    reviewCount: '3' // Based on current testimonials
-  }
+  paymentAccepted: ['Cash', 'Check', 'Credit Card', 'HSA', 'FSA']
 };
 
 export const SERVICES: Service[] = [
@@ -166,29 +160,7 @@ export const SERVICES: Service[] = [
   }
 ];
 
-export const TESTIMONIALS: Testimonial[] = [
-  {
-    id: '1',
-    name: 'Sarah',
-    content: 'Working with Peyton has been life-changing. I\'ve gained tools to manage my anxiety and feel more confident in my daily life.',
-    rating: 5,
-    date: '2024-10'
-  },
-  {
-    id: '2',
-    name: 'Michael',
-    content: 'The safe, non-judgmental space created in our sessions allowed me to work through difficult issues I\'d been avoiding for years.',
-    rating: 5,
-    date: '2024-09'
-  },
-  {
-    id: '3',
-    name: 'Jennifer',
-    content: 'I appreciate the practical strategies and genuine care. I\'ve seen real improvements in managing stress and my relationships.',
-    rating: 5,
-    date: '2024-08'
-  }
-];
+export const TESTIMONIALS: Testimonial[] = [];
 
 export const FAQ_ITEMS: FAQItem[] = [
   {
@@ -230,7 +202,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     id: '7',
     question: 'How do I know if therapy is right for me?',
-    answer: 'If you or your teen feels stuck, overwhelmed, or wants support navigating emotions, relationships, or life changes, therapy can help. The first session is a good way to see if we are a fit.',
+    answer: 'If you feel stuck, overwhelmed, or want support for yourself or your teen navigating emotions, relationships, or life changes, therapy can help. The first session is a good way to see if we are a fit.',
     category: 'Getting Started'
   },
   {

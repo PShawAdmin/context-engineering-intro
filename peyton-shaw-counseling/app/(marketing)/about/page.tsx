@@ -9,7 +9,7 @@ import {Button} from '@heroui/button';
 
 export const metadata: Metadata = {
   title: 'About Peyton Shaw',
-  description: 'Meet Peyton Shaw, licensed professional counselor providing telehealth-only care for teens and adolescents across Texas.',
+  description: 'Meet Peyton Shaw, licensed professional counselor providing telehealth-only care for teens and adults across Texas.',
 };
 
 export default function AboutPage() {
@@ -37,13 +37,13 @@ export default function AboutPage() {
                     <div className="prose prose-lg text-gray-700 space-y-4">
                       <p>
                         Welcome. I&apos;m Peyton Shaw, a licensed professional counselor who specializes in
-                        helping teens and adolescents navigate anxiety, depression, life transitions,
+                        helping teens and adults navigate anxiety, depression, life transitions,
                         and relationship stress. My goal is to offer a calm, respectful space where you
                         can feel understood and supported.
                       </p>
                       <p>
                         With years of experience in mental health counseling, I&apos;ve worked with teens,
-                        young adults, and families facing a wide range of challenges. That experience
+                        adults, and families facing a wide range of challenges. That experience
                         continues to shape a personalized, practical approach to care.
                       </p>
                       <p>

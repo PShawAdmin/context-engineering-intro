@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   
   return generateMetaTags({
     title: `${service.title} - Professional Therapy`,
-    description: `${service.detailedDescription || service.description} Telehealth-only across Texas. Book your ${service.title.toLowerCase()} session today.`,
+    description: `${service.detailedDescription || service.description} Telehealth-only for teens and adults across Texas. Book your ${service.title.toLowerCase()} session today.`,
     keywords,
     path: `/services/${service.slug}`,
   });
@@ -78,7 +78,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       <main>
         <Hero
           title={service.title}
-          subtitle="Telehealth-only care for teens and adolescents across Texas"
+          subtitle="Telehealth-only care for teens and adults across Texas"
           primaryAction={{
             label: "Book a Consultation",
             href: "/contact"

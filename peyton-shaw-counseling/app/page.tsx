@@ -4,9 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import Testimonials from '@/components/features/Testimonials';
-import {Card, CardHeader, CardBody} from '@heroui/card';
 import {Button} from '@heroui/button';
-import { SERVICES, SITE_CONFIG, businessInfo } from '@/lib/constants';
 import { LOCATIONS } from '@/lib/locations';
 import { generateMetaTags } from '@/lib/seo/utils';
 import { targetKeywords } from '@/lib/seo/keywords';
@@ -17,7 +15,7 @@ import { generateWebPageSchema } from '@/lib/seo/schemas';
 
 export const metadata = generateMetaTags({
   title: 'Licensed Therapist & Counseling Services',
-  description: 'Telehealth therapy focused on teens and adolescents across Texas. Evidence-based support for anxiety, depression, and life transitions.',
+  description: 'Telehealth therapy focused on teens and adults across Texas. Evidence-based support for anxiety, depression, and life transitions.',
   keywords: [
     ...targetKeywords.primary.combined,
     ...targetKeywords.secondary.specialties.slice(0, 3),
@@ -31,7 +29,7 @@ export const metadata = generateMetaTags({
 export default function HomePage() {
   // Generate homepage-specific schema
   const webPageSchema = generateWebPageSchema({
-    name: 'Peyton Shaw Counseling - Telehealth Therapy for Teens in Texas',
+    name: 'Peyton Shaw Counseling - Telehealth Therapy for Teens and Adults in Texas',
     description: metadata.description as string,
     breadcrumb: [
       { name: 'Home', url: '/' }
@@ -46,8 +44,8 @@ export default function HomePage() {
         {/* Hero Section */}
         <Hero
           title="Therapy That Fits Your Life"
-          subtitle="Telehealth for teens and adolescents across Texas"
-          description="Personalized support for teen anxiety, depression, stress, and life transitions. All sessions are online through secure video."
+          subtitle="Telehealth for teens and adults across Texas"
+          description="Personalized support for anxiety, depression, stress, and life transitions for teens and adults. All sessions are online through secure video."
           primaryAction={{
             label: "Book a Consultation",
             href: "/contact"
@@ -68,96 +66,39 @@ export default function HomePage() {
                 How I Can Help
               </Heading>
               <Text size="xl" className="max-w-3xl mx-auto">
-                Focused, evidence-based therapy for teen anxiety, depression, relationship stress, and
-                life transitions. Care is tailored to your goals with telehealth-only sessions available
-                across Texas.
+                Focused, evidence-based therapy for teens and adults managing anxiety, depression,
+                relationship stress, and life transitions. Care is tailored to your goals with
+                telehealth-only sessions available across Texas.
               </Text>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {SERVICES.slice(0, 6).map((service, index) => (
-                <Card 
-                  key={service.id} 
-                  className={`group bg-nude-cream border border-nude-sand hover:border-nude-clay shadow-soft hover:shadow-clay card-hover-effect hover:scale-[1.015] hover:animate-gentle-bounce [animation-delay:${index * 100}ms] h-full flex flex-col`}
-                >
-                  <CardHeader className="pb-4 pt-6 px-6">
-                    <div className="flex items-start justify-between w-full gap-3">
-                      <Heading level={3} className="group-hover:text-nude-clay transition-colors duration-500 ease-in-out flex-1">
-                        {service.title}
-                      </Heading>
-                      <div className="w-10 h-10 min-w-[2.5rem] rounded-full bg-nude-linen flex items-center justify-center group-hover:bg-nude-sand transition-all duration-500 ease-in-out flex-shrink-0">
-                        {service.id === '1' && (
-                          <svg className="w-5 h-5 text-nude-clay transition-colors duration-500 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
-                        )}
-                        {service.id === '2' && (
-                          <svg className="w-5 h-5 text-nude-clay transition-colors duration-500 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                          </svg>
-                        )}
-                        {service.id === '3' && (
-                          <svg className="w-5 h-5 text-nude-clay transition-colors duration-500 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                          </svg>
-                        )}
-                        {service.id === '4' && (
-                          <svg className="w-5 h-5 text-nude-clay transition-colors duration-500 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                          </svg>
-                        )}
-                        {service.id === '5' && (
-                          <svg className="w-5 h-5 text-nude-clay transition-colors duration-500 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                          </svg>
-                        )}
-                        {service.id === '6' && (
-                          <svg className="w-5 h-5 text-nude-clay transition-colors duration-500 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                          </svg>
-                        )}
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardBody className="px-6 pb-6 flex flex-col flex-1">
-                    <Text className="mb-6 flex-1">
-                      {service.description}
-                    </Text>
-                    <div className="flex items-center justify-between mt-auto">
-                      <div className="flex items-center text-sm text-text-storm">
-                        <svg className="w-4 h-4 mr-2 text-nude-clay opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        {service.duration}
-                      </div>
-                      <Link
-                        href={`/services/${service.slug}`}
-                        className="inline-flex items-center gap-1 text-sm font-medium text-nude-clay hover:text-grey-charcoal transition-colors duration-300 relative group/link"
-                      >
-                        <span className="relative">
-                          View Details
-                          <span className="link-underline-animation absolute -bottom-0.5 left-0 h-[1px] w-full origin-left scale-x-0 bg-nude-clay group-hover/link:scale-x-100 transition-transform duration-300 ease-out"></span>
-                        </span>
-                        <svg className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                    </div>
-                  </CardBody>
-                </Card>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <Button
-                as={Link}
-                href="/services"
-                variant="bordered"
-                size="lg"
-                className="border-2 border-nude-clay text-nude-clay hover:bg-nude-linen font-medium px-8 transition-all"
-              >
-                View All Services
-              </Button>
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-nude-cream border border-nude-sand rounded-2xl p-8 md:p-12 shadow-soft">
+                <Heading level={3} className="mb-4 text-text-charcoal">
+                  A thoughtful approach to the challenges you are facing
+                </Heading>
+                <Text size="lg">
+                  I help teens and adults work through anxiety, low mood, stress, relationship strain,
+                  and life transitions. Sessions are collaborative and practical, grounded in CBT,
+                  mindfulness, and solution-focused strategies so you can use the tools between
+                  appointments.
+                </Text>
+                <Text size="sm" className="mt-4 text-text-storm">
+                  Common focus areas include anxiety, depression, life transitions, relationship
+                  stress, and self-esteem. All care is telehealth-only across Texas.
+                </Text>
+                <div className="mt-8">
+                  <Button
+                    as={Link}
+                    href="/services"
+                    variant="bordered"
+                    size="lg"
+                    className="border-2 border-nude-clay text-nude-clay hover:bg-nude-linen font-medium px-8 transition-all"
+                  >
+                    View Service Details
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -185,14 +126,15 @@ export default function HomePage() {
                     </span>
                     <Text>
                       s a licensed professional counselor, I provide telehealth-only care for teens and
-                      adolescents across Texas. I offer a calm, collaborative space where you and your
-                      teen can feel heard and supported. My approach blends evidence-based therapy with
-                      practical tools to move forward with clarity and confidence.
+                      adults across Texas. I offer a calm, collaborative space where you can feel heard
+                      and supported. My approach blends evidence-based therapy with practical tools to
+                      move forward with clarity and confidence.
                     </Text>
                     <Text className="indent-8">
-                      I specialize in teen anxiety, depression, life transitions, and relationship
-                      challenges, with sessions tailored to your goals and grounded in CBT, mindfulness,
-                      and person-centered care. All appointments are online through secure video.
+                      I specialize in anxiety, depression, life transitions, and relationship challenges
+                      for teens and adults, with sessions tailored to your goals and grounded in CBT,
+                      mindfulness, and person-centered care. All appointments are online through secure
+                      video.
                     </Text>
                   </div>
                   <div className="flex flex-wrap gap-4">
@@ -244,8 +186,8 @@ export default function HomePage() {
                 Telehealth Across Texas
               </Heading>
               <Text size="lg" className="max-w-3xl mx-auto">
-                We provide telehealth-only therapy for teens and adolescents across Texas, including
-                Southlake, Grapevine, and surrounding communities.
+                We provide telehealth-only therapy for teens and adults across Texas, including Southlake,
+                Grapevine, and surrounding communities.
               </Text>
             </div>
             <div className="flex flex-wrap justify-center gap-3">

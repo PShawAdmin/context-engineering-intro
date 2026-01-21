@@ -44,6 +44,8 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     `depression therapy ${location.name}`,
     `teen therapy ${location.name}`,
     `adolescent counseling ${location.name}`,
+    `adult therapy ${location.name}`,
+    `adult counseling ${location.name}`,
     `online therapy ${location.name}`,
     'Southlake therapist',
     'online therapy Texas'
@@ -89,7 +91,7 @@ export default function LocationPage({ params }: LocationPageProps) {
       <main>
         <Hero
           title={`Therapy in ${location.name}, TX`}
-          subtitle={`Telehealth for teens and adolescents in ${location.name}`}
+          subtitle={`Telehealth for teens and adults in ${location.name}`}
           description={location.intro}
           primaryAction={{ label: 'Book a Consultation', href: '/contact' }}
           secondaryAction={{ label: 'View Services', href: '/services' }}
