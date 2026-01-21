@@ -10,6 +10,7 @@ import { generateMetaTags } from '@/lib/seo/utils';
 import { targetKeywords } from '@/lib/seo/keywords';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
+import ParallaxPattern from '@/components/ui/ParallaxPattern';
 import JsonLd from '@/components/seo/JsonLd';
 import { generateWebPageSchema } from '@/lib/seo/schemas';
 
@@ -108,7 +109,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-pattern-blob opacity-10"></div>
           <div className="absolute inset-0 pattern-grain opacity-5"></div>
           {/* Elegant chrysanthemum flower pattern watermark */}
-          <div className="absolute inset-0 pattern-chrysanthemum opacity-10"></div>
+          <ParallaxPattern className="absolute -inset-8 pattern-chrysanthemum opacity-10 pointer-events-none" />
           <div className="container relative z-10">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -156,16 +157,16 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative max-w-sm mx-auto">
-                  <div className="aspect-square relative rounded-2xl overflow-hidden shadow-warm">
-                    <Image
-                      src="/images/peyton-shaw-professional.jpg"
-                      alt="Peyton Shaw - Licensed Professional Counselor (Telehealth in Texas)"
-                      width={340}
-                      height={340}
-                      className="object-cover w-full h-full"
-                      priority
-                    />
-                  </div>
+                <div className="aspect-square relative rounded-2xl overflow-hidden border border-nude-clay/50 shadow-[0_22px_60px_-36px_rgba(30,41,59,0.6)]">
+                  <Image
+                    src="/images/peyton-shaw-professional.jpg"
+                    alt="Peyton Shaw - Licensed Professional Counselor (Telehealth in Texas)"
+                    width={340}
+                    height={340}
+                    className="object-cover w-full h-full"
+                    priority
+                  />
+                </div>
                   {/* Decorative elements */}
                   <div className="absolute -top-2 -right-2 w-14 h-14 bg-nude-sand rounded-full filter blur-2xl opacity-40"></div>
                   <div className="absolute -bottom-2 -left-2 w-18 h-18 bg-grey-blue-light rounded-full filter blur-2xl opacity-30"></div>

@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import {Button} from '@heroui/button';
-import HeroBlobs from './HeroBlobs';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 
@@ -32,11 +31,8 @@ export default function Hero({
       {/* Background decoration with organic shapes */}
       {backgroundImage && (
         <>
-          <div className="absolute inset-0 z-0 bg-pattern-blob opacity-20"></div>
-          <div className="absolute inset-0 z-0 pattern-grain opacity-5"></div>
-          {/* Gradient overlay - darker nude tone on top, fading to transparent */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-b from-nude-warm/40 via-nude-sand/20 to-transparent"></div>
-          <HeroBlobs />
+          <div className="absolute inset-0 z-0 hero-aurora"></div>
+          <div className="absolute inset-0 z-0 pattern-grain opacity-10"></div>
         </>
       )}
 

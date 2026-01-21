@@ -125,7 +125,7 @@ The site can display your actual Google Business Profile reviews. Choose one of 
 4. Generate OAuth access token
 5. Add credentials to `.env.local`
 
-**Note**: If Google Reviews are not configured, the site will display sample testimonials instead.
+**Note**: If Google Reviews are not configured, the site will display manual testimonials (when provided) and a call-to-action link if `NEXT_PUBLIC_REVIEW_URL` is set.
 
 ### Development
 

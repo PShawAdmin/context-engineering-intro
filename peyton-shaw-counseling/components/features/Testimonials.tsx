@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {Card, CardHeader, CardBody} from '@heroui/card';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
+import { TESTIMONIALS } from '@/lib/constants';
 
 type GoogleReview = {
   author_name: string;
@@ -33,6 +34,16 @@ export default function Testimonials() {
     url: null,
     reviews: [],
   });
+  const reviewUrl = process.env.NEXT_PUBLIC_REVIEW_URL || '';
+  const manualReviews: GoogleReview[] = TESTIMONIALS.map((testimonial) => ({
+    author_name: testimonial.name,
+    rating: testimonial.rating,
+    relative_time_description: testimonial.date || 'Client testimonial',
+    text: testimonial.content,
+    time: testimonial.date ? Math.floor(Date.parse(testimonial.date) / 1000) : 0,
+    profile_photo_url: '',
+    author_url: '',
+  }));
 
   useEffect(() => {
     let isMounted = true;
@@ -66,7 +77,16 @@ export default function Testimonials() {
     };
   }, []);
 
-  const hasReviews = status === 'ready' && summary.reviews.length > 0;
+  const hasGoogleReviews = status === 'ready' && summary.reviews.length > 0;
+  const hasManualReviews = manualReviews.length > 0;
+  const hasReviews = hasGoogleReviews || hasManualReviews;
+  const reviewsToShow = hasGoogleReviews ? summary.reviews : manualReviews;
+  const reviewCount = reviewsToShow.length;
+  const gridColumnsClass =
+    reviewCount >= 3 ? 'md:grid-cols-3' : reviewCount === 2 ? 'md:grid-cols-2' : 'md:grid-cols-1';
+  const containerWidthClass =
+    reviewCount >= 3 ? 'max-w-6xl' : reviewCount === 2 ? 'max-w-5xl' : 'max-w-3xl';
+  const fallbackSpanClass = reviewCount >= 3 ? 'md:col-span-3' : '';
 
   return (
     <section className="section-padding bg-background-dove relative overflow-hidden">
@@ -79,9 +99,9 @@ export default function Testimonials() {
             What Clients Say
           </Heading>
           <Text size="lg" className="md:text-xl max-w-3xl mx-auto">
-            Verified feedback from Google reviews
+            {hasGoogleReviews ? 'Verified feedback from Google reviews' : 'Thoughtful feedback from clients'}
           </Text>
-          {summary.rating && summary.user_ratings_total && (
+          {hasGoogleReviews && summary.rating && summary.user_ratings_total && (
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-text-storm">
               <span className="font-medium">{summary.rating.toFixed(1)} on Google</span>
               <span>•</span>
@@ -101,11 +121,23 @@ export default function Testimonials() {
               )}
             </div>
           )}
+          {!hasGoogleReviews && reviewUrl && (
+            <div className="mt-4">
+              <Link
+                href={reviewUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center text-sm font-medium text-nude-clay hover:text-grey-charcoal transition-colors"
+              >
+                Leave a review
+              </Link>
+            </div>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className={`grid grid-cols-1 ${gridColumnsClass} gap-8 ${containerWidthClass} mx-auto`}>
           {hasReviews ? (
-            summary.reviews.map((review, index) => (
+            reviewsToShow.map((review, index) => (
             <Card 
               key={`${review.author_name}-${review.time || index}`} 
               className="bg-nude-cream border border-nude-linen hover:border-nude-sand shadow-soft hover:shadow-clay hover:transform hover:-translate-y-1 transition-all duration-300 animate-slide-up"
@@ -158,24 +190,24 @@ export default function Testimonials() {
             </Card>
             ))
           ) : (
-            <Card className="bg-nude-cream border border-nude-linen shadow-soft md:col-span-3">
+            <Card className={`bg-nude-cream border border-nude-linen shadow-soft ${fallbackSpanClass}`}>
               <CardBody className="px-8 py-10 text-center">
                 <Text size="lg" weight="medium" color="charcoal">
-                  {status === 'error' ? 'Reviews are temporarily unavailable.' : 'Loading Google reviews...'}
+                  {status === 'loading' ? 'Loading reviews...' : 'Reviews are not available yet.'}
                 </Text>
                 <Text size="sm" className="mt-2">
-                  {summary.url
-                    ? 'You can still read recent feedback on Google.'
-                    : 'Check back soon or visit Google for the latest reviews.'}
+                  {reviewUrl
+                    ? 'If you have worked with us, we would appreciate a review.'
+                    : 'Check back soon or contact us with any questions.'}
                 </Text>
-                {summary.url && (
+                {reviewUrl && (
                   <Link
-                    href={summary.url}
+                    href={reviewUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center mt-4 text-sm font-medium text-nude-clay hover:text-grey-charcoal transition-colors"
                   >
-                    Read on Google
+                    Leave a review
                   </Link>
                 )}
               </CardBody>

@@ -160,7 +160,16 @@ export const SERVICES: Service[] = [
   }
 ];
 
-export const TESTIMONIALS: Testimonial[] = [];
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: 'macy-faust',
+    name: 'Macy',
+    content:
+      'I highly recommend Peyton. Having worked with her, I learned that her counseling approach is productive and relational. She is a professional, genuine, compassionate, and intelligent mental health therapist.',
+    rating: 5,
+    date: '2023-08-29',
+  },
+];
 
 export const FAQ_ITEMS: FAQItem[] = [
   {
