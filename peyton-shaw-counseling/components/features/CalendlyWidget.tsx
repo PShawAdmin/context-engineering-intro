@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { InlineWidget, PopupButton, PopupWidget } from 'react-calendly';
-import {Card} from '@heroui/card';
 import { SITE_CONFIG } from '@/lib/constants';
 
 interface CalendlyWidgetProps {
@@ -25,11 +24,12 @@ export default function CalendlyWidget({
 
   if (!url) {
     return (
-      <Card className="p-8 text-center">
-        <p className="text-gray-600">
-          Scheduling is temporarily unavailable. Please call us at {SITE_CONFIG.phone} to book an appointment.
+      <div className="p-6 text-center">
+        <p className="text-sm text-text-storm">
+          Scheduling is temporarily unavailable. Please call us at{' '}
+          <span className="font-medium text-text-charcoal">{SITE_CONFIG.phone}</span> to book an appointment.
         </p>
-      </Card>
+      </div>
     );
   }
 
@@ -116,8 +116,8 @@ export default function CalendlyWidget({
 // Loading skeleton for Suspense boundary
 export function CalendlyWidgetSkeleton() {
   return (
-    <Card className="p-8 animate-pulse">
-      <div className="h-96 bg-gray-200 rounded-lg"></div>
-    </Card>
+    <div className="p-6 animate-pulse">
+      <div className="h-96 rounded-lg bg-grey-blue-lightest/70"></div>
+    </div>
   );
 }
