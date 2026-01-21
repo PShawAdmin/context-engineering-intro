@@ -89,7 +89,7 @@ export default function ContactPage() {
                       </Text>
                     </CardHeader>
                     <CardBody className="px-6 pb-6 pt-4 space-y-6">
-                      <div className="rounded-xl overflow-hidden border border-nude-linen/70 bg-white">
+                      <div className="rounded-xl overflow-hidden border border-nude-linen/70">
                         <Suspense fallback={<CalendlyWidgetSkeleton />}>
                           <CalendlySection />
                         </Suspense>

@@ -44,7 +44,7 @@ export default function CalendlyWidget({
             minWidth: '320px',
           }}
           pageSettings={{
-            backgroundColor: 'ffffff',
+            backgroundColor: 'faf5f0',
             hideEventTypeDetails: false,
             hideLandingPageDetails: false,
             primaryColor: '0ea5e9', // primary-500 color
@@ -69,7 +69,7 @@ export default function CalendlyWidget({
         className={buttonClassName || 'inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors'}
         rootElement={document.getElementById('__next') as HTMLElement}
         pageSettings={{
-          backgroundColor: 'ffffff',
+          backgroundColor: 'faf5f0',
           hideEventTypeDetails: false,
           hideLandingPageDetails: false,
           primaryColor: '0ea5e9',
@@ -95,7 +95,7 @@ export default function CalendlyWidget({
         branding={false}
         rootElement={document.getElementById('__next') as HTMLElement}
         pageSettings={{
-          backgroundColor: 'ffffff',
+          backgroundColor: 'faf5f0',
           hideEventTypeDetails: false,
           hideLandingPageDetails: false,
           primaryColor: '0ea5e9',
