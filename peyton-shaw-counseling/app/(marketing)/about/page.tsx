@@ -76,6 +76,8 @@ export default function AboutPage() {
           subtitle="Licensed Professional Counselor"
           description="Evidence-based therapy grounded in compassion, clarity, and collaboration"
           backgroundImage={false}
+          showWave={false}
+          size="standard"
         />
 
         <section className="section-padding bg-background-cream relative overflow-hidden">

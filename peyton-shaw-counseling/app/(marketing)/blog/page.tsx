@@ -56,6 +56,8 @@ export default function BlogPage() {
           subtitle="Practical insights for your mental health journey"
           description="Explore articles, tips, and resources designed to support clarity, calm, and growth."
           backgroundImage={false}
+          showWave={false}
+          size="standard"
         />
 
         <section className="py-16">

@@ -41,7 +41,7 @@ export default function AreasServedPage() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="section-padding bg-gradient-to-b from-nude-linen to-background-dove">
+        <section className="section-padding bg-background-dove">
           <div className="container">
             <div className="max-w-4xl mx-auto text-center">
               <Heading level={1} className="mb-6">

@@ -28,6 +28,8 @@ export default function ServicesPage() {
             href: '/contact',
           }}
           backgroundImage={false}
+          showWave={false}
+          size="standard"
         />
 
         <section className="section-padding bg-background-cream relative overflow-hidden">

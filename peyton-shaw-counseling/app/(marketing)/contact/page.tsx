@@ -69,6 +69,8 @@ export default function ContactPage() {
           subtitle="Take the next step toward feeling better"
           description="Choose a convenient time for your consultation. Telehealth-only sessions are available across Texas."
           backgroundImage={false}
+          showWave={false}
+          size="standard"
         />
 
         <section className="section-padding bg-background-cream relative overflow-hidden">

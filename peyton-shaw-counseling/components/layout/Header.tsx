@@ -143,24 +143,23 @@ export default function Header() {
         `}
         classNames={{
           wrapper: "px-2 sm:px-4",
+          toggle: "focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none",
+          toggleIcon: "before:h-0.5 after:h-0.5 before:rounded-full after:rounded-full",
         }}
         maxWidth="full"
       >
-        <NavbarContent as="div" className="sm:hidden basis-1/3 justify-start">
+        <NavbarContent as="div" className="sm:hidden basis-1/3 justify-start relative z-50">
           <NavbarMenuToggle
             aria-label="Toggle navigation menu"
-            className="text-slate-600 hover:text-slate-700 transition-colors"
+            className="text-nude-clay hover:text-nude-warm transition-colors"
           />
         </NavbarContent>
         
-        <NavbarContent as="div" className="sm:hidden absolute left-1/2 transform -translate-x-1/2">
+        <NavbarContent as="div" className="sm:hidden absolute left-1/2 transform -translate-x-1/2 z-50">
           <NavbarBrand>
             <Link href="/" className="group flex flex-col items-center">
               <span className="font-script text-3xl text-nude-clay hover:text-nude-warm transition-colors duration-300 leading-none">
                 PSC
-              </span>
-              <span className="font-script text-sm text-nude-clay hover:text-nude-warm transition-colors duration-300 mt-0.5 whitespace-nowrap">
-                Peyton Shaw Counseling
               </span>
             </Link>
           </NavbarBrand>
@@ -189,7 +188,7 @@ export default function Header() {
           ))}
         </NavbarContent>
 
-        <NavbarContent justify="end" className="basis-1/3 sm:basis-auto">
+        <NavbarContent justify="end" className="basis-1/3 sm:basis-auto relative z-50">
           {/* Enhanced CTA button */}
           <NavbarItem className="flex">
             <Button 
@@ -210,7 +209,7 @@ export default function Header() {
         </NavbarContent>
 
         {/* Mobile menu with enhanced design */}
-        <NavbarMenu className="bg-nude-cream/95 backdrop-blur-md px-6 pt-4 pb-10 gap-3 min-h-[calc(100dvh-var(--navbar-height))]">
+        <NavbarMenu className="bg-nude-cream/95 backdrop-blur-md px-6 pt-[calc(var(--navbar-height)+1rem)] pb-10 gap-3 top-0 min-h-[100dvh]">
 
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item.name}-${index}`}>

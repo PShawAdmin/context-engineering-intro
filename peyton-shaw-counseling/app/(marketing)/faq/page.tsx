@@ -93,6 +93,8 @@ export default function FAQPage() {
           subtitle="Clear answers about therapy and how we work"
           description="If you do not see your question here, reach out any time."
           backgroundImage={false}
+          showWave={false}
+          size="standard"
         />
 
         <section className="section-padding bg-background-cream relative overflow-hidden">
