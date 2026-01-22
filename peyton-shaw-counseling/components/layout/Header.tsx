@@ -129,6 +129,7 @@ export default function Header() {
       `}</style>
 
       <Navbar 
+        height="calc(4rem + var(--announcement-height, 0px))"
         shouldHideOnScroll={false}
         isBlurred
         isMenuOpen={isMenuOpen}
@@ -209,7 +210,7 @@ export default function Header() {
         </NavbarContent>
 
         {/* Mobile menu with enhanced design */}
-        <NavbarMenu className="bg-nude-cream/95 backdrop-blur-md px-6 pt-[calc(var(--navbar-height)+1rem)] pb-10 gap-3 top-0 min-h-[100dvh]">
+        <NavbarMenu className="bg-nude-cream/95 backdrop-blur-md px-6 pt-4 pb-10 gap-3 min-h-[calc(100dvh-var(--navbar-height))]">
 
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item.name}-${index}`}>

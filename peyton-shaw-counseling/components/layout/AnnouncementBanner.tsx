@@ -1,11 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Button } from '@heroui/button';
 import Link from 'next/link';
 
 export default function AnnouncementBanner() {
   const [isVisible, setIsVisible] = useState(false);
+  const bannerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     // Check if the banner has been dismissed in this session
@@ -20,10 +21,50 @@ export default function AnnouncementBanner() {
     sessionStorage.setItem('announcementDismissed', 'true');
   };
 
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+
+    const updateBannerHeight = () => {
+      if (!isVisible || !bannerRef.current || window.scrollY > 0) {
+        root.style.setProperty('--announcement-height', '0px');
+        return;
+      }
+
+      const { height } = bannerRef.current.getBoundingClientRect();
+      root.style.setProperty('--announcement-height', `${Math.round(height)}px`);
+    };
+
+    updateBannerHeight();
+
+    if (!isVisible) {
+      return;
+    }
+
+    const handleScroll = () => updateBannerHeight();
+    const handleResize = () => updateBannerHeight();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (bannerRef.current && 'ResizeObserver' in window) {
+      resizeObserver = new ResizeObserver(updateBannerHeight);
+      resizeObserver.observe(bannerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+      resizeObserver?.disconnect();
+    };
+  }, [isVisible]);
+
   if (!isVisible) return null;
 
   return (
-    <div className="bg-nude-clay text-text-charcoal relative animate-slide-down shadow-soft">
+    <div
+      ref={bannerRef}
+      className="bg-nude-clay text-text-charcoal relative animate-slide-down shadow-soft"
+    >
       <div className="relative">
         <div className="container mx-auto px-12 sm:px-4 py-3">
           <div className="flex items-center justify-center">
