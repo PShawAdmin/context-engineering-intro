@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, type CSSProperties } from 'react';
 import {
   Navbar, 
   NavbarBrand, 
@@ -17,6 +17,7 @@ import { SITE_CONFIG } from '@/lib/constants';
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +26,27 @@ export default function Header() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    const node = navRef.current;
+
+    if (!node) {
+      return;
+    }
+
+    const updateNavHeight = () => {
+      const { height } = node.getBoundingClientRect();
+      root.style.setProperty('--nav-height', `${Math.round(height)}px`);
+    };
+
+    updateNavHeight();
+
+    const resizeObserver = new ResizeObserver(updateNavHeight);
+    resizeObserver.observe(node);
+
+    return () => resizeObserver.disconnect();
   }, []);
 
   const menuItems = [
@@ -129,8 +151,9 @@ export default function Header() {
       `}</style>
 
       <Navbar 
-        height="calc(4rem + var(--announcement-height, 0px))"
+        ref={navRef}
         shouldHideOnScroll={false}
+        shouldBlockScroll
         isBlurred
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
@@ -210,7 +233,12 @@ export default function Header() {
         </NavbarContent>
 
         {/* Mobile menu with enhanced design */}
-        <NavbarMenu className="bg-nude-cream/95 backdrop-blur-md px-6 pt-4 pb-10 gap-3 min-h-[calc(100dvh-var(--navbar-height))]">
+        <NavbarMenu
+          className="bg-nude-cream/95 backdrop-blur-md px-6 pt-4 pb-10 gap-3 min-h-[calc(100dvh-var(--navbar-height))]"
+          style={{
+            '--navbar-height': 'calc(var(--nav-height, 4rem) + var(--announcement-height, 0px))',
+          } as CSSProperties}
+        >
 
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item.name}-${index}`}>

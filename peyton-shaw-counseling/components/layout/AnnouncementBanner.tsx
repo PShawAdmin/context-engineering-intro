@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
-import { Button } from '@heroui/button';
 import Link from 'next/link';
 
 export default function AnnouncementBanner() {
@@ -23,38 +22,39 @@ export default function AnnouncementBanner() {
 
   useLayoutEffect(() => {
     const root = document.documentElement;
+    const node = bannerRef.current;
 
+    if (!isVisible || !node) {
+      root.style.setProperty('--announcement-height', '0px');
+      return;
+    }
+
+    let isIntersecting = true;
     const updateBannerHeight = () => {
-      if (!isVisible || !bannerRef.current || window.scrollY > 0) {
-        root.style.setProperty('--announcement-height', '0px');
-        return;
-      }
-
-      const { height } = bannerRef.current.getBoundingClientRect();
-      root.style.setProperty('--announcement-height', `${Math.round(height)}px`);
+      const { height } = node.getBoundingClientRect();
+      root.style.setProperty(
+        '--announcement-height',
+        isIntersecting ? `${Math.round(height)}px` : '0px'
+      );
     };
 
     updateBannerHeight();
 
-    if (!isVisible) {
-      return;
-    }
+    const resizeObserver = new ResizeObserver(updateBannerHeight);
+    resizeObserver.observe(node);
 
-    const handleScroll = () => updateBannerHeight();
-    const handleResize = () => updateBannerHeight();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleResize);
-
-    let resizeObserver: ResizeObserver | null = null;
-    if (bannerRef.current && 'ResizeObserver' in window) {
-      resizeObserver = new ResizeObserver(updateBannerHeight);
-      resizeObserver.observe(bannerRef.current);
-    }
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        isIntersecting = Boolean(entry?.isIntersecting);
+        updateBannerHeight();
+      },
+      { threshold: 0 }
+    );
+    intersectionObserver.observe(node);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
-      resizeObserver?.disconnect();
+      resizeObserver.disconnect();
+      intersectionObserver.disconnect();
     };
   }, [isVisible]);
 
