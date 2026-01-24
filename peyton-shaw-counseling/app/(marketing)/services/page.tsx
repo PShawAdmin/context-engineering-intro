@@ -6,7 +6,7 @@ import Hero from '@/components/layout/Hero';
 import { SERVICES } from '@/lib/constants';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
-import { Button } from '@heroui/button';
+import LinkButton from '@/components/ui/LinkButton';
 
 export const metadata: Metadata = {
   title: 'Therapy Services for Teens and Adults',
@@ -319,14 +319,13 @@ export default function ServicesPage() {
             <Text size="lg" className="mt-4">
               Start with a consultation focused on your goals and the support you need.
             </Text>
-            <Button
-              as={Link}
+            <LinkButton
               href="/contact"
               size="lg"
               className="mt-8 bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8 shadow-clay hover:shadow-lg transition-all"
             >
               Book a Consultation
-            </Button>
+            </LinkButton>
           </div>
         </section>
       </main>

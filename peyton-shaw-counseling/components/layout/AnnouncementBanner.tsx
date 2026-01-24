@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 export default function AnnouncementBanner() {
@@ -8,9 +8,9 @@ export default function AnnouncementBanner() {
   const bannerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Check if the banner has been dismissed in this session
     const isDismissed = sessionStorage.getItem('announcementDismissed');
     if (!isDismissed) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsVisible(true);
     }
   }, []);
@@ -58,11 +58,11 @@ export default function AnnouncementBanner() {
     };
   }, [isVisible]);
 
-  if (!isVisible) return null;
-
   return (
     <div
       ref={bannerRef}
+      hidden={!isVisible}
+      aria-hidden={!isVisible}
       className="bg-nude-clay text-text-charcoal relative animate-slide-down shadow-soft"
     >
       <div className="relative">

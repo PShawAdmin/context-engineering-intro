@@ -4,7 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import Testimonials from '@/components/features/Testimonials';
-import {Button} from '@heroui/button';
+import LinkButton from '@/components/ui/LinkButton';
 import { LOCATIONS } from '@/lib/locations';
 import { generateMetaTags } from '@/lib/seo/utils';
 import { targetKeywords } from '@/lib/seo/keywords';
@@ -89,15 +89,14 @@ export default function HomePage() {
                   stress, and self-esteem. All care is telehealth-only across Texas.
                 </Text>
                 <div className="mt-8">
-                  <Button
-                    as={Link}
+                  <LinkButton
                     href="/services"
                     variant="bordered"
                     size="lg"
                     className="border-2 border-nude-clay text-nude-clay hover:bg-nude-linen font-medium px-8 transition-all"
                   >
                     View Service Details
-                  </Button>
+                  </LinkButton>
                 </div>
               </div>
             </div>
@@ -139,21 +138,19 @@ export default function HomePage() {
                     </Text>
                   </div>
                   <div className="flex flex-wrap gap-4">
-                    <Button
-                      as={Link}
+                    <LinkButton
                       href="/about"
                       className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8 shadow-clay hover:shadow-lg transition-all"
                     >
                       Learn More About My Approach
-                    </Button>
-                    <Button
-                      as={Link}
+                    </LinkButton>
+                    <LinkButton
                       href="/contact"
                       variant="bordered"
                       className="border-2 border-grey-charcoal text-grey-charcoal hover:bg-background-dove font-medium px-8 transition-all"
                     >
                       Book a Consultation
-                    </Button>
+                    </LinkButton>
                   </div>
                 </div>
                 <div className="relative max-w-sm mx-auto">
@@ -203,14 +200,13 @@ export default function HomePage() {
               ))}
             </div>
             <div className="text-center mt-8">
-              <Button
-                as={Link}
+              <LinkButton
                 href="/areas-served"
                 variant="bordered"
                 className="border-2 border-nude-clay text-nude-clay hover:bg-nude-linen font-medium px-8"
               >
                 View All Areas
-              </Button>
+              </LinkButton>
             </div>
           </div>
         </section>
@@ -227,23 +223,21 @@ export default function HomePage() {
               Take the next step with supportive, evidence-based care tailored to your goals.
             </Text>
             <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up [animation-delay:200ms]">
-              <Button
-                as={Link}
+              <LinkButton
                 href="/contact"
                 size="lg"
                 className="bg-nude-cream text-nude-clay hover:bg-nude-linen font-medium px-10 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
               >
                 Book a Consultation
-              </Button>
-              <Button
-                as={Link}
+              </LinkButton>
+              <LinkButton
                 href="/faq"
                 variant="bordered"
                 size="lg"
                 className="border-2 border-nude-cream text-nude-cream hover:bg-nude-cream/10 font-medium px-10 py-4 text-lg backdrop-blur-sm transition-all"
               >
                 Explore FAQs
-              </Button>
+              </LinkButton>
             </div>
           </div>
         </section>

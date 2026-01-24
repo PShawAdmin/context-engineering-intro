@@ -1,7 +1,6 @@
-import Link from 'next/link';
-import {Button} from '@heroui/button';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
+import LinkButton from '@/components/ui/LinkButton';
 
 interface HeroProps {
   title: string;
@@ -78,25 +77,23 @@ export default function Hero({
           {(primaryAction || secondaryAction) && (
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
               {primaryAction && (
-                <Button
-                  as={Link}
+                <LinkButton
                   href={primaryAction.href}
                   size="lg"
                   className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8 py-3 text-lg shadow-clay hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200"
                 >
                   {primaryAction.label}
-                </Button>
+                </LinkButton>
               )}
               {secondaryAction && (
-                <Button
-                  as={Link}
+                <LinkButton
                   href={secondaryAction.href}
                   variant="bordered"
                   size="lg"
                   className="border-2 border-grey-charcoal text-grey-charcoal hover:bg-background-dove font-medium px-8 py-3 text-lg hover:shadow-soft transition-all duration-200"
                 >
                   {secondaryAction.label}
-                </Button>
+                </LinkButton>
               )}
             </div>
           )}

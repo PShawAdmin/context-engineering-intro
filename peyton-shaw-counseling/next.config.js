@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['calendly.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'calendly.com' },
+      { protocol: 'https', hostname: '**.calendly.com' },
+    ],
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -9,7 +12,9 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  swcMinify: true,
+  turbopack: {
+    root: __dirname,
+  },
   experimental: {
     optimizePackageImports: ['@heroui/react'],
   },

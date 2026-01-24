@@ -1,12 +1,11 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
-import { Button } from '@heroui/button';
+import LinkButton from '@/components/ui/LinkButton';
 
 export const metadata: Metadata = {
   title: 'About Peyton Shaw',
@@ -132,13 +131,12 @@ export default function AboutPage() {
                   <Text size="sm">
                     Take the first step with supportive, evidence-based care.
                   </Text>
-                  <Button
-                    as={Link}
+                  <LinkButton
                     href="/contact"
                     className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8 shadow-clay hover:shadow-lg transition-all"
                   >
                     Book a Consultation
-                  </Button>
+                  </LinkButton>
                 </div>
               </div>
 

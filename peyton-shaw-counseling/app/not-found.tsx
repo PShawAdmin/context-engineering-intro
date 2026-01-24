@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import {Button} from '@heroui/button';
+import LinkButton from '@/components/ui/LinkButton';
 
 export default function NotFound() {
   return (
@@ -18,22 +17,20 @@ export default function NotFound() {
               Sorry, we couldn&apos;t find the page you&apos;re looking for. It might have been moved or no longer exists.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                as={Link}
+              <LinkButton
                 href="/"
                 color="primary"
                 size="lg"
               >
                 Go to Homepage
-              </Button>
-              <Button
-                as={Link}
+              </LinkButton>
+              <LinkButton
                 href="/contact"
                 variant="bordered"
                 size="lg"
               >
                 Contact Us
-              </Button>
+              </LinkButton>
             </div>
           </div>
         </div>

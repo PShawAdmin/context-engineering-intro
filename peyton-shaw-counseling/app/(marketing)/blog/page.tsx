@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import {Card, CardHeader, CardBody, CardFooter} from '@heroui/card';
-import {Button} from '@heroui/button';
 import {Chip} from '@heroui/chip';
+import LinkButton from '@/components/ui/LinkButton';
 
 export const metadata: Metadata = {
   title: 'Blog & Resources',
@@ -114,8 +113,7 @@ export default function BlogPage() {
                             year: 'numeric'
                           })}
                         </span>
-                        <Button
-                          as={Link}
+                        <LinkButton
                           href={`/blog/${post.slug}`}
                           variant="light"
                           color="primary"
@@ -123,7 +121,7 @@ export default function BlogPage() {
                           isDisabled
                         >
                           Coming Soon
-                        </Button>
+                        </LinkButton>
                       </div>
                     </CardFooter>
                   </Card>
@@ -142,14 +140,13 @@ export default function BlogPage() {
                         Want to be notified when new articles are published? Reach out and we will
                         keep you in the loop.
                       </p>
-                      <Button
-                        as={Link}
+                      <LinkButton
                         href="/contact"
                         color="secondary"
                         size="lg"
                       >
                         Get Updates
-                      </Button>
+                      </LinkButton>
                     </div>
                   </CardBody>
                 </Card>

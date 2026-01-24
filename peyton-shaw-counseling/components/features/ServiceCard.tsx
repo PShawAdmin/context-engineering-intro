@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import {Card, CardHeader, CardBody, CardFooter} from '@heroui/card';
-import {Button} from '@heroui/button';
+import LinkButton from '@/components/ui/LinkButton';
 import { Service } from '@/lib/types';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
@@ -56,14 +55,13 @@ export default function ServiceCard({ service }: ServiceCardProps) {
         )}
       </CardBody>
       <CardFooter className="pt-0">
-        <Button
-          as={Link}
+        <LinkButton
           href={`/services/${service.slug}`}
           variant="flat"
           className="w-full font-medium bg-nude-linen hover:bg-nude-sand text-nude-clay transition-all"
         >
           Learn More
-        </Button>
+        </LinkButton>
       </CardFooter>
     </Card>
   );

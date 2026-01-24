@@ -1,11 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import Testimonials from '@/components/features/Testimonials';
-import { Button } from '@heroui/button';
 import { Card, CardBody, CardHeader } from '@heroui/card';
 import { SERVICES, businessInfo } from '@/lib/constants';
 import { LOCATIONS, getLocationBySlug } from '@/lib/locations';
@@ -14,6 +12,7 @@ import { generateFAQSchema, generateWebPageSchema } from '@/lib/seo/schemas';
 import JsonLd from '@/components/seo/JsonLd';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
+import LinkButton from '@/components/ui/LinkButton';
 
 interface LocationPageProps {
   params: {
@@ -140,13 +139,12 @@ export default function LocationPage({ params }: LocationPageProps) {
                       <Text weight="medium">{businessInfo.email}</Text>
                     </div>
                   </div>
-                  <Button
-                    as={Link}
+                  <LinkButton
                     href="/contact"
                     className="w-full mt-6 bg-nude-clay hover:bg-nude-clay/90 text-white"
                   >
                     Get Started
-                  </Button>
+                  </LinkButton>
                 </CardBody>
               </Card>
             </div>
@@ -174,14 +172,13 @@ export default function LocationPage({ params }: LocationPageProps) {
                     <Text size="sm" className="mb-4">
                       {service.description}
                     </Text>
-                    <Button
-                      as={Link}
+                    <LinkButton
                       href={`/services/${service.slug}`}
                       variant="light"
                       className="text-nude-clay hover:text-nude-clay/80 p-0 h-auto"
                     >
                       Learn more →
-                    </Button>
+                    </LinkButton>
                   </CardBody>
                 </Card>
               ))}
@@ -258,21 +255,19 @@ export default function LocationPage({ params }: LocationPageProps) {
                 Reach out today to schedule a consultation and take the next step toward feeling better.
               </Text>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  as={Link}
+                <LinkButton
                   href="/contact"
                   className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8"
                 >
                   Book a Consultation
-                </Button>
-                <Button
-                  as={Link}
+                </LinkButton>
+                <LinkButton
                   href="/areas-served"
                   variant="bordered"
                   className="border-2 border-nude-clay text-nude-clay hover:bg-nude-linen font-medium px-8"
                 >
                   View All Areas
-                </Button>
+                </LinkButton>
               </div>
             </div>
           </div>

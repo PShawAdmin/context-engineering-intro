@@ -1,10 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
-import {Button} from '@heroui/button';
 import {Card, CardHeader, CardBody} from '@heroui/card';
 import { SERVICES, businessInfo } from '@/lib/constants';
 import JsonLd from '@/components/seo/JsonLd';
@@ -13,6 +11,7 @@ import { generateMetaTags } from '@/lib/seo/utils';
 import { getServiceKeywords } from '@/lib/seo/keywords';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
+import LinkButton from '@/components/ui/LinkButton';
 
 interface ServicePageProps {
   params: {
@@ -188,13 +187,12 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                           <Text weight="medium">{businessInfo.primaryServiceArea}</Text>
                         </div>
                       </div>
-                      <Button
-                        as={Link}
+                      <LinkButton
                         href="/contact"
                         className="w-full mt-6 bg-nude-clay hover:bg-nude-clay/90 text-white"
                       >
                         Book {service.title}
-                      </Button>
+                      </LinkButton>
                     </CardBody>
                   </Card>
 
@@ -206,14 +204,13 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                       <p className="text-gray-600 mb-4">
                         Not sure if this service is right for you? I&apos;m happy to answer questions.
                       </p>
-                      <Button
-                        as={Link}
+                      <LinkButton
                         href="/contact"
                         variant="bordered"
                         className="w-full"
                       >
                         Contact Me
-                      </Button>
+                      </LinkButton>
                     </CardBody>
                   </Card>
                 </div>
@@ -238,15 +235,14 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                     <Text size="sm" className="mb-4">
                       {otherService.description}
                     </Text>
-                    <Button
-                      as={Link}
+                    <LinkButton
                       href={`/services/${otherService.slug}`}
                       variant="light"
                       className="text-nude-clay hover:text-nude-clay/80"
                       size="sm"
                     >
                       Learn More →
-                    </Button>
+                    </LinkButton>
                   </CardBody>
                 </Card>
               ))}

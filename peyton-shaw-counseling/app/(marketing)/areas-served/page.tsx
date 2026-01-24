@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Heading } from '@/components/ui/typography/Heading';
@@ -10,7 +9,7 @@ import { targetKeywords } from '@/lib/seo/keywords';
 import JsonLd from '@/components/seo/JsonLd';
 import { generateWebPageSchema } from '@/lib/seo/schemas';
 import { Card, CardBody } from '@heroui/card';
-import { Button } from '@heroui/button';
+import LinkButton from '@/components/ui/LinkButton';
 
 export const metadata = generateMetaTags({
   title: 'Areas We Serve - Therapy Services',
@@ -52,21 +51,19 @@ export default function AreasServedPage() {
                 All sessions are telehealth-only, delivered securely from the comfort of your home.
               </Text>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button
-                  as={Link}
+                <LinkButton
                   href="/contact"
                   className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8"
                 >
                   Book a Consultation
-                </Button>
-                <Button
-                  as={Link}
+                </LinkButton>
+                <LinkButton
                   href="/services"
                   variant="bordered"
                   className="border-2 border-nude-clay text-nude-clay hover:bg-nude-linen font-medium px-8"
                 >
                   View Our Services
-                </Button>
+                </LinkButton>
               </div>
             </div>
           </div>
@@ -113,14 +110,13 @@ export default function AreasServedPage() {
                         </Text>
                       </div>
                       <div className="pt-2">
-                        <Button
-                          as={Link}
+                        <LinkButton
                           href={`/areas-served/${area.slug}`}
                           variant="light"
                           className="text-nude-clay hover:text-nude-clay/80 p-0 h-auto"
                         >
                           Learn about therapy in {area.name} →
-                        </Button>
+                        </LinkButton>
                       </div>
                     </div>
                   </CardBody>
@@ -181,14 +177,13 @@ export default function AreasServedPage() {
                   No matter which community you call home, support is within reach. Contact us to
                   get started.
                 </Text>
-                <Button
-                  as={Link}
+                <LinkButton
                   href="/contact"
                   size="lg"
                   className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-10"
                 >
                   Get Started Today
-                </Button>
+                </LinkButton>
               </div>
             </div>
           </div>
