@@ -9,6 +9,7 @@ type ParallaxRevealProps = {
   maxOffset?: number;
   fromOpacity?: number;
   fromOffset?: number;
+  fromX?: number;
 };
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
@@ -21,6 +22,7 @@ export default function ParallaxReveal({
   maxOffset = 18,
   fromOpacity = 0.2,
   fromOffset = 14,
+  fromX = 0,
 }: ParallaxRevealProps) {
   const elementRef = useRef<HTMLDivElement>(null);
 
@@ -61,10 +63,11 @@ export default function ParallaxReveal({
       const parallaxOffset = clamp(-distance * speed, -maxOffset, maxOffset);
 
       const translateY = (1 - easedProgress) * fromOffset + parallaxOffset;
+      const translateX = (1 - easedProgress) * fromX;
       const opacity = fromOpacity + (1 - fromOpacity) * easedProgress;
 
       target.style.opacity = `${opacity}`;
-      target.style.transform = `translate3d(0, ${translateY}px, 0)`;
+      target.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
     };
 
     const onScroll = () => {
@@ -88,7 +91,7 @@ export default function ParallaxReveal({
       element.style.transform = '';
       element.style.opacity = '';
     };
-  }, [speed, maxOffset, fromOpacity, fromOffset]);
+  }, [speed, maxOffset, fromOpacity, fromOffset, fromX]);
 
   return (
     <div ref={elementRef} className={className}>

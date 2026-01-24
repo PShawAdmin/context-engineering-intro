@@ -7,6 +7,54 @@ import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 import { TESTIMONIALS } from '@/lib/constants';
 
+const STAR_PATH =
+  'M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z';
+
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+
+type StarRatingProps = {
+  rating: number;
+  className?: string;
+  starClassName?: string;
+};
+
+function StarIcon({ className }: { className: string }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+      <path d={STAR_PATH} />
+    </svg>
+  );
+}
+
+function StarRating({ rating, className = '', starClassName = 'w-5 h-5' }: StarRatingProps) {
+  const safeRating = Number.isFinite(rating) ? rating : 0;
+  const roundedRating = Math.round(safeRating * 2) / 2;
+  const maxStars = 5;
+
+  return (
+    <div
+      className={`flex items-center gap-1 ${className}`}
+      role="img"
+      aria-label={`Rated ${roundedRating.toFixed(1)} out of ${maxStars} stars`}
+    >
+      {Array.from({ length: maxStars }).map((_, index) => {
+        const fill = clamp(roundedRating - index, 0, 1);
+        return (
+          <span key={index} className="relative inline-flex">
+            <StarIcon className={`${starClassName} text-nude-sand/40`} />
+            <span
+              className="absolute inset-y-0 left-0 overflow-hidden"
+              style={{ width: `${fill * 100}%` }}
+            >
+              <StarIcon className={`${starClassName} text-nude-clay`} />
+            </span>
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 type GoogleReview = {
   author_name: string;
   rating: number;
@@ -27,6 +75,7 @@ type GoogleReviewsResponse = {
 
 export default function Testimonials() {
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [isHydrated, setIsHydrated] = useState(false);
   const [summary, setSummary] = useState<GoogleReviewsResponse>({
     name: null,
     rating: null,
@@ -77,6 +126,24 @@ export default function Testimonials() {
     };
   }, []);
 
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  const renderReviewStars = (rating: number) => {
+    if (!isHydrated) {
+      return (
+        <div className="flex" aria-hidden="true">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <StarIcon key={index} className="w-5 h-5 text-nude-sand/40" />
+          ))}
+        </div>
+      );
+    }
+
+    return <StarRating rating={rating} />;
+  };
+
   const hasGoogleReviews = status === 'ready' && summary.reviews.length > 0;
   const hasManualReviews = manualReviews.length > 0;
   const hasReviews = hasGoogleReviews || hasManualReviews;
@@ -98,28 +165,10 @@ export default function Testimonials() {
           <Heading level={2} className="mb-4">
             What Clients Say
           </Heading>
-          <Text size="lg" className="md:text-xl max-w-3xl mx-auto">
-            {hasGoogleReviews ? 'Verified feedback from Google reviews' : 'Thoughtful feedback from clients'}
-          </Text>
-          {hasGoogleReviews && summary.rating && summary.user_ratings_total && (
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-text-storm">
-              <span className="font-medium">{summary.rating.toFixed(1)} on Google</span>
-              <span>•</span>
-              <span>{summary.user_ratings_total} reviews</span>
-              {summary.url && (
-                <>
-                  <span>•</span>
-                  <Link
-                    href={summary.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-nude-clay hover:text-grey-charcoal transition-colors"
-                  >
-                    Read on Google
-                  </Link>
-                </>
-              )}
-            </div>
+          {!hasGoogleReviews && (
+            <Text size="lg" className="md:text-xl max-w-3xl mx-auto">
+              Thoughtful feedback from clients
+            </Text>
           )}
           {!hasGoogleReviews && reviewUrl && (
             <div className="mt-4">
@@ -146,18 +195,7 @@ export default function Testimonials() {
               <CardHeader className="pb-4 pt-6 px-6">
                 <div className="flex items-center gap-3">
                   {/* Star Rating */}
-                  <div className="flex">
-                    {[...Array(Math.max(1, Math.round(review.rating || 0)))].map((_, i) => (
-                      <svg
-                        key={i}
-                        className="w-5 h-5 text-nude-clay"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
+                  {renderReviewStars(review.rating)}
                   <Text size="sm" weight="medium" as="span">{review.rating.toFixed(1)}</Text>
                 </div>
               </CardHeader>
@@ -215,29 +253,27 @@ export default function Testimonials() {
           )}
         </div>
 
-        {/* Trust indicators */}
-        <div className="mt-16 text-center">
-          <div className="flex flex-wrap justify-center items-center gap-8 text-text-storm">
-            <div className="flex items-center gap-2">
-              <svg className="w-6 h-6 text-nude-clay opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <Text weight="medium" as="span">Confidential care</Text>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-6 h-6 text-nude-clay opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <Text weight="medium" as="span">Superbills available</Text>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-6 h-6 text-nude-clay opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
-              <Text weight="medium" as="span">Evidence-based care</Text>
-            </div>
+        {hasGoogleReviews && summary.rating && summary.user_ratings_total && (
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-sm text-text-storm">
+            <StarRating rating={summary.rating} />
+            <span>•</span>
+            <span>{summary.user_ratings_total} reviews</span>
+            {summary.url && (
+              <>
+                <span>•</span>
+                <Link
+                  href={summary.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-nude-clay hover:text-grey-charcoal transition-colors"
+                >
+                  Read on Google
+                </Link>
+              </>
+            )}
           </div>
-        </div>
+        )}
+
       </div>
     </section>
   );
