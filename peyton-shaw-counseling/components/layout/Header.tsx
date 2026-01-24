@@ -246,7 +246,7 @@ export default function Header() {
 
         {/* Mobile menu with enhanced design */}
         <NavbarMenu
-          className="bg-nude-cream/95 backdrop-blur-md px-6 pt-[var(--navbar-height)] pb-10 gap-3 top-0"
+          className="bg-nude-cream backdrop-blur-none sm:bg-nude-cream/95 sm:backdrop-blur-md px-6 pt-[var(--navbar-height)] pb-10 gap-3 top-0"
           style={{
             '--navbar-height': 'calc(var(--nav-height, 4rem) + var(--announcement-height, 0px))',
           } as CSSProperties}
