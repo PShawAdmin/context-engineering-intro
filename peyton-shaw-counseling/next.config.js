@@ -116,6 +116,21 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'peytonshawcounseling.com',
+          },
+        ],
+        destination: 'https://www.peytonshawcounseling.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig

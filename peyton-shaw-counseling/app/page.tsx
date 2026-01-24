@@ -57,6 +57,80 @@ export default function HomePage() {
           }}
         />
 
+        {/* Telehealth Overview */}
+        <section className="section-padding bg-nude-cream">
+          <div className="container">
+            <div className="max-w-4xl mx-auto">
+              <Heading level={2} className="mb-4">
+                Therapy that fits your life
+              </Heading>
+              <Text size="lg" className="mb-6">
+                Therapy that fits your life means steady support without adding more stress to
+                your schedule. Sessions are online, private, and flexible, so you can meet from
+                home, work, or a quiet space that feels safe. We focus on practical steps you can
+                use between appointments, not just insight in the moment.
+              </Text>
+              <div className="space-y-4">
+                <Text>
+                  In the first session we clarify what is bringing you in, identify the changes
+                  you want to see, and build a plan that feels realistic. If you are ready to start,
+                  you can{' '}
+                  <Link href="/contact" className="text-nude-clay underline font-medium">
+                    schedule a consultation
+                  </Link>
+                  {' '}and choose a time that works with school, work, and family commitments.
+                </Text>
+                <Text>
+                  Treatment is grounded in evidence-based approaches like CBT, mindfulness, and
+                  solution-focused strategies. You will learn tools for managing anxious thoughts,
+                  improving mood, and navigating life transitions with more clarity and confidence.
+                </Text>
+                <Text>
+                  I work with teens and adults across Texas on anxiety, depression, stress, and
+                  relationship challenges. Explore the{' '}
+                  <Link href="/services" className="text-nude-clay underline font-medium">
+                    therapy services for anxiety, depression, and life transitions
+                  </Link>
+                  {' '}or browse the{' '}
+                  <Link href="/faq" className="text-nude-clay underline font-medium">
+                    telehealth FAQ
+                  </Link>
+                  {' '}to learn how online sessions work.
+                </Text>
+                <Text>
+                  If you want more background on my training and counseling style, visit the{' '}
+                  <Link href="/about" className="text-nude-clay underline font-medium">
+                    about Peyton Shaw
+                  </Link>
+                  {' '}page. You can also see the communities I serve on the{' '}
+                  <Link href="/areas-served" className="text-nude-clay underline font-medium">
+                    areas served
+                  </Link>
+                  {' '}page.
+                </Text>
+              </div>
+              <ul className="mt-6 space-y-3 text-text-storm">
+                <li className="leading-relaxed">
+                  <span className="font-semibold text-text-charcoal">Clear goals:</span> We define
+                  a focus for therapy so each session builds on the last.
+                </li>
+                <li className="leading-relaxed">
+                  <span className="font-semibold text-text-charcoal">Practical tools:</span> You get
+                  strategies you can use between sessions to manage stress and emotions.
+                </li>
+                <li className="leading-relaxed">
+                  <span className="font-semibold text-text-charcoal">Consistent support:</span>
+                  We set a cadence that works for your life so progress feels steady.
+                </li>
+                <li className="leading-relaxed">
+                  <span className="font-semibold text-text-charcoal">Private telehealth care:</span>
+                  Online sessions are secure and designed to feel calm and grounded.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* Services Overview */}
         <section className="section-padding bg-background-dove relative overflow-hidden -mt-[1px] pt-24">
           {/* Subtle pattern overlay */}
@@ -149,7 +223,7 @@ export default function HomePage() {
                       variant="bordered"
                       className="border-2 border-grey-charcoal text-grey-charcoal hover:bg-background-dove font-medium px-8 transition-all"
                     >
-                      Book a Consultation
+                      Schedule a Consultation
                     </LinkButton>
                   </div>
                 </div>
@@ -228,7 +302,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-nude-cream text-nude-clay hover:bg-nude-linen font-medium px-10 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
               >
-                Book a Consultation
+                Start Your Consultation
               </LinkButton>
               <LinkButton
                 href="/faq"
