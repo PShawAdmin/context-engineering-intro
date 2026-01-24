@@ -247,6 +247,13 @@ export default function Header() {
         {/* Mobile menu with enhanced design */}
         <NavbarMenu
           className="bg-nude-cream backdrop-blur-none sm:bg-nude-cream/95 sm:backdrop-blur-md px-6 pt-[var(--navbar-height)] pb-10 gap-3 top-0"
+          motionProps={{
+            layoutScroll: false,
+            variants: {
+              enter: { opacity: 1, y: 0, transition: { duration: 0.25, ease: 'easeOut' } },
+              exit: { opacity: 0, y: -8, transition: { duration: 0.2, ease: 'easeIn' } },
+            },
+          }}
           style={{
             '--navbar-height': 'calc(var(--nav-height, 4rem) + var(--announcement-height, 0px))',
           } as CSSProperties}
