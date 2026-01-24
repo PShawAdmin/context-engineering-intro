@@ -98,21 +98,6 @@ export default function HomePage() {
 
         {/* Services Overview */}
         <section className="section-padding bg-background-dove relative overflow-hidden -mt-[1px] pt-24">
-          <ParallaxPattern
-            className="absolute -top-24 right-[-12%] h-80 w-80 rounded-full bg-nude-sand/30 blur-3xl pointer-events-none"
-            speed={0.12}
-            maxOffset={32}
-          />
-          <ParallaxPattern
-            className="absolute bottom-[-10%] left-[-12%] h-80 w-80 rounded-full bg-white/70 blur-3xl pointer-events-none"
-            speed={0.08}
-            maxOffset={26}
-          />
-          <ParallaxPattern
-            className="absolute top-24 left-[8%] h-40 w-40 rounded-full bg-nude-cream/70 blur-2xl pointer-events-none"
-            speed={0.16}
-            maxOffset={20}
-          />
           <div className="container relative z-10">
             <ParallaxReveal className="text-center mb-16" speed={0.04} maxOffset={10} fromOffset={6}>
               <Heading level={2} className="mb-4">
