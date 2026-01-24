@@ -46,12 +46,6 @@ export default function ParallaxReveal({
       const target = elementRef.current;
       if (!target || (freezeOnce && hasCompletedRef.current)) return;
 
-      if (window.innerWidth < 768) {
-        target.style.opacity = '1';
-        target.style.transform = '';
-        return;
-      }
-
       const rect = target.getBoundingClientRect();
       const viewportHeight = window.innerHeight || 0;
       if (!viewportHeight) return;

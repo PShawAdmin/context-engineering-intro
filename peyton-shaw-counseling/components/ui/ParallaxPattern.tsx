@@ -28,11 +28,6 @@ export default function ParallaxPattern({
       const target = elementRef.current;
       if (!target) return;
 
-      if (window.innerWidth < 768) {
-        target.style.transform = '';
-        return;
-      }
-
       const rect = target.getBoundingClientRect();
       const viewportHeight = window.innerHeight || 0;
       if (!viewportHeight) return;
