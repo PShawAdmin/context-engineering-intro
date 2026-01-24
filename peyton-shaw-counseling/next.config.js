@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
+const tracingRoot = process.env.NEXT_PRIVATE_OUTPUT_TRACE_ROOT
+  ? path.resolve(process.env.NEXT_PRIVATE_OUTPUT_TRACE_ROOT)
+  : __dirname;
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -12,8 +18,9 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  outputFileTracingRoot: tracingRoot,
   turbopack: {
-    root: __dirname,
+    root: tracingRoot,
   },
   experimental: {
     optimizePackageImports: ['@heroui/react'],
