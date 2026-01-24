@@ -55,6 +55,13 @@ function StarRating({ rating, className = '', starClassName = 'w-5 h-5' }: StarR
   );
 }
 
+const getFirstName = (name: string) => {
+  const trimmed = name.trim();
+  if (!trimmed) return name;
+  const first = trimmed.split(/\s+/)[0];
+  return first || name;
+};
+
 type GoogleReview = {
   author_name: string;
   rating: number;
@@ -210,12 +217,12 @@ export default function Testimonials() {
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-nude-sand to-grey-blue-light flex items-center justify-center">
                         <Text size="sm" weight="semibold" color="charcoal" as="span">
-                          {review.author_name.charAt(0).toUpperCase()}
+                          {getFirstName(review.author_name).charAt(0).toUpperCase()}
                         </Text>
                       </div>
                       <div>
                         <Text weight="medium" color="charcoal">
-                          {review.author_name}
+                          {getFirstName(review.author_name)}
                         </Text>
                         <Text size="sm">
                           {review.relative_time_description || 'Google review'}
