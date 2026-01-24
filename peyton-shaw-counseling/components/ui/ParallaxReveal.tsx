@@ -10,6 +10,7 @@ type ParallaxRevealProps = {
   fromOpacity?: number;
   fromOffset?: number;
   fromX?: number;
+  freezeOnce?: boolean;
 };
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
@@ -23,8 +24,10 @@ export default function ParallaxReveal({
   fromOpacity = 0.2,
   fromOffset = 14,
   fromX = 0,
+  freezeOnce = false,
 }: ParallaxRevealProps) {
   const elementRef = useRef<HTMLDivElement>(null);
+  const hasCompletedRef = useRef(false);
 
   useEffect(() => {
     const element = elementRef.current;
@@ -41,7 +44,7 @@ export default function ParallaxReveal({
 
     const update = () => {
       const target = elementRef.current;
-      if (!target) return;
+      if (!target || (freezeOnce && hasCompletedRef.current)) return;
 
       if (window.innerWidth < 768) {
         target.style.opacity = '1';
@@ -61,6 +64,14 @@ export default function ParallaxReveal({
       const center = rect.top + rect.height / 2;
       const distance = center - viewportHeight / 2;
       const parallaxOffset = clamp(-distance * speed, -maxOffset, maxOffset);
+
+      if (freezeOnce && easedProgress >= 1) {
+        target.style.opacity = '1';
+        target.style.transform = 'translate3d(0, 0, 0)';
+        target.style.willChange = '';
+        hasCompletedRef.current = true;
+        return;
+      }
 
       const translateY = (1 - easedProgress) * fromOffset + parallaxOffset;
       const translateX = (1 - easedProgress) * fromX;
@@ -91,7 +102,7 @@ export default function ParallaxReveal({
       element.style.transform = '';
       element.style.opacity = '';
     };
-  }, [speed, maxOffset, fromOpacity, fromOffset, fromX]);
+  }, [speed, maxOffset, fromOpacity, fromOffset, fromX, freezeOnce]);
 
   return (
     <div ref={elementRef} className={className}>

@@ -199,13 +199,13 @@ export default function Testimonials() {
                   <Text size="sm" weight="medium" as="span">{review.rating.toFixed(1)}</Text>
                 </div>
               </CardHeader>
-              <CardBody className="px-6 pb-6">
+              <CardBody className="px-6 pb-6 flex flex-col h-full">
                 <blockquote className="mb-6">
                   <Text className="italic">
                     &quot;{review.text}&quot;
                   </Text>
                 </blockquote>
-                <div className="border-t border-nude-linen pt-4">
+                <div className="border-t border-nude-linen pt-4 mt-auto">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-nude-sand to-grey-blue-light flex items-center justify-center">

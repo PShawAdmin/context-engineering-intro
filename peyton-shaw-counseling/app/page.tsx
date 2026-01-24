@@ -111,7 +111,10 @@ export default function HomePage() {
             </ParallaxReveal>
 
             <div className="space-y-10 lg:space-y-12">
-              <ParallaxReveal className="bg-nude-cream/95 rounded-3xl p-8 md:p-10 shadow-soft mb-6 lg:mb-8">
+              <ParallaxReveal
+                className="bg-nude-cream/95 rounded-3xl p-8 md:p-10 shadow-soft mb-6 lg:mb-8"
+                freezeOnce
+              >
                 <Heading level={3} className="mb-4 text-text-charcoal">
                   A calm, collaborative approach
                 </Heading>
@@ -144,6 +147,7 @@ export default function HomePage() {
                     maxOffset={0}
                     fromOffset={0}
                     fromX={-28}
+                    freezeOnce
                   >
                     <Heading level={3} className="mb-4 text-text-charcoal">
                       What to expect
@@ -173,6 +177,7 @@ export default function HomePage() {
                     maxOffset={0}
                     fromOffset={0}
                     fromX={28}
+                    freezeOnce
                   >
                       <Heading level={3} className="mb-4 text-text-charcoal">
                         Telehealth details
