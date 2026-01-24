@@ -11,6 +11,7 @@ import { targetKeywords } from '@/lib/seo/keywords';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 import ParallaxPattern from '@/components/ui/ParallaxPattern';
+import ParallaxReveal from '@/components/ui/ParallaxReveal';
 import JsonLd from '@/components/seo/JsonLd';
 import { generateWebPageSchema } from '@/lib/seo/schemas';
 
@@ -26,6 +27,44 @@ export const metadata = generateMetaTags({
   path: '/',
   image: '/images/peyton-shaw-professional.jpg',
 });
+
+const APPROACH_POINTS = [
+  'CBT and cognitive tools for anxious thoughts',
+  'Mindfulness-based practices for grounding',
+  'Solution-focused strategies for forward motion',
+  'Person-centered support with room to be yourself',
+];
+
+const EXPECTATION_CARDS = [
+  {
+    title: 'Clear goals',
+    description: 'We define a focus for therapy so each session builds on the last.',
+  },
+  {
+    title: 'Practical tools',
+    description: 'You get strategies you can use between sessions to manage stress and emotions.',
+  },
+  {
+    title: 'Consistent support',
+    description: 'We set a cadence that works for your life so progress feels steady.',
+  },
+  {
+    title: 'Private telehealth care',
+    description: 'Online sessions are secure and designed to feel calm and grounded.',
+  },
+];
+
+const SESSION_STEPS = [
+  'Clarify what is bringing you in and identify the outcomes you want most.',
+  'Create a realistic plan with tools you can practice between sessions.',
+  'Set a cadence that fits your schedule and keeps progress steady.',
+];
+
+const TELEHEALTH_DETAILS = [
+  'Secure video sessions with clear guidelines for privacy and comfort.',
+  'Flexible scheduling to fit school, work, and family commitments.',
+  'A calm, structured process that keeps sessions focused and productive.',
+];
 
 export default function HomePage() {
   // Generate homepage-specific schema
@@ -45,8 +84,8 @@ export default function HomePage() {
         {/* Hero Section */}
         <Hero
           title="Therapy That Fits Your Life"
-          subtitle="Telehealth for teens and adults across Texas"
-          description="Personalized support for anxiety, depression, stress, and life transitions for teens and adults. All sessions are online through secure video."
+          subtitle="Telehealth therapy for teens and adults across Texas"
+          description="Personalized support for anxiety, depression, stress, and life transitions with secure online sessions that meet you where you are."
           primaryAction={{
             label: "Book a Consultation",
             href: "/contact"
@@ -57,121 +96,125 @@ export default function HomePage() {
           }}
         />
 
-        {/* Telehealth Overview */}
-        <section className="section-padding bg-nude-cream">
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              <Heading level={2} className="mb-4">
-                Therapy that fits your life
-              </Heading>
-              <Text size="lg" className="mb-6">
-                Therapy that fits your life means steady support without adding more stress to
-                your schedule. Sessions are online, private, and flexible, so you can meet from
-                home, work, or a quiet space that feels safe. We focus on practical steps you can
-                use between appointments, not just insight in the moment.
-              </Text>
-              <div className="space-y-4">
-                <Text>
-                  In the first session we clarify what is bringing you in, identify the changes
-                  you want to see, and build a plan that feels realistic. If you are ready to start,
-                  you can{' '}
-                  <Link href="/contact" className="text-nude-clay underline font-medium">
-                    schedule a consultation
-                  </Link>
-                  {' '}and choose a time that works with school, work, and family commitments.
-                </Text>
-                <Text>
-                  Treatment is grounded in evidence-based approaches like CBT, mindfulness, and
-                  solution-focused strategies. You will learn tools for managing anxious thoughts,
-                  improving mood, and navigating life transitions with more clarity and confidence.
-                </Text>
-                <Text>
-                  I work with teens and adults across Texas on anxiety, depression, stress, and
-                  relationship challenges. Explore the{' '}
-                  <Link href="/services" className="text-nude-clay underline font-medium">
-                    therapy services for anxiety, depression, and life transitions
-                  </Link>
-                  {' '}or browse the{' '}
-                  <Link href="/faq" className="text-nude-clay underline font-medium">
-                    telehealth FAQ
-                  </Link>
-                  {' '}to learn how online sessions work.
-                </Text>
-                <Text>
-                  If you want more background on my training and counseling style, visit the{' '}
-                  <Link href="/about" className="text-nude-clay underline font-medium">
-                    about Peyton Shaw
-                  </Link>
-                  {' '}page. You can also see the communities I serve on the{' '}
-                  <Link href="/areas-served" className="text-nude-clay underline font-medium">
-                    areas served
-                  </Link>
-                  {' '}page.
-                </Text>
-              </div>
-              <ul className="mt-6 space-y-3 text-text-storm">
-                <li className="leading-relaxed">
-                  <span className="font-semibold text-text-charcoal">Clear goals:</span> We define
-                  a focus for therapy so each session builds on the last.
-                </li>
-                <li className="leading-relaxed">
-                  <span className="font-semibold text-text-charcoal">Practical tools:</span> You get
-                  strategies you can use between sessions to manage stress and emotions.
-                </li>
-                <li className="leading-relaxed">
-                  <span className="font-semibold text-text-charcoal">Consistent support:</span>
-                  We set a cadence that works for your life so progress feels steady.
-                </li>
-                <li className="leading-relaxed">
-                  <span className="font-semibold text-text-charcoal">Private telehealth care:</span>
-                  Online sessions are secure and designed to feel calm and grounded.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* Services Overview */}
         <section className="section-padding bg-background-dove relative overflow-hidden -mt-[1px] pt-24">
-          {/* Subtle pattern overlay */}
-          <div className="absolute inset-0 bg-pattern-watercolor opacity-30"></div>
+          <ParallaxPattern
+            className="absolute inset-0 bg-pattern-watercolor opacity-20 pointer-events-none"
+            speed={0.04}
+            maxOffset={18}
+          />
+          <ParallaxPattern
+            className="absolute inset-0 pattern-grain opacity-5 pointer-events-none"
+            speed={0.02}
+            maxOffset={12}
+          />
+          <ParallaxPattern
+            className="absolute -top-24 right-[-12%] h-80 w-80 rounded-full bg-nude-sand/30 blur-3xl pointer-events-none"
+            speed={0.12}
+            maxOffset={32}
+          />
+          <ParallaxPattern
+            className="absolute bottom-[-10%] left-[-12%] h-80 w-80 rounded-full bg-white/70 blur-3xl pointer-events-none"
+            speed={0.08}
+            maxOffset={26}
+          />
+          <ParallaxPattern
+            className="absolute top-24 left-[8%] h-40 w-40 rounded-full bg-nude-cream/70 blur-2xl pointer-events-none"
+            speed={0.16}
+            maxOffset={20}
+          />
           <div className="container relative z-10">
-            <div className="text-center mb-16 animate-fade-in">
+            <ParallaxReveal className="text-center mb-16" speed={0.04} maxOffset={10} fromOffset={6}>
               <Heading level={2} className="mb-4">
-                How I Can Help
+                Start with a clear plan
               </Heading>
               <Text size="xl" className="max-w-3xl mx-auto">
                 Focused, evidence-based therapy for teens and adults managing anxiety, depression,
-                relationship stress, and life transitions. Care is tailored to your goals with
-                telehealth-only sessions available across Texas.
+                relationship stress, and life transitions. Telehealth-only sessions are available
+                across Texas.
               </Text>
-            </div>
+            </ParallaxReveal>
 
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-nude-cream border border-nude-sand rounded-2xl p-8 md:p-12 shadow-soft">
-                <Heading level={3} className="mb-4 text-text-charcoal">
-                  A thoughtful approach to the challenges you are facing
-                </Heading>
-                <Text size="lg">
-                  I help teens and adults work through anxiety, low mood, stress, relationship strain,
-                  and life transitions. Sessions are collaborative and practical, grounded in CBT,
-                  mindfulness, and solution-focused strategies so you can use the tools between
-                  appointments.
-                </Text>
-                <Text size="sm" className="mt-4 text-text-storm">
-                  Common focus areas include anxiety, depression, life transitions, relationship
-                  stress, and self-esteem. All care is telehealth-only across Texas.
-                </Text>
-                <div className="mt-8">
-                  <LinkButton
-                    href="/services"
-                    variant="bordered"
-                    size="lg"
-                    className="border-2 border-nude-clay text-nude-clay hover:bg-nude-linen font-medium px-8 transition-all"
-                  >
-                    View Service Details
-                  </LinkButton>
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] gap-10 items-start">
+              <div className="space-y-8">
+                <ParallaxReveal className="bg-nude-cream/95 rounded-3xl p-8 md:p-10 shadow-soft">
+                  <Heading level={3} className="mb-4 text-text-charcoal">
+                    A calm, collaborative approach
+                  </Heading>
+                  <Text size="lg">
+                    Sessions are practical and supportive, grounded in CBT, mindfulness, and solution-focused
+                    strategies so you can use the tools between appointments. We define goals early and
+                    revisit them so each session builds steady momentum.
+                  </Text>
+                  <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {APPROACH_POINTS.map((point) => (
+                      <li key={point} className="flex items-start gap-3 text-text-storm">
+                        <span className="mt-2 h-2 w-2 rounded-full bg-nude-clay shrink-0"></span>
+                        <Text as="span" size="sm">
+                          {point}
+                        </Text>
+                      </li>
+                    ))}
+                  </ul>
+                  <Text size="sm" className="mt-6 text-text-storm">
+                    Common focus areas include anxiety, depression, life transitions, relationship
+                    stress, and self-esteem.
+                  </Text>
+                </ParallaxReveal>
+
+                <div className="space-y-4">
+                  <ParallaxReveal>
+                    <Text size="xs" weight="semibold" className="uppercase tracking-[0.25em] text-text-slate">
+                      What you can expect
+                    </Text>
+                  </ParallaxReveal>
+                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {EXPECTATION_CARDS.map((card) => (
+                      <ParallaxReveal
+                        key={card.title}
+                        className="rounded-2xl bg-nude-cream/95 p-5 shadow-soft"
+                        maxOffset={14}
+                        speed={0.06}
+                        fromOffset={10}
+                      >
+                        <Text weight="semibold" color="charcoal" className="mb-2">
+                          {card.title}
+                        </Text>
+                        <Text size="sm">
+                          {card.description}
+                        </Text>
+                      </ParallaxReveal>
+                    ))}
+                  </div>
                 </div>
+              </div>
+
+              <div className="space-y-6">
+                <ParallaxReveal className="rounded-2xl bg-nude-cream/95 p-6 shadow-soft">
+                  <Heading level={3} className="mb-4 text-text-charcoal">
+                    Telehealth details
+                  </Heading>
+                  <ul className="space-y-3 text-text-storm">
+                    {TELEHEALTH_DETAILS.map((detail) => (
+                      <li key={detail} className="flex items-start gap-3">
+                        <svg className="w-5 h-5 text-nude-clay mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <Text as="span" size="sm">
+                          {detail}
+                        </Text>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6">
+                    <LinkButton
+                      href="/contact"
+                      className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-6 py-2 shadow-clay transition-all"
+                    >
+                      Schedule a Consultation
+                    </LinkButton>
+                  </div>
+                </ParallaxReveal>
               </div>
             </div>
           </div>
@@ -251,7 +294,7 @@ export default function HomePage() {
         <Testimonials />
 
         {/* Areas Served */}
-        <section className="section-padding bg-background-dove">
+        <section className="section-padding bg-nude-linen">
           <div className="container">
             <div className="text-center mb-10">
               <Heading level={2} className="mb-4">
