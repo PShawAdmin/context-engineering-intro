@@ -49,6 +49,18 @@ export default function Header() {
     return () => resizeObserver.disconnect();
   }, []);
 
+  useLayoutEffect(() => {
+    const node = navRef.current;
+    if (!node) return;
+    const root = document.documentElement;
+    const frame = window.requestAnimationFrame(() => {
+      const { height } = node.getBoundingClientRect();
+      root.style.setProperty('--nav-height', `${Math.round(height)}px`);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [isScrolled]);
+
   const menuItems = [
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
@@ -234,7 +246,7 @@ export default function Header() {
 
         {/* Mobile menu with enhanced design */}
         <NavbarMenu
-          className="bg-nude-cream/95 backdrop-blur-md px-6 pt-4 pb-10 gap-3 min-h-[calc(100dvh-var(--navbar-height))]"
+          className="bg-nude-cream/95 backdrop-blur-md px-6 pt-0 pb-10 gap-3 min-h-[calc(100dvh-var(--navbar-height))]"
           style={{
             '--navbar-height': 'calc(var(--nav-height, 4rem) + var(--announcement-height, 0px))',
           } as CSSProperties}
