@@ -161,7 +161,7 @@ export default function AboutPage() {
                   <div className="space-y-3">
                     <div>
                       <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
-                        Master of Arts
+                        Master of Science
                       </Text>
                       <Text size="sm" weight="medium" color="charcoal">
                         University of North Texas
