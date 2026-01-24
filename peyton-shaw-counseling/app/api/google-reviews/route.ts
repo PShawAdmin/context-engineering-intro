@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export const revalidate = 60 * 60; // Cache for 1 hour
+export const revalidate = 3600; // Cache for 1 hour
 export const runtime = 'nodejs';
 
 type GooglePlacesLegacyResponse = {
