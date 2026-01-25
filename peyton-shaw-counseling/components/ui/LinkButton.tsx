@@ -6,6 +6,8 @@ import type { ComponentProps } from 'react';
 
 type LinkButtonProps = Omit<ComponentProps<typeof Button>, 'as'> & {
   href: string;
+  target?: string;
+  rel?: string;
 };
 
 export default function LinkButton({ href, ...props }: LinkButtonProps) {

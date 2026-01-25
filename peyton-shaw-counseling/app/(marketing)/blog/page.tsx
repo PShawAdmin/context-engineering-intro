@@ -2,50 +2,22 @@ import { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
-import {Card, CardHeader, CardBody, CardFooter} from '@heroui/card';
-import {Chip} from '@heroui/chip';
+import {Card, CardBody} from '@heroui/card';
 import LinkButton from '@/components/ui/LinkButton';
+import BlogPostGrid from '@/components/features/BlogPostGrid';
+import { getBloggerPosts } from '@/lib/blogger';
 
 export const metadata: Metadata = {
   title: 'Blog & Resources',
   description: 'Practical mental health insights and resources from Peyton Shaw Counseling.',
 };
 
-// Mock blog posts - in a real app, these would come from a CMS or database
-const blogPosts = [
-  {
-    id: '1',
-    title: 'Understanding Anxiety: Signs, Symptoms, and Coping Strategies',
-    slug: 'understanding-anxiety',
-    excerpt: 'Anxiety is more than worry. Learn common signs and practical strategies to feel calmer and more in control.',
-    date: '2024-01-15',
-    readTime: '5 min read',
-    category: 'Anxiety',
-    tags: ['anxiety', 'mental health', 'coping strategies'],
-  },
-  {
-    id: '2',
-    title: 'The Power of Mindfulness in Therapy',
-    slug: 'power-of-mindfulness',
-    excerpt: 'Explore simple mindfulness practices that can support therapy and improve day-to-day well-being.',
-    date: '2024-01-08',
-    readTime: '4 min read',
-    category: 'Mindfulness',
-    tags: ['mindfulness', 'therapy techniques', 'meditation'],
-  },
-  {
-    id: '3',
-    title: 'Navigating Life Transitions with Grace',
-    slug: 'navigating-life-transitions',
-    excerpt: 'Major life changes can feel overwhelming. Here are strategies to help you adapt with clarity and resilience.',
-    date: '2024-01-01',
-    readTime: '6 min read',
-    category: 'Life Transitions',
-    tags: ['life changes', 'adaptation', 'resilience'],
-  },
-];
+export const revalidate = 300;
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const blogPosts = await getBloggerPosts();
+  const hasPosts = blogPosts.length > 0;
+
   return (
     <>
       <Header />
@@ -62,71 +34,22 @@ export default function BlogPage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              {/* Coming Soon Notice */}
-              <Card className="bg-primary-50 border-primary-200 mb-12">
-                <CardBody>
-                  <div className="text-center py-4">
-                    <p className="text-primary-800">
-                      🚀 <strong>Coming Soon!</strong> I am building a library of practical resources and articles.
-                      Check back soon for new posts.
-                    </p>
-                  </div>
-                </CardBody>
-              </Card>
-
-              {/* Blog Posts Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {blogPosts.map((post) => (
-                  <Card key={post.id} className="hover:shadow-lg transition-shadow h-full">
-                    <CardHeader className="pb-3">
-                      <div className="flex justify-between items-start w-full">
-                        <Chip size="sm" variant="flat" color="primary">
-                          {post.category}
-                        </Chip>
-                        <span className="text-sm text-gray-500">{post.readTime}</span>
-                      </div>
-                    </CardHeader>
-                    <CardBody className="py-2">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                        {post.title}
-                      </h3>
-                      <p className="text-gray-600 mb-4">
-                        {post.excerpt}
+              {!hasPosts && (
+                <Card className="bg-primary-50 border-primary-200 mb-12">
+                  <CardBody>
+                    <div className="text-center py-4">
+                      <p className="text-primary-800">
+                        🚀 <strong>Coming Soon!</strong> I am building a library of practical resources and articles.
+                        Check back soon for new posts.
                       </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {post.tags.map((tag, index) => (
-                          <span 
-                            key={index} 
-                            className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded"
-                          >
-                            #{tag}
-                          </span>
-                        ))}
-                      </div>
-                    </CardBody>
-                    <CardFooter className="pt-2">
-                      <div className="flex justify-between items-center w-full">
-                        <span className="text-sm text-gray-500">
-                          {new Date(post.date).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric'
-                          })}
-                        </span>
-                        <LinkButton
-                          href={`/blog/${post.slug}`}
-                          variant="light"
-                          color="primary"
-                          size="sm"
-                          isDisabled
-                        >
-                          Coming Soon
-                        </LinkButton>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
+                    </div>
+                  </CardBody>
+                </Card>
+              )}
+
+              {hasPosts && (
+                <BlogPostGrid posts={blogPosts} />
+              )}
 
               {/* Newsletter Signup */}
               <div className="mt-16">

@@ -4,15 +4,13 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 export default function AnnouncementBanner() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState<boolean | null>(null);
   const bannerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const isDismissed = sessionStorage.getItem('announcementDismissed');
-    if (!isDismissed) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setIsVisible(true);
-    }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsVisible(!isDismissed);
   }, []);
 
   const handleDismiss = () => {
@@ -57,6 +55,10 @@ export default function AnnouncementBanner() {
       intersectionObserver.disconnect();
     };
   }, [isVisible]);
+
+  if (isVisible === null) {
+    return null;
+  }
 
   return (
     <div
