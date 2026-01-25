@@ -88,17 +88,29 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
     clearCloseTimeout();
     setIsClosing(false);
     const originalOverflow = document.body.style.overflow;
+    const originalPosition = document.body.style.position;
+    const originalTop = document.body.style.top;
+    const originalWidth = document.body.style.width;
     const originalPaddingRight = document.body.style.paddingRight;
     const computedPaddingRight = Number.parseFloat(window.getComputedStyle(document.body).paddingRight) || 0;
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const scrollY = window.scrollY;
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
     if (scrollbarWidth > 0) {
       document.body.style.paddingRight = `${computedPaddingRight + scrollbarWidth}px`;
     }
     setDragOffset({ x: 0, y: 0 });
     return () => {
+      const restoreScrollY = Math.abs(Number.parseInt(document.body.style.top || '0', 10)) || scrollY;
       document.body.style.overflow = originalOverflow;
+      document.body.style.position = originalPosition;
+      document.body.style.top = originalTop;
+      document.body.style.width = originalWidth;
       document.body.style.paddingRight = originalPaddingRight;
+      window.scrollTo(0, restoreScrollY);
     };
   }, [activePost, clearCloseTimeout]);
 
