@@ -73,13 +73,10 @@ export default function FAQPage() {
 
   const toggleItem = (id: string) => {
     setOpenItems((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
+      if (prev.has(id)) {
+        return new Set();
       }
-      return next;
+      return new Set([id]);
     });
   };
 
@@ -103,7 +100,7 @@ export default function FAQPage() {
           <div className="container relative z-10">
             <div className="max-w-5xl mx-auto space-y-12">
               <div className="rounded-2xl border border-nude-linen bg-nude-cream/90 shadow-soft overflow-hidden">
-                <div className="border-b border-nude-linen/70 px-6 pt-5 pb-3">
+                <div className="px-6 pt-5 pb-3">
                   <Text size="xs" color="muted" className="uppercase tracking-[0.25em]">
                     Browse by topic
                   </Text>
@@ -111,7 +108,7 @@ export default function FAQPage() {
                     <div
                       ref={tabsContainerRef}
                       role="tablist"
-                      className="relative flex gap-6 overflow-x-auto pb-2"
+                      className="relative flex gap-6 overflow-x-auto pb-0.5"
                     >
                       {categories.map((category) => {
                         const isActive = selectedKey === category;
@@ -130,8 +127,8 @@ export default function FAQPage() {
                             onClick={() => handleCategoryChange(category)}
                             className={
                               isActive
-                                ? 'relative !appearance-none !bg-transparent !border-0 !shadow-none !rounded-none px-0 py-0 text-text-charcoal font-medium whitespace-nowrap pb-2 tracking-[0.06em] text-sm sm:text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-nude-clay/30'
-                                : 'relative !appearance-none !bg-transparent !border-0 !shadow-none !rounded-none px-0 py-0 text-text-storm hover:text-text-charcoal transition-colors whitespace-nowrap pb-2 tracking-[0.06em] text-sm sm:text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-nude-clay/30'
+                                ? 'relative !appearance-none !bg-transparent !border-0 !shadow-none !rounded-none px-0 py-0 text-text-charcoal font-medium whitespace-nowrap pb-0.5 tracking-[0.06em] text-sm sm:text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-nude-clay/30'
+                                : 'relative !appearance-none !bg-transparent !border-0 !shadow-none !rounded-none px-0 py-0 text-text-storm hover:text-text-charcoal transition-colors whitespace-nowrap pb-0.5 tracking-[0.06em] text-sm sm:text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-nude-clay/30'
                             }
                           >
                             {label}
@@ -168,7 +165,9 @@ export default function FAQPage() {
                             onClick={() => toggleItem(item.id)}
                             aria-expanded={isOpen}
                             aria-controls={contentId}
-                            className="w-full text-left px-5 py-5 flex items-start gap-3 hover:bg-nude-linen/50 transition-colors"
+                            className={`w-full text-left px-5 py-5 flex items-start gap-3 transition-colors ${
+                              isOpen ? 'bg-grey-blue-lighter/60' : 'hover:bg-grey-blue-lighter/60'
+                            }`}
                           >
                             <svg
                               className="w-5 h-5 text-nude-clay mt-0.5 flex-shrink-0"
@@ -201,7 +200,7 @@ export default function FAQPage() {
                               id={contentId}
                               role="region"
                               aria-labelledby={buttonId}
-                              className="px-6 pb-5"
+                              className="px-6 pt-3 pb-5"
                             >
                               <Text size="sm" className="text-text-storm">
                                 {item.answer}
