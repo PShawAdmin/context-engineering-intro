@@ -82,6 +82,10 @@ const nextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
+          {
+            key: 'Expires',
+            value: 'Thu, 31 Dec 2037 23:55:55 GMT',
+          },
         ],
       },
       // Images can be cached
@@ -91,6 +95,10 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'Expires',
+            value: 'Thu, 31 Dec 2037 23:55:55 GMT',
           },
         ],
       },
@@ -102,6 +110,10 @@ const nextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
+          {
+            key: 'Expires',
+            value: 'Thu, 31 Dec 2037 23:55:55 GMT',
+          },
         ],
       },
       // Other static assets (favicon, etc)
@@ -111,6 +123,10 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'Expires',
+            value: 'Thu, 31 Dec 2037 23:55:55 GMT',
           },
         ],
       },

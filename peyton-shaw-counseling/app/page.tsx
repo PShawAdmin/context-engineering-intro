@@ -16,7 +16,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import { generateWebPageSchema } from '@/lib/seo/schemas';
 
 export const metadata = generateMetaTags({
-  title: 'Licensed Therapist & Counseling Services',
+  title: 'Telehealth Therapy for Teens & Adults | Anxiety & Depression',
   description:
     'Telehealth therapy for teens and adults across Texas, offering evidence-based care for anxiety, depression, relationship stress, and life transitions with secure online sessions.',
   keywords: [
