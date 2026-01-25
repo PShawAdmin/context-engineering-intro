@@ -91,6 +91,7 @@ export default function Testimonials() {
     reviews: [],
   });
   const reviewUrl = process.env.NEXT_PUBLIC_REVIEW_URL || '';
+  const readOnGoogleUrl = summary.url || reviewUrl;
   const manualReviews: GoogleReview[] = TESTIMONIALS.map((testimonial) => ({
     author_name: testimonial.name,
     rating: testimonial.rating,
@@ -265,11 +266,11 @@ export default function Testimonials() {
             <StarRating rating={summary.rating} />
             <span>•</span>
             <span>{summary.user_ratings_total} reviews</span>
-            {summary.url && (
+            {readOnGoogleUrl && (
               <>
                 <span>•</span>
                 <Link
-                  href={summary.url}
+                  href={readOnGoogleUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="text-nude-clay hover:text-grey-charcoal transition-colors"

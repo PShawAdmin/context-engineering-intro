@@ -13,6 +13,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 import LinkButton from '@/components/ui/LinkButton';
+import { EmailLink } from '@/components/ui/EmailLink';
 
 interface LocationPageProps {
   params: {
@@ -136,7 +137,7 @@ export default function LocationPage({ params }: LocationPageProps) {
                     </div>
                     <div>
                       <Text size="sm" className="text-text-storm">Email</Text>
-                      <Text weight="medium">{businessInfo.email}</Text>
+                      <EmailLink className="text-base font-medium text-text-charcoal" />
                     </div>
                   </div>
                   <LinkButton

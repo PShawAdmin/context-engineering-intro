@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import ContactForm from '@/components/features/ContactForm';
+import { EmailButton } from '@/components/ui/EmailLink';
 import { Button } from '@heroui/react';
 import Link from 'next/link';
 import { FAQ_ITEMS } from '@/lib/constants';
@@ -232,15 +233,12 @@ export default function FAQPage() {
                     >
                       Book a Consultation
                     </Button>
-                    <Button
-                      as="a"
-                      href="mailto:peyton@peytonshawcounseling.com"
+                    <EmailButton
+                      label="Send an Email"
                       variant="bordered"
                       className="border border-nude-sand/70 text-text-storm hover:bg-nude-cream/70"
                       size="lg"
-                    >
-                      Send an Email
-                    </Button>
+                    />
                   </div>
                 </div>
 

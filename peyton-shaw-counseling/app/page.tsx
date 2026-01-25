@@ -17,7 +17,8 @@ import { generateWebPageSchema } from '@/lib/seo/schemas';
 
 export const metadata = generateMetaTags({
   title: 'Licensed Therapist & Counseling Services',
-  description: 'Telehealth therapy focused on teens and adults across Texas. Evidence-based support for anxiety, depression, and life transitions.',
+  description:
+    'Telehealth therapy for teens and adults across Texas, offering evidence-based care for anxiety, depression, relationship stress, and life transitions with secure online sessions.',
   keywords: [
     ...targetKeywords.primary.combined,
     ...targetKeywords.secondary.specialties.slice(0, 3),

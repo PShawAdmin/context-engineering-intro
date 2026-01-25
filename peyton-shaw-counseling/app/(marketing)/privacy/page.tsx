@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
+import { EmailLink } from '@/components/ui/EmailLink';
 import { SITE_CONFIG } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -198,12 +199,7 @@ export default function PrivacyPolicyPage() {
                   <Text as="span" size="sm" className="block">
                     {SITE_CONFIG.name}
                   </Text>
-                  <a
-                    href={`mailto:${SITE_CONFIG.email}`}
-                    className="block text-sm text-text-storm hover:text-nude-clay transition-colors"
-                  >
-                    {SITE_CONFIG.email}
-                  </a>
+                  <EmailLink className="block text-sm text-text-storm hover:text-nude-clay transition-colors" />
                   <a
                     href={`tel:${SITE_CONFIG.phone}`}
                     className="block text-sm text-text-storm hover:text-nude-clay transition-colors"

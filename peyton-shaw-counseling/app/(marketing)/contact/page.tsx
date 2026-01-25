@@ -9,6 +9,7 @@ import { SITE_CONFIG } from '@/lib/constants';
 import {Card, CardHeader, CardBody} from '@heroui/card';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
+import { EmailLink } from '@/components/ui/EmailLink';
 
 export const metadata: Metadata = {
   title: 'Contact & Book Appointment',
@@ -44,12 +45,7 @@ async function CalendlySection() {
             <svg className="w-5 h-5 text-nude-clay" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <a
-              href={`mailto:${SITE_CONFIG.email}`}
-              className="font-medium text-nude-clay hover:text-grey-charcoal transition-colors"
-            >
-              {SITE_CONFIG.email}
-            </a>
+            <EmailLink className="font-medium text-nude-clay hover:text-grey-charcoal transition-colors" />
           </div>
         </div>
       </div>
@@ -133,12 +129,7 @@ export default function ContactPage() {
                           <Text size="xs" color="muted" className="uppercase tracking-[0.08em]">
                             Email
                           </Text>
-                          <a
-                            href={`mailto:${SITE_CONFIG.email}`}
-                            className="mt-1 inline-flex text-sm font-medium text-nude-clay hover:text-grey-charcoal transition-colors"
-                          >
-                            {SITE_CONFIG.email}
-                          </a>
+                          <EmailLink className="mt-1 inline-flex text-sm font-medium text-nude-clay hover:text-grey-charcoal transition-colors" />
                         </div>
                         <div>
                           <Text size="xs" color="muted" className="uppercase tracking-[0.08em]">

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { SITE_CONFIG } from '@/lib/constants';
+import { EmailLink } from '@/components/ui/EmailLink';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -160,12 +161,7 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-grey-blue-light">Email us</p>
-                <a 
-                  href={`mailto:${SITE_CONFIG.email}`}
-                  className="text-nude-cream font-medium hover:text-nude-sand transition-colors duration-200"
-                >
-                  {SITE_CONFIG.email}
-                </a>
+                <EmailLink className="text-nude-cream font-medium hover:text-nude-sand transition-colors duration-200" />
               </div>
             </div>
             <div className="flex items-center gap-3">
