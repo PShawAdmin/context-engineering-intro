@@ -1,17 +1,22 @@
 'use client'
 
-import { useState, useEffect, useLayoutEffect, useRef, type CSSProperties } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import {
   Navbar, 
   NavbarBrand, 
   NavbarContent, 
   NavbarItem, 
   NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
   Link,
   Button
 } from "@heroui/react";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+} from '@heroui/drawer';
 import { SITE_CONFIG } from '@/lib/constants';
 
 export default function Header() {
@@ -165,7 +170,7 @@ export default function Header() {
       <Navbar 
         ref={navRef}
         shouldHideOnScroll={false}
-        shouldBlockScroll
+        shouldBlockScroll={false}
         isBlurred
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
@@ -244,63 +249,80 @@ export default function Header() {
           </NavbarItem>
         </NavbarContent>
 
-        {/* Mobile menu with enhanced design */}
-        <NavbarMenu
-          className="bg-nude-cream backdrop-blur-none sm:bg-nude-cream/95 sm:backdrop-blur-md px-6 pt-[var(--navbar-height)] pb-10 gap-3 top-0"
-          motionProps={{
-            layoutScroll: false,
-            variants: {
-              enter: { opacity: 1, y: 0, transition: { duration: 0.25, ease: 'easeOut' } },
-              exit: { opacity: 0, y: -8, transition: { duration: 0.2, ease: 'easeIn' } },
-            },
-          }}
-          style={{
-            '--navbar-height': 'calc(var(--nav-height, 4rem) + var(--announcement-height, 0px))',
-          } as CSSProperties}
-        >
-
-          {menuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item.name}-${index}`}>
-              <Link
-                className={`w-full text-lg py-3 ${
-                  index === menuItems.length - 1
-                    ? "text-nude-clay font-medium"
-                    : "text-text-storm"
-                } hover:text-nude-clay hover:bg-nude-linen/60 rounded-lg transition-colors duration-200`}
-                href={item.href}
-                size="lg"
-                onPress={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-
-          <NavbarMenuItem className="mt-4 pt-6 border-t border-slate-200">
-            <div className="space-y-5">
-              <Button
-                as={Link}
-                href="/contact"
-                className="w-full bg-nude-clay text-white font-medium py-3 rounded-lg hover:bg-nude-warm transition-colors"
-                onPress={() => setIsMenuOpen(false)}
-                startContent={
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                }
-              >
-                Book a Consultation
-              </Button>
-              <div className="text-center text-sm text-text-light">
-                <p className="mb-2">Questions? Call:</p>
-                <a href={`tel:${SITE_CONFIG.phone}`} className="text-nude-clay font-medium">
-                  {SITE_CONFIG.phone}
-                </a>
-              </div>
-            </div>
-          </NavbarMenuItem>
-        </NavbarMenu>
       </Navbar>
+
+      <Drawer
+        isOpen={isMenuOpen}
+        onOpenChange={setIsMenuOpen}
+        placement="left"
+        size="xs"
+        radius="none"
+        backdrop="blur"
+        classNames={{
+          base: 'bg-nude-cream/95 shadow-soft',
+          header: 'px-6 pt-6 pb-4',
+          body: 'px-6 pb-4',
+          footer: 'px-6 pb-8 pt-4',
+          closeButton: 'z-20 pointer-events-auto p-3 text-2xl text-nude-clay hover:text-nude-warm',
+          backdrop: 'bg-black/25 backdrop-blur-sm'
+        }}
+      >
+        <DrawerContent>
+          {(onClose) => (
+            <>
+              <DrawerHeader className="relative flex items-center justify-center">
+                <Link href="/" className="group flex items-center justify-center" onPress={onClose}>
+                  <span className="font-script text-3xl text-nude-clay group-hover:text-nude-warm transition-colors duration-300">
+                    PSC
+                  </span>
+                </Link>
+              </DrawerHeader>
+              <DrawerBody>
+                <nav className="flex flex-col gap-2">
+                  {menuItems.map((item, index) => (
+                    <Link
+                      key={`${item.name}-${index}`}
+                      className={`w-full rounded-lg px-3 py-2 text-lg transition-colors ${
+                        index === menuItems.length - 1
+                          ? 'text-nude-clay font-medium'
+                          : 'text-text-storm'
+                      } hover:text-nude-clay hover:bg-nude-linen/60`}
+                      href={item.href}
+                      size="lg"
+                      onPress={onClose}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </nav>
+              </DrawerBody>
+              <DrawerFooter>
+                <div className="space-y-5 w-full">
+                  <Button
+                    as={Link}
+                    href="/contact"
+                    className="w-full bg-nude-clay text-white font-medium py-3 rounded-lg hover:bg-nude-warm transition-colors"
+                    onPress={onClose}
+                    startContent={
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    }
+                  >
+                    Book a Consultation
+                  </Button>
+                  <div className="text-center text-sm text-text-light">
+                    <p className="mb-2">Questions? Call:</p>
+                    <a href={`tel:${SITE_CONFIG.phone}`} className="text-nude-clay font-medium">
+                      {SITE_CONFIG.phone}
+                    </a>
+                  </div>
+                </div>
+              </DrawerFooter>
+            </>
+          )}
+        </DrawerContent>
+      </Drawer>
     </>
   );
 }

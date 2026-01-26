@@ -14,6 +14,7 @@ import ParallaxPattern from '@/components/ui/ParallaxPattern';
 import ParallaxReveal from '@/components/ui/ParallaxReveal';
 import JsonLd from '@/components/seo/JsonLd';
 import { generateWebPageSchema } from '@/lib/seo/schemas';
+import ApproachAccordion from '@/components/features/ApproachAccordion';
 
 export const metadata = generateMetaTags({
   title: 'Telehealth Therapy for Teens & Adults | Anxiety & Depression',
@@ -124,113 +125,12 @@ export default function HomePage() {
                   strategies so you can use the tools between appointments. We define goals early and
                   revisit them so each session builds steady momentum.
                 </Text>
-                <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {APPROACH_POINTS.map((point) => (
-                    <li key={point} className="flex items-start gap-3 text-text-storm">
-                      <span className="mt-2 h-2 w-2 rounded-full bg-nude-clay shrink-0"></span>
-                      <Text as="span" size="sm">
-                        {point}
-                      </Text>
-                    </li>
-                  ))}
-                </ul>
-                <Text size="sm" className="mt-6 text-text-storm">
-                  Common focus areas include anxiety, depression, life transitions, relationship
-                  stress, and self-esteem.
-                </Text>
+                <ApproachAccordion
+                  approachPoints={APPROACH_POINTS}
+                  expectationCards={EXPECTATION_CARDS}
+                  telehealthDetails={TELEHEALTH_DETAILS}
+                />
               </ParallaxReveal>
-
-              <div className="mt-12 lg:mt-14 space-y-4">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-                  <ParallaxReveal
-                    className="rounded-2xl bg-nude-cream/95 p-6 shadow-soft h-full"
-                    speed={0}
-                    maxOffset={0}
-                    fromOffset={0}
-                    fromX={-28}
-                    freezeOnce
-                  >
-                    <Heading level={3} className="mb-4 text-text-charcoal">
-                      What to expect
-                    </Heading>
-                    <ul className="space-y-4 text-text-storm">
-                      {EXPECTATION_CARDS.map((card) => (
-                        <li key={card.title} className="flex items-start gap-3">
-                          <svg className="w-5 h-5 text-nude-clay mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <div>
-                            <Text weight="semibold" color="charcoal" as="span" className="block mb-1">
-                              {card.title}
-                            </Text>
-                            <Text size="sm">
-                              {card.description}
-                            </Text>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </ParallaxReveal>
-
-                  <ParallaxReveal
-                    className="rounded-2xl bg-nude-cream/95 p-6 shadow-soft h-full"
-                    speed={0}
-                    maxOffset={0}
-                    fromOffset={0}
-                    fromX={28}
-                    freezeOnce
-                  >
-                      <Heading level={3} className="mb-4 text-text-charcoal">
-                        Telehealth details
-                      </Heading>
-                      <ul className="space-y-3 text-text-storm">
-                        {TELEHEALTH_DETAILS.map((detail) => (
-                          <li key={detail} className="flex items-start gap-3">
-                            <svg className="w-5 h-5 text-nude-clay mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            <Text as="span" size="sm">
-                              {detail}
-                            </Text>
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="mt-6 border-t border-nude-linen/70 pt-5">
-                        <Text size="xs" weight="semibold" className="uppercase tracking-[0.2em] text-text-slate mb-3">
-                          Care commitments
-                        </Text>
-                        <div className="space-y-3 text-text-storm">
-                        <div className="flex items-center gap-2">
-                          <svg className="w-6 h-6 text-nude-clay opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                          </svg>
-                          <Text weight="medium" as="span">Confidential care</Text>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <svg className="w-6 h-6 text-nude-clay opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <Text weight="medium" as="span">Superbills available</Text>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <svg className="w-6 h-6 text-nude-clay opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                          </svg>
-                          <Text weight="medium" as="span">Evidence-based care</Text>
-                        </div>
-                      </div>
-                      </div>
-                      <div className="mt-6">
-                        <LinkButton
-                          href="/contact"
-                          className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-6 py-2 shadow-clay transition-all"
-                        >
-                          Schedule a Consultation
-                        </LinkButton>
-                      </div>
-                  </ParallaxReveal>
-                </div>
-              </div>
             </div>
           </div>
         </section>
