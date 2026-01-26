@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardHeader, CardBody, CardFooter } from '@heroui/card';
 import { Chip } from '@heroui/chip';
 import { Button } from '@heroui/button';
+import { ScrollShadow } from '@heroui/scroll-shadow';
 import type { BloggerListItem } from '@/lib/blogger';
 
 type BlogPostGridProps = {
@@ -379,7 +380,7 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
                     </svg>
                   </button>
                 </div>
-                <div className="min-h-0 overflow-y-auto">
+                <ScrollShadow className="min-h-0">
                   <div className="px-6 py-6">
                     {activeContent ? (
                       <div
@@ -392,7 +393,7 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
                       </p>
                     )}
                   </div>
-                </div>
+                </ScrollShadow>
               </div>
               {([
                 {

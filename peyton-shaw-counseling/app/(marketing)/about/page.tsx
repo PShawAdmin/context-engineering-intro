@@ -159,29 +159,56 @@ export default function AboutPage() {
                     Education & credentials
                   </Heading>
                   <div className="space-y-3">
-                    <div>
-                      <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
-                        Master of Science
-                      </Text>
-                      <Text size="sm" weight="medium" color="charcoal">
-                        University of North Texas
-                      </Text>
+                    <div className="flex items-start gap-3">
+                      <Image
+                        src="/images/North_Texas_Mean_Green_logo.svg"
+                        alt="University of North Texas logo"
+                        width={32}
+                        height={32}
+                        className="flex-shrink-0 opacity-85"
+                      />
+                      <div>
+                        <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
+                          Master of Science
+                        </Text>
+                        <Text size="sm" weight="medium" color="charcoal">
+                          University of North Texas
+                        </Text>
+                      </div>
                     </div>
-                    <div>
-                      <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
-                        Bachelor of Science
-                      </Text>
-                      <Text size="sm" weight="medium" color="charcoal">
-                        University of North Texas
-                      </Text>
+                    <div className="flex items-start gap-3">
+                      <Image
+                        src="/images/North_Texas_Mean_Green_logo.svg"
+                        alt="University of North Texas logo"
+                        width={32}
+                        height={32}
+                        className="flex-shrink-0 opacity-85"
+                      />
+                      <div>
+                        <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
+                          Bachelor of Science
+                        </Text>
+                        <Text size="sm" weight="medium" color="charcoal">
+                          University of North Texas
+                        </Text>
+                      </div>
                     </div>
-                    <div className="pt-3 border-t border-nude-linen/70">
-                      <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
-                        Licensed Professional Counselor
-                      </Text>
-                      <Text size="sm" weight="medium" color="charcoal">
-                        State of Texas • License #86177
-                      </Text>
+                    <div className="pt-3 border-t border-nude-linen/70 flex items-center gap-3">
+                      <Image
+                        src="/images/seal_circle_clean.png"
+                        alt="Texas Behavioral Health Executive Council seal"
+                        width={36}
+                        height={36}
+                        className="flex-shrink-0"
+                      />
+                      <div>
+                        <Text size="xs" color="muted" className="uppercase tracking-[0.2em]">
+                          Licensed Professional Counselor
+                        </Text>
+                        <Text size="sm" weight="medium" color="charcoal">
+                          State of Texas • License #86177
+                        </Text>
+                      </div>
                     </div>
                   </div>
                 </div>

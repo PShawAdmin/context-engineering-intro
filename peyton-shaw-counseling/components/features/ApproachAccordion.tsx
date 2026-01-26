@@ -73,8 +73,8 @@ const WHERE_WE_START = [
 ];
 
 const RHYTHM_STAGES = [
-  { label: 'Goal clarity', value: 25 },
-  { label: 'Skill practice', value: 55 },
+  { label: 'Goal clarity', value: 33 },
+  { label: 'Skill practice', value: 66 },
   { label: 'Momentum check-in', value: 100 }
 ];
 
@@ -356,7 +356,7 @@ export default function ApproachAccordion({
                   indicator: 'bg-nude-clay/80'
                 }}
               />
-              <p className="text-xs text-text-storm">
+              <p className="text-center text-xs text-text-storm">
                 {RHYTHM_STAGES.map((stage, index) => (
                   <span
                     key={stage.label}
