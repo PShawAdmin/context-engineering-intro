@@ -7,33 +7,35 @@ import { Chip } from '@heroui/chip';
 import { Progress } from '@heroui/progress';
 import { ScrollShadow } from '@heroui/scroll-shadow';
 import { Tab, Tabs } from '@heroui/tabs';
-import LinkButton from '@/components/ui/LinkButton';
-
 type ApproachAccordionProps = {
   approachPoints: string[];
   expectationCards: {
     title: string;
     description: string;
   }[];
-  telehealthDetails: string[];
+  youMightBeHere: string[];
+  promiseOutcomes: {
+    label: string;
+    description: string;
+  }[];
 };
 
 const SESSION_FLOW = [
   {
     title: 'Name the priority',
-    description: 'Identify what feels most urgent and set a clear outcome for the session.'
+    description: "Identify what feels most urgent and define what you want from today's session."
   },
   {
     title: 'Map patterns',
-    description: 'Notice the beliefs, body cues, and habits that keep anxiety or depression looping.'
+    description: 'Notice the thought loops, body cues, and habits that keep anxiety or depression in place.'
   },
   {
     title: 'Test tools',
     description: 'Practice a strategy in session so it feels familiar before you use it on your own.'
   },
   {
-    title: 'Review experiments',
-    description: 'Check what worked, what did not, and adjust so the plan stays realistic.'
+    title: 'Refine the plan',
+    description: 'Look at what helped, what did not, and adjust so the plan stays realistic.'
   },
   {
     title: 'Choose next steps',
@@ -44,15 +46,15 @@ const SESSION_FLOW = [
 const BETWEEN_SESSIONS = [
   {
     title: 'Practice plan',
-    description: 'Pick one small tool and anchor it to a routine so it feels doable. We keep it realistic to avoid overwhelm.'
+    description: 'Pick one small tool and anchor it to a routine so it feels doable.'
   },
   {
     title: 'Gentle tracking',
-    description: 'Notice patterns, wins, and friction with a brief check-in, not a long journal. This gives us usable data without extra stress.'
+    description: 'Notice patterns, wins, and friction with a brief check-in, not a long journal.'
   },
   {
     title: 'Flexible cadence',
-    description: 'Weekly sessions build momentum, then we space out as you feel steadier. We can adjust quickly when life changes.'
+    description: 'Weekly sessions build momentum, then we space out as you feel steadier.'
   }
 ];
 
@@ -64,11 +66,10 @@ const FOCUS_AREAS = [
   'Self-esteem'
 ];
 
-const COMMON_GOALS = [
-  'Quiet the anxious mental noise and feel more grounded day-to-day.',
-  'Build routines that support sleep, energy, and emotional steadiness.',
-  'Strengthen communication and boundaries so relationships feel safer.',
-  'Increase confidence so decisions feel clearer and more aligned.'
+const WHERE_WE_START = [
+  'Quiet anxiety while strengthening self-trust',
+  'Rebuild routines and energy when depression has you stuck',
+  'Clarify boundaries so relationships feel safer and more stable'
 ];
 
 const RHYTHM_STAGES = [
@@ -80,30 +81,9 @@ const RHYTHM_STAGES = [
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
 const CARE_COMMITMENTS = [
-  {
-    label: 'Confidential care',
-    icon: (
-      <svg className="w-5 h-5 text-nude-clay opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    )
-  },
-  {
-    label: 'Superbills available',
-    icon: (
-      <svg className="w-5 h-5 text-nude-clay opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    )
-  },
-  {
-    label: 'Evidence-based care',
-    icon: (
-      <svg className="w-5 h-5 text-nude-clay opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-      </svg>
-    )
-  }
+  'Confidential care',
+  'Superbills available',
+  'Evidence-based care'
 ];
 
 const CHECK_ICON = (
@@ -119,25 +99,13 @@ const CIRCLE_BULLET = (
   />
 );
 
-const shortenLabel = (point: string) => {
-  const splitters = [' for ', ' with ', ' to '];
-  for (const splitter of splitters) {
-    if (point.includes(splitter)) {
-      return point.split(splitter)[0].trim();
-    }
-  }
-  return point;
-};
-
 export default function ApproachAccordion({
   approachPoints,
   expectationCards,
-  telehealthDetails
+  youMightBeHere,
+  promiseOutcomes
 }: ApproachAccordionProps) {
-  const toolkitChips = approachPoints.map((point) => ({
-    label: shortenLabel(point),
-    detail: point
-  }));
+  const toolkitPoints = approachPoints;
   const [stageIndex, setStageIndex] = useState(0);
   const [progressValue, setProgressValue] = useState(0);
   const progressRef = useRef(progressValue);
@@ -214,7 +182,7 @@ export default function ApproachAccordion({
     <div className="mt-6 space-y-6">
       <Alert
         title="Telehealth that feels grounded"
-        description="Sessions are practical, supportive, and grounded in CBT, mindfulness, and solution-focused care. We define goals early, revisit them often, and keep the pace steady so you can use the tools between appointments."
+        description="Secure online sessions designed to feel calm and present—not rushed or transactional. Telehealth makes it easier to stay consistent, and we can adjust pace as your tools start to feel automatic."
         classNames={{
           base: 'border border-nude-linen/70 bg-background-pearl/80 shadow-soft',
           title: 'text-sm font-semibold text-text-charcoal',
@@ -224,12 +192,11 @@ export default function ApproachAccordion({
       />
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-        <Card className="border border-nude-linen/70 bg-background-pearl/80 shadow-soft">
+        <Card id="session-blueprint" className="border border-nude-linen/70 bg-background-pearl/80 shadow-soft">
           <CardHeader className="flex flex-col gap-2">
-            <p className="text-xs uppercase tracking-[0.2em] text-text-storm">Session blueprint</p>
-            <p className="text-lg font-semibold text-text-charcoal">A calm, collaborative flow</p>
-            <p className="text-sm text-text-storm">
-              A structured rhythm that stays flexible to what you need most.
+            <p className="text-xs uppercase tracking-[0.2em] text-text-storm">Your toolkit</p>
+            <p className="text-lg font-semibold text-text-charcoal">
+              A calm structure that keeps the work clear—without feeling rushed.
             </p>
           </CardHeader>
           <CardBody className="pt-0">
@@ -243,61 +210,58 @@ export default function ApproachAccordion({
                 panel: 'pt-4 lg:pt-3'
               }}
             >
-              <Tab key="flow" title="Session flow">
-                <ScrollShadow className="max-h-56 pr-2">
-                  <div className="space-y-4 lg:space-y-3">
-                    <p className="text-sm text-text-storm">
-                      Each session has a gentle structure that keeps the work clear without feeling rushed.
-                      We start by orienting to what you want most right now, then slow down long enough to
-                      notice the thoughts, body cues, and relationship dynamics that keep stress in place.
-                    </p>
-                    <p className="text-sm text-text-storm">
-                      From there we choose one or two tools to practice, and we end with a concrete plan for
-                      the week ahead. The goal is steady momentum: small changes that compound over time,
-                      not quick fixes that fade.
-                    </p>
-                    <ol className="space-y-4 lg:space-y-3">
-                    {SESSION_FLOW.map((step, index) => (
-                      <li key={step.title} className="flex items-start gap-3">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-nude-sand/40 text-sm font-semibold text-text-charcoal">
-                          {index + 1}
-                        </span>
-                        <div>
-                          <p className="text-sm font-semibold text-text-charcoal">{step.title}</p>
-                          <p className="text-sm text-text-storm">{step.description}</p>
-                        </div>
-                      </li>
-                    ))}
-                    </ol>
-                  </div>
-                </ScrollShadow>
-              </Tab>
               <Tab key="toolkit" title="Toolkit">
                 <ScrollShadow className="max-h-56 pr-2">
                   <p className="text-sm text-text-storm">
-                    The toolkit is collaborative, so we pick evidence-based strategies that match your
-                    personality, culture, and day-to-day life. You will never be asked to do a generic
-                    worksheet just to check a box; we choose tools that feel useful and sustainable.
+                    The toolkit is collaborative, so we choose evidence-based strategies that match your
+                    personality, culture, and day-to-day life. You'll never be asked to do a generic
+                    worksheet just to check a box—we choose tools that feel useful and sustainable.
                   </p>
                   <ul className="mt-4 lg:mt-3 space-y-2 text-sm text-text-storm">
-                    {toolkitChips.map((tool) => (
-                      <li key={tool.detail} className="flex items-start gap-3">
+                    {toolkitPoints.map((tool) => (
+                      <li key={tool} className="flex items-start gap-3">
                         {CIRCLE_BULLET}
-                        <span>{tool.detail}</span>
+                        <span>{tool}</span>
                       </li>
                     ))}
                   </ul>
                   <p className="mt-4 lg:mt-3 text-sm text-text-storm">
-                    We track what helps most and refine it so your toolkit becomes personal and portable.
+                    We refine what works so your toolkit becomes personal and portable.
                   </p>
+                </ScrollShadow>
+              </Tab>
+              <Tab key="flow" title="Session blueprint">
+                <ScrollShadow className="max-h-56 pr-2">
+                  <div className="space-y-4 lg:space-y-3">
+                    <p className="text-sm text-text-storm">
+                      We name the priority, map patterns, and practice tools so you can leave with a plan
+                      that fits real life.
+                    </p>
+                    <ol className="space-y-4 lg:space-y-3">
+                      {SESSION_FLOW.map((step, index) => (
+                        <li key={step.title} className="flex items-start gap-3">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-nude-sand/40 text-sm font-semibold text-text-charcoal">
+                            {index + 1}
+                          </span>
+                          <div>
+                            <p className="text-sm font-semibold text-text-charcoal">{step.title}</p>
+                            <p className="text-sm text-text-storm">{step.description}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ol>
+                    <p className="text-sm text-text-storm">
+                      The goal is steady progress—small changes that compound over time, not quick fixes
+                      that fade.
+                    </p>
+                  </div>
                 </ScrollShadow>
               </Tab>
               <Tab key="between" title="Between sessions">
                 <ScrollShadow className="max-h-56 pr-2">
                   <p className="text-sm text-text-storm">
                     Progress happens between meetings, so we build a plan that fits your schedule. You get
-                    a clear practice, a gentle tracking method, and room to adjust if life gets busy. The
-                    goal is consistency, not perfection.
+                    a clear practice, a gentle tracking method, and room to adjust if life gets busy.
                   </p>
                   <div className="space-y-4 lg:space-y-3">
                     {BETWEEN_SESSIONS.map((item) => (
@@ -311,70 +275,60 @@ export default function ApproachAccordion({
               </Tab>
             </Tabs>
             <div className="mt-5 lg:mt-4 rounded-2xl border border-nude-linen/70 bg-white/70 p-4">
-              <p className="text-sm font-semibold text-text-charcoal">What you will leave with</p>
+              <p className="text-sm font-semibold text-text-charcoal">What you'll leave with</p>
               <ul className="mt-3 space-y-3 text-sm text-text-storm">
                 <li className="flex items-start gap-3">
                   {CHECK_ICON}
-                  <span>A clear focus that names what matters most right now.</span>
+                  <span>A clear focus for what matters most right now</span>
                 </li>
                 <li className="flex items-start gap-3">
                   {CHECK_ICON}
-                  <span>One or two tools you can practice in real moments of stress.</span>
+                  <span>One or two tools you can use in real moments of stress</span>
                 </li>
                 <li className="flex items-start gap-3">
                   {CHECK_ICON}
-                  <span>A realistic plan with a next step that respects your schedule and keeps momentum without overwhelm.</span>
+                  <span>A realistic next step that respects your schedule</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  {CHECK_ICON}
+                  <span>A plan that stays adaptable as your needs change</span>
                 </li>
               </ul>
               <p className="mt-3 text-sm text-text-storm">
-                The goal is to make progress feel steady, doable, and supported from week to week.
+                Progress should feel steady, doable, and supported week to week.
               </p>
             </div>
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
-              <div className="rounded-2xl border border-nude-linen/70 bg-white/70 p-4">
-                <p className="text-sm font-semibold text-text-charcoal">What to expect</p>
-                <ul className="mt-3 space-y-3 text-sm text-text-storm">
-                  {expectationCards.map((card) => (
-                    <li key={card.title} className="flex items-start gap-3">
-                      {CIRCLE_BULLET}
-                      <div>
-                        <span className="block text-sm font-semibold text-text-charcoal">{card.title}</span>
-                        <span className="block text-sm text-text-storm">{card.description}</span>
-                      </div>
-                    </li>
+            <div className="mt-5 rounded-2xl border border-nude-linen/70 bg-white/70 p-4">
+              <p className="text-sm font-semibold text-text-charcoal">What to expect (telehealth)</p>
+              <ul className="mt-3 space-y-3 text-sm text-text-storm">
+                {expectationCards.map((card) => (
+                  <li key={card.title} className="flex items-start gap-3">
+                    {CIRCLE_BULLET}
+                    <span>
+                      <span className="font-semibold text-text-charcoal">{card.title}:</span>{' '}
+                      {card.description}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 text-sm text-text-storm">
+                You don't need the perfect setup—just a private space and a few minutes to settle in.
+              </p>
+              <div className="mt-4 border-t border-nude-linen/70 pt-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-slate">
+                  Care commitments
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {CARE_COMMITMENTS.map((commitment) => (
+                    <Chip
+                      key={commitment}
+                      size="sm"
+                      variant="flat"
+                      className="bg-nude-sand/40 text-text-charcoal"
+                    >
+                      {commitment}
+                    </Chip>
                   ))}
-                </ul>
-              </div>
-              <div className="rounded-2xl border border-nude-linen/70 bg-white/70 p-4">
-                <p className="text-sm font-semibold text-text-charcoal">Telehealth details</p>
-                <ul className="mt-3 space-y-3 text-sm text-text-storm">
-                  {telehealthDetails.map((detail) => (
-                    <li key={detail} className="flex items-start gap-3">
-                      {CHECK_ICON}
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4 border-t border-nude-linen/70 pt-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-slate">
-                    Care commitments
-                  </p>
-                  <ul className="mt-3 space-y-3 text-sm text-text-storm">
-                    {CARE_COMMITMENTS.map((commitment) => (
-                      <li key={commitment.label} className="flex items-center gap-2">
-                        {commitment.icon}
-                        <span className="font-medium text-text-storm">{commitment.label}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-4">
-                  <LinkButton
-                    href="/contact"
-                    className="w-full bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-4 py-2 shadow-clay transition-all"
-                  >
-                    Schedule a Consultation
-                  </LinkButton>
                 </div>
               </div>
             </div>
@@ -391,7 +345,7 @@ export default function ApproachAccordion({
             </CardHeader>
             <CardBody className="space-y-4">
               <Progress
-                label={RHYTHM_STAGES[stageIndex].label}
+                aria-label={RHYTHM_STAGES[stageIndex].label}
                 value={progressValue}
                 size="sm"
                 radius="full"
@@ -402,25 +356,25 @@ export default function ApproachAccordion({
                   indicator: 'bg-nude-clay/80'
                 }}
               />
-              <div className="flex flex-wrap gap-2 text-xs text-text-storm">
+              <p className="text-xs text-text-storm">
                 {RHYTHM_STAGES.map((stage, index) => (
                   <span
                     key={stage.label}
-                    className={`rounded-full border px-2 py-1 transition-colors duration-300 ease-out ${
-                      index === stageIndex
-                        ? 'border-nude-clay bg-nude-sand/40 text-text-charcoal'
-                        : 'border-nude-linen/70 text-text-storm opacity-70'
-                    }`}
+                    className={index === stageIndex ? 'text-text-charcoal font-medium' : 'text-text-storm/70'}
                   >
                     {stage.label}
+                    {index < RHYTHM_STAGES.length - 1 && (
+                      <span className="mx-2 text-text-storm/60" aria-hidden="true">
+                        &bull;
+                      </span>
+                    )}
                   </span>
                 ))}
-              </div>
+              </p>
               <p className="text-sm text-text-storm">
-                Think of the rhythm as a loop: clarify, practice, reflect, and refine. Some weeks are
-                skill-heavy, others make more space for processing, but we always leave with a next step.
-                Telehealth makes it easier to stay consistent, and we can slow the pace once the tools
-                start to feel automatic. You are always in the driver's seat.
+                Think of the rhythm as a loop: clarify, practice, reflect, refine. Some weeks are
+                skill-heavy; others make more space for processing—but we always end with a next step.
+                You're always in the driver's seat.
               </p>
             </CardBody>
           </Card>
@@ -446,35 +400,67 @@ export default function ApproachAccordion({
                 ))}
               </div>
               <p className="mt-4 text-sm text-text-storm">
-                These areas often overlap, so we follow the thread that feels most important to you.
-                Sessions stay grounded in what will make life feel more manageable right now.
+                These often overlap—so we follow what matters most right now.
               </p>
               <p className="mt-3 text-sm font-semibold text-text-charcoal">Where we start</p>
               <ul className="mt-2 space-y-2 pl-6 text-sm text-text-storm list-disc">
-                <li>Steady anxiety while strengthening self-trust.</li>
-                <li>Address depression while rebuilding routines and energy.</li>
-                <li>Clarify boundaries so relationships feel safer and more stable.</li>
-              </ul>
-              <p className="mt-4 text-sm font-semibold text-text-charcoal">Common goals we build toward</p>
-              <ul className="mt-2 space-y-2 pl-6 text-sm text-text-storm list-disc">
-                {COMMON_GOALS.map((goal) => (
-                  <li key={goal}>{goal}</li>
+                {WHERE_WE_START.map((item) => (
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
               <p className="mt-4 text-sm text-text-storm">
-                Not sure which label fits? That is okay. We can sort situational stress versus a longer
-                pattern and shift focus as your needs change. Some clients start with anxiety and later
-                want support with boundaries or self-esteem, or they come in for depression and discover
-                relationship stress is the bigger driver.
+                Not sure what label fits? That's okay. We can sort situational stress from longer patterns
+                and adjust as we go.
               </p>
-              <p className="mt-3 text-sm text-text-storm">
-                You do not need a formal diagnosis to begin; we focus on what is getting in the way and
-                what would feel better.
+            </CardBody>
+          </Card>
+
+          <Card className="border border-nude-linen/70 bg-background-pearl/80 shadow-soft">
+            <CardHeader className="flex flex-col gap-1">
+              <p className="text-sm font-semibold text-text-charcoal">You might be here because...</p>
+            </CardHeader>
+            <CardBody>
+              <p className="text-sm text-text-storm">
+                If any of this sounds familiar, you're not alone—and you don't have to untangle it by
+                yourself.
               </p>
+              <ul className="mt-4 space-y-2 text-sm text-text-storm">
+                {youMightBeHere.map((point) => (
+                  <li key={point} className="flex items-start gap-3">
+                    {CIRCLE_BULLET}
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
               <p className="mt-4 text-sm text-text-storm">
-                Common focus areas include anxiety, depression, life transitions, relationship stress,
-                and self-esteem.
+                If you're not sure where to start, we'll figure it out together.
               </p>
+            </CardBody>
+          </Card>
+
+          <Card className="border border-nude-linen/70 bg-background-pearl/80 shadow-soft">
+            <CardHeader className="flex flex-col gap-1">
+              <p className="text-sm font-semibold text-text-charcoal">A steady path forward</p>
+            </CardHeader>
+            <CardBody>
+              <p className="text-sm text-text-storm">
+                We work on what's most urgent—and what keeps repeating—so change can stick.
+              </p>
+              <div className="mt-4 space-y-3">
+                {promiseOutcomes.map((outcome) => (
+                  <div
+                    key={outcome.label}
+                    className="rounded-2xl border border-nude-linen/70 bg-white/70 p-3"
+                  >
+                    <p className="text-xs uppercase tracking-[0.2em] text-text-storm">
+                      {outcome.label}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-text-charcoal">
+                      {outcome.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </CardBody>
           </Card>
         </div>

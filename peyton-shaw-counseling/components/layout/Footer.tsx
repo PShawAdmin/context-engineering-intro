@@ -177,6 +177,10 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        <p className="mt-6 text-xs text-grey-blue-light/80 max-w-3xl">
+          If you're in immediate danger or experiencing a mental health crisis, call or text 988
+          (Suicide &amp; Crisis Lifeline) or call 911.
+        </p>
       </div>
 
       {/* Bottom Bar */}

@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import Testimonials from '@/components/features/Testimonials';
 import LinkButton from '@/components/ui/LinkButton';
+import { EmailButton } from '@/components/ui/EmailLink';
 import { LOCATIONS } from '@/lib/locations';
 import { generateMetaTags } from '@/lib/seo/utils';
 import { targetKeywords } from '@/lib/seo/keywords';
@@ -31,41 +32,55 @@ export const metadata = generateMetaTags({
 });
 
 const APPROACH_POINTS = [
-  'CBT and cognitive tools for anxious thoughts',
-  'Mindfulness-based practices for grounding',
-  'Solution-focused strategies for forward motion',
-  'Person-centered support with room to be yourself',
+  'CBT reframes for anxious or self-critical loops',
+  'Mindfulness cues to help you return to the present',
+  'Behavioral activation to rebuild energy and motivation',
+  'Values-based decisions that make life feel more aligned',
+  'Communication scripts to reduce conflict and confusion',
+  'Boundary tools to protect your time and emotional space'
+];
+
+const YOU_MIGHT_BE_HERE = [
+  "Your mind will not turn off, even when you're exhausted.",
+  "You're holding it together on the outside, but you feel spent.",
+  "You keep second-guessing yourself and replaying everything.",
+  "You feel stuck, unmotivated, or disconnected from what used to matter.",
+  "Relationships feel tense, uncertain, or harder than they should.",
+  "You want tools that actually work in real life—not just insight."
+];
+
+const PROMISE_OUTCOMES = [
+  {
+    label: 'Feel',
+    description: 'Less flooded. More steady.'
+  },
+  {
+    label: 'Think',
+    description: 'Fewer spirals. More clarity and self-trust.'
+  },
+  {
+    label: 'Do',
+    description: 'Simple tools you can use in the moments that matter.'
+  }
 ];
 
 const EXPECTATION_CARDS = [
   {
     title: 'Clear goals',
-    description: 'We define a focus for therapy so each session builds on the last.',
+    description: 'A focus that builds from week to week'
   },
   {
     title: 'Practical tools',
-    description: 'You get strategies you can use between sessions to manage stress and emotions.',
+    description: 'Strategies you can practice between sessions'
   },
   {
     title: 'Consistent support',
-    description: 'We set a cadence that works for your life so progress feels steady.',
+    description: 'A cadence that fits your life'
   },
   {
-    title: 'Private telehealth care',
-    description: 'Online sessions are secure and designed to feel calm and grounded.',
+    title: 'Secure telehealth',
+    description: 'Private sessions with clear privacy guidelines'
   },
-];
-
-const SESSION_STEPS = [
-  'Clarify what is bringing you in and identify the outcomes you want most.',
-  'Create a realistic plan with tools you can practice between sessions.',
-  'Set a cadence that fits your schedule and keeps progress steady.',
-];
-
-const TELEHEALTH_DETAILS = [
-  'Secure video sessions with clear guidelines for privacy and comfort.',
-  'Flexible scheduling to fit school, work, and family commitments.',
-  'A calm, structured process that keeps sessions focused and productive.',
 ];
 
 export default function HomePage() {
@@ -85,16 +100,20 @@ export default function HomePage() {
       <main>
         {/* Hero Section */}
         <Hero
-          title="Therapy That Fits Your Life"
-          subtitle="Telehealth therapy for teens and adults across Texas"
-          description="Personalized support for anxiety, depression, stress, and life transitions with secure online sessions that meet you where you are."
+          title="Therapy that fits your life."
+          subtitle="Telehealth therapy for teens and adults across Texas—calm, practical support for anxiety, depression, stress, and life transitions."
+          description={
+            <span className="text-base">
+              Secure online sessions &bull; Clear goals &bull; Tools you'll use between appointments
+            </span>
+          }
           primaryAction={{
-            label: "Book a Consultation",
+            label: "Book a consultation",
             href: "/contact"
           }}
           secondaryAction={{
-            label: "Meet Peyton",
-            href: "/about"
+            label: "How sessions work",
+            href: "#session-blueprint"
           }}
         />
 
@@ -106,9 +125,9 @@ export default function HomePage() {
                 Start with a clear plan
               </Heading>
               <Text size="xl" className="max-w-3xl mx-auto">
-                Focused, evidence-based therapy for teens and adults managing anxiety, depression,
-                relationship stress, and life transitions. Telehealth-only sessions are available
-                across Texas.
+                Therapy that stays focused and flexible—grounded in evidence-based care and shaped
+                around your goals. We practice what helps, keep progress realistic, and adjust as your
+                needs change.
               </Text>
             </ParallaxReveal>
 
@@ -121,14 +140,14 @@ export default function HomePage() {
                   A calm, collaborative approach
                 </Heading>
                 <Text size="lg">
-                  Sessions are practical and supportive, grounded in CBT, mindfulness, and solution-focused
-                  strategies so you can use the tools between appointments. We define goals early and
-                  revisit them so each session builds steady momentum.
+                  A steady, supportive space with a practical rhythm. We slow down when you need it, and
+                  keep sessions clear enough that you leave with a next step.
                 </Text>
                 <ApproachAccordion
                   approachPoints={APPROACH_POINTS}
                   expectationCards={EXPECTATION_CARDS}
-                  telehealthDetails={TELEHEALTH_DETAILS}
+                  youMightBeHere={YOU_MIGHT_BE_HERE}
+                  promiseOutcomes={PROMISE_OUTCOMES}
                 />
               </ParallaxReveal>
             </div>
@@ -154,19 +173,20 @@ export default function HomePage() {
                   </Heading>
                   <div className="mb-8">
                     <span className="drop-cap float-left mr-2 font-serif text-6xl leading-[0.75] text-nude-clay rounded-lg px-2 py-1 -ml-1 mt-0">
-                      A
+                      I
                     </span>
                     <Text>
-                      s a licensed professional counselor, I provide telehealth-only care for teens and
-                      adults across Texas. I offer a calm, collaborative space where you can feel heard
-                      and supported. My approach blends evidence-based therapy with practical tools to
-                      move forward with clarity and confidence.
+                      am Peyton Shaw, a Licensed Professional Counselor providing telehealth therapy for
+                      teens and adults across Texas. I offer a calm, collaborative space where you can feel
+                      heard—and a practical approach that supports real-life change.
                     </Text>
                     <Text className="indent-8">
-                      I specialize in anxiety, depression, life transitions, and relationship challenges
-                      for teens and adults, with sessions tailored to your goals and grounded in CBT,
-                      mindfulness, and person-centered care. All appointments are online through secure
-                      video.
+                      My work is grounded in CBT, mindfulness, and solution-focused strategies, with
+                      sessions tailored to your goals and the pace that feels sustainable.
+                    </Text>
+                    <Text className="indent-8">
+                      Specialties: anxiety, depression, life transitions, relationship stress, and
+                      self-esteem.
                     </Text>
                   </div>
                   <div className="flex flex-wrap gap-4">
@@ -216,7 +236,7 @@ export default function HomePage() {
                 Telehealth Across Texas
               </Heading>
               <Text size="lg" className="max-w-3xl mx-auto">
-                We provide telehealth-only therapy for teens and adults across Texas, including Southlake,
+                I offer telehealth-only therapy for teens and adults across Texas, including Southlake,
                 Grapevine, and surrounding communities.
               </Text>
             </div>
@@ -249,10 +269,11 @@ export default function HomePage() {
           <div className="absolute inset-0 pattern-grain opacity-10"></div>
           <div className="container relative z-10 text-center">
             <Heading level={2} className="text-white mb-6 animate-fade-in">
-              Ready to Get Started?
+              Ready to take the next step?
             </Heading>
             <Text size="xl" color="white" className="md:text-2xl opacity-90 mb-10 max-w-3xl mx-auto animate-slide-up">
-              Take the next step with supportive, evidence-based care tailored to your goals.
+              If you're feeling overwhelmed, stuck, or just tired of carrying it alone, we can make a
+              simple plan together.
             </Text>
             <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up [animation-delay:200ms]">
               <LinkButton
@@ -260,17 +281,18 @@ export default function HomePage() {
                 size="lg"
                 className="bg-nude-cream text-nude-clay hover:bg-nude-linen font-medium px-10 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
               >
-                Start Your Consultation
+                Book a consultation
               </LinkButton>
-              <LinkButton
-                href="/faq"
+              <EmailButton
+                label="Ask a question by email"
                 variant="bordered"
                 size="lg"
                 className="border-2 border-nude-cream text-nude-cream hover:bg-nude-cream/10 font-medium px-10 py-4 text-lg backdrop-blur-sm transition-all"
-              >
-                Explore FAQs
-              </LinkButton>
+              />
             </div>
+            <Text size="sm" color="white" className="mt-6 opacity-80">
+              No pressure—just clarity on fit and next steps.
+            </Text>
           </div>
         </section>
       </main>

@@ -1,11 +1,12 @@
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 import LinkButton from '@/components/ui/LinkButton';
+import type { ReactNode } from 'react';
 
 interface HeroProps {
   title: string;
   subtitle: string;
-  description?: string;
+  description?: ReactNode;
   primaryAction?: {
     label: string;
     href: string;
@@ -14,6 +15,7 @@ interface HeroProps {
     label: string;
     href: string;
   };
+  ctaNote?: ReactNode;
   backgroundImage?: boolean;
   backgroundClassName?: string;
   showWave?: boolean;
@@ -26,6 +28,7 @@ export default function Hero({
   description,
   primaryAction,
   secondaryAction,
+  ctaNote,
   backgroundImage = true,
   backgroundClassName,
   showWave = true,
@@ -96,6 +99,11 @@ export default function Hero({
                 </LinkButton>
               )}
             </div>
+          )}
+          {ctaNote && (
+            <Text size="sm" as="div" className="mt-4 text-text-storm/80">
+              {ctaNote}
+            </Text>
           )}
         </div>
       </div>
