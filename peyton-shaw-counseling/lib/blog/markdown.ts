@@ -11,7 +11,6 @@ renderer.heading = (text, level) => {
 marked.setOptions({
   gfm: true,
   breaks: false,
-  mangle: false,
   renderer,
 });
 
