@@ -5,7 +5,9 @@ import Hero from '@/components/layout/Hero';
 import {Card, CardBody} from '@heroui/card';
 import LinkButton from '@/components/ui/LinkButton';
 import BlogPostGrid from '@/components/features/BlogPostGrid';
-import { getBloggerPosts } from '@/lib/blogger';
+import { getBloggerPosts, type BloggerListItem } from '@/lib/blogger';
+import { getAllPosts } from '@/lib/blog/utils';
+import { renderMarkdownToHtml } from '@/lib/blog/markdown';
 
 export const metadata: Metadata = {
   title: 'Blog & Resources',
@@ -15,7 +17,23 @@ export const metadata: Metadata = {
 export const revalidate = 300;
 
 export default async function BlogPage() {
-  const blogPosts = await getBloggerPosts();
+  const localPosts = await getAllPosts();
+  const bloggerPosts = localPosts.length > 0 ? [] : await getBloggerPosts();
+  const localPostItems: BloggerListItem[] = localPosts.map((post) => ({
+    id: post.slug,
+    title: post.title,
+    content: renderMarkdownToHtml(post.content),
+    excerpt: post.excerpt,
+    publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
+    readTime: post.readingTime,
+    category: post.category,
+    tags: post.keywords,
+    url: `/blog/${post.slug}`,
+    image: post.image,
+    author: post.author,
+  }));
+  const blogPosts = localPostItems.length > 0 ? localPostItems : bloggerPosts;
   const hasPosts = blogPosts.length > 0;
 
   return (

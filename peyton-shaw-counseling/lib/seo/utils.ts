@@ -59,8 +59,8 @@ export function generateMetaTags({
   const canonical = `${siteUrl}${path}`;
   
   // Default images if not provided
-  const defaultOgImage = '/opengraph-image.png';
-  const defaultTwitterImage = '/twitter-image.png';
+  const defaultOgImage = '/images/peyton-shaw-professional.jpg';
+  const defaultTwitterImage = '/images/peyton-shaw-professional.jpg';
   const ogImage = image || defaultOgImage;
   const twitterImage = image || defaultTwitterImage;
   
@@ -109,7 +109,7 @@ export function generateMetaTags({
       title: finalTitle,
       description: finalDescription,
       images: [twitterImage.startsWith('http') ? twitterImage : `${siteUrl}${twitterImage}`],
-      creator: '@peytonshaw', // TODO: Update with actual Twitter handle if available
+      creator: '@peytonshawcounseling',
     },
     alternates: {
       canonical,

@@ -111,11 +111,11 @@ export default function AreasServedPage() {
                       </div>
                       <div className="pt-2">
                         <LinkButton
-                          href={`/areas-served/${area.slug}`}
+                          href="/contact"
                           variant="light"
                           className="text-nude-clay hover:text-nude-clay/80 p-0 h-auto"
                         >
-                          Learn about therapy in {area.name} →
+                          Book a consultation →
                         </LinkButton>
                       </div>
                     </div>

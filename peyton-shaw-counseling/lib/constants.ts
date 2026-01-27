@@ -60,7 +60,8 @@ export const businessInfo = {
   sameAs: [
     'https://www.psychologytoday.com/us/therapists/peyton-shaw-grapevine-tx/1184171',
     'https://www.facebook.com/peytonshawcounseling', // TODO: Update with actual Facebook URL if available
-    'https://www.linkedin.com/in/peytonwoods'
+    'https://www.linkedin.com/in/peytonwoods',
+    'https://twitter.com/peytonshawcounseling'
   ],
   // Additional business details for schema
   currenciesAccepted: 'USD',

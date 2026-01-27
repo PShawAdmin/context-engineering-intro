@@ -196,18 +196,20 @@ export default function FAQPage() {
                               </svg>
                             </span>
                           </button>
-                          {isOpen && (
-                            <div
-                              id={contentId}
-                              role="region"
-                              aria-labelledby={buttonId}
-                              className="px-6 pt-3 pb-5"
-                            >
+                          <div
+                            id={contentId}
+                            role="region"
+                            aria-labelledby={buttonId}
+                            className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                              isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                            }`}
+                          >
+                            <div className="overflow-hidden px-6 pt-3 pb-5">
                               <Text size="sm" className="text-text-storm">
                                 {item.answer}
                               </Text>
                             </div>
-                          )}
+                          </div>
                         </div>
                       );
                     })}

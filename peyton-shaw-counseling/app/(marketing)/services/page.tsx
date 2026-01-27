@@ -231,7 +231,7 @@ export default function ServicesPage() {
                             href={`/services/${service.slug}`}
                             className="font-medium text-text-charcoal hover:text-nude-clay transition-colors"
                           >
-                            View details
+                            View {service.title} details
                           </Link>
                           <span className="text-grey-blue">•</span>
                           <Link

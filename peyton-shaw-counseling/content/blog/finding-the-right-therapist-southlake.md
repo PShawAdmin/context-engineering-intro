@@ -5,7 +5,7 @@ author: "Peyton Shaw"
 publishedAt: "2024-01-15"
 category: "Getting Started"
 keywords: ["therapist southlake tx", "finding therapist", "mental health southlake", "therapy guide", "counseling southlake"]
-image: "/images/blog/finding-therapist.jpg"
+image: "/images/peyton-shaw-professional.jpg"
 ---
 
 # How to Find the Right Therapist in Southlake, TX
