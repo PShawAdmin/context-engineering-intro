@@ -9,15 +9,16 @@ export default function Footer() {
 
   const footerLinks = {
     services: [
-      { name: 'Individual Therapy', href: '/services/individual-therapy' },
-      { name: 'Anxiety Management', href: '/services/anxiety-stress-management' },
-      { name: 'Depression Treatment', href: '/services/depression-treatment' },
-      { name: 'Relationship Counseling', href: '/services/relationship-issues' },
+      { name: 'Individual Therapy', href: '/services' },
+      { name: 'Anxiety Management', href: '/services' },
+      { name: 'Depression Treatment', href: '/services' },
+      { name: 'Relationship Counseling', href: '/services' },
     ],
     resources: [
       { name: 'About Me', href: '/about' },
       { name: 'Areas Served', href: '/areas-served' },
       { name: 'FAQ', href: '/faq' },
+      { name: 'Guides', href: '/guides' },
       { name: 'Blog', href: '/blog' },
       { name: 'Contact', href: '/contact' },
     ],
