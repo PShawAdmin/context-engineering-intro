@@ -18,7 +18,7 @@ export const revalidate = 300;
 
 export default async function BlogPage() {
   const localPosts = await getAllPosts();
-  const bloggerPosts = localPosts.length > 0 ? [] : await getBloggerPosts();
+  const bloggerPosts = await getBloggerPosts();
   const localPostItems: BloggerListItem[] = localPosts.map((post) => ({
     id: post.slug,
     title: post.title,
@@ -33,7 +33,7 @@ export default async function BlogPage() {
     image: post.image,
     author: post.author,
   }));
-  const blogPosts = localPostItems.length > 0 ? localPostItems : bloggerPosts;
+  const blogPosts = bloggerPosts.length > 0 ? bloggerPosts : localPostItems;
   const hasPosts = blogPosts.length > 0;
 
   return (
