@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
@@ -227,19 +226,12 @@ export default function ServicesPage() {
                           </div>
                         )}
                         <div className="flex flex-wrap items-center gap-3 text-sm">
-                          <Link
-                            href={`/services/${service.slug}`}
-                            className="font-medium text-text-charcoal hover:text-nude-clay transition-colors"
-                          >
-                            View {service.title} details
-                          </Link>
-                          <span className="text-grey-blue">•</span>
-                          <Link
+                          <LinkButton
                             href="/contact"
-                            className="font-medium text-text-charcoal hover:text-nude-clay transition-colors"
+                            className="bg-nude-clay text-white hover:bg-nude-clay/90"
                           >
                             Book a consultation
-                          </Link>
+                          </LinkButton>
                         </div>
                       </div>
                     </div>

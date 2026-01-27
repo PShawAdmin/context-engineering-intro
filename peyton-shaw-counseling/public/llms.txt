@@ -30,6 +30,7 @@ Do not infer
 - [Areas Served](https://www.peytonshawcounseling.com/areas-served): Telehealth coverage across Texas.
 - [FAQ](https://www.peytonshawcounseling.com/faq): Sessions, payment, and policies.
 - [Contact](https://www.peytonshawcounseling.com/contact): Book a consultation.
+- [Guides](https://www.peytonshawcounseling.com/guides): Long-form resources and guides.
 
 ## Services
 - [Individual Therapy](https://www.peytonshawcounseling.com/services/individual-therapy): Personalized one-on-one therapy.
@@ -38,14 +39,6 @@ Do not infer
 - [Life Transitions](https://www.peytonshawcounseling.com/services/life-transitions): Support for change and adjustment.
 - [Relationship Issues](https://www.peytonshawcounseling.com/services/relationship-issues): Communication, boundaries, and relationship stress.
 - [Personal Growth](https://www.peytonshawcounseling.com/services/self-esteem-personal-growth): Confidence and self-worth support.
-
-## Areas served (telehealth)
-- [Southlake, TX](https://www.peytonshawcounseling.com/areas-served/southlake): Local telehealth page.
-- [Grapevine, TX](https://www.peytonshawcounseling.com/areas-served/grapevine): Local telehealth page.
-- [Colleyville, TX](https://www.peytonshawcounseling.com/areas-served/colleyville): Local telehealth page.
-- [Keller, TX](https://www.peytonshawcounseling.com/areas-served/keller): Local telehealth page.
-- [Westlake, TX](https://www.peytonshawcounseling.com/areas-served/westlake): Local telehealth page.
-- [Trophy Club, TX](https://www.peytonshawcounseling.com/areas-served/trophy-club): Local telehealth page.
 
 ## Policies and accessibility
 - [Privacy Policy](https://www.peytonshawcounseling.com/privacy): Data handling and privacy practices.
@@ -60,3 +53,4 @@ Do not infer
 
 ## Optional
 - [Blog](https://www.peytonshawcounseling.com/blog): Articles and resources.
+- [Guides](https://www.peytonshawcounseling.com/guides): Long-form resources and guides.

@@ -29,8 +29,8 @@ export const LOCATIONS: LocationDetail[] = [
     faqs: [
       {
         id: 'southlake-1',
-        question: 'Do you offer in-person therapy in Southlake?',
-        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
+        question: 'Do you offer telehealth therapy in Southlake?',
+        answer: 'Yes. We provide telehealth-only sessions for clients across Texas.'
       },
       {
         id: 'southlake-2',
@@ -60,8 +60,8 @@ export const LOCATIONS: LocationDetail[] = [
     faqs: [
       {
         id: 'grapevine-1',
-        question: 'Do you see clients from Grapevine in person?',
-        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
+        question: 'Do you offer telehealth therapy for Grapevine clients?',
+        answer: 'Yes. We provide telehealth-only sessions for clients across Texas.'
       },
       {
         id: 'grapevine-2',
@@ -91,8 +91,8 @@ export const LOCATIONS: LocationDetail[] = [
     faqs: [
       {
         id: 'colleyville-1',
-        question: 'Do you offer in-person sessions for Colleyville?',
-        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
+        question: 'Do you offer telehealth therapy for Colleyville?',
+        answer: 'Yes. We provide telehealth-only sessions for clients across Texas.'
       },
       {
         id: 'colleyville-2',
@@ -122,8 +122,8 @@ export const LOCATIONS: LocationDetail[] = [
     faqs: [
       {
         id: 'keller-1',
-        question: 'Do you serve Keller residents in person?',
-        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
+        question: 'Do you offer telehealth therapy for Keller residents?',
+        answer: 'Yes. We provide telehealth-only sessions for clients across Texas.'
       },
       {
         id: 'keller-2',
@@ -153,8 +153,8 @@ export const LOCATIONS: LocationDetail[] = [
     faqs: [
       {
         id: 'westlake-1',
-        question: 'Is in-person therapy available for Westlake residents?',
-        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
+        question: 'Is telehealth therapy available for Westlake residents?',
+        answer: 'Yes. We provide telehealth-only sessions for clients across Texas.'
       },
       {
         id: 'westlake-2',
@@ -184,8 +184,8 @@ export const LOCATIONS: LocationDetail[] = [
     faqs: [
       {
         id: 'trophy-club-1',
-        question: 'Do you see Trophy Club clients in person?',
-        answer: 'Not at this time. We are currently telehealth-only and serve clients across Texas.'
+        question: 'Do you offer telehealth therapy for Trophy Club clients?',
+        answer: 'Yes. We provide telehealth-only sessions for clients across Texas.'
       },
       {
         id: 'trophy-club-2',

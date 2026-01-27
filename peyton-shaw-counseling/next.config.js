@@ -135,6 +135,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/blog/:slug',
+        destination: 'https://www.peytonshawcounseling.com/guides/:slug',
+        permanent: true,
+      },
+      {
         source: '/:path*',
         has: [
           {
@@ -144,6 +149,14 @@ const nextConfig = {
         ],
         destination: 'https://www.peytonshawcounseling.com/:path*',
         permanent: true,
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/guides/:slug',
+        destination: '/guides?slug=:slug',
       },
     ];
   },

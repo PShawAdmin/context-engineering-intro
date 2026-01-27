@@ -35,15 +35,15 @@ export async function GET() {
     changefreq: 'monthly',
   }));
 
-  // Blog post pages
-  const blogPosts = await getAllPosts();
-  const blogPages = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
+  // Guide pages (local markdown posts)
+  const guidePosts = await getAllPosts();
+  const guidePages = guidePosts.map((post) => ({
+    url: `${baseUrl}/guides/${post.slug}`,
     priority: '0.6',
     changefreq: 'monthly',
   }));
   
-  const allPages = [...staticPages, ...servicePages, ...locationPages, ...blogPages];
+  const allPages = [...staticPages, ...servicePages, ...locationPages, ...guidePages];
   const currentDate = new Date().toISOString();
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

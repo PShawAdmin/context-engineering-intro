@@ -197,8 +197,8 @@ export default function AreasServedPage() {
                 Telehealth-Only Practice
               </Heading>
               <Text className="mb-8 max-w-2xl mx-auto">
-                We are currently telehealth-only and do not offer in-person sessions. If you are in
-                Texas, you can meet from home using secure video.
+                Sessions are telehealth-only for clients across Texas. You can meet from home using
+                secure video.
               </Text>
               <div className="bg-nude-cream rounded-lg p-8 max-w-md mx-auto">
                 <Text weight="medium" className="mb-2">

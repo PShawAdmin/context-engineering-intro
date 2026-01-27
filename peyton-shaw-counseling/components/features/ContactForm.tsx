@@ -130,7 +130,7 @@ export default function ContactForm() {
           <Input
             type="email"
             label="Email"
-            placeholder="your@email.com"
+            placeholder="Email address"
             value={formData.email}
             onValueChange={handleChange('email')}
             isRequired
