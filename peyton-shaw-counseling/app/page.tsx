@@ -244,7 +244,7 @@ export default function HomePage() {
               {LOCATIONS.map((location) => (
                 <Link
                   key={location.slug}
-                  href={`/areas-served/${location.slug}`}
+                  href="/areas-served"
                   className="px-4 py-2 bg-nude-cream text-text-storm rounded-full text-sm hover:bg-nude-sand transition-colors"
                 >
                   {location.name}, TX

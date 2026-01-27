@@ -260,7 +260,7 @@ export function generateArticleSchema({
       "name": SITE_CONFIG.name,
       "logo": {
         "@type": "ImageObject",
-        "url": `${process.env.NEXT_PUBLIC_SITE_URL}/images/logo.png`
+        "url": `${process.env.NEXT_PUBLIC_SITE_URL}${businessInfo.logo}`
       }
     },
     "mainEntityOfPage": {

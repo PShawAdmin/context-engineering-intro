@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
 import { Card, CardHeader, CardBody, CardFooter } from '@heroui/card';
 import { Chip } from '@heroui/chip';
 import { Button } from '@heroui/button';
@@ -18,6 +19,8 @@ const formatDate = (value: string) =>
     year: 'numeric',
     timeZone: 'UTC',
   }).format(new Date(value));
+
+const isExternalUrl = (value: string) => /^https?:\/\//i.test(value);
 
 const sanitizeHtml = (value: string) =>
   value
@@ -267,7 +270,14 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
             </CardHeader>
             <CardBody className="py-2">
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {post.title}
+                <Link
+                  href={post.url}
+                  className="hover:text-nude-clay transition-colors"
+                  target={isExternalUrl(post.url) ? '_blank' : undefined}
+                  rel={isExternalUrl(post.url) ? 'noopener noreferrer' : undefined}
+                >
+                  {post.title}
+                </Link>
               </h3>
               <p className="text-gray-600 mb-4">
                 {post.excerpt}
