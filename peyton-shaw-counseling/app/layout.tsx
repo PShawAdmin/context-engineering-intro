@@ -4,7 +4,7 @@ import { Providers } from './providers'
 import AnnouncementBanner from '@/components/layout/AnnouncementBanner'
 import { inter, fontVariables } from '@/lib/fonts'
 import JsonLd from '@/components/seo/JsonLd'
-import { generateMedicalBusinessSchema } from '@/lib/seo/schemas'
+import { generateMedicalBusinessSchema, generatePersonSchema } from '@/lib/seo/schemas'
 import AnalyticsProvider from '@/components/analytics/AnalyticsProvider'
 import { businessInfo } from '@/lib/constants'
 import { targetKeywords } from '@/lib/seo/keywords'
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     siteName: businessInfo.name,
     images: [
       {
-        url: '/opengraph-image.png',
+        url: '/images/peyton-shaw-professional.jpg',
         width: 1200,
         height: 630,
         alt: `${businessInfo.name} - Professional Therapy Services`
@@ -68,8 +68,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${businessInfo.name} - Telehealth Therapy for Teens and Adults in Texas`,
     description: 'Telehealth-only therapy for teens and adults across Texas. Evidence-based care for anxiety, depression, and life transitions.',
-    images: ['/twitter-image.png'],
-    creator: '@peytonshaw', // TODO: Update with actual Twitter handle
+    images: ['/images/peyton-shaw-professional.jpg'],
+    creator: '@peytonshawcounseling',
   },
   robots: {
     index: true,
@@ -120,6 +120,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${fontVariables} overflow-x-hidden`}>
         <JsonLd data={generateMedicalBusinessSchema()} />
+        <JsonLd data={generatePersonSchema()} />
         <Providers>
           <AnnouncementBanner />
           {children}

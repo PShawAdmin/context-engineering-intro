@@ -62,6 +62,12 @@ export function generateMedicalBusinessSchema() {
           }
         })),
     "sameAs": businessInfo.sameAs.filter(url => url && url !== ''),
+    "founder": {
+      "@id": `${siteUrl}/#therapist`
+    },
+    "employee": {
+      "@id": `${siteUrl}/#therapist`
+    },
     ...(hasTestimonials
       ? {
           "aggregateRating": {
@@ -167,6 +173,18 @@ export function generatePersonSchema() {
       "@id": `${siteUrl}/#organization`,
       "name": businessInfo.name
     },
+    "hasCredential": businessInfo.licenseNumber
+      ? {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Licensed Professional Counselor",
+          "credentialCategory": "Professional License",
+          "identifier": businessInfo.licenseNumber,
+          "issuedBy": {
+            "@type": "Organization",
+            "name": businessInfo.licenseIssuer
+          }
+        }
+      : undefined,
     "description": "Licensed professional counselor providing telehealth-only care for teens and adults across Texas, with evidence-based support for anxiety, depression, life transitions, and relationship stress.",
     "image": `${siteUrl}${businessInfo.logo}`,
     "telephone": businessInfo.phone,

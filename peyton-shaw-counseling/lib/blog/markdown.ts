@@ -18,5 +18,5 @@ marked.setOptions({
 
 export const renderMarkdownToHtml = (content: string) => {
   if (!content) return '';
-  return marked.parse(content);
+  return marked.parse(content) as string;
 };
