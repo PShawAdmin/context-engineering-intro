@@ -18,7 +18,7 @@ import { generateWebPageSchema } from '@/lib/seo/schemas';
 import ApproachAccordion from '@/components/features/ApproachAccordion';
 
 export const metadata = generateMetaTags({
-  title: 'Telehealth Therapy for Teens & Adults | Anxiety & Depression',
+  title: 'Telehealth Therapy in Texas for Teens & Adults | Peyton Shaw',
   description:
     'Telehealth therapy for teens and adults across Texas, offering evidence-based care for anxiety, depression, relationship stress, and life transitions with secure online sessions.',
   keywords: [
@@ -100,8 +100,8 @@ export default function HomePage() {
       <main>
         {/* Hero Section */}
         <Hero
-          title="Therapy that fits your life."
-          subtitle="Telehealth therapy for teens and adults across Texas—calm, practical support for anxiety, depression, stress, and life transitions."
+          title="Telehealth Therapy in Texas for Teens & Adults"
+          subtitle="Calm, practical support for anxiety, depression, stress, and life transitions with secure online sessions across Texas."
           description={
             <span className="text-base">
               Secure online sessions &bull; Clear goals &bull; Tools you'll use between appointments

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { Alert } from '@heroui/alert';
 import { Card, CardBody, CardHeader } from '@heroui/card';
 import { Chip } from '@heroui/chip';
@@ -356,21 +356,24 @@ export default function ApproachAccordion({
                   indicator: 'bg-nude-clay/80'
                 }}
               />
-              <p className="text-center text-xs text-text-storm">
+              <div className="flex items-center text-xs text-text-storm">
                 {RHYTHM_STAGES.map((stage, index) => (
-                  <span
-                    key={stage.label}
-                    className={index === stageIndex ? 'text-text-charcoal font-medium' : 'text-text-storm/70'}
-                  >
-                    {stage.label}
+                  <Fragment key={stage.label}>
+                    <span
+                      className={`flex-1 text-center ${
+                        index === stageIndex ? 'text-text-charcoal font-medium' : 'text-text-storm/70'
+                      }`}
+                    >
+                      {stage.label}
+                    </span>
                     {index < RHYTHM_STAGES.length - 1 && (
-                      <span className="mx-2 text-text-storm/60" aria-hidden="true">
+                      <span className="text-text-storm/60" aria-hidden="true">
                         &bull;
                       </span>
                     )}
-                  </span>
+                  </Fragment>
                 ))}
-              </p>
+              </div>
               <p className="text-sm text-text-storm">
                 Think of the rhythm as a loop: clarify, practice, reflect, refine. Some weeks are
                 skill-heavy; others make more space for processing—but we always end with a next step.
