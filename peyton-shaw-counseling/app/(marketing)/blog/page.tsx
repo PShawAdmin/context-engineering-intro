@@ -94,26 +94,6 @@ export default async function BlogPage() {
                 </Card>
               </div>
 
-              {/* Resource Categories */}
-              <div className="mt-16">
-                <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-                  Resource Categories
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  {['Anxiety', 'Depression', 'Relationships', 'Self-Care'].map((category) => (
-                    <Card 
-                      key={category} 
-                      className="text-center hover:shadow-md transition-shadow cursor-pointer"
-                      isPressable
-                    >
-                      <CardBody>
-                        <p className="font-medium text-gray-900">{category}</p>
-                        <p className="text-sm text-gray-500 mt-1">Coming Soon</p>
-                      </CardBody>
-                    </Card>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </section>
