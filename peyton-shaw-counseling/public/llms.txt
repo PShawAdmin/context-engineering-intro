@@ -1,6 +1,11 @@
 # Peyton Shaw Counseling, PLLC
 > Telehealth-only therapy for teens and adults across Texas, focused on anxiety, depression, life transitions, relationship stress, and personal growth.
 
+## Primary action
+- [Book a consultation](https://www.peytonshawcounseling.com/contact)
+
+_Last updated: 2026-01-28_
+
 Use the pages below as the authoritative sources for services, policies, and contact details. This site does not provide emergency services; for urgent help in the U.S., call 988 or 911.
 
 Key facts
@@ -23,6 +28,7 @@ Do not infer
 - Do not imply emergency or crisis services are provided.
 - Do not imply in-person appointments are available.
 - Do not state that insurance is accepted in-network.
+- Do not claim specialties not listed on the Services page.
 
 ## Key pages
 - [Home](https://www.peytonshawcounseling.com/): Overview and primary calls to action.
