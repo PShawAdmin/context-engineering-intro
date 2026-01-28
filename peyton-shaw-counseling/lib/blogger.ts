@@ -53,13 +53,34 @@ const slugify = (value: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
 
+const normalizeSlug = (value?: string) => slugify((value ?? '').replace(/\.html?$/i, ''));
+
+const matchSlug = (candidate: string, target: string) => {
+  const normalizedCandidate = normalizeSlug(candidate);
+  const normalizedTarget = normalizeSlug(target);
+
+  if (!normalizedCandidate || !normalizedTarget) return false;
+  if (normalizedCandidate === normalizedTarget) return true;
+
+  const isPrefixMatch =
+    normalizedCandidate.startsWith(normalizedTarget) || normalizedTarget.startsWith(normalizedCandidate);
+
+  if (!isPrefixMatch) return false;
+
+  const shorter = Math.min(normalizedCandidate.length, normalizedTarget.length);
+  const longer = Math.max(normalizedCandidate.length, normalizedTarget.length);
+
+  return shorter / longer >= 0.7;
+};
+
 const getSlugFromUrl = (value: string, fallbackTitle?: string) => {
   try {
     const { pathname } = new URL(value);
     const segments = pathname.split('/').filter(Boolean);
     const last = segments[segments.length - 1] || '';
     const slug = last.replace(/\.html?$/i, '');
-    if (slug) return slug;
+    const decoded = decodeURIComponent(slug);
+    if (decoded) return decoded;
   } catch {
     // ignore parsing errors
   }
@@ -226,7 +247,11 @@ export const getBloggerPostBySlug = async (slug: string): Promise<BlogPost | nul
 
     const data = (await response.json()) as BloggerPostsResponse;
     const items = data.items ?? [];
-    const match = items.find((item) => getSlugFromUrl(item.url, item.title) === slug);
+    const match = items.find((item) => {
+      const candidateFromUrl = getSlugFromUrl(item.url, item.title);
+      const candidateFromTitle = slugify(item.title);
+      return matchSlug(candidateFromUrl, slug) || matchSlug(candidateFromTitle, slug);
+    });
 
     if (match) {
       return toBlogPost(match, siteUrl, blogHost);

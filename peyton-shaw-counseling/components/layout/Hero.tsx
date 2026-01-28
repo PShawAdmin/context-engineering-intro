@@ -7,6 +7,8 @@ interface HeroProps {
   title: string;
   subtitle: string;
   description?: ReactNode;
+  subtitleSize?: 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+  subtitleClassName?: string;
   primaryAction?: {
     label: string;
     href: string;
@@ -26,6 +28,8 @@ export default function Hero({
   title,
   subtitle,
   description,
+  subtitleSize = 'xl',
+  subtitleClassName = 'md:text-2xl mb-4',
   primaryAction,
   secondaryAction,
   ctaNote,
@@ -68,7 +72,7 @@ export default function Hero({
               </span>
             ))}
           </Heading>
-          <Text size="xl" weight="medium" className="md:text-2xl mb-4">
+          <Text size={subtitleSize} weight="medium" className={subtitleClassName}>
             {subtitle}
           </Text>
           {description && (
