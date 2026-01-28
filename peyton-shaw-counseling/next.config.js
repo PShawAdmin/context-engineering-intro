@@ -146,33 +146,63 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/services/individual-therapy/',
+        destination: '/services#service-individual-therapy',
+        permanent: true,
+      },
+      {
         source: '/services/individual-therapy',
-        destination: '/services',
+        destination: '/services#service-individual-therapy',
+        permanent: true,
+      },
+      {
+        source: '/services/anxiety-stress-management/',
+        destination: '/services#service-anxiety-stress-management',
         permanent: true,
       },
       {
         source: '/services/anxiety-stress-management',
-        destination: '/services',
+        destination: '/services#service-anxiety-stress-management',
+        permanent: true,
+      },
+      {
+        source: '/services/depression-treatment/',
+        destination: '/services#service-depression-treatment',
         permanent: true,
       },
       {
         source: '/services/depression-treatment',
-        destination: '/services',
+        destination: '/services#service-depression-treatment',
+        permanent: true,
+      },
+      {
+        source: '/services/life-transitions/',
+        destination: '/services#service-life-transitions',
         permanent: true,
       },
       {
         source: '/services/life-transitions',
-        destination: '/services',
+        destination: '/services#service-life-transitions',
+        permanent: true,
+      },
+      {
+        source: '/services/relationship-issues/',
+        destination: '/services#service-relationship-issues',
         permanent: true,
       },
       {
         source: '/services/relationship-issues',
-        destination: '/services',
+        destination: '/services#service-relationship-issues',
+        permanent: true,
+      },
+      {
+        source: '/services/self-esteem-personal-growth/',
+        destination: '/services#service-self-esteem-personal-growth',
         permanent: true,
       },
       {
         source: '/services/self-esteem-personal-growth',
-        destination: '/services',
+        destination: '/services#service-self-esteem-personal-growth',
         permanent: true,
       },
     ];
