@@ -36,6 +36,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
+  contentHtml?: string;
   author: string;
   publishedAt: string;
   updatedAt?: string;
@@ -43,4 +44,19 @@ export interface BlogPost {
   category: string;
   readingTime: number;
   image?: string;
+}
+
+export interface BlogListItem {
+  id: string;
+  title: string;
+  content?: string;
+  excerpt: string;
+  publishedAt: string;
+  updatedAt?: string;
+  readTime: number;
+  category: string;
+  tags: string[];
+  url: string;
+  image?: string;
+  author?: string;
 }

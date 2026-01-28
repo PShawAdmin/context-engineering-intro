@@ -1,6 +1,7 @@
 import { SERVICES, businessInfo } from '@/lib/constants';
 import { LOCATIONS } from '@/lib/locations';
 import { getAllPosts } from '@/lib/blog/utils';
+import { getBloggerPosts } from '@/lib/blogger';
 
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || businessInfo.url;
@@ -42,8 +43,16 @@ export async function GET() {
     priority: '0.6',
     changefreq: 'monthly',
   }));
+
+  // Blog pages (Blogger-backed, on-domain URLs)
+  const bloggerPosts = await getBloggerPosts(100);
+  const bloggerPages = bloggerPosts.map((post) => ({
+    url: `${baseUrl}${post.url}`,
+    priority: '0.6',
+    changefreq: 'weekly',
+  }));
   
-  const allPages = [...staticPages, ...servicePages, ...locationPages, ...guidePages];
+  const allPages = [...staticPages, ...servicePages, ...locationPages, ...guidePages, ...bloggerPages];
   const currentDate = new Date().toISOString();
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

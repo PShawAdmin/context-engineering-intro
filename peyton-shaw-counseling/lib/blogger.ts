@@ -1,3 +1,6 @@
+import { businessInfo } from '@/lib/constants';
+import type { BlogListItem, BlogPost } from '@/lib/types';
+
 type BloggerPostItem = {
   id: string;
   title: string;
@@ -13,28 +16,16 @@ type BloggerPostItem = {
 
 type BloggerPostsResponse = {
   items?: BloggerPostItem[];
+  nextPageToken?: string;
 };
 
 type BloggerBlogResponse = {
   id?: string;
 };
 
-export type BloggerListItem = {
-  id: string;
-  title: string;
-  content?: string;
-  excerpt: string;
-  publishedAt: string;
-  updatedAt?: string;
-  readTime: number;
-  category: string;
-  tags: string[];
-  url: string;
-  image?: string;
-  author?: string;
-};
-
 const BLOGGER_API_BASE = 'https://www.googleapis.com/blogger/v3';
+const BLOGGER_PAGE_SIZE = 100;
+const BLOGGER_PAGE_LIMIT = 8;
 
 const stripHtml = (value: string) =>
   value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -56,8 +47,59 @@ const extractFirstImage = (html: string) => {
   return match?.[1];
 };
 
-const getApiKey = () =>
-  process.env.BLOGGER_API_KEY || process.env.GOOGLE_PLACES_API_KEY || '';
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+const getSlugFromUrl = (value: string, fallbackTitle?: string) => {
+  try {
+    const { pathname } = new URL(value);
+    const segments = pathname.split('/').filter(Boolean);
+    const last = segments[segments.length - 1] || '';
+    const slug = last.replace(/\.html?$/i, '');
+    if (slug) return slug;
+  } catch {
+    // ignore parsing errors
+  }
+  return fallbackTitle ? slugify(fallbackTitle) : '';
+};
+
+const getApiKey = () => process.env.BLOGGER_API_KEY || process.env.GOOGLE_PLACES_API_KEY || '';
+
+const getBloggerHost = () => {
+  const blogUrl = process.env.BLOGGER_BLOG_URL;
+  if (!blogUrl) return null;
+  try {
+    return new URL(blogUrl).host;
+  } catch {
+    return null;
+  }
+};
+
+export const isBloggerConfigured = () => {
+  const apiKey = getApiKey();
+  const blogId = process.env.BLOGGER_BLOG_ID;
+  const blogUrl = process.env.BLOGGER_BLOG_URL;
+  return Boolean(apiKey && (blogId || blogUrl));
+};
+
+const rewriteInternalLinks = (html: string, blogHost: string | null, siteUrl: string) => {
+  if (!html || !blogHost) return html;
+
+  return html.replace(/href=(['"])(https?:\/\/[^'"]+)\1/gi, (match, quote, url) => {
+    try {
+      const parsed = new URL(url);
+      if (parsed.host !== blogHost) return match;
+      const slug = getSlugFromUrl(url);
+      if (!slug) return match;
+      return `href=${quote}${siteUrl}/blog/${slug}${quote}`;
+    } catch {
+      return match;
+    }
+  });
+};
 
 const getBlogId = async (apiKey: string) => {
   const configuredId = process.env.BLOGGER_BLOG_ID;
@@ -80,13 +122,58 @@ const getBlogId = async (apiKey: string) => {
   return data.id ?? null;
 };
 
-export const getBloggerPosts = async (maxResults = 9): Promise<BloggerListItem[]> => {
-  const apiKey = getApiKey();
-  if (!apiKey) {
-    console.warn('Blogger API key not configured.');
+const toListItem = (item: BloggerPostItem, siteUrl: string, blogHost: string | null): BlogListItem => {
+  const slug = getSlugFromUrl(item.url, item.title);
+  const rawContent = item.content ?? '';
+  const content = rewriteInternalLinks(rawContent, blogHost, siteUrl);
+  const textContent = stripHtml(content);
+  const labels = item.labels ?? [];
+
+  return {
+    id: slug || item.id,
+    title: item.title,
+    content,
+    excerpt: buildExcerpt(textContent),
+    publishedAt: item.published,
+    updatedAt: item.updated,
+    readTime: calculateReadingTime(textContent),
+    category: labels[0] ?? 'Insights',
+    tags: labels.slice(1),
+    url: `/blog/${slug || slugify(item.title)}`,
+    image: extractFirstImage(content),
+    author: item.author?.displayName,
+  };
+};
+
+const toBlogPost = (item: BloggerPostItem, siteUrl: string, blogHost: string | null): BlogPost => {
+  const slug = getSlugFromUrl(item.url, item.title) || slugify(item.title);
+  const rawContent = item.content ?? '';
+  const contentHtml = rewriteInternalLinks(rawContent, blogHost, siteUrl);
+  const textContent = stripHtml(contentHtml);
+  const labels = item.labels ?? [];
+
+  return {
+    slug,
+    title: item.title,
+    excerpt: buildExcerpt(textContent),
+    content: textContent,
+    contentHtml,
+    author: item.author?.displayName || 'Peyton Shaw',
+    publishedAt: item.published,
+    updatedAt: item.updated,
+    keywords: labels,
+    category: labels[0] ?? 'Insights',
+    readingTime: calculateReadingTime(textContent),
+    image: extractFirstImage(contentHtml),
+  };
+};
+
+export const getBloggerPosts = async (maxResults = 9): Promise<BlogListItem[]> => {
+  if (!isBloggerConfigured()) {
     return [];
   }
 
+  const apiKey = getApiKey();
   const blogId = await getBlogId(apiKey);
   if (!blogId) {
     console.warn('Blogger blog ID or URL not configured.');
@@ -105,25 +192,52 @@ export const getBloggerPosts = async (maxResults = 9): Promise<BloggerListItem[]
 
   const data = (await response.json()) as BloggerPostsResponse;
   const items = data.items ?? [];
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || businessInfo.url;
+  const blogHost = getBloggerHost();
 
-  return items.map((item) => {
-    const labels = item.labels ?? [];
-    const content = item.content ?? '';
-    const textContent = stripHtml(content);
+  return items.map((item) => toListItem(item, siteUrl, blogHost));
+};
 
-    return {
-      id: item.id,
-      title: item.title,
-      content: item.content ?? '',
-      excerpt: buildExcerpt(textContent),
-      publishedAt: item.published,
-      updatedAt: item.updated,
-      readTime: calculateReadingTime(textContent),
-      category: labels[0] ?? 'Insights',
-      tags: labels.slice(1),
-      url: item.url,
-      image: extractFirstImage(content),
-      author: item.author?.displayName,
-    };
-  });
+export const getBloggerPostBySlug = async (slug: string): Promise<BlogPost | null> => {
+  if (!isBloggerConfigured()) {
+    return null;
+  }
+
+  const apiKey = getApiKey();
+  const blogId = await getBlogId(apiKey);
+  if (!blogId) {
+    return null;
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || businessInfo.url;
+  const blogHost = getBloggerHost();
+  let pageToken: string | undefined;
+
+  for (let page = 0; page < BLOGGER_PAGE_LIMIT; page += 1) {
+    const pageTokenQuery = pageToken ? `&pageToken=${pageToken}` : '';
+    const response = await fetch(
+      `${BLOGGER_API_BASE}/blogs/${blogId}/posts?key=${apiKey}&maxResults=${BLOGGER_PAGE_SIZE}&fetchBodies=true&fetchImages=true${pageTokenQuery}`,
+      { next: { revalidate: 300 } }
+    );
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const data = (await response.json()) as BloggerPostsResponse;
+    const items = data.items ?? [];
+    const match = items.find((item) => getSlugFromUrl(item.url, item.title) === slug);
+
+    if (match) {
+      return toBlogPost(match, siteUrl, blogHost);
+    }
+
+    if (!data.nextPageToken) {
+      break;
+    }
+
+    pageToken = data.nextPageToken;
+  }
+
+  return null;
 };

@@ -9,6 +9,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 import { getAllPosts, getPostBySlug } from '@/lib/blog/utils';
+import { getBloggerPostBySlug, isBloggerConfigured } from '@/lib/blogger';
 import { renderMarkdownToHtml } from '@/lib/blog/markdown';
 import { businessInfo } from '@/lib/constants';
 import { generateMetaTags } from '@/lib/seo/utils';
@@ -36,7 +37,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  const bloggerEnabled = isBloggerConfigured();
+  const bloggerPost = bloggerEnabled ? await getBloggerPostBySlug(params.slug) : null;
+  const localPost = bloggerPost ? null : await getPostBySlug(params.slug);
+  const post = bloggerPost ?? localPost;
 
   if (!post) {
     return { title: 'Post Not Found' };
@@ -54,14 +58,17 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getPostBySlug(params.slug);
+  const bloggerEnabled = isBloggerConfigured();
+  const bloggerPost = bloggerEnabled ? await getBloggerPostBySlug(params.slug) : null;
+  const localPost = bloggerPost ? null : await getPostBySlug(params.slug);
+  const post = bloggerPost ?? localPost;
 
   if (!post) {
     notFound();
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || businessInfo.url;
-  const contentHtml = renderMarkdownToHtml(post.content);
+  const contentHtml = post.contentHtml ?? renderMarkdownToHtml(post.content);
   const pageUrl = `/blog/${post.slug}`;
 
   const breadcrumbItems = [

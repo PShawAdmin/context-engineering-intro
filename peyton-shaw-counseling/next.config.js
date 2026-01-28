@@ -135,11 +135,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/blog/:slug',
-        destination: 'https://www.peytonshawcounseling.com/guides/:slug',
-        permanent: true,
-      },
-      {
         source: '/:path*',
         has: [
           {

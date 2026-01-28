@@ -6,10 +6,10 @@ import { Card, CardHeader, CardBody, CardFooter } from '@heroui/card';
 import { Chip } from '@heroui/chip';
 import { Button } from '@heroui/button';
 import { ScrollShadow } from '@heroui/scroll-shadow';
-import type { BloggerListItem } from '@/lib/blogger';
+import type { BlogListItem } from '@/lib/types';
 
 type BlogPostGridProps = {
-  posts: BloggerListItem[];
+  posts: BlogListItem[];
 };
 
 const formatDate = (value: string) =>
@@ -20,7 +20,20 @@ const formatDate = (value: string) =>
     timeZone: 'UTC',
   }).format(new Date(value));
 
-const isExternalUrl = (value: string) => /^https?:\/\//i.test(value);
+const normalizePostUrl = (value: string) => {
+  if (value.startsWith('/')) return value;
+  if (value.startsWith('http')) {
+    try {
+      const parsed = new URL(value);
+      if (parsed.hostname.endsWith('peytonshawcounseling.com')) {
+        return parsed.pathname || '/blog';
+      }
+    } catch {
+      // fall through
+    }
+  }
+  return '/blog';
+};
 
 const sanitizeHtml = (value: string) =>
   value
@@ -271,10 +284,8 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
             <CardBody className="py-2">
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 <Link
-                  href={post.url}
+                  href={normalizePostUrl(post.url)}
                   className="hover:text-nude-clay transition-colors"
-                  target={isExternalUrl(post.url) ? '_blank' : undefined}
-                  rel={isExternalUrl(post.url) ? 'noopener noreferrer' : undefined}
                 >
                   {post.title}
                 </Link>

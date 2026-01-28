@@ -5,7 +5,8 @@ import Hero from '@/components/layout/Hero';
 import {Card, CardBody} from '@heroui/card';
 import LinkButton from '@/components/ui/LinkButton';
 import BlogPostGrid from '@/components/features/BlogPostGrid';
-import { getBloggerPosts, type BloggerListItem } from '@/lib/blogger';
+import type { BlogListItem } from '@/lib/types';
+import { getBloggerPosts } from '@/lib/blogger';
 import { getAllPosts } from '@/lib/blog/utils';
 import { renderMarkdownToHtml } from '@/lib/blog/markdown';
 
@@ -19,7 +20,7 @@ export const revalidate = 300;
 export default async function BlogPage() {
   const localPosts = await getAllPosts();
   const bloggerPosts = await getBloggerPosts();
-  const localPostItems: BloggerListItem[] = localPosts.map((post) => ({
+  const localPostItems: BlogListItem[] = localPosts.map((post) => ({
     id: post.slug,
     title: post.title,
     content: renderMarkdownToHtml(post.content),
