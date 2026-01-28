@@ -37,6 +37,7 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   contentHtml?: string;
+  aliases?: string[];
   author: string;
   publishedAt: string;
   updatedAt?: string;

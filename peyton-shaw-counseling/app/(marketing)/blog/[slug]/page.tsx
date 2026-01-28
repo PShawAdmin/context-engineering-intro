@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
@@ -9,7 +9,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 import { getAllPosts, getPostBySlug } from '@/lib/blog/utils';
-import { getBloggerPostBySlug, isBloggerConfigured } from '@/lib/blogger';
+import { getBloggerPostBySlugOrAlias, isBloggerConfigured } from '@/lib/blogger';
 import { renderMarkdownToHtml } from '@/lib/blog/markdown';
 import { businessInfo } from '@/lib/constants';
 import { generateMetaTags } from '@/lib/seo/utils';
@@ -39,20 +39,22 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const bloggerEnabled = isBloggerConfigured();
-  const bloggerPost = bloggerEnabled ? await getBloggerPostBySlug(slug) : null;
-  const localPost = bloggerPost ? null : await getPostBySlug(slug);
-  const post = bloggerPost ?? localPost;
+  const bloggerResolved = bloggerEnabled ? await getBloggerPostBySlugOrAlias(slug) : null;
+  const localPost = bloggerResolved ? null : await getPostBySlug(slug);
+  const post = bloggerResolved?.post ?? localPost;
 
   if (!post) {
     return { title: 'Post Not Found' };
   }
+
+  const canonicalSlug = bloggerResolved?.canonicalSlug ?? post.slug;
 
   return generateMetaTags({
     title: post.title,
     description: post.excerpt,
     keywords: post.keywords,
     image: post.image,
-    path: `/blog/${post.slug}`,
+    path: `/blog/${canonicalSlug}`,
     includeLocation: false,
     ogType: 'article',
   });
@@ -61,12 +63,16 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const bloggerEnabled = isBloggerConfigured();
-  const bloggerPost = bloggerEnabled ? await getBloggerPostBySlug(slug) : null;
-  const localPost = bloggerPost ? null : await getPostBySlug(slug);
-  const post = bloggerPost ?? localPost;
+  const bloggerResolved = bloggerEnabled ? await getBloggerPostBySlugOrAlias(slug) : null;
+  const localPost = bloggerResolved ? null : await getPostBySlug(slug);
+  const post = bloggerResolved?.post ?? localPost;
 
   if (!post) {
     notFound();
+  }
+
+  if (bloggerResolved?.kind === 'alias') {
+    permanentRedirect(`/blog/${bloggerResolved.canonicalSlug}`);
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || businessInfo.url;
