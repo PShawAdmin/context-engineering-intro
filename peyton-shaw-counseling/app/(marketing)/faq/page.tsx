@@ -204,7 +204,11 @@ export default function FAQPage() {
                               isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                             }`}
                           >
-                            <div className="overflow-hidden px-6 pt-3 pb-5">
+                            <div
+                              className={`overflow-hidden px-6 transition-[padding] duration-300 ease-out ${
+                                isOpen ? 'pt-3 pb-5' : 'pt-0 pb-0'
+                              }`}
+                            >
                               <Text size="sm" className="text-text-storm">
                                 {item.answer}
                               </Text>
