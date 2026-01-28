@@ -145,6 +145,36 @@ const nextConfig = {
         destination: 'https://www.peytonshawcounseling.com/:path*',
         permanent: true,
       },
+      {
+        source: '/services/individual-therapy',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/services/anxiety-stress-management',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/services/depression-treatment',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/services/life-transitions',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/services/relationship-issues',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/services/self-esteem-personal-growth',
+        destination: '/services',
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
