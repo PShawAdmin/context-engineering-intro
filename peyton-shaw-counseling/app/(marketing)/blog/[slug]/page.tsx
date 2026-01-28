@@ -31,81 +31,6 @@ const formatDate = (value: string) =>
     timeZone: 'UTC',
   }).format(new Date(value));
 
-const applyDropCap = (html: string) => {
-  if (!html || html.includes('class="drop-cap"')) {
-    return html;
-  }
-
-  const match = html.match(/<p\b[^>]*>[\s\S]*?<\/p>/i);
-  if (!match || match.index === undefined) {
-    return html;
-  }
-
-  const paragraph = match[0];
-  const openTagEnd = paragraph.indexOf('>');
-  const closeTagStart = paragraph.toLowerCase().lastIndexOf('</p>');
-
-  if (openTagEnd === -1 || closeTagStart === -1) {
-    return html;
-  }
-
-  const openTag = paragraph.slice(0, openTagEnd + 1);
-  const inner = paragraph.slice(openTagEnd + 1, closeTagStart);
-  const closeTag = paragraph.slice(closeTagStart);
-
-  const dropCapClass = 'drop-cap text-6xl text-nude-clay rounded-lg px-2 py-1 -ml-1 mt-0';
-  let inTag = false;
-  let inEntity = false;
-  let entityStart = 0;
-
-  for (let i = 0; i < inner.length; i += 1) {
-    const char = inner[i];
-
-    if (inTag) {
-      if (char === '>') {
-        inTag = false;
-      }
-      continue;
-    }
-
-    if (char === '<') {
-      inTag = true;
-      continue;
-    }
-
-    if (inEntity) {
-      if (char === ';') {
-        inEntity = false;
-        const entity = inner.slice(entityStart, i + 1);
-        if (/^[A-Za-z0-9]$/.test(entity.replace(/&|;/g, ''))) {
-          const wrapped = `<span class=\"${dropCapClass}\">${entity}</span>`;
-          const updated = `${inner.slice(0, entityStart)}${wrapped}${inner.slice(i + 1)}`;
-          const newParagraph = `${openTag}${updated}${closeTag}`;
-          return `${html.slice(0, match.index)}${newParagraph}${html.slice(match.index + paragraph.length)}`;
-        }
-      }
-      continue;
-    }
-
-    if (char === '&') {
-      inEntity = true;
-      entityStart = i;
-      continue;
-    }
-
-    if (/\s/.test(char) || !/[A-Za-z0-9]/.test(char)) {
-      continue;
-    }
-
-    const wrapped = `<span class=\"${dropCapClass}\">${char}</span>`;
-    const updated = `${inner.slice(0, i)}${wrapped}${inner.slice(i + 1)}`;
-    const newParagraph = `${openTag}${updated}${closeTag}`;
-    return `${html.slice(0, match.index)}${newParagraph}${html.slice(match.index + paragraph.length)}`;
-  }
-
-  return html;
-};
-
 export async function generateStaticParams() {
   const posts = await getAllPosts();
   return posts.map((post) => ({ slug: post.slug }));
@@ -145,7 +70,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || businessInfo.url;
-  const contentHtml = applyDropCap(post.contentHtml ?? renderMarkdownToHtml(post.content));
+  const contentHtml = post.contentHtml ?? renderMarkdownToHtml(post.content);
   const pageUrl = `/blog/${post.slug}`;
 
   const breadcrumbItems = [
@@ -208,7 +133,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               <article>
                 <div
-                  className="text-text-storm leading-relaxed font-news [&_p]:mb-4 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-news [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-news [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_blockquote]:border-l-4 [&_blockquote]:border-nude-sand [&_blockquote]:pl-4 [&_blockquote]:text-text-storm [&_img]:rounded-2xl [&_img]:my-6 [&_img]:w-full [&_a]:text-nude-clay [&_a]:underline"
+                  className="blog-post-body text-text-storm leading-relaxed font-news [&_p]:mb-4 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-news [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-news [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_blockquote]:border-l-4 [&_blockquote]:border-nude-sand [&_blockquote]:pl-4 [&_blockquote]:text-text-storm [&_img]:rounded-2xl [&_img]:my-6 [&_img]:w-full [&_a]:text-nude-clay [&_a]:underline"
                   dangerouslySetInnerHTML={{ __html: contentHtml }}
                 />
               </article>
