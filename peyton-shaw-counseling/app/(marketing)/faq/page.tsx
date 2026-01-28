@@ -286,7 +286,10 @@ export default function FAQPage() {
                   <Text size="sm" className="text-text-storm">
                     Learn what to expect in your first session and how to prepare.
                   </Text>
-                  <Link href="/blog" className="text-nude-clay hover:underline text-sm font-medium">
+                  <Link
+                    href="/guides/finding-the-right-therapist-southlake"
+                    className="text-nude-clay hover:underline text-sm font-medium"
+                  >
                     Read Guide →
                   </Link>
                 </div>

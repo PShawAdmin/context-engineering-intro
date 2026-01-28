@@ -24,7 +24,7 @@ export const LOCATIONS: LocationDetail[] = [
       'Teen and adult-focused care'
     ],
     neighborhoods: ['Town Square', 'Timarron', 'Carillon', 'Westwyck Hills'],
-    zipCodes: ['76092', '76126'],
+    zipCodes: ['76092'],
     serviceFocus: ['anxiety-stress-management', 'life-transitions', 'relationship-issues'],
     faqs: [
       {
@@ -55,7 +55,7 @@ export const LOCATIONS: LocationDetail[] = [
       'Teen and adult support'
     ],
     neighborhoods: ['Downtown Historic District', 'Silver Lake', 'Grapevine Mills area', 'Dove Loop'],
-    zipCodes: ['76051', '76099'],
+    zipCodes: ['76051'],
     serviceFocus: ['individual-therapy', 'anxiety-stress-management', 'depression-treatment'],
     faqs: [
       {
@@ -117,7 +117,7 @@ export const LOCATIONS: LocationDetail[] = [
       'Teen and adult support'
     ],
     neighborhoods: ['Hidden Lakes', 'The Highlands', 'Keller Town Center', 'Bear Creek'],
-    zipCodes: ['76244', '76248'],
+    zipCodes: ['76248'],
     serviceFocus: ['anxiety-stress-management', 'depression-treatment', 'life-transitions'],
     faqs: [
       {
@@ -148,7 +148,7 @@ export const LOCATIONS: LocationDetail[] = [
       'Teen and adult-focused care'
     ],
     neighborhoods: ['Vaquero', 'Glenwyck Farms', 'Stagecoach Hills'],
-    zipCodes: ['76262', '76092'],
+    zipCodes: ['76262'],
     serviceFocus: ['individual-therapy', 'life-transitions', 'self-esteem-personal-growth'],
     faqs: [
       {

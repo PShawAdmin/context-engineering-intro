@@ -172,10 +172,10 @@ export default function HomePage() {
                     </span>
                   </Heading>
                   <div className="mb-8">
-                    <span className="drop-cap float-left mr-2 font-serif text-6xl leading-[0.75] text-nude-clay rounded-lg px-2 py-1 -ml-1 mt-0">
-                      I
-                    </span>
                     <Text>
+                      <span className="drop-cap float-left mr-2 font-serif text-6xl leading-[0.75] text-nude-clay rounded-lg px-2 py-1 -ml-1 mt-0">
+                        I
+                      </span>{' '}
                       am Peyton Shaw, a Licensed Professional Counselor providing telehealth therapy for
                       teens and adults across Texas. I offer a calm, collaborative space where you can feel
                       heard—and a practical approach that supports real-life change.

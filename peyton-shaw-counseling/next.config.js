@@ -207,14 +207,6 @@ const nextConfig = {
       },
     ];
   },
-  async rewrites() {
-    return [
-      {
-        source: '/guides/:slug',
-        destination: '/guides?slug=:slug',
-      },
-    ];
-  },
 }
 
 module.exports = nextConfig

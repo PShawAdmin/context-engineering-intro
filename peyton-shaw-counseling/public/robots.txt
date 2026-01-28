@@ -4,8 +4,7 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_next/
-Disallow: /static/
+Crawl-delay: 1
 
 # Googlebot specific
 User-agent: Googlebot
@@ -13,8 +12,12 @@ Allow: /
 Disallow: /api/
 Crawl-delay: 0
 
+# OpenAI and AI search
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
 # Sitemap location
 Sitemap: https://www.peytonshawcounseling.com/sitemap.xml
-
-# Crawl delay (in seconds) for other bots
-Crawl-delay: 1
