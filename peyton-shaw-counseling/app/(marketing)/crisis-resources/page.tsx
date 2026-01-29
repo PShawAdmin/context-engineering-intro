@@ -18,8 +18,10 @@ interface ResourceCategory {
 interface Resource {
   name: string;
   phone?: string;
+  phoneLabel?: string;
   text?: string;
   website?: string;
+  linkLabel?: string;
   hours?: string;
   description: string;
   isEmergency?: boolean;
@@ -41,9 +43,9 @@ const crisisResources: ResourceCategory[] = [
       {
         name: '988 Suicide & Crisis Lifeline',
         phone: '988',
-        text: 'Text "HELLO" to 988',
+        text: 'Call or text 988 (24/7)',
         website: 'https://988lifeline.org',
-        description: 'Free, confidential crisis support for people in emotional distress or suicidal crisis',
+        description: 'Free, confidential crisis support for people in emotional distress or suicidal crisis. For Spanish by text: text AYUDA to 988.',
         hours: '24/7',
         isEmergency: true
       },
@@ -59,8 +61,8 @@ const crisisResources: ResourceCategory[] = [
   },
   {
     id: 'mental-health',
-    title: 'Mental Health Support',
-    description: 'Specialized mental health and substance use crisis services and support lines',
+    title: 'Mental Health & Recovery (Non-Crisis)',
+    description: 'Support lines and recovery resources (these are not emergency crisis hotlines). For immediate danger or urgent crisis support, use 988 or 911.',
     resources: [
       {
         name: 'SAMHSA National Helpline',
@@ -72,7 +74,7 @@ const crisisResources: ResourceCategory[] = [
       {
         name: 'NAMI Helpline',
         phone: '1-800-950-6264',
-        text: 'Text "HELPLINE" to 62640',
+        text: 'Text "NAMI" to 62640',
         website: 'https://www.nami.org/help',
         description: 'National Alliance on Mental Illness provides support, information, and referrals',
         hours: 'Monday-Friday, 10 AM - 10 PM ET'
@@ -86,15 +88,17 @@ const crisisResources: ResourceCategory[] = [
       {
         name: 'Alcoholics Anonymous',
         phone: '1-212-870-3400',
-        website: 'https://www.aa.org',
-        description: 'Support groups and resources for alcohol addiction recovery',
+        website: 'https://www.aa.org/find-aa',
+        linkLabel: 'Find local meetings',
+        description: 'Recovery support and meeting information (non-crisis)',
         hours: 'Varies by location'
       },
       {
         name: 'Narcotics Anonymous',
         phone: '1-818-773-9999',
-        website: 'https://www.na.org',
-        description: 'Support groups and resources for drug addiction recovery',
+        website: 'https://na.org/meetingsearch/',
+        linkLabel: 'Find local meetings',
+        description: 'Recovery support and meeting information (non-crisis)',
         hours: 'Varies by location'
       }
     ]
@@ -106,10 +110,12 @@ const crisisResources: ResourceCategory[] = [
     resources: [
       {
         name: 'Veterans Crisis Line',
-        phone: '1-800-273-8255, Press 1',
+        phone: '988',
+        phoneLabel: 'Dial 988, then Press 1',
         text: 'Text 838255',
-        website: 'https://www.veteranscrisisline.net',
-        description: 'Confidential support for Veterans and their loved ones',
+        website: 'https://www.veteranscrisisline.net/get-help-now/chat/',
+        linkLabel: 'Chat online',
+        description: 'Confidential support for Veterans and their loved ones. Dial 988, then Press 1.',
         hours: '24/7'
       },
       {
@@ -117,7 +123,7 @@ const crisisResources: ResourceCategory[] = [
         phone: '1-888-843-4564',
         website: 'https://www.lgbthotline.org',
         description: 'Support for LGBTQ individuals and their families',
-        hours: 'Monday-Friday, 1 PM - 9 PM PT'
+        hours: 'Mon-Fri: 11 AM - 8 PM PT; Sat: 9 AM - 2 PM PT'
       },
       {
         name: 'National Teen Dating Abuse Helpline',
@@ -150,18 +156,19 @@ const crisisResources: ResourceCategory[] = [
         hours: '24/7 Crisis Hotline'
       },
       {
-        name: 'Suicide Prevention Resource Center of Tarrant County',
-        phone: '817-335-3022',
-        website: 'https://mhatc.org',
-        description: 'Local crisis intervention and suicide prevention services',
+        name: 'MHMR of Tarrant County - Crisis Services',
+        phone: '1-800-866-2465',
+        text: 'Call or text 1-800-866-2465',
+        website: 'https://www.mhmrtarrant.org',
+        description: 'Crisis services for Tarrant County. Main/services (non-crisis): 817-335-3022.',
         hours: '24/7'
       },
       {
         name: 'Dallas Metrocare Services',
-        phone: '1-866-260-8000',
+        phone: '214-743-1215',
         website: 'https://www.metrocareservices.org',
-        description: 'Comprehensive mental health services for Dallas County',
-        hours: '24/7 Crisis Line'
+        description: "Having a mental health crisis? Call Metrocare's 24/7 hotline: (214) 743-1215.",
+        hours: '24/7'
       }
     ]
   }
@@ -197,22 +204,47 @@ export default function CrisisResourcesPage() {
         return;
       }
 
-      const activeRect = activeTab.getBoundingClientRect();
-      const parentRect =
-        container.parentElement?.getBoundingClientRect() ?? container.getBoundingClientRect();
-      const leftOffset = activeRect.left - parentRect.left;
-
-      indicator.style.width = `${activeRect.width}px`;
+      const leftOffset = activeTab.offsetLeft - container.scrollLeft;
+      indicator.style.width = `${activeTab.offsetWidth}px`;
       indicator.style.transform = `translateX(${leftOffset}px)`;
       setIndicatorReady(true);
     };
 
-    const raf = window.requestAnimationFrame(updateIndicator);
+    const ensureTabVisible = () => {
+      const activeTab = tabRefs.current[selectedCategory];
+      const container = tabsContainerRef.current;
+
+      if (!activeTab || !container) {
+        return;
+      }
+
+      if (container.scrollWidth > container.clientWidth) {
+        const padding = 12;
+        const activeRect = activeTab.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const leftDelta = activeRect.left - containerRect.left - padding;
+        const rightDelta = activeRect.right - containerRect.right + padding;
+
+        if (leftDelta < 0) {
+          container.scrollBy({ left: leftDelta, behavior: 'smooth' });
+        } else if (rightDelta > 0) {
+          container.scrollBy({ left: rightDelta, behavior: 'smooth' });
+        }
+      }
+    };
+
+    const container = tabsContainerRef.current;
+    const raf = window.requestAnimationFrame(() => {
+      ensureTabVisible();
+      updateIndicator();
+    });
     window.addEventListener('resize', updateIndicator);
+    container?.addEventListener('scroll', updateIndicator, { passive: true });
 
     return () => {
       window.cancelAnimationFrame(raf);
       window.removeEventListener('resize', updateIndicator);
+      container?.removeEventListener('scroll', updateIndicator);
     };
   }, [selectedCategory, categories]);
 
@@ -301,7 +333,7 @@ export default function CrisisResourcesPage() {
                   <div
                     ref={tabsContainerRef}
                     role="tablist"
-                    className="relative flex gap-6 overflow-x-auto pb-0.5"
+                    className="relative flex gap-6 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                   >
                     {categories.map((category) => {
                       const isActive = selectedCategory === category.id;
@@ -374,7 +406,7 @@ export default function CrisisResourcesPage() {
                                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                   </svg>
-                                  {resource.phone}
+                                  {resource.phoneLabel ?? resource.phone}
                                 </a>
                                 <Button
                                   size="sm"
@@ -406,7 +438,7 @@ export default function CrisisResourcesPage() {
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                                 </svg>
-                                Visit Website
+                                {resource.linkLabel ?? 'Visit Website'}
                               </a>
                             )}
                             
