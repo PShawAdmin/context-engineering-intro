@@ -308,9 +308,10 @@ export default function BlogPostGrid({ posts }: BlogPostGridProps) {
             </CardBody>
             <CardFooter className="pt-2">
               <div className="flex justify-between items-center w-full">
-                <span className="text-sm text-gray-500">
-                  {formatDate(post.publishedAt)}
-                </span>
+                <div className="flex flex-col text-sm text-gray-500">
+                  <span className="text-gray-700">Peyton Shaw</span>
+                  <span>{formatDate(post.publishedAt)}</span>
+                </div>
                 <Button
                   variant="light"
                   color="primary"

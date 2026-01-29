@@ -18,6 +18,7 @@ export default function Footer() {
       { name: 'About Me', href: '/about' },
       { name: 'Areas Served', href: '/areas-served' },
       { name: 'FAQ', href: '/faq' },
+      { name: 'Crisis Resources', href: '/crisis-resources' },
       { name: 'Guides', href: '/guides' },
       { name: 'Blog', href: '/blog' },
       { name: 'Contact', href: '/contact' },

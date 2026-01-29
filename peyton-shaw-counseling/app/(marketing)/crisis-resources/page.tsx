@@ -1,12 +1,11 @@
 'use client'
 
-import { useState } from 'react';
+import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/layout/Hero';
 import { Card, CardBody, CardHeader } from '@heroui/card';
 import { Button } from '@heroui/button';
-import { Tabs, Tab } from '@heroui/tabs';
 import Link from 'next/link';
 
 interface ResourceCategory {
@@ -61,7 +60,7 @@ const crisisResources: ResourceCategory[] = [
   {
     id: 'mental-health',
     title: 'Mental Health Support',
-    description: 'Specialized mental health crisis services and support lines',
+    description: 'Specialized mental health and substance use crisis services and support lines',
     resources: [
       {
         name: 'SAMHSA National Helpline',
@@ -83,6 +82,20 @@ const crisisResources: ResourceCategory[] = [
         website: 'https://mhanational.org/crisisresources',
         description: 'Comprehensive mental health resources and screening tools',
         hours: 'Online resources available 24/7'
+      },
+      {
+        name: 'Alcoholics Anonymous',
+        phone: '1-212-870-3400',
+        website: 'https://www.aa.org',
+        description: 'Support groups and resources for alcohol addiction recovery',
+        hours: 'Varies by location'
+      },
+      {
+        name: 'Narcotics Anonymous',
+        phone: '1-818-773-9999',
+        website: 'https://www.na.org',
+        description: 'Support groups and resources for drug addiction recovery',
+        hours: 'Varies by location'
       }
     ]
   },
@@ -125,34 +138,6 @@ const crisisResources: ResourceCategory[] = [
     ]
   },
   {
-    id: 'substance-use',
-    title: 'Substance Use & Recovery',
-    description: 'Support for substance use disorders and recovery',
-    resources: [
-      {
-        name: 'SAMHSA National Helpline',
-        phone: '1-800-662-4357',
-        website: 'https://www.samhsa.gov',
-        description: 'Treatment referral service for substance use and co-occurring disorders',
-        hours: '24/7'
-      },
-      {
-        name: 'Alcoholics Anonymous',
-        phone: '1-212-870-3400',
-        website: 'https://www.aa.org',
-        description: 'Support groups and resources for alcohol addiction recovery',
-        hours: 'Varies by location'
-      },
-      {
-        name: 'Narcotics Anonymous',
-        phone: '1-818-773-9999',
-        website: 'https://www.na.org',
-        description: 'Support groups and resources for drug addiction recovery',
-        hours: 'Varies by location'
-      }
-    ]
-  },
-  {
     id: 'local-texas',
     title: 'Texas & Local Resources',
     description: 'Crisis resources specific to Texas and the DFW area',
@@ -185,10 +170,51 @@ const crisisResources: ResourceCategory[] = [
 export default function CrisisResourcesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [copiedNumber, setCopiedNumber] = useState<string | null>(null);
+  const [indicatorReady, setIndicatorReady] = useState(false);
+  const tabsContainerRef = useRef<HTMLDivElement | null>(null);
+  const indicatorRef = useRef<HTMLDivElement | null>(null);
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const categories = useMemo(
+    () => [
+      { id: 'all', label: 'All Resources' },
+      ...crisisResources.map((category) => ({ id: category.id, label: category.title })),
+    ],
+    []
+  );
 
   const filteredResources = selectedCategory === 'all' 
     ? crisisResources 
     : crisisResources.filter(cat => cat.id === selectedCategory);
+
+  useLayoutEffect(() => {
+    const updateIndicator = () => {
+      const activeTab = tabRefs.current[selectedCategory];
+      const indicator = indicatorRef.current;
+      const container = tabsContainerRef.current;
+
+      if (!activeTab || !indicator || !container) {
+        setIndicatorReady(false);
+        return;
+      }
+
+      const activeRect = activeTab.getBoundingClientRect();
+      const parentRect =
+        container.parentElement?.getBoundingClientRect() ?? container.getBoundingClientRect();
+      const leftOffset = activeRect.left - parentRect.left;
+
+      indicator.style.width = `${activeRect.width}px`;
+      indicator.style.transform = `translateX(${leftOffset}px)`;
+      setIndicatorReady(true);
+    };
+
+    const raf = window.requestAnimationFrame(updateIndicator);
+    window.addEventListener('resize', updateIndicator);
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      window.removeEventListener('resize', updateIndicator);
+    };
+  }, [selectedCategory, categories]);
 
   const handleCopyNumber = (number: string) => {
     navigator.clipboard.writeText(number);
@@ -270,25 +296,48 @@ export default function CrisisResourcesPage() {
           <div className="container">
             <div className="max-w-6xl mx-auto">
               {/* Category Tabs */}
-              <Tabs 
-                aria-label="Resource Categories"
-                selectedKey={selectedCategory}
-                onSelectionChange={(key) => setSelectedCategory(key as string)}
-                variant="underlined"
-                classNames={{
-                  base: "w-full",
-                  tabList: "gap-6 w-full relative rounded-none p-0 border-b border-nude-sand/30",
-                  cursor: "w-full bg-nude-clay h-0.5 bottom-0",
-                  tab: "max-w-fit px-0 h-12 data-[hover-unselected=true]:opacity-70",
-                  tabContent: "text-text-storm font-medium transition-all group-data-[selected=true]:text-nude-clay group-data-[selected=true]:font-semibold"
-                }}
-                className="mb-8"
-              >
-                <Tab key="all" title="All Resources" />
-                {crisisResources.map((category) => (
-                  <Tab key={category.id} title={category.title} />
-                ))}
-              </Tabs>
+              <div className="mb-8">
+                <div className="relative" aria-label="Resource categories">
+                  <div
+                    ref={tabsContainerRef}
+                    role="tablist"
+                    className="relative flex gap-6 overflow-x-auto pb-0.5"
+                  >
+                    {categories.map((category) => {
+                      const isActive = selectedCategory === category.id;
+
+                      return (
+                        <button
+                          key={category.id}
+                          ref={(node) => {
+                            tabRefs.current[category.id] = node;
+                          }}
+                          type="button"
+                          role="tab"
+                          aria-selected={isActive}
+                          tabIndex={isActive ? 0 : -1}
+                          onClick={() => setSelectedCategory(category.id)}
+                          className={
+                            isActive
+                              ? 'relative !appearance-none !bg-transparent !border-0 !shadow-none !rounded-none px-0 py-0 text-text-charcoal font-medium whitespace-nowrap pb-0.5 tracking-[0.06em] text-sm sm:text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-nude-clay/30'
+                              : 'relative !appearance-none !bg-transparent !border-0 !shadow-none !rounded-none px-0 py-0 text-text-storm hover:text-text-charcoal transition-colors whitespace-nowrap pb-0.5 tracking-[0.06em] text-sm sm:text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-nude-clay/30'
+                          }
+                        >
+                          {category.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <div
+                    ref={indicatorRef}
+                    aria-hidden="true"
+                    className={`absolute left-0 bottom-0 h-px rounded-full bg-nude-sand/70 transition-[transform,width,opacity] duration-500 ease-out ${
+                      indicatorReady ? 'opacity-60' : 'opacity-0'
+                    }`}
+                    style={{ width: 0, transform: 'translateX(0px)' }}
+                  />
+                </div>
+              </div>
 
               {/* Resources Grid */}
               {filteredResources.map((category) => (
