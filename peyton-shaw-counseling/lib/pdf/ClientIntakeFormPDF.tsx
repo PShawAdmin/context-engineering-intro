@@ -119,7 +119,7 @@ const ClientIntakeFormPDF = () => (
       <View style={styles.header}>
         <Text style={styles.practiceName}>Peyton Shaw Counseling, PLLC</Text>
         <Text style={styles.practiceInfo}>Telehealth-only practice serving Texas</Text>
-        <Text style={styles.practiceInfo}>Phone: (555) 123-4567 | Email: intake@peytonshawcounseling.com</Text>
+        <Text style={styles.practiceInfo}>Phone: (469) 630-1631 | Email: intake@peytonshawcounseling.com</Text>
         <Text style={styles.practiceInfo}>Peyton Shaw, LPC | License #XXXXX</Text>
       </View>
 

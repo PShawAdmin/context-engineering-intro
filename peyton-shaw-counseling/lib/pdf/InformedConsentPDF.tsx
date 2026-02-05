@@ -121,7 +121,7 @@ const InformedConsentPDF = () => (
       <View style={styles.header}>
         <Text style={styles.practiceName}>Peyton Shaw Counseling, PLLC</Text>
         <Text style={styles.practiceInfo}>Telehealth-only practice serving Texas</Text>
-        <Text style={styles.practiceInfo}>Phone: (817) 383-8115 | Email: peyton@peytonshawcounseling.com</Text>
+        <Text style={styles.practiceInfo}>Phone: (469) 630-1631 | Email: peyton@peytonshawcounseling.com</Text>
         <Text style={styles.practiceInfo}>Peyton Shaw, LPC | License #86177</Text>
       </View>
 

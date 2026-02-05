@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   name: 'Peyton Shaw Counseling',
   legalName: 'Peyton Shaw Counseling, PLLC',
   tagline: 'Telehealth therapy focused on teens and adults across Texas',
-  phone: '(817) 383-8115',
+  phone: '(469) 630-1631',
   email: 'peyton@peytonshawcounseling.com',
   address: 'Texas (Telehealth only)',
   serviceArea: 'Texas (Telehealth only)',
@@ -19,7 +19,7 @@ export const SITE_CONFIG = {
 // Comprehensive business information for SEO and schema markup
 export const businessInfo = {
   name: 'Peyton Shaw Counseling, PLLC',
-  phone: '(817) 383-8115',
+  phone: '(469) 630-1631',
   email: 'peyton@peytonshawcounseling.com',
   licenseNumber: '86177',
   licenseState: 'TX',

@@ -5,7 +5,7 @@ export const ClientIntakeFormTemplate = {
   header: {
     practiceName: 'Peyton Shaw Counseling, PLLC',
     address: 'Telehealth-only practice serving Texas',
-    phone: '(817) 383-8115',
+    phone: '(469) 630-1631',
     email: 'peyton@peytonshawcounseling.com',
     licenseInfo: 'Peyton Shaw, LPC | License #XXXXX'
   },
