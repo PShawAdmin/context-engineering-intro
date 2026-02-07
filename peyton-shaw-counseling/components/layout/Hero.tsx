@@ -1,7 +1,15 @@
+import Image from 'next/image';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
 import LinkButton from '@/components/ui/LinkButton';
 import type { ReactNode } from 'react';
+
+type HeroImage = {
+  src: string;
+  alt: string;
+  priority?: boolean;
+  objectPosition?: string;
+};
 
 interface HeroProps {
   title: string;
@@ -9,6 +17,10 @@ interface HeroProps {
   description?: ReactNode;
   subtitleSize?: 'xs' | 'sm' | 'base' | 'lg' | 'xl';
   subtitleClassName?: string;
+  layout?: 'centered' | 'split';
+  heroImage?: HeroImage;
+  highlights?: string[];
+  highlightsHeading?: string;
   primaryAction?: {
     label: string;
     href: string;
@@ -37,12 +49,30 @@ export default function Hero({
   backgroundClassName,
   showWave = true,
   size = 'tall',
+  layout = 'centered',
+  heroImage,
+  highlights = [],
+  highlightsHeading = 'What to expect',
 }: HeroProps) {
   const sectionBackgroundClassName =
     backgroundClassName ?? (backgroundImage ? 'bg-nude-linen' : 'bg-background-dove');
   const isStandard = size === 'standard';
-  const sectionPaddingClassName = isStandard ? 'section-padding' : 'pb-24';
-  const contentPaddingClassName = isStandard ? '' : 'py-24 md:py-32 lg:py-40';
+  const isSplitLayout = layout === 'split';
+  const hasHeroImage = isSplitLayout && !!heroImage;
+  const hasHighlights = isSplitLayout && highlights.length > 0;
+  const hasSideContent = hasHeroImage || hasHighlights;
+  const splitItemsAlignmentClassName = hasHeroImage ? 'lg:items-center' : 'lg:items-start';
+  const sectionPaddingClassName = isStandard
+    ? 'section-padding'
+    : isSplitLayout
+      ? 'pb-14 md:pb-16 lg:pb-20'
+      : 'pb-24';
+  const contentPaddingClassName = isStandard
+    ? ''
+    : isSplitLayout
+      ? 'py-16 md:py-20 lg:py-24'
+      : 'py-24 md:py-32 lg:py-40';
+  const titleWords = title.split(' ');
 
   return (
     <section
@@ -57,59 +87,168 @@ export default function Hero({
       )}
 
       <div className={`relative z-10 container mx-auto px-4 ${contentPaddingClassName}`}>
-        <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <Heading level={1} className="mb-6 text-balance">
-            {title.split(' ').map((word, index) => (
-              <span key={index}>
-                {word === 'Peace' ? (
-                  <span className="gradient-text-base gradient-text-peace">{word}</span>
-                ) : word === 'Purpose' ? (
-                  <span className="gradient-text-base gradient-text-purpose">{word}</span>
-                ) : (
-                  word
-                )}
-                {index < title.split(' ').length - 1 && ' '}
-              </span>
-            ))}
-          </Heading>
-          <Text size={subtitleSize} weight="medium" className={subtitleClassName}>
-            {subtitle}
-          </Text>
-          {description && (
-            <Text size="lg" className="mb-8 max-w-2xl mx-auto">
-              {description}
-            </Text>
-          )}
-          
-          {(primaryAction || secondaryAction) && (
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-              {primaryAction && (
-                <LinkButton
-                  href={primaryAction.href}
-                  size="lg"
-                  className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8 py-3 text-lg shadow-clay hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200"
-                >
-                  {primaryAction.label}
-                </LinkButton>
-              )}
-              {secondaryAction && (
-                <LinkButton
-                  href={secondaryAction.href}
-                  variant="bordered"
-                  size="lg"
-                  className="border-2 border-grey-charcoal text-grey-charcoal hover:bg-background-dove font-medium px-8 py-3 text-lg hover:shadow-soft transition-all duration-200"
-                >
-                  {secondaryAction.label}
-                </LinkButton>
-              )}
+        {isSplitLayout ? (
+          <div className="max-w-6xl mx-auto animate-fade-in">
+            <div className="p-0">
+              <div
+                className={`grid gap-8 md:gap-10 ${hasSideContent ? `lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] ${splitItemsAlignmentClassName}` : ''}`}
+              >
+                <div className="text-center lg:text-left">
+                  <Heading level={1} className="mb-6 text-balance">
+                    {titleWords.map((word, index) => (
+                      <span key={index}>
+                        {word === 'Peace' ? (
+                          <span className="gradient-text-base gradient-text-peace">{word}</span>
+                        ) : word === 'Purpose' ? (
+                          <span className="gradient-text-base gradient-text-purpose">{word}</span>
+                        ) : (
+                          word
+                        )}
+                        {index < titleWords.length - 1 && ' '}
+                      </span>
+                    ))}
+                  </Heading>
+                  <Text
+                    size={subtitleSize}
+                    weight="medium"
+                    className={`${subtitleClassName} max-w-3xl mx-auto lg:mx-0`}
+                  >
+                    {subtitle}
+                  </Text>
+                  {description && (
+                    <Text size="lg" className="mt-4 mb-8 max-w-2xl mx-auto lg:mx-0">
+                      {description}
+                    </Text>
+                  )}
+                  {(primaryAction || secondaryAction) && (
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-10">
+                      {primaryAction && (
+                        <LinkButton
+                          href={primaryAction.href}
+                          size="lg"
+                          className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8 py-3 text-lg shadow-clay hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200"
+                        >
+                          {primaryAction.label}
+                        </LinkButton>
+                      )}
+                      {secondaryAction && (
+                        <LinkButton
+                          href={secondaryAction.href}
+                          variant="bordered"
+                          size="lg"
+                          className="border-2 border-grey-charcoal text-grey-charcoal hover:bg-background-dove font-medium px-8 py-3 text-lg hover:shadow-soft transition-all duration-200"
+                        >
+                          {secondaryAction.label}
+                        </LinkButton>
+                      )}
+                    </div>
+                  )}
+                  {ctaNote && (
+                    <Text
+                      size="sm"
+                      as="div"
+                      className="mt-4 text-text-storm/80 text-center lg:text-left"
+                    >
+                      {ctaNote}
+                    </Text>
+                  )}
+                </div>
+                {hasHeroImage && heroImage ? (
+                  <aside className="rounded-3xl">
+                    <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] shadow-[0_24px_60px_-36px_rgba(30,41,59,0.62)]">
+                      <Image
+                        src={heroImage.src}
+                        alt={heroImage.alt}
+                        fill
+                        priority={heroImage.priority}
+                        sizes="(min-width: 1024px) 34vw, 100vw"
+                        className="object-cover"
+                        style={
+                          heroImage.objectPosition
+                            ? { objectPosition: heroImage.objectPosition }
+                            : undefined
+                        }
+                      />
+                    </div>
+                  </aside>
+                ) : hasHighlights ? (
+                  <aside className="rounded-3xl border border-grey-blue-lighter/80 bg-background-pearl/85 p-6 md:p-8 shadow-soft">
+                    <Text
+                      size="sm"
+                      weight="medium"
+                      className="uppercase tracking-[0.16em] text-text-slate/80"
+                    >
+                      {highlightsHeading}
+                    </Text>
+                    <ul className="mt-5 space-y-4">
+                      {highlights.map((highlight) => (
+                        <li key={highlight} className="flex items-start gap-3">
+                          <span className="mt-2 h-2.5 w-2.5 rounded-full bg-nude-clay shrink-0"></span>
+                          <Text size="base" className="leading-relaxed">
+                            {highlight}
+                          </Text>
+                        </li>
+                      ))}
+                    </ul>
+                  </aside>
+                ) : null}
+              </div>
             </div>
-          )}
-          {ctaNote && (
-            <Text size="sm" as="div" className="mt-4 text-text-storm/80">
-              {ctaNote}
+          </div>
+        ) : (
+          <div className="max-w-4xl mx-auto text-center animate-fade-in">
+            <Heading level={1} className="mb-6 text-balance">
+              {titleWords.map((word, index) => (
+                <span key={index}>
+                  {word === 'Peace' ? (
+                    <span className="gradient-text-base gradient-text-peace">{word}</span>
+                  ) : word === 'Purpose' ? (
+                    <span className="gradient-text-base gradient-text-purpose">{word}</span>
+                  ) : (
+                    word
+                  )}
+                  {index < titleWords.length - 1 && ' '}
+                </span>
+              ))}
+            </Heading>
+            <Text size={subtitleSize} weight="medium" className={subtitleClassName}>
+              {subtitle}
             </Text>
-          )}
-        </div>
+            {description && (
+              <Text size="lg" className="mb-8 max-w-2xl mx-auto">
+                {description}
+              </Text>
+            )}
+            {(primaryAction || secondaryAction) && (
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                {primaryAction && (
+                  <LinkButton
+                    href={primaryAction.href}
+                    size="lg"
+                    className="bg-nude-clay hover:bg-nude-clay/90 text-white font-medium px-8 py-3 text-lg shadow-clay hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200"
+                  >
+                    {primaryAction.label}
+                  </LinkButton>
+                )}
+                {secondaryAction && (
+                  <LinkButton
+                    href={secondaryAction.href}
+                    variant="bordered"
+                    size="lg"
+                    className="border-2 border-grey-charcoal text-grey-charcoal hover:bg-background-dove font-medium px-8 py-3 text-lg hover:shadow-soft transition-all duration-200"
+                  >
+                    {secondaryAction.label}
+                  </LinkButton>
+                )}
+              </div>
+            )}
+            {ctaNote && (
+              <Text size="sm" as="div" className="mt-4 text-text-storm/80">
+                {ctaNote}
+              </Text>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Smooth rolling wave divider - responsive */}

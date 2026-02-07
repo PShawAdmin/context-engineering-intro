@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {Card, CardHeader, CardBody} from '@heroui/card';
 import { Heading } from '@/components/ui/typography/Heading';
 import { Text } from '@/components/ui/typography/Text';
+import ParallaxPattern from '@/components/ui/ParallaxPattern';
 import { TESTIMONIALS } from '@/lib/constants';
 
 const STAR_PATH =
@@ -164,10 +165,19 @@ export default function Testimonials() {
   const fallbackSpanClass = reviewCount >= 3 ? 'md:col-span-3' : '';
 
   return (
-    <section className="section-padding bg-background-dove relative overflow-hidden">
-      {/* Elegant pattern overlay */}
-      <div className="absolute inset-0 bg-pattern-watercolor opacity-20 pointer-events-none"></div>
-      <div className="absolute inset-0 pattern-grain opacity-5"></div>
+    <section className="section-padding bg-nude-linen relative overflow-hidden">
+      {/* Warm neutral pattern overlays */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(900px circle at 12% 18%, rgba(255,255,255,0.34) 0%, transparent 58%), radial-gradient(780px circle at 88% 86%, rgba(212,165,116,0.14) 0%, transparent 60%)'
+        }}
+      ></div>
+      <ParallaxPattern className="absolute -inset-8 z-0 pattern-chrysanthemum opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 pattern-diagonal-lines opacity-10 pointer-events-none"></div>
+      <div className="absolute inset-0 pattern-grain opacity-5 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/35 via-transparent to-nude-sand/25 pointer-events-none"></div>
       <div className="container relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <Heading level={2} className="mb-4">
@@ -243,8 +253,8 @@ export default function Testimonials() {
                 </Text>
                 <Text size="sm" className="mt-2">
                   {reviewUrl
-                    ? 'If you have worked with us, we would appreciate a review.'
-                    : 'Check back soon or contact us with any questions.'}
+                    ? 'If you have worked with me, I would appreciate a review.'
+                    : 'Check back soon or contact me with any questions.'}
                 </Text>
                 {reviewUrl && (
                   <Link

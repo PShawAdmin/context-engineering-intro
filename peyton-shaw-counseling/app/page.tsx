@@ -28,25 +28,24 @@ export const metadata = generateMetaTags({
     'licensed therapist near me'
   ],
   path: '/',
-  image: '/images/peyton-shaw-professional.jpg',
+  image: '/images/peyton-shaw-main.jpg',
 });
 
 const APPROACH_POINTS = [
-  'CBT reframes for anxious or self-critical loops',
-  'Mindfulness cues to help you return to the present',
-  'Behavioral activation to rebuild energy and motivation',
-  'Values-based decisions that make life feel more aligned',
-  'Communication scripts to reduce conflict and confusion',
-  'Boundary tools to protect your time and emotional space'
+  'CBT tools for anxious or self-critical thoughts',
+  'Mindfulness skills to return to the present',
+  'Behavioral activation to rebuild energy',
+  'Values-based choices that feel true to you',
+  'Communication scripts for hard conversations',
+  'Boundary tools to protect your time and energy'
 ];
 
 const YOU_MIGHT_BE_HERE = [
-  "Your mind will not turn off, even when you're exhausted.",
-  "You're holding it together on the outside, but you feel spent.",
-  "You keep second-guessing yourself and replaying everything.",
-  "You feel stuck, unmotivated, or disconnected from what used to matter.",
-  "Relationships feel tense, uncertain, or harder than they should.",
-  "You want tools that actually work in real life—not just insight."
+  'Your mind will not turn off, even when you are exhausted.',
+  'You are getting through the day, but it feels heavy.',
+  'You keep replaying conversations and second-guessing yourself.',
+  'You feel stuck, unmotivated, or disconnected from what matters.',
+  'Relationships feel tense, uncertain, or harder than they should.'
 ];
 
 const PROMISE_OUTCOMES = [
@@ -84,6 +83,39 @@ const EXPECTATION_CARDS = [
 ];
 
 export default function HomePage() {
+  const googleMapsApiKey =
+    process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_API_KEY ||
+    process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ||
+    process.env.GOOGLE_PLACES_API_KEY ||
+    process.env.GOOGLE_MAPS_API_KEY ||
+    '';
+  const googlePlaceId = process.env.GOOGLE_PLACE_ID || '';
+  const businessMapQuery =
+    process.env.NEXT_PUBLIC_BUSINESS_MAP_QUERY || 'Peyton Shaw Counseling, Southlake, TX';
+  const mapCenter = process.env.NEXT_PUBLIC_DFW_MAP_CENTER || '32.8998,-97.0403';
+  const staticMapStyles = [
+    'feature:administrative|element:labels.text.fill|color:0x334155',
+    'feature:administrative|element:labels.text.stroke|color:0xFAF5F0',
+    'feature:poi|visibility:off',
+    'feature:transit|visibility:off',
+    'feature:road|element:geometry|color:0xCBD5E1',
+    'feature:road|element:geometry.stroke|color:0x94A3B8',
+    'feature:road.highway|element:geometry|color:0x94A3B8',
+    'feature:road.highway|element:geometry.stroke|color:0x64748B',
+    'feature:road|element:labels.icon|visibility:off',
+    'feature:landscape|element:geometry|color:0xF8FAFC',
+    'feature:water|element:geometry|color:0xE2E8F0',
+  ];
+  const staticMapStyleParams = staticMapStyles
+    .map((style) => `style=${encodeURIComponent(style)}`)
+    .join('&');
+  const markerLocation = googlePlaceId ? `place_id:${googlePlaceId}` : businessMapQuery;
+  const markerParam = `markers=${encodeURIComponent(`size:mid|color:0xD4A574|${markerLocation}`)}`;
+  const dfwStaticMapUrl = googleMapsApiKey
+    ? `https://maps.googleapis.com/maps/api/staticmap?key=${encodeURIComponent(googleMapsApiKey)}&center=${encodeURIComponent(mapCenter)}&zoom=8&size=1600x900&scale=2&maptype=roadmap&${staticMapStyleParams}&${markerParam}`
+    : null;
+  const dfwIframeFallbackUrl = `https://www.google.com/maps?q=${encodeURIComponent(businessMapQuery)}&z=8&output=embed`;
+
   // Generate homepage-specific schema
   const webPageSchema = generateWebPageSchema({
     name: 'Peyton Shaw Counseling - Telehealth Therapy for Teens and Adults in Texas',
@@ -101,12 +133,16 @@ export default function HomePage() {
         {/* Hero Section */}
         <Hero
           title="Telehealth Therapy in Texas for Teens & Adults"
-          subtitle="Calm, practical support for anxiety, depression, stress, and life transitions with secure online sessions across Texas."
-          description={
-            <span className="text-base">
-              Secure online sessions &bull; Clear goals &bull; Tools you'll use between appointments
-            </span>
-          }
+          subtitle="Calm, practical support for anxiety, depression, stress, and life transitions with secure online sessions across Texas. You will have a steady, supportive space to be heard, plus practical tools you can use between sessions."
+          layout="split"
+          backgroundImage={false}
+          backgroundClassName="bg-background-dove"
+          heroImage={{
+            src: '/images/hero_image.png',
+            alt: 'Peyton Shaw, LPC telehealth counseling in Texas',
+            priority: true,
+            objectPosition: 'center top'
+          }}
           primaryAction={{
             label: "Book a consultation",
             href: "/contact"
@@ -115,55 +151,23 @@ export default function HomePage() {
             label: "How sessions work",
             href: "#session-blueprint"
           }}
+          showWave={false}
+        />
+        <div
+          className="-mt-24 h-24 bg-gradient-to-b from-transparent via-nude-linen/70 to-nude-linen"
+          aria-hidden="true"
         />
 
-        {/* Services Overview */}
-        <section className="section-padding bg-background-dove relative overflow-hidden -mt-[1px] pt-24">
-          <div className="container relative z-10">
-            <ParallaxReveal className="text-center mb-16" speed={0.04} maxOffset={10} fromOffset={6}>
-              <Heading level={2} className="mb-4">
-                Start with a clear plan
-              </Heading>
-              <Text size="xl" className="max-w-3xl mx-auto">
-                Therapy that stays focused and flexible—grounded in evidence-based care and shaped
-                around your goals. We practice what helps, keep progress realistic, and adjust as your
-                needs change.
-              </Text>
-            </ParallaxReveal>
-
-            <div className="space-y-10 lg:space-y-12">
-              <ParallaxReveal
-                className="bg-nude-cream/95 rounded-3xl p-8 md:p-10 shadow-soft mb-6 lg:mb-8"
-                freezeOnce
-              >
-                <Heading level={3} className="mb-4 text-text-charcoal">
-                  A calm, collaborative approach
-                </Heading>
-                <Text size="lg">
-                  A steady, supportive space with a practical rhythm. We slow down when you need it, and
-                  keep sessions clear enough that you leave with a next step.
-                </Text>
-                <ApproachAccordion
-                  approachPoints={APPROACH_POINTS}
-                  expectationCards={EXPECTATION_CARDS}
-                  youMightBeHere={YOU_MIGHT_BE_HERE}
-                  promiseOutcomes={PROMISE_OUTCOMES}
-                />
-              </ParallaxReveal>
-            </div>
-          </div>
-        </section>
-
         {/* About Preview */}
-        <section className="section-padding bg-nude-linen relative overflow-hidden">
-          <div className="absolute inset-0 z-0 bg-pattern-blob opacity-10"></div>
+        <section className="section-padding bg-background-dove relative overflow-hidden -mt-[1px]">
           <div className="absolute inset-0 z-0 pattern-grain opacity-5"></div>
+          <div className="absolute -inset-8 z-0 bg-nude-linen"></div>
           {/* Elegant chrysanthemum flower pattern watermark */}
           <ParallaxPattern className="absolute -inset-8 z-0 pattern-chrysanthemum opacity-10 pointer-events-none" />
           <div className="container relative z-20">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div className="animate-slide-up">
+                <div className="animate-slide-up md:order-2">
                   <Heading level={2} className="mb-6">
                     Meet <span 
                       className="text-nude-clay text-4xl md:text-5xl lg:text-6xl inline-block font-script"
@@ -205,10 +209,10 @@ export default function HomePage() {
                     </LinkButton>
                   </div>
                 </div>
-                <div className="relative max-w-sm mx-auto">
-                <div className="aspect-square relative rounded-2xl overflow-hidden border border-nude-clay/50 shadow-[0_22px_60px_-36px_rgba(30,41,59,0.6)]">
+                <div className="relative max-w-sm mx-auto md:order-1">
+                <div className="aspect-[4/5] relative rounded-2xl overflow-hidden border border-nude-clay/50 shadow-[0_22px_60px_-36px_rgba(30,41,59,0.6)]">
                   <Image
-                    src="/images/peyton-shaw-professional.jpg"
+                    src="/images/peyton-shaw-main.jpg"
                     alt="Peyton Shaw - Licensed Professional Counselor (Telehealth in Texas)"
                     width={340}
                     height={340}
@@ -225,27 +229,96 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Services Overview */}
+        <section className="section-padding bg-nude-linen relative overflow-hidden">
+          <div className="absolute inset-0 z-0 pattern-diagonal-lines opacity-35 pointer-events-none"></div>
+          <div className="container relative z-10">
+            <ParallaxReveal className="text-center mb-16" speed={0.04} maxOffset={10} fromOffset={6}>
+              <Heading level={2} className="mb-4">
+                Start with a clear plan
+              </Heading>
+              <Text size="xl" className="max-w-3xl mx-auto">
+                Therapy that stays focused and flexible, grounded in evidence-based care and shaped
+                around your goals. I keep the process practical and adjust as your needs change.
+              </Text>
+            </ParallaxReveal>
+
+            <div className="space-y-10 lg:space-y-12">
+              <ParallaxReveal
+                className="bg-nude-cream/95 rounded-3xl p-8 md:p-10 shadow-soft mb-6 lg:mb-8"
+                freezeOnce
+              >
+                <Heading level={3} className="mb-4 text-text-charcoal">
+                  A calm, collaborative approach
+                </Heading>
+                <Text size="lg">
+                  A steady, supportive space with a clear rhythm. I slow down when you need it and make
+                  sure you leave each session with a next step.
+                </Text>
+                <ApproachAccordion
+                  approachPoints={APPROACH_POINTS}
+                  expectationCards={EXPECTATION_CARDS}
+                  youMightBeHere={YOU_MIGHT_BE_HERE}
+                  promiseOutcomes={PROMISE_OUTCOMES}
+                />
+              </ParallaxReveal>
+            </div>
+          </div>
+        </section>
+
         {/* Testimonials */}
         <Testimonials />
 
         {/* Areas Served */}
-        <section className="section-padding bg-nude-linen">
-          <div className="container">
-            <div className="text-center mb-10">
-              <Heading level={2} className="mb-4">
-                Telehealth Across Texas
-              </Heading>
-              <Text size="lg" className="max-w-3xl mx-auto">
-                I offer telehealth-only therapy for teens and adults across Texas, including Southlake,
-                Grapevine, and surrounding communities.
-              </Text>
+        <section className="section-padding bg-nude-cream relative overflow-hidden">
+          {dfwStaticMapUrl ? (
+            <div className="absolute inset-0 z-0 opacity-[0.16] pointer-events-none" aria-hidden="true">
+              <Image
+                src={dfwStaticMapUrl}
+                alt=""
+                fill
+                sizes="100vw"
+                unoptimized
+                className="object-cover scale-[1.02] origin-center"
+              />
+            </div>
+          ) : (
+            <div className="absolute inset-0 z-0 opacity-8 pointer-events-none" aria-hidden="true">
+              <iframe
+                title="Map of the Dallas-Fort Worth area"
+                src={dfwIframeFallbackUrl}
+                className="h-full w-full border-0 scale-[1.02] origin-center"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                tabIndex={-1}
+              />
+            </div>
+          )}
+          <div className="absolute inset-0 z-0 bg-nude-cream/78 pointer-events-none" aria-hidden="true"></div>
+          <div
+            className="absolute inset-0 z-0 pointer-events-none"
+            style={{ background: 'linear-gradient(180deg, rgba(250,245,240,0.58) 0%, rgba(245,230,211,0.42) 100%)' }}
+            aria-hidden="true"
+          ></div>
+          <div className="absolute inset-0 z-0 pattern-grain opacity-4 pointer-events-none" aria-hidden="true"></div>
+          <div className="container relative z-10">
+            <div className="mb-10">
+              <div className="max-w-4xl mx-auto text-center rounded-3xl border border-nude-clay bg-nude-cream/88 backdrop-blur-sm px-6 py-7 md:px-10 md:py-8 shadow-[0_24px_55px_-40px_rgba(30,41,59,0.55)]">
+                <Heading level={2} className="mb-4">
+                  Telehealth Across Texas
+                </Heading>
+                <Text size="lg" className="max-w-3xl mx-auto text-text-charcoal/95">
+                  I offer telehealth-only therapy for teens and adults across Texas, including Southlake,
+                  Grapevine, and surrounding communities.
+                </Text>
+              </div>
             </div>
             <div className="flex flex-wrap justify-center gap-3">
               {LOCATIONS.map((location) => (
                 <Link
                   key={location.slug}
                   href="/areas-served"
-                  className="px-4 py-2 bg-nude-cream text-text-storm rounded-full text-sm hover:bg-nude-sand transition-colors"
+                  className="px-4 py-2 bg-nude-cream text-nude-clay border border-nude-clay rounded-full text-sm hover:bg-nude-sand hover:text-nude-cream transition-colors"
                 >
                   {location.name}, TX
                 </Link>
@@ -255,7 +328,7 @@ export default function HomePage() {
               <LinkButton
                 href="/areas-served"
                 variant="bordered"
-                className="border-2 border-nude-clay text-nude-clay hover:bg-nude-linen font-medium px-8"
+                className="bg-nude-cream border-2 border-nude-clay text-nude-clay hover:bg-nude-sand hover:text-nude-cream font-medium px-8"
               >
                 View All Areas
               </LinkButton>
@@ -264,22 +337,26 @@ export default function HomePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="section-padding bg-nude-clay relative overflow-hidden">
-          <div className="absolute inset-0 bg-pattern-watercolor opacity-20"></div>
-          <div className="absolute inset-0 pattern-grain opacity-10"></div>
+        <section className="section-padding bg-background-dove relative overflow-hidden">
+          <div className="absolute inset-0 pattern-diagonal-lines opacity-14 pointer-events-none"></div>
+          <div className="absolute inset-0 pattern-grain opacity-8 pointer-events-none"></div>
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: 'radial-gradient(900px circle at 50% -5%, rgba(255,255,255,0.28) 0%, transparent 62%)' }}
+          ></div>
           <div className="container relative z-10 text-center">
-            <Heading level={2} className="text-white mb-6 animate-fade-in">
+            <Heading level={2} className="text-text-charcoal mb-6 animate-fade-in">
               Ready to take the next step?
             </Heading>
-            <Text size="xl" color="white" className="md:text-2xl opacity-90 mb-10 max-w-3xl mx-auto animate-slide-up">
-              If you're feeling overwhelmed, stuck, or just tired of carrying it alone, we can make a
-              simple plan together.
+            <Text size="xl" className="md:text-2xl mb-10 max-w-3xl mx-auto animate-slide-up">
+              If you&apos;re feeling overwhelmed, stuck, or just tired of carrying it alone, I can help you make a
+              simple plan.
             </Text>
             <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up [animation-delay:200ms]">
               <LinkButton
                 href="/contact"
                 size="lg"
-                className="bg-nude-cream text-nude-clay hover:bg-nude-linen font-medium px-10 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
+                className="bg-nude-clay text-white hover:bg-nude-warm font-medium px-10 py-4 text-lg shadow-clay hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200"
               >
                 Book a consultation
               </LinkButton>
@@ -287,10 +364,10 @@ export default function HomePage() {
                 label="Ask a question by email"
                 variant="bordered"
                 size="lg"
-                className="border-2 border-nude-cream text-nude-cream hover:bg-nude-cream/10 font-medium px-10 py-4 text-lg backdrop-blur-sm transition-all"
+                className="border-2 border-nude-clay text-nude-clay hover:bg-nude-cream font-medium px-10 py-4 text-lg transition-all"
               />
             </div>
-            <Text size="sm" color="white" className="mt-6 opacity-80">
+            <Text size="sm" className="mt-6 text-text-storm/90">
               No pressure—just clarity on fit and next steps.
             </Text>
           </div>
