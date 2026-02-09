@@ -93,12 +93,15 @@ export default function HomePage() {
   const businessMapQuery =
     process.env.NEXT_PUBLIC_BUSINESS_MAP_QUERY || 'Peyton Shaw Counseling, Southlake, TX';
   const mapCenter = process.env.NEXT_PUBLIC_DFW_MAP_CENTER || '32.8998,-97.0403';
+  const mapZoom = process.env.NEXT_PUBLIC_DFW_MAP_ZOOM || '8';
   const staticMapStyles = [
     'feature:administrative|element:labels.text.fill|color:0x334155',
     'feature:administrative|element:labels.text.stroke|color:0xFAF5F0',
     'feature:poi|visibility:off',
     'feature:transit|visibility:off',
     'feature:road|element:geometry|color:0xCBD5E1',
+    'feature:road.local|element:geometry|color:0xDCE5F1',
+    'feature:road.arterial|element:geometry|color:0xC7D4E5',
     'feature:road|element:geometry.stroke|color:0x94A3B8',
     'feature:road.highway|element:geometry|color:0x94A3B8',
     'feature:road.highway|element:geometry.stroke|color:0x64748B',
@@ -112,9 +115,9 @@ export default function HomePage() {
   const markerLocation = googlePlaceId ? `place_id:${googlePlaceId}` : businessMapQuery;
   const markerParam = `markers=${encodeURIComponent(`size:mid|color:0xD4A574|${markerLocation}`)}`;
   const dfwStaticMapUrl = googleMapsApiKey
-    ? `https://maps.googleapis.com/maps/api/staticmap?key=${encodeURIComponent(googleMapsApiKey)}&center=${encodeURIComponent(mapCenter)}&zoom=8&size=1600x900&scale=2&maptype=roadmap&${staticMapStyleParams}&${markerParam}`
+    ? `https://maps.googleapis.com/maps/api/staticmap?key=${encodeURIComponent(googleMapsApiKey)}&center=${encodeURIComponent(mapCenter)}&zoom=${encodeURIComponent(mapZoom)}&size=1600x900&scale=2&maptype=roadmap&${staticMapStyleParams}&${markerParam}`
     : null;
-  const dfwIframeFallbackUrl = `https://www.google.com/maps?q=${encodeURIComponent(businessMapQuery)}&z=8&output=embed`;
+  const dfwIframeFallbackUrl = `https://www.google.com/maps?q=${encodeURIComponent(businessMapQuery)}&z=${encodeURIComponent(mapZoom)}&output=embed`;
 
   // Generate homepage-specific schema
   const webPageSchema = generateWebPageSchema({
@@ -138,7 +141,7 @@ export default function HomePage() {
           backgroundImage={false}
           backgroundClassName="bg-background-dove"
           heroImage={{
-            src: '/images/hero_image.png',
+            src: '/images/hero_image_main.png',
             alt: 'Peyton Shaw, LPC telehealth counseling in Texas',
             priority: true,
             objectPosition: 'center top'
@@ -237,23 +240,18 @@ export default function HomePage() {
               <Heading level={2} className="mb-4">
                 Start with a clear plan
               </Heading>
-              <Text size="xl" className="max-w-3xl mx-auto">
-                Therapy that stays focused and flexible, grounded in evidence-based care and shaped
-                around your goals. I keep the process practical and adjust as your needs change.
+              <Text size="xl" className="max-w-[35ch] sm:max-w-3xl mx-auto">
+                Focused, flexible therapy grounded in evidence-based care and shaped around your goals.
               </Text>
             </ParallaxReveal>
 
             <div className="space-y-10 lg:space-y-12">
-              <ParallaxReveal
-                className="bg-nude-cream/95 rounded-3xl p-8 md:p-10 shadow-soft mb-6 lg:mb-8"
-                freezeOnce
-              >
+              <div className="bg-nude-cream/95 rounded-3xl p-6 sm:p-8 md:p-10 shadow-soft mb-6 lg:mb-8">
                 <Heading level={3} className="mb-4 text-text-charcoal">
                   A calm, collaborative approach
                 </Heading>
-                <Text size="lg">
-                  A steady, supportive space with a clear rhythm. I slow down when you need it and make
-                  sure you leave each session with a next step.
+                <Text size="lg" className="max-w-[36ch] sm:max-w-none">
+                  A steady, supportive space with a clear rhythm, paced to what you need most.
                 </Text>
                 <ApproachAccordion
                   approachPoints={APPROACH_POINTS}
@@ -261,7 +259,7 @@ export default function HomePage() {
                   youMightBeHere={YOU_MIGHT_BE_HERE}
                   promiseOutcomes={PROMISE_OUTCOMES}
                 />
-              </ParallaxReveal>
+              </div>
             </div>
           </div>
         </section>
@@ -272,7 +270,7 @@ export default function HomePage() {
         {/* Areas Served */}
         <section className="section-padding bg-nude-cream relative overflow-hidden">
           {dfwStaticMapUrl ? (
-            <div className="absolute inset-0 z-0 opacity-[0.16] pointer-events-none" aria-hidden="true">
+            <div className="absolute inset-0 z-0 opacity-[0.24] pointer-events-none" aria-hidden="true">
               <Image
                 src={dfwStaticMapUrl}
                 alt=""
@@ -294,10 +292,10 @@ export default function HomePage() {
               />
             </div>
           )}
-          <div className="absolute inset-0 z-0 bg-nude-cream/78 pointer-events-none" aria-hidden="true"></div>
+          <div className="absolute inset-0 z-0 bg-nude-cream/70 pointer-events-none" aria-hidden="true"></div>
           <div
             className="absolute inset-0 z-0 pointer-events-none"
-            style={{ background: 'linear-gradient(180deg, rgba(250,245,240,0.58) 0%, rgba(245,230,211,0.42) 100%)' }}
+            style={{ background: 'linear-gradient(180deg, rgba(250,245,240,0.48) 0%, rgba(245,230,211,0.3) 100%)' }}
             aria-hidden="true"
           ></div>
           <div className="absolute inset-0 z-0 pattern-grain opacity-4 pointer-events-none" aria-hidden="true"></div>

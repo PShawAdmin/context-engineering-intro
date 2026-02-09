@@ -81,7 +81,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="text-base font-black tracking-tight">PT</span>
+                <span className="text-base font-tungsten font-black tracking-tight">PT</span>
               </a>
               <a 
                 href="https://www.linkedin.com/in/peytonwoods" 

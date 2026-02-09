@@ -145,7 +145,7 @@ export default function AboutPage() {
                 <div className="rounded-3xl border border-nude-linen shadow-soft overflow-hidden">
                   <div className="aspect-[4/5] relative">
                     <Image
-                      src="/images/peyton-shaw-professional.jpg"
+                      src="/images/peyton-shaw-main.jpg"
                       alt="Peyton Shaw - Licensed Professional Counselor"
                       fill
                       className="object-cover"

@@ -114,6 +114,7 @@ module.exports = {
         serif: ['var(--font-playfair)', 'Georgia', 'serif'],
         script: ['var(--font-vujahday)', 'cursive'],
         news: ['var(--font-newsreader)', 'Georgia', 'Times New Roman', 'serif'],
+        tungsten: ['Tungsten Condensed Black', 'Tungsten', 'Arial Narrow', 'sans-serif'],
       },
       animation: {
         'blob': 'blob 7s infinite',
